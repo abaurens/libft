@@ -67,11 +67,13 @@ Cette lib contiens l'ensemble des fonctions requises par le projet **libft** de 
 		char	ft_contains(char c, const char *str);
 	```
 	Retourne `1` si ***`c`*** est présent dans la chaîne ***`str`*** et retourne `0` dans le cas contraire.
+
 * **ft_atol_base**
 	```C
 		long	ft_atol_base(const char *str, const char *base);
 	```
 		Parse la chaîne ***`str`*** contenant un nombre écrit avec la base ***`base`*** et retourne le resultat sous la forme d'un `signed long int`.
+
 * **ft_idxof**
 	```C
 		size_t	ft_idxof(char c, const char *str);
@@ -89,6 +91,7 @@ Cette lib contiens l'ensemble des fonctions requises par le projet **libft** de 
 		char	ft_islower(char c);
 	```
 	Retourne `1` si le carractère ***`c`*** est une lettre minuscule.
+
 * **ft_isupper**
 	```C
 		char	ft_isupper(char c);
