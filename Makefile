@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2018/11/14 13:24:06 by abaurens         ###   ########.fr        #
+#    Updated: 2018/11/14 19:58:10 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,7 +105,9 @@ $(NAME):	$(OBJ)
 #	($< is the first dependency)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
+	@printf "\e[32;10m"
 	$(CC) $(CFLAGS) -o $@ -c $<
+	@printf "\e[32;0m"
 
 all: $(NAME)
 
