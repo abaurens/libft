@@ -103,6 +103,6 @@ Cette lib contiens l'ensemble des fonctions requises par le projet **libft** de 
 
 * **ft_putnbr_base_fd**
 	```C
-	void	ft_putnbr_base_fd(int n, const char *base, int fd);
+		void	ft_putnbr_base_fd(int n, const char *base, int fd);
 	```
 	Ecrit le nombre ***`n`*** dans la base ***`base`*** sur le descripteur de fichier ***`fd`*** .
