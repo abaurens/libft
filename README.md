@@ -13,8 +13,8 @@ Cette lib contiens l'ensemble des fonctions requises par le projet **libft** de 
 	```C
 	long	ft_atol_base(const char *str, const char *base);
 	```
-	Parse la chaine ***str*** contenant un nombre ecrit avec la base ***base***
-	  et retourne le resultat sous la forme d'un `signed long int`
+	Parse la chaine ***`str`*** contenant un nombre ecrit avec la base ***base***
+	et retourne le resultat sous la forme d'un `signed long int`
 	
 * ft_idxof
 * ft_isbase
