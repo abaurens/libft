@@ -63,8 +63,9 @@ Cette lib contiens l'ensemble des fonctions requises par le projet **libft** de 
 
 ## liste des fonctions bonus :
 * ft_contains
-I think you should use an
-`<addr>` element here instead.
+	```C
+	ft_contains(char c, const char *str);
+	```
 * ft_atol_base
 * ft_idxof
 * ft_isbase
