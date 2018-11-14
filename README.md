@@ -1,20 +1,14 @@
-## libft
+# libft
 Cette lib contiens l'ensemble des fonctions requises par le projet **libft** de 42 ainsi que quelques fonctions "bonus" que j'ai trouvé utile d'ajouter a un moment ou un autre de mon cursus.
 
-# liste des fonctions :
+## liste des fonctions :
 * ft_atoi
-* ft_atol_base
 * ft_bzero
-* ft_contains
-* ft_idxof
 * ft_isalnum
 * ft_isalpha
 * ft_isascii
-* ft_isbase
 * ft_isdigit
-* ft_islower
 * ft_isprint
-* ft_isupper
 * ft_itoa
 * ft_lstadd
 * ft_lstdel
@@ -35,8 +29,6 @@ Cette lib contiens l'ensemble des fonctions requises par le projet **libft** de 
 * ft_putendl
 * ft_putendl_fd
 * ft_putnbr
-* ft_putnbr_base
-* ft_putnbr_base_fd
 * ft_putnbr_fd
 * ft_putstr
 * ft_putstr_fd
@@ -68,3 +60,15 @@ Cette lib contiens l'ensemble des fonctions requises par le projet **libft** de 
 * ft_strtrim
 * ft_tolower
 * ft_toupper
+
+## liste des fonctions bonus :
+* ft_contains
+I think you should use an
+`<addr>` element here instead.
+* ft_atol_base
+* ft_idxof
+* ft_isbase
+* ft_islower
+* ft_isupper
+* ft_putnbr_base
+* ft_putnbr_base_fd
