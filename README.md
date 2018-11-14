@@ -63,49 +63,49 @@ Cette lib contiens l'ensemble des fonctions requises par le projet **libft** de 
 
 ## liste des fonctions bonus :
 * **ft_contains**
-		```C
-		char	ft_contains(char c, const char *str);
-		```
-		Retourne `1` si ***`c`*** est présent dans la chaîne ***`str`*** et retourne `0` dans le cas contraire.
+	```C
+	char	ft_contains(char c, const char *str);
+	```
+	Retourne `1` si ***`c`*** est présent dans la chaîne ***`str`*** et retourne `0` dans le cas contraire.
 
 * **ft_atol_base**
-		```C
-		long	ft_atol_base(const char *str, const char *base);
-		```
-		Parse la chaîne ***`str`*** contenant un nombre écrit avec la base ***`base`*** et retourne le resultat sous la forme d'un `signed long int`.
+	```C
+	long	ft_atol_base(const char *str, const char *base);
+	```
+	Parse la chaîne ***`str`*** contenant un nombre écrit avec la base ***`base`*** et retourne le resultat sous la forme d'un `signed long int`.
 
 * **ft_idxof**
-		```C
-		size_t	ft_idxof(char c, const char *str);
-		```
-		Retourne l'index de la premiere occurence de ***`c`*** dans la chaîne ***`str`*** et retourne `strlen(str)` si c n'est pas présent.
+	```C
+	size_t	ft_idxof(char c, const char *str);
+	```
+	Retourne l'index de la premiere occurence de ***`c`*** dans la chaîne ***`str`*** et retourne `strlen(str)` si c n'est pas présent.
 
 * **ft_isbase**
-		```C
-		char	ft_isbase(const char *base);
-		```
-		Retourne `1` si la chaîne ***`str`*** constitue une *base* valide (deux carractères uniques ou plus).
+	```C
+	char	ft_isbase(const char *base);
+	```
+	Retourne `1` si la chaîne ***`str`*** constitue une *base* valide (deux carractères uniques ou plus).
 
 * **ft_islower**
-		```C
-		char	ft_islower(char c);
-		```
-		Retourne `1` si le carractère ***`c`*** est une lettre minuscule.
+	```C
+	char	ft_islower(char c);
+	```
+	Retourne `1` si le carractère ***`c`*** est une lettre minuscule.
 
 * **ft_isupper**
-		```C
-		char	ft_isupper(char c);
-		```
-		Retourne `1` si le carractère ***`c`*** est une lettre majuscule.
+	```C
+	char	ft_isupper(char c);
+	```
+	Retourne `1` si le carractère ***`c`*** est une lettre majuscule.
 
 * **ft_putnbr_base**
-		```C
-		void	ft_putnbr_base(int n, const char *base);
-		```
-		Ecrit le nombre ***`n`*** dans la base ***`base`*** sur la sortie standard`0`.
+	```C
+	void	ft_putnbr_base(int n, const char *base);
+	```
+	Ecrit le nombre ***`n`*** dans la base ***`base`*** sur la sortie standard`0`.
 
 * **ft_putnbr_base_fd**
-		```C
-		void	ft_putnbr_base_fd(int n, const char *base, int fd);
-		```
-		Ecrit le nombre ***`n`*** dans la base ***`base`*** sur le descripteur de fichier ***`fd`*** .
+	```C
+	void	ft_putnbr_base_fd(int n, const char *base, int fd);
+	```
+	Ecrit le nombre ***`n`*** dans la base ***`base`*** sur le descripteur de fichier ***`fd`*** .
