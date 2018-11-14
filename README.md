@@ -6,14 +6,14 @@ Cette lib contiens l'ensemble des fonctions requises par le projet **libft** de 
 	```C
 	char	ft_contains(char c, const char *str);
 	```
-	Retourne 1 si **c** est présent dans la chaine **str**.
+	Retourne 1 si ***c*** est présent dans la chaine ***str***.
 	Retourne 0 dans le cas contraire.
 	
 * ft_atol_base
 	```C
 	long	ft_atol_base(const char *str, const char *base);
 	```
-	Parse la chaine **str** contenant un nombre ecrit avec la base **base**
+	Parse la chaine _***s_tr*** contenant un nombre ecrit avec la base ***base***
 	
 * ft_idxof
 * ft_isbase
