@@ -82,7 +82,7 @@ Cette lib contiens l'ensemble des fonctions requises par le projet **libft** de 
 
 * **ft_isbase**
 	```C
-	char	ft_isbase(const char *base);
+		char	ft_isbase(const char *base);
 	```
 	Retourne `1` si la chaîne ***`str`*** constitue une *base* valide (deux carractères uniques ou plus).
 
