@@ -1,6 +1,18 @@
 # libft
 Cette lib contiens l'ensemble des fonctions requises par le projet **libft** de 42 ainsi que quelques fonctions "bonus" que j'ai trouvé utile d'ajouter a un moment ou un autre de mon cursus.
 
+## liste des fonctions bonus :
+* ft_contains
+	```C ft_contains(char c, const char *str);```
+* ft_atol_base
+* ft_idxof
+* ft_isbase
+* ft_islower
+* ft_isupper
+* ft_putnbr_base
+* ft_putnbr_base_fd
+
+
 ## liste des fonctions :
 * ft_atoi
 * ft_bzero
@@ -60,16 +72,3 @@ Cette lib contiens l'ensemble des fonctions requises par le projet **libft** de 
 * ft_strtrim
 * ft_tolower
 * ft_toupper
-
-## liste des fonctions bonus :
-* ft_contains
-	```C
-	ft_contains(char c, const char *str);
-	```
-* ft_atol_base
-* ft_idxof
-* ft_isbase
-* ft_islower
-* ft_isupper
-* ft_putnbr_base
-* ft_putnbr_base_fd
