@@ -6,13 +6,32 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2018/11/14 19:58:10 by abaurens         ###   ########.fr        #
+#    Updated: 2018/11/15 01:20:27 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=		libft.a
 
+LINKER	=		ar rc
+
+CC		=		gcc
+
+RM		=		rm -rf
+
+CP		=		cp
+
+CMPT	=		0
+PRC		=		0
+GRN		=		\e[1;92m
+BLE		=		\e[1;34m
+CYA		=		\e[1;96m
+MAG		=		\e[1;35m
+RED		=		\e[1;91m
+NRM		=		\e[0m
+LINE	=		"\r$(CYA)[%3d%%]\t$(BLE)%-24s \e$(MAG)=>$(BLE)\t%-24s"
+
 SRC_DIR	=		srcs
+OBJ_DIR	=		objs
 SRC		=		ft_strmapi.c		\
 				ft_strsub.c			\
 				ft_strnequ.c		\
@@ -80,43 +99,50 @@ SRC		=		ft_strmapi.c		\
 				ft_lstiter.c		\
 				ft_lstmap.c
 
-OBJ_DIR	=		objs
+FCNT	=		$(words $(SRC))
 SRCS	=		$(addprefix $(SRC_DIR)/,$(SRC))
 OBJ		=		$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
-
-RM		=		rm -rf
-
-CC		=		gcc
-
-CP		=		cp
-
-LINKER	=		ar rc
 
 INCLUDE	=		-I./includes
 
 CFLAGS	=		$(INCLUDE) -W -Wall -Wextra -Werror -ansi
 
-$(NAME):	$(OBJ)
-	$(LINKER) $(NAME) $(OBJ)
-	ranlib $(NAME)
+$(NAME):	precomp $(OBJ)
+	@printf "$(GRN)\
+	\n<------------------ Linking $(NAME) ... ------------------>$(NRM)\n"
+	@$(LINKER) $(NAME) $(OBJ)
+	@printf "$(MAG)ranlib $(RED)$(NAME)$(NRM)\n"
+	@ranlib $(NAME)
+	@printf "$(GRN)<------------------------- DONE! ------------------------->\
+	$(NRM)\n"
+
+precomp:
+	@printf "$(GRN)\
+	<----------------- Compiling sources ... ----------------->$(NRM)\n"
 
 #rule for .o files creation from .c files
 #	($@ is the current target)
 #	($< is the first dependency)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
+	$(eval PRC = $(shell echo "$(CMPT) / $(FCNT) * 100" | bc -l))
+	@printf $(LINE) $(shell echo $(PRC) | sed -E "s:\.[0-9]{20}::") $< $@
 	@mkdir -p $(dir $@)
-	@printf "\e[32;10m"
-	$(CC) $(CFLAGS) -o $@ -c $<
-	@printf "\e[32;0m"
+	@$(CC) $(CFLAGS) -o $@ -c $<
+	@printf "\e[0m"
 
 all: $(NAME)
 
 clean:
-	$(RM) $(OBJ_DIR)
+	@printf "$(GRN)\
+	<------------------ Cleaning sources ... ----------------->$(NRM)\n"
+	@$(RM) $(OBJ_DIR)
 
 fclean:	clean
-	$(RM) $(NAME)
+	@printf "$(GRN)\
+	<------------------ Cleaning $(NAME) ... ----------------->$(NRM)\n"
+	@$(RM) $(NAME)
 
 re:	fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re precomp
