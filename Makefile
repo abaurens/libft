@@ -120,9 +120,6 @@ precomp:
 	@printf "$(GRN)\
 	<----------------- Compiling sources ... ----------------->$(NRM)\n"
 
-#rule for .o files creation from .c files
-#	($@ is the current target)
-#	($< is the first dependency)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
 	$(eval PRC = $(shell echo "$(CMPT) / $(FCNT) * 100" | bc -l))
