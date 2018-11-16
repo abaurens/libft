@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2018/11/15 16:31:41 by abaurens         ###   ########.fr        #
+#    Updated: 2018/11/15 16:41:28 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ RM		=		rm -rf
 CP		=		cp
 
 CMPT	=		0
+CURUP	=		\e[1A
 GRN		=		\e[1;92m
 BLE		=		\e[1;34m
 CYA		=		\e[1;96m
@@ -120,7 +121,8 @@ $(NAME):	$(OBJ)
 	@printf "$(GRN)$(DNE_STR)$(NRM)\n"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@if [[ $(CMPT) -eq 0 ]]; then printf "$(GRN)$(GCC_STR)$(NRM)\n"; else printf "\e[1A"; fi
+	@if [[ $(CMPT) -eq 0 ]]; then printf "$(GRN)$(GCC_STR)$(NRM)\n";\
+	else printf "$(CURUP)"; fi
 	$(eval FCNT	= $(words $(SRCS)))
 	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
 	$(eval PRC = $(shell echo "$(CMPT) / $(FCNT) * 100" | bc -l))
@@ -144,4 +146,4 @@ space:
 
 re:	fclean space all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean space re
