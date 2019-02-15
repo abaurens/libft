@@ -6,112 +6,118 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2018/11/15 16:41:28 by abaurens         ###   ########.fr        #
+#    Updated: 2019/02/15 18:47:34 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=		libft.a
+CP		:=		cp
+CC		:=		gcc
+RM		:=		rm -rf
+LINKER	:=		ar rc
 
-LINKER	=		ar rc
+NAME	:=		libft.a
 
-CC		=		gcc
+GRN		:=		\e[1;92m
+BLE		:=		\e[1;34m
+CYA		:=		\e[1;96m
+MAG		:=		\e[1;35m
+RED		:=		\e[1;91m
+NRM		:=		\e[0m
+CURUP	:=		\e[1A
 
-RM		=		rm -rf
-
-CP		=		cp
-
-CMPT	=		0
-CURUP	=		\e[1A
-GRN		=		\e[1;92m
-BLE		=		\e[1;34m
-CYA		=		\e[1;96m
-MAG		=		\e[1;35m
-RED		=		\e[1;91m
-NRM		=		\e[0m
-LINE	=		" $(CYA)[%3d%%]\t$(BLE)%-24s $(MAG)=>$(BLE)\t%-24s$(NRM)\n"
+CMPT	:=		0
+LINE	:=		" $(CYA)[%3d%%]\t$(BLE)%-24s $(MAG)=>$(BLE)\t%-24s$(NRM)\n"
 
 
-GCC_STR	=	<---------------------- Compiling sources... ---------------------->
-CLN_STR	=	<---------------------- Cleaning  sources... ---------------------->
-FCL_STR	=	<---------------------- Cleaning  $(NAME)... ---------------------->
-LNK_STR	=	<----------------------- Linking $(NAME)... ----------------------->
-DNE_STR	=	<----------------------------- DONE ! ----------------------------->
+GCC_STR	:=	<---------------------- Compiling sources... ---------------------->
+CLN_STR	:=	<---------------------- Cleaning  sources... ---------------------->
+FCL_STR	:=	<---------------------- Cleaning  $(NAME)... ---------------------->
+LNK_STR	:=	<----------------------- Linking $(NAME)... ----------------------->
+DNE_STR	:=	<----------------------------- DONE ! ----------------------------->
 
-SRC_DIR	=		srcs
-OBJ_DIR	=		objs
-SRC		=		ft_strmapi.c		\
-				ft_strsub.c			\
-				ft_strnequ.c		\
-				ft_striteri.c		\
-				ft_strjoin.c		\
-				ft_strmap.c			\
-				ft_strequ.c			\
-				ft_striter.c		\
-				ft_strsplit.c		\
-				ft_strtrim.c		\
-				ft_memalloc.c		\
-				ft_strnew.c			\
-				ft_memdel.c			\
-				ft_strdel.c			\
-				ft_strclr.c			\
-				ft_itoa.c			\
-				ft_putnbr_base.c	\
-				ft_putnbr_base_fd.c	\
-				ft_isbase.c			\
-				ft_putnbr.c			\
-				ft_putstr.c			\
-				ft_putchar.c		\
-				ft_putendl.c		\
-				ft_putnbr_fd.c		\
-				ft_putstr_fd.c		\
-				ft_putchar_fd.c		\
-				ft_putendl_fd.c		\
-				ft_idxof.c			\
-				ft_contains.c		\
-				ft_atol_base.c		\
-				ft_isupper.c		\
-				ft_islower.c		\
-				ft_memset.c			\
-				ft_bzero.c			\
-				ft_memcpy.c			\
-				ft_memccpy.c		\
-				ft_memmove.c		\
-				ft_memchr.c			\
-				ft_memcmp.c			\
-				ft_strlen.c			\
-				ft_strdup.c			\
-				ft_strcpy.c			\
-				ft_strncpy.c		\
-				ft_strcat.c			\
-				ft_strncat.c		\
-				ft_strlcat.c		\
-				ft_strchr.c			\
-				ft_strrchr.c		\
-				ft_strstr.c			\
-				ft_strnstr.c		\
-				ft_strcmp.c			\
-				ft_strncmp.c		\
-				ft_atoi.c			\
-				ft_isalpha.c		\
-				ft_isdigit.c		\
-				ft_isalnum.c		\
-				ft_isascii.c		\
-				ft_isprint.c		\
-				ft_toupper.c		\
-				ft_tolower.c		\
-				ft_lstnew.c			\
-				ft_lstdelone.c		\
-				ft_lstdel.c			\
-				ft_lstadd.c			\
-				ft_lstiter.c		\
-				ft_lstmap.c
+SRCD	:=	srcs
+OBJD	:=	objs
 
-SRCS	=		$(addprefix $(SRC_DIR)/,$(SRC))
-OBJ		=		$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
+###	ftio
 
-INCLUDE	=		-I./includes
+STRCNV	:=	padded_lltoa.c		padded_ulltoa_hexa.c	\
+			padded_ulltoa.c		padded_ulltoa_octal.c	\
+			padded_ulltoa_bin.c	ft_ldtoa_scientific.c
+STRCNV	:=	$(addprefix tostr_conv/, $(STRCNV))
 
-CFLAGS	=		$(INCLUDE) -W -Wall -Wextra -Werror -ansi
+CORE	:=	core.c		parse_args.c		\
+			flags.c		ft_get_errno.c		\
+			buffer.c	list_manager.c		\
+			big_num.c	bankers_round.c		\
+			unicode.c	floating_point.c	\
+			arg_mgr.c	argument_getter.c	\
+			ft_error.c	parser_functions.c	\
+			preparse.c
+CORE	:=	$(addprefix core/, $(CORE))
+
+BFLOAT	:=	add.c	utils.c		\
+			mul.c	string.c	\
+			set.c	instance.c
+BFLOAT	:=	$(addprefix bfloat/, $(BFLOAT))
+
+DRAGON	:=	bint.c		bint_div.c	bint_sub.c		\
+			bint_add.c	bint_mul.c	bint_shift.c	\
+			bint_cmp.c	bint_pow.c	bint_utils.c
+DRAGON	:=	$(addprefix bigint/,$(DRAGON))
+DRAGON	:=	$(DRAGON) dragon_buffer.c	ft_ldtoa.c
+DRAGON	:=	$(addprefix dragon4/,$(DRAGON))
+
+CONV	:=	$(addprefix uhexa/,uhexa.c h_len.c h_exotic.c)			\
+			$(addprefix integer/,integer.c len.c exotic.c)			\
+			$(addprefix length/,length.c l_len.c l_exotic.c)		\
+			$(addprefix uoctal/,uoctal.c o_len.c o_exotic.c)		\
+			$(addprefix ubinary/,ubinary.c b_len.c b_exotic.c)		\
+			$(addprefix uinteger/,uinteger.c u_len.c u_exotic.c)	\
+			char.c			string.c		npstring.c				\
+			percent.c		dbl_hex.c		pointer.c				\
+			dbl_compact.c	dbl_floating.c	dbl_scientific.c
+CONV	:=	$(addprefix convert/,$(CONV))
+
+FTIO	:=	$(CORE)					\
+			$(CONV)		$(STRCNV)	\
+			$(BFLOAT)	$(DRAGON)	\
+			ft_printf.c		ft_dprintf.c	ft_sprintf.c	\
+			ft_fprintf.c	ft_snprintf.c	ft_asprintf.c	\
+
+FTIO	:=	$(addprefix ftio/,$(FTIO))
+
+###	ftlib
+
+FTLIB	:=	gnl.c		ft_numlen.c		ft_memmove.c	\
+			ft_abs.c	ft_putnbr.c		ft_strncpy.c	\
+			ft_max.c	ft_putstr.c		ft_strnequ.c	\
+			ft_min.c	ft_strcat.c		ft_striter.c	\
+			ft_nan.c	ft_strchr.c		ft_strjoin.c	\
+			ft_itoa.c	ft_strclr.c		ft_strlcat.c	\
+			ft_atoi.c	ft_strcmp.c		ft_strtrim.c	\
+			ft_idxof.c	ft_strcpy.c		ft_tolower.c	ft_contains.c		\
+			ft_bzero.c	ft_strdel.c		ft_toupper.c	ft_memalloc.c		\
+			ft_split.c	ft_strdup.c		ft_isdigit.c	ft_putnbr_fd.c		\
+			ft_strequ.c	ft_strstr.c		ft_islower.c	ft_putstr_fd.c		\
+			ft_strlen.c	ft_strsub.c		ft_isprint.c	ft_strupcase.c		\
+			ft_strmap.c	ft_strncat.c	ft_isalnum.c	ft_atol_base.c		\
+			ft_strnew.c	ft_isupper.c	ft_isalpha.c	get_next_line.c		\
+			ft_isbase.c	ft_strncmp.c	ft_isascii.c	ft_putchar_fd.c		\
+			ft_memchr.c	ft_freturn.c	ft_memccpy.c	ft_putendl_fd.c		\
+			ft_memcmp.c	ft_strnstr.c	ft_putchar.c	ft_putnbr_base.c	\
+			ft_memcpy.c	ft_strrchr.c	ft_putendl.c	ft_unsignedlen.c	\
+			ft_memdel.c	ft_strmapi.c	ft_striteri.c	ft_putnbr_base_fd.c	\
+			ft_memset.c	ft_strmcat.c	ft_strsplit.c	ft_unsignedlen_base.c
+FTLIB	:=	$(addprefix ftlib/,$(FTLIB))
+
+SRC		:=	$(FTLIB) $(FTIO)
+
+OBJ		:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
+SRC		:=	$(addprefix $(SRCD)/,$(SRC))
+
+INCLUDE	:=	-I./includes
+
+CFLAGS	:=	$(INCLUDE) -W -Wall -Wextra -Werror
 
 $(NAME):	$(OBJ)
 	@printf "$(GRN)$(LNK_STR)$(NRM)\n"
@@ -120,13 +126,13 @@ $(NAME):	$(OBJ)
 	@ranlib $(NAME)
 	@printf "$(GRN)$(DNE_STR)$(NRM)\n"
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJD)/%.o: $(SRCD)/%.c
 	@if [[ $(CMPT) -eq 0 ]]; then printf "$(GRN)$(GCC_STR)$(NRM)\n";\
 	else printf "$(CURUP)"; fi
-	$(eval FCNT	= $(words $(SRCS)))
+	$(eval FCNT	= $(words $(SRC)))
 	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
-	$(eval PRC = $(shell echo "$(CMPT) / $(FCNT) * 100" | bc -l))
-	@printf $(LINE) $(shell echo $(PRC) | sed -E "s:\.[0-9]{20}::") $< $@
+	$(eval PRC = $(shell echo "$(CMPT) / $(FCNT) * 100" | bc -l | sed 's/^\./0./'))
+	@printf $(LINE) $(shell echo $(PRC) | sed -E "s:\.[0-9]{20}::") $(notdir $<) $(notdir $@)
 	@printf "\e[0m"
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -o $@ -c $<
@@ -135,7 +141,7 @@ all: $(NAME)
 
 clean:
 	@printf "$(GRN)$(CLN_STR)$(NRM)\n"
-	@$(RM) $(OBJ_DIR)
+	@$(RM) $(OBJD)
 
 fclean:	clean
 	@printf "$(GRN)$(FCL_STR)$(NRM)\n"
