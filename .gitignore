@@ -53,3 +53,6 @@ dkms.conf
 
 # MacOs directories files
 .DS_Store
+
+# 42 special files
+.clang_complete
