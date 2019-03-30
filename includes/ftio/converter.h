@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 13:53:50 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/02 21:04:15 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/02/23 19:32:21 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,7 @@ char			*convert_length(t_printf *data, t_arg *arg);
 char			*convert_strerror(t_printf *data, t_arg *arg);
 char			*convert_u_integer_binary(t_printf *data, t_arg *arg);
 char			*convert_non_printable_string(t_printf *data, t_arg *arg);
-
-# ifdef BONUS
-
 char			*convert_iso_date(t_printf *data, t_arg *arg);
-
-# endif
 
 /*
 **	double_scientific.c
@@ -119,14 +114,8 @@ static const t_converter	g_converters[] =
 	{'n', TRUE, convert_length},
 	{'b', TRUE, convert_u_integer_binary},
 	{'r', TRUE, convert_non_printable_string},
-
-# ifdef BONUS
-
 	{'m', FALSE, convert_strerror},
 	{'k', TRUE, convert_iso_date},
-
-# endif
-
 	{'\0', MAYBE, (void *)0x0}
 };
 

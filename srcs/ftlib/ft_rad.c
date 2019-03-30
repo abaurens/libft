@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_rad.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/07 21:50:25 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/25 11:35:19 by abaurens         ###   ########.fr       */
+/*   Created: 2019/02/22 16:46:20 by abaurens          #+#    #+#             */
+/*   Updated: 2019/02/22 16:48:28 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "ftlib.h"
 
-void	ft_memdel(void *ap)
+double	ft_rad(double a)
 {
-	void	**p;
+	return (a / 180.0 * FT_PI);
+}
 
-	if (!ap)
-		return ;
-	p = (void **)ap;
-	free(*p);
-	*p = NULL;
+float	ft_radf(float a)
+{
+	return (a / 180.0F * (float)FT_PI);
 }

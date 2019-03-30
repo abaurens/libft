@@ -6,16 +6,14 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 04:24:22 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/07 17:35:02 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/02/23 21:46:53 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_ERROR_VALS_H
 # define FT_ERROR_VALS_H
 
-# ifdef BONUS
-#  include <errno.h>
-# endif
+# include <errno.h>
 # include <stdlib.h>
 
 typedef struct				s_error_info
@@ -465,21 +463,11 @@ static const t_error_info	g_error_table[] =
 	{-1, NULL, "Unknown error: "}
 };
 
-# ifdef BONUS
-
 int							get_errno_real(void);
-
-# endif
 
 static int					(*const g_get_errno[])(void) =
 {
-
-# ifdef BONUS
-
 	get_errno_real,
-
-# endif
-
 	NULL
 };
 

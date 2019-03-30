@@ -6,23 +6,12 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 20:12:06 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/15 16:14:50 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/02/23 19:29:26 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "ftlib.h"
-
-static size_t			count_words(const char *str, const char *sep)
-{
-	register size_t		i;
-
-	i = 0;
-	while (str && *str)
-		if (!ft_contains(*str, sep) && (!str[1] || ft_contains(str[1], sep)))
-			i++;
-	return (i);
-}
 
 static size_t			word_len(const char *str, const char *sep)
 {
@@ -41,13 +30,13 @@ char					**ft_split(char const *str, char const *sep)
 	char				**ret;
 
 	i = 0;
-	if (!str || !sep || !(len = count_words(str, sep)))
+	if (!str || !sep || !(len = ft_count_words(str, sep)))
 		return (NULL);
 	if (!(ret = ft_memalloc(sizeof(char *) * (len + 1))))
 		return (NULL);
 	while (*str)
 	{
-		while (ft_contains(*str, sep))
+		while (*str && ft_contains(*str, sep))
 			str++;
 		if (!(ret[i++] = ft_strmcat(NULL, str, word_len(str, sep))))
 		{
@@ -55,7 +44,7 @@ char					**ft_split(char const *str, char const *sep)
 				free(ret[--i]);
 			free(ret);
 		}
-		while (ft_contains(*str, sep))
+		while (*str && !ft_contains(*str, sep))
 			str++;
 	}
 	return (ret);

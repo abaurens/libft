@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/03/30 15:55:30 by abaurens         ###   ########.fr        #
+#    Updated: 2019/03/30 23:20:07 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,11 +48,11 @@ STRCNV	:=	$(addprefix tostr_conv/, $(STRCNV))
 CORE	:=	core.c		parse_args.c		\
 			flags.c		ft_get_errno.c		\
 			buffer.c	list_manager.c		\
-			big_num.c	bankers_round.c		\
-			unicode.c	floating_point.c	\
-			arg_mgr.c	argument_getter.c	\
-			ft_error.c	parser_functions.c	\
-			preparse.c
+			big_num.c	ft_get_errno.c		\
+			unicode.c	bankers_round.c		\
+			arg_mgr.c	floating_point.c	\
+			ft_error.c	argument_getter.c	\
+			preparse.c	parser_functions.c
 CORE	:=	$(addprefix core/, $(CORE))
 
 BFLOAT	:=	add.c	utils.c		\
@@ -73,42 +73,100 @@ CONV	:=	$(addprefix uhexa/,uhexa.c h_len.c h_exotic.c)			\
 			$(addprefix uoctal/,uoctal.c o_len.c o_exotic.c)		\
 			$(addprefix ubinary/,ubinary.c b_len.c b_exotic.c)		\
 			$(addprefix uinteger/,uinteger.c u_len.c u_exotic.c)	\
-			char.c			string.c		npstring.c				\
-			percent.c		dbl_hex.c		pointer.c				\
-			dbl_compact.c	dbl_floating.c	dbl_scientific.c
+			char.c			string.c		pointer.c				\
+			percent.c		dbl_hex.c		npstring.c				\
+			iso_date.c		strerror.c		dbl_scientific.c		\
+			dbl_compact.c	dbl_floating.c
 CONV	:=	$(addprefix convert/,$(CONV))
 
 FTIO	:=	$(CORE)					\
 			$(CONV)		$(STRCNV)	\
 			$(BFLOAT)	$(DRAGON)	\
 			ft_printf.c		ft_dprintf.c	ft_sprintf.c	\
-			ft_fprintf.c	ft_snprintf.c	ft_asprintf.c	\
-
+			ft_fprintf.c	ft_snprintf.c	ft_asprintf.c
 FTIO	:=	$(addprefix ftio/,$(FTIO))
 
 ###	ftlib
 
-FTLIB	:=	gnl.c		ft_numlen.c		ft_strncpy.c	\
-			ft_abs.c	ft_putnbr.c		ft_strnequ.c	\
-			ft_max.c	ft_putstr.c		ft_striter.c	\
-			ft_min.c	ft_strcat.c		ft_strjoin.c	\
-			ft_nan.c	ft_strchr.c		ft_strlcat.c	\
-			ft_itoa.c	ft_strclr.c		ft_strtrim.c	\
-			ft_atoi.c	ft_strcmp.c		ft_tolower.c	\
-			ft_match.c	ft_strcpy.c		ft_toupper.c	\
-			ft_idxof.c	ft_strdel.c		ft_isdigit.c	\
-			ft_bzero.c	ft_strdup.c		ft_islower.c	\
-			ft_split.c	ft_strstr.c		ft_isprint.c	ft_putnbr_fd.c		\
-			ft_strequ.c	ft_strsub.c		ft_isalnum.c	ft_putstr_fd.c		\
-			ft_strlen.c	ft_strncat.c	ft_isalpha.c	ft_strupcase.c		\
-			ft_strmap.c	ft_isupper.c	ft_isascii.c	ft_atol_base.c		\
-			ft_strnew.c	ft_strncmp.c	ft_memccpy.c	get_next_line.c		\
-			ft_isbase.c	ft_freturn.c	ft_putchar.c	ft_putchar_fd.c		\
-			ft_memchr.c	ft_strnstr.c	ft_putendl.c	ft_putendl_fd.c		\
-			ft_memcmp.c	ft_strrchr.c	ft_striteri.c	ft_putnbr_base.c	\
-			ft_memcpy.c	ft_strmapi.c	ft_strsplit.c	ft_unsignedlen.c	\
-			ft_memdel.c	ft_strmcat.c	ft_contains.c	ft_putnbr_base_fd.c	\
-			ft_memset.c	ft_memmove.c	ft_memalloc.c	ft_unsignedlen_base.c
+FTLIB	:=	\
+			gnl.c					\
+			ft_rad.c				\
+			ft_abs.c				\
+			ft_max.c				\
+			ft_min.c				\
+			ft_nan.c				\
+			ft_itoa.c				\
+			ft_atoi.c				\
+			ft_match.c				\
+			ft_split.c				\
+			ft_idxof.c				\
+			ft_bzero.c				\
+			ft_split.c				\
+			ft_strequ.c				\
+			ft_strlen.c				\
+			ft_strmap.c				\
+			ft_strnew.c				\
+			ft_isbase.c				\
+			ft_memchr.c				\
+			ft_memcmp.c				\
+			ft_memcpy.c				\
+			ft_memdel.c				\
+			ft_memset.c				\
+			ft_numlen.c				\
+			ft_putnbr.c				\
+			ft_putstr.c				\
+			ft_strcat.c				\
+			ft_strchr.c				\
+			ft_strclr.c				\
+			ft_strcmp.c				\
+			ft_strcpy.c				\
+			ft_strdel.c				\
+			ft_strdup.c				\
+			ft_strstr.c				\
+			ft_strsub.c				\
+			ft_strncat.c			\
+			ft_isupper.c			\
+			ft_strncmp.c			\
+			ft_freturn.c			\
+			ft_strnstr.c			\
+			ft_strrchr.c			\
+			ft_strmapi.c			\
+			ft_strmcat.c			\
+			ft_memmove.c			\
+			ft_strncpy.c			\
+			ft_strnequ.c			\
+			ft_striter.c			\
+			ft_strjoin.c			\
+			ft_strlcat.c			\
+			ft_strtrim.c			\
+			ft_tolower.c			\
+			ft_toupper.c			\
+			ft_isdigit.c			\
+			ft_islower.c			\
+			ft_isprint.c			\
+			ft_isalnum.c			\
+			ft_isalpha.c			\
+			ft_isascii.c			\
+			ft_memccpy.c			\
+			ft_putchar.c			\
+			ft_putendl.c			\
+			ft_striteri.c			\
+			ft_strsplit.c			\
+			ft_contains.c			\
+			ft_memalloc.c			\
+			ft_putnbr_fd.c			\
+			ft_putstr_fd.c			\
+			ft_strupcase.c			\
+			ft_atol_base.c			\
+			get_next_line.c			\
+			ft_putchar_fd.c			\
+			ft_putendl_fd.c			\
+			ft_count_words.c		\
+			ft_putnbr_base.c		\
+			ft_unsignedlen.c		\
+			ft_putnbr_base_fd.c		\
+			ft_unsignedlen_base.c
+
 FTLIB	:=	$(addprefix ftlib/,$(FTLIB))
 
 SRC		:=	$(FTLIB) $(FTIO)

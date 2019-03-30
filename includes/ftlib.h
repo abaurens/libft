@@ -15,6 +15,7 @@
 
 # include <string.h>
 
+# define FT_PI		3.14159265359
 # define BUFF_SIZE	1024
 # define FT_LMAX	9223372036854775807ul
 
@@ -34,7 +35,7 @@ struct		s_gnl
 void		ft_putnbr(int n);
 void		ft_strclr(char *s);
 void		ft_putchar(int c);
-void		ft_memdel(void **ap);
+void		ft_memdel(void *ap);
 void		ft_strdel(char **as);
 void		ft_putstr(char const *s);
 void		ft_putendl(char const *s);
@@ -74,10 +75,9 @@ size_t		ft_strlen(const char *str);
 size_t		ft_numlen(long int nb);
 size_t		ft_idxof(char c, const char *str);
 size_t		ft_unsignedlen(unsigned long int nb);
+size_t		ft_count_words(const char *str, const char *sep);
 size_t		ft_strlcat(char *dst, const char *src, size_t size);
 size_t		ft_unsignedlen_base(unsigned long int n, const char *base);
-
-long		ft_atol_base(const char *str, const char *base);
 
 void		*ft_memalloc(size_t size);
 void		*ft_memset(void *b, int c, size_t len);
@@ -109,9 +109,14 @@ char		**ft_strsplit(char const *s, char c);
 char		**ft_split(char const *str, char const *sep);
 
 long		ft_abs(long int nb);
+long		ft_atol(const char *str);
 long		ft_min(long int a, long int b);
 long		ft_max(long int a, long int b);
 long		ft_freturn(void *ptr, long int ret);
+long		ft_atol_base(const char *str, const char *base);
+
+double		ft_rad(double a);
+float		ft_radf(float a);
 
 char		match(const char *s1, const char *s2);
 
