@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 16:09:37 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/15 16:56:40 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/03/30 15:51:04 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <string.h>
 
 # define BUFF_SIZE	1024
-# define FT_LLMAX	9223372036854775807ull
+# define FT_LMAX	9223372036854775807ul
 
 /*
 **	get_next_line
@@ -71,11 +71,11 @@ int			gnl(const int fd, char **line);
 int			get_next_line(const int fd, char **line);
 
 size_t		ft_strlen(const char *str);
-size_t		ft_numlen(long long int nb);
+size_t		ft_numlen(long int nb);
 size_t		ft_idxof(char c, const char *str);
-size_t		ft_unsignedlen(unsigned long long int nb);
+size_t		ft_unsignedlen(unsigned long int nb);
 size_t		ft_strlcat(char *dst, const char *src, size_t size);
-size_t		ft_unsignedlen_base(unsigned long long int n, const char *base);
+size_t		ft_unsignedlen_base(unsigned long int n, const char *base);
 
 long		ft_atol_base(const char *str, const char *base);
 
@@ -108,9 +108,11 @@ char		*ft_strsub(char const *s, unsigned int start, size_t len);
 char		**ft_strsplit(char const *s, char c);
 char		**ft_split(char const *str, char const *sep);
 
-long long	ft_abs(long long int nb);
-long long	ft_min(long long int a, long long int b);
-long long	ft_max(long long int a, long long int b);
-long long	ft_freturn(void *ptr, long long int ret);
+long		ft_abs(long int nb);
+long		ft_min(long int a, long int b);
+long		ft_max(long int a, long int b);
+long		ft_freturn(void *ptr, long int ret);
+
+char		match(const char *s1, const char *s2);
 
 #endif

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimum.c                                          :+:      :+:    :+:   */
+/*   ft_min.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:51:54 by abaurens          #+#    #+#             */
-/*   Updated: 2018/12/13 17:02:53 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/03/30 15:48:19 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-long long int		ft_min(long long int a, long long int b)
+long int		ft_min(long int a, long int b)
 {
 	return (a < b ? a : b);
 }

@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:53:12 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/15 18:17:25 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/03/30 15:54:44 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,16 @@ int				get_arg_i(t_printf *data, const size_t idx, int *v);
 /*
 **	printf_lltoa.c
 */
-char			*printf_lltoa(long long int nb, const int min);
-char			*padded_lltoa(long long nb, const int min_d, const int pad,
+char			*printf_lltoa(long int nb, const int min);
+char			*padded_lltoa(long nb, const int min_d, const int pad,
 								char r);
-char			*padded_ulltoa(unsigned long long nb, const int min_d,
+char			*padded_ulltoa(unsigned long nb, const int min_d,
 								const int pad, char r);
-char			*padded_ulltoa_bin(unsigned long long nb, const int min_d,
+char			*padded_ulltoa_bin(unsigned long nb, const int min_d,
 								const int pad, char r);
-char			*padded_ulltoa_octal(unsigned long long nb, const int min_d,
+char			*padded_ulltoa_octal(unsigned long nb, const int min_d,
 									const int pad, char r);
-char			*padded_ulltoa_hexa(unsigned long long nb, const int min_d,
+char			*padded_ulltoa_hexa(unsigned long nb, const int min_d,
 									const int pad, char r);
 
 /*

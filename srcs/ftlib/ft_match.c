@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unsignedlen_base.c                              :+:      :+:    :+:   */
+/*   ft_match.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/12 23:30:48 by abaurens          #+#    #+#             */
-/*   Updated: 2019/03/30 14:33:35 by abaurens         ###   ########.fr       */
+/*   Created: 2019/03/30 15:39:25 by abaurens          #+#    #+#             */
+/*   Updated: 2019/03/30 15:40:03 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include "ftlib.h"
-
-size_t		ft_unsignedlen_base(unsigned long int nb, const char *base)
+char	match(const char *s1, const char *s2)
 {
-	size_t	len;
-	size_t	blen;
-
-	len = 1;
-	if (!base || !ft_isbase(base))
+	if (!s1 || !s2)
 		return (0);
-	blen = ft_strlen(base);
-	while ((nb /= blen) != 0)
-		len++;
-	return (len);
+	if (((*s2 == '*' && !s2[1]) || !*s2) && *s1 == '\0')
+		return (1);
+	if (*s2 == '*' && *s1)
+		return (match(s1, s2 + 1) || match(s1 + 1, s2));
+	if (*s2 == '*' && !*s1)
+		return (match(s1, s2 + 1));
+	if (*s2 == *s1)
+		return (match(s1 + 1, s2 + 1));
+	return (0);
 }

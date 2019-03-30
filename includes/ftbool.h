@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unsignedlen_base.c                              :+:      :+:    :+:   */
+/*   ftbool.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/12 23:30:48 by abaurens          #+#    #+#             */
-/*   Updated: 2019/03/30 14:33:35 by abaurens         ###   ########.fr       */
+/*   Created: 2019/03/25 22:27:07 by abaurens          #+#    #+#             */
+/*   Updated: 2019/03/30 14:35:58 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include "ftlib.h"
+#ifndef FTBOOL_H
+# define FTBOOL_H
 
-size_t		ft_unsignedlen_base(unsigned long int nb, const char *base)
+# if !defined TRUE && !defined FALSE
+
+typedef enum e_bool
 {
-	size_t	len;
-	size_t	blen;
+	FALSE,
+	TRUE
+}			t_bool;
 
-	len = 1;
-	if (!base || !ft_isbase(base))
-		return (0);
-	blen = ft_strlen(base);
-	while ((nb /= blen) != 0)
-		len++;
-	return (len);
-}
+# else
+
+# include <stdbool.h>
+
+typedef bool t_bool;
+
+# endif
+
+#endif
