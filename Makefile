@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/03/30 23:20:07 by abaurens         ###   ########.fr        #
+#    Updated: 2019/05/21 17:19:09 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,15 @@ DNE_STR	:=	<----------------------------- DONE ! ----------------------------->
 SRCD	:=	srcs
 OBJD	:=	objs
 
+### ftcipher
+
+CICORE	:=	cipher_core.c
+CICORE	:=	$(addprefix cipher_core/, $(CICORE))
+
+CIPHER	:=	$(CICORE)	\
+			ft_cipher.c
+CIPHER	:=	$(addprefix ftcipher/, $(CIPHER))
+
 ###	ftio
 
 STRCNV	:=	padded_lltoa.c		padded_ulltoa_hexa.c	\
@@ -45,7 +54,7 @@ STRCNV	:=	padded_lltoa.c		padded_ulltoa_hexa.c	\
 			padded_ulltoa_bin.c	ft_ldtoa_scientific.c
 STRCNV	:=	$(addprefix tostr_conv/, $(STRCNV))
 
-CORE	:=	core.c		parse_args.c		\
+IOCORE	:=	core.c		parse_args.c		\
 			flags.c		ft_get_errno.c		\
 			buffer.c	list_manager.c		\
 			big_num.c	ft_get_errno.c		\
@@ -53,7 +62,7 @@ CORE	:=	core.c		parse_args.c		\
 			arg_mgr.c	floating_point.c	\
 			ft_error.c	argument_getter.c	\
 			preparse.c	parser_functions.c
-CORE	:=	$(addprefix core/, $(CORE))
+IOCORE	:=	$(addprefix core/, $(IOCORE))
 
 BFLOAT	:=	add.c	utils.c		\
 			mul.c	string.c	\
@@ -67,7 +76,7 @@ DRAGON	:=	$(addprefix bigint/,$(DRAGON))
 DRAGON	:=	$(DRAGON) dragon_buffer.c	ft_ldtoa.c
 DRAGON	:=	$(addprefix dragon4/,$(DRAGON))
 
-CONV	:=	$(addprefix uhexa/,uhexa.c h_len.c h_exotic.c)			\
+IOCONV	:=	$(addprefix uhexa/,uhexa.c h_len.c h_exotic.c)			\
 			$(addprefix integer/,integer.c len.c exotic.c)			\
 			$(addprefix length/,length.c l_len.c l_exotic.c)		\
 			$(addprefix uoctal/,uoctal.c o_len.c o_exotic.c)		\
@@ -77,10 +86,10 @@ CONV	:=	$(addprefix uhexa/,uhexa.c h_len.c h_exotic.c)			\
 			percent.c		dbl_hex.c		npstring.c				\
 			iso_date.c		strerror.c		dbl_scientific.c		\
 			dbl_compact.c	dbl_floating.c
-CONV	:=	$(addprefix convert/,$(CONV))
+IOCONV	:=	$(addprefix convert/,$(IOCONV))
 
-FTIO	:=	$(CORE)					\
-			$(CONV)		$(STRCNV)	\
+FTIO	:=	$(IOCORE)					\
+			$(IOCONV)		$(STRCNV)	\
 			$(BFLOAT)	$(DRAGON)	\
 			ft_printf.c		ft_dprintf.c	ft_sprintf.c	\
 			ft_fprintf.c	ft_snprintf.c	ft_asprintf.c
@@ -169,7 +178,7 @@ FTLIB	:=	\
 
 FTLIB	:=	$(addprefix ftlib/,$(FTLIB))
 
-SRC		:=	$(FTLIB) $(FTIO)
+SRC		:=	$(FTLIB) $(FTIO) $(CIPHER)
 
 OBJ		:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
 SRC		:=	$(addprefix $(SRCD)/,$(SRC))
