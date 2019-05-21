@@ -56,3 +56,4 @@ dkms.conf
 
 # 42 special files
 .clang_complete
+main.c
