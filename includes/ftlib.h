@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 16:09:37 by abaurens          #+#    #+#             */
-/*   Updated: 2019/03/30 15:51:04 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/06/12 11:38:57 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ int			get_next_line(const int fd, char **line);
 
 size_t		ft_strlen(const char *str);
 size_t		ft_numlen(long int nb);
-size_t		ft_idxof(char c, const char *str);
 size_t		ft_unsignedlen(unsigned long int nb);
+size_t		ft_idxof(const char c, register const char *str);
 size_t		ft_count_words(const char *str, const char *sep);
 size_t		ft_strlcat(char *dst, const char *src, size_t size);
 size_t		ft_unsignedlen_base(unsigned long int n, const char *base);

@@ -6,18 +6,18 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 17:50:48 by abaurens          #+#    #+#             */
-/*   Updated: 2018/11/07 17:51:02 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/06/12 11:38:41 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftlib.h"
 
-size_t	ft_idxof(char c, const char *str)
+size_t	ft_idxof(const char c, register const char *str)
 {
-	int		i;
+	register const char *s;
 
-	i = 0;
-	while (str && str[i] && str[i] != c)
-		i++;
-	return (i);
+	s = str;
+	while (s && *s && *s != c)
+		++s;
+	return (s - str);
 }
