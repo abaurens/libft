@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/05/21 17:19:09 by abaurens         ###   ########.fr        #
+#    Updated: 2019/06/13 22:56:31 by smoreno-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,11 +57,11 @@ STRCNV	:=	$(addprefix tostr_conv/, $(STRCNV))
 IOCORE	:=	core.c		parse_args.c		\
 			flags.c		ft_get_errno.c		\
 			buffer.c	list_manager.c		\
-			big_num.c	ft_get_errno.c		\
-			unicode.c	bankers_round.c		\
-			arg_mgr.c	floating_point.c	\
-			ft_error.c	argument_getter.c	\
-			preparse.c	parser_functions.c
+			big_num.c	bankers_round.c		\
+			unicode.c	floating_point.c	\
+			arg_mgr.c	argument_getter.c	\
+			ft_error.c	parser_functions.c	\
+			preparse.c
 IOCORE	:=	$(addprefix core/, $(IOCORE))
 
 BFLOAT	:=	add.c	utils.c		\
@@ -107,7 +107,6 @@ FTLIB	:=	\
 			ft_itoa.c				\
 			ft_atoi.c				\
 			ft_match.c				\
-			ft_split.c				\
 			ft_idxof.c				\
 			ft_bzero.c				\
 			ft_split.c				\
