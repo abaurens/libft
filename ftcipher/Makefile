@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/03 20:03:26 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/03 22:48:45 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,18 +28,17 @@ RED		:=	\e[1;91m
 NRM		:=	\e[0m
 CURUP	:=	\e[1A
 
-SRCD	:=	srcs
 OBJD	:=	objs
 
 CMPT	:=	0
 EMPTY	:=	"                                                                  \n$(CURUP)"
-LINE	:=	"\t[$(RED)$(NAME)$(NRM)] $(CYA)[%3d%%]  $(BLE)%-24s $(MAG)=>$(BLE)\t%-24s$(NRM)\n"
+LINE	:=	" [$(CYA)%d/%d $(RED)$(NAME)$(NRM)] $(CYA)[%3d%%]  $(BLE)%-24s $(MAG)=>$(BLE)\t%-24s$(NRM)\n"
 
 GCC_STR	:=
-CLN_STR	:=	<---------------------- Cleaning  sources... ---------------------->
-FCL_STR	:=	<---------------------- Cleaning  $(NAME)... ---------------------->
-LNK_STR	:=	<----------------------- Linking $(NAME)... ----------------------->
-DNE_STR	:=	<----------------------------- DONE ! ----------------------------->
+CLN_STR	:=	<-------------------- Cleaning  $(NAME)... -------------------->
+FCL_STR	:=	<-------------------- Fcleaning $(NAME)... -------------------->
+LNK_STR	:=	<--------------------- Linking $(NAME)... --------------------->
+DNE_STR	:=	<--------------------------- DONE ! --------------------------->
 
 # SOURCES
 
@@ -48,9 +47,7 @@ CORE	:=	$(addprefix core/, $(CICORE))
 
 SRC		:=	$(CICORE)	\
 			ft_cipher.c
-
 OBJ		:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
-SRC		:=	$(addprefix $(SRCD)/,$(SRC))
 
 # RULES
 
@@ -60,21 +57,23 @@ $(NAME):	$(OBJ)
 
 all:	$(NAME)
 
-$(OBJD)/%.o:	$(SRCD)/%.c
+$(OBJD)/%.o:	%.c
 	@if [[ $(CMPT) -eq 0 ]]; then printf "";\
 	else printf "$(CURUP)"; fi
 	$(eval FCNT	= $(words $(SRC)))
 	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
 	$(eval PRC = $(shell echo "$(CMPT) / $(FCNT) * 100" | bc -l | sed 's/^\./0./'))
-	@printf $(LINE) $(shell echo $(PRC) | sed -E "s:\.[0-9]{20}::") $(notdir $<) $(notdir $@)
+	@printf $(LINE) $(SUBID) $(TOTAL_SIZE) $(shell echo $(PRC) | sed -E "s:\.[0-9]{20}::") $(notdir $<) $(notdir $@)
 	@printf "\e[0m"
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
+	@printf "$(GRN)$(CLN_STR)$(NRM)\n"
 	@$(RM) $(OBJD)
 
 fclean:
+	@printf "$(GRN)$(FCL_STR)$(NRM)\n"
 	@$(RM) $(OBJD)
 	@$(RM) $(NAME)
 

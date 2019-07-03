@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/03 22:26:40 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/03 22:47:14 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,16 +28,17 @@ RED		:=	\e[1;91m
 NRM		:=	\e[0m
 CURUP	:=	\e[1A
 
-SRCD	:=	srcs
 OBJD	:=	objs
 
 CMPT	:=	0
 EMPTY	:=	"                                                                  \n$(CURUP)"
-LINE	:=	"\t[$(RED)$(NAME)$(NRM)] $(CYA)[%3d%%]  $(BLE)%-24s $(MAG)=>$(BLE)\t%-24s$(NRM)\n"
+LINE	:=	" [$(CYA)%d/%d $(RED)$(NAME)$(NRM)] $(CYA)[%3d%%]  $(BLE)%-24s $(MAG)=>$(BLE)\t%-24s$(NRM)\n"
+
+GCC_NO_NOTE	:=	':a;N;s/\n/&/1;Ta;/: note: .*ABI.*/!{P;D};:b;N;s/\n/&/3;Tb;d'
 
 GCC_STR	:=
-CLN_STR	:=	<---------------------- Cleaning  sources... ---------------------->
-FCL_STR	:=	<---------------------- Cleaning  $(NAME)... ---------------------->
+CLN_STR	:=	<---------------------- Cleaning  $(NAME)... ---------------------->
+FCL_STR	:=	<---------------------- Fcleaning $(NAME)... ---------------------->
 LNK_STR	:=	<----------------------- Linking $(NAME)... ----------------------->
 DNE_STR	:=	<----------------------------- DONE ! ----------------------------->
 
@@ -104,15 +105,17 @@ $(OBJD)/%.o:	%.c
 	$(eval FCNT	= $(words $(SRC)))
 	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
 	$(eval PRC = $(shell echo "$(CMPT) / $(FCNT) * 100" | bc -l | sed 's/^\./0./'))
-	@printf $(LINE) $(shell echo $(PRC) | sed -E "s:\.[0-9]{20}::") $(notdir $<) $(notdir $@)
+	@printf $(LINE) $(SUBID) $(TOTAL_SIZE) $(shell echo $(PRC) | sed -E "s:\.[0-9]{20}::") $(notdir $<) $(notdir $@)
 	@printf "\e[0m"
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -o $@ -c $<
+	@2>&1 $(CC) $(CFLAGS) -o $@ -c $< | sed $(GCC_NO_NOTE)
 
 clean:
+	@printf "$(GRN)$(CLN_STR)$(NRM)\n"
 	@$(RM) $(OBJD)
 
 fclean:
+	@printf "$(GRN)$(FCL_STR)$(NRM)\n"
 	@$(RM) $(OBJD)
 	@$(RM) $(NAME)
 

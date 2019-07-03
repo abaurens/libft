@@ -3,6 +3,7 @@ RM			:=	rm -rf
 CP			:=	cp -rf
 LINKER		:=	gcc -o
 
+FTIO		:=	ftio.a
 FTCIPHER	:=	ftcipher.a
 FTMATH		:=	ftmath.a
 
@@ -16,6 +17,7 @@ CURUP		:=	\e[1A
 CMPT		:=	0
 
 LIBS		:=	\
+			$(FTIO)		\
 			$(FTCIPHER)	\
 			$(FTMATH)
 
@@ -38,8 +40,8 @@ all:	$(LIBS)
 	@#if [[ $(CMPT) -ne 0 ]]; then printf "$(CURUP)$(CURUP)"; fi
 	$(eval FCNT	= $(words $(LIBS)))
 	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
-	@printf "$(CYA)[%d/%d] $(RED)%s$(NRM)\n" $(CMPT) $(FCNT) $(basename $@)
-	@$(CC) $(basename $@)
+	@#printf "$(CYA)[%d/%d] $(RED)%s$(NRM)\n" $(CMPT) $(FCNT) $(basename $@)
+	@$(CC) $(basename $@) SUBID=$(CMPT) TOTAL_SIZE=$(FCNT)
 
 #$(OBJD)/%.o:	$(SRCD)/%.c
 #	@mkdir -p $(dir $@)
