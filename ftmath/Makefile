@@ -1,8 +1,8 @@
 CC			:=	gcc
 RM			:=	rm -rf
 CP			:=	cp -rf
-LINKER		:=	gcc -o
-NAME		:=
+LINKER		:=	ar rc
+NAME		:=	ftmath.a
 
 SRCD		:=	srcs
 OBJD		:=	objs
@@ -15,7 +15,8 @@ SRC			:=	$(addprefix $(SRCD)/,$(SRC))
 CFLAGS		:=	-I./includes -W -Wall -Wextra -Werror
 
 $(NAME):	$(OBJ)
-	$(LINKER) $(NAME) $(OBJ) $(LDFLAGS)
+	@touch $(NAME)
+	@#$(LINKER) $(NAME) $(OBJ) $(LDFLAGS)
 
 all:	$(NAME)
 
@@ -24,11 +25,13 @@ $(OBJD)/%.o:	$(SRCD)/%.c
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
-	$(RM) $(OBJD)
+	@printf "clean ftmath\n"
+	@$(RM) $(OBJD)
 
 fclean:
-	$(RM) $(OBJD)
-	$(RM) $(NAME)
+	@printf "fclean ftmath\n"
+	@$(RM) $(OBJD)
+	@$(RM) $(NAME)
 
 re:		fclean all
 
