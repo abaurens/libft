@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/03 18:09:09 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/03 21:56:38 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ CURUP	:=		\e[1A
 CMPT	:=		0
 LINE	:=		" $(CYA)[%3d%%]\t$(BLE)%-24s $(MAG)=>$(BLE)\t%-24s$(NRM)\n"
 
+GCC_NO_NOTE	:=	':a;N;s/\n/&/1;Ta;/: note: .*ABI.*/!{P;D};:b;N;s/\n/&/3;Tb;d'
 
 GCC_STR	:=	<---------------------- Compiling sources... ---------------------->
 CLN_STR	:=	<---------------------- Cleaning  sources... ---------------------->
@@ -203,7 +204,7 @@ $(OBJD)/%.o: $(SRCD)/%.c
 	@printf $(LINE) $(shell echo $(PRC) | sed -E "s:\.[0-9]{20}::") $(notdir $<) $(notdir $@)
 	@printf "\e[0m"
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -o $@ -c $<
+	@2>&1 $(CC) $(CFLAGS) -o $@ -c $< | sed $(GCC_NO_NOTE)
 
 all: $(NAME)
 
