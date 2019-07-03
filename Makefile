@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/06/13 22:56:31 by smoreno-         ###   ########.fr        #
+#    Updated: 2019/07/03 18:09:09 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,6 +106,7 @@ FTLIB	:=	\
 			ft_nan.c				\
 			ft_itoa.c				\
 			ft_atoi.c				\
+			ft_atol.c				\
 			ft_match.c				\
 			ft_idxof.c				\
 			ft_bzero.c				\

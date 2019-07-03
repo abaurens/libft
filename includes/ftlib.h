@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 16:09:37 by abaurens          #+#    #+#             */
-/*   Updated: 2019/06/12 11:38:57 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/03 18:05:58 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int			ft_tolower(int c);
 int			ft_toupper(int c);
 int			ft_atoi(const char *str);
 int			gnl(const int fd, char **line);
+int			sgnl(const int fd, char **line);
+int			cgnl(const int fd, char **line, const char *authorized);
 int			get_next_line(const int fd, char **line);
 
 size_t		ft_strlen(const char *str);

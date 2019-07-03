@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl.c                                              :+:      :+:    :+:   */
+/*   cgnl.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 21:33:40 by abaurens          #+#    #+#             */
-/*   Updated: 2019/06/26 15:55:28 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/06/26 15:55:37 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,23 @@ static char		*ft_gnlcat(const char *s1, const char *s2, int n)
 	return (res);
 }
 
-int				gnl(const int fd, char **line)
+static char		is_authorized(const char c, register const char *crset)
+{
+	while (crset && *crset)
+		if (c == *crset++)
+			return (1);
+	return (0);
+}
+
+static char		check_read(const char *sample, size_t size, const char *crset)
+{
+	while (sample && size--)
+		if (!is_authorized(*sample++, crset))
+			return (0);
+	return (1);
+}
+
+int				cgnl(const int fd, char **line, const char *crset)
 {
 	static char	*save = NULL;
 	char		buff[BUFF_SIZE + 1];
@@ -43,14 +59,15 @@ int				gnl(const int fd, char **line)
 
 	while ((l = ft_idxof('\n', save)) == ft_idxof(0, save))
 	{
-		if ((n = read(fd, buff, BUFF_SIZE)) < 0)
+		if ((n = read(fd, buff, BUFF_SIZE)) < 0 || !check_read(buff, n, crset))
 			return (-1);
 		if (n == 0)
 			break ;
 		buff[n] = 0;
 		if (!(tmp = ft_gnlcat(save, buff, -1)))
 			return (-1);
-		save = (char *)ft_freturn(save, (long)tmp);
+		free(save);
+		save = tmp;
 	}
 	tmp = save;
 	if (tmp && !(*line = ft_gnlcat(NULL, tmp, l)))
