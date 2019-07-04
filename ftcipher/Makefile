@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/04 12:54:21 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/04 14:32:10 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,12 +19,6 @@ LINKER	:=	ar rc
 NAME	:=	ftcipher.a
 
 CFLAGS	:=	-I../includes -W -Wall -Wextra -ansi -pedantic -Werror
-
-GCC_STR	:=
-CLN_STR	:=	<-------------------- Cleaning  $(NAME)... -------------------->
-FCL_STR	:=	<-------------------- Fcleaning $(NAME)... -------------------->
-LNK_STR	:=	<--------------------- Linking $(NAME)... --------------------->
-DNE_STR	:=	<--------------------------- DONE ! --------------------------->
 
 # SOURCES
 
@@ -46,11 +40,13 @@ $(NAME):	$(OBJ)
 all:	$(NAME)
 
 clean:
-	@printf "$(GRN)$(CLN_STR)$(NRM)\n"
+	@#printf "$(GRN)$(CLN_STR)$(NRM)\n"
+	$(call pinfo,Cleaning $(NAME))
 	@$(RM) $(OBJD)
 
 fclean:
-	@printf "$(GRN)$(FCL_STR)$(NRM)\n"
+	@#printf "$(GRN)$(FCL_STR)$(NRM)\n"
+	$(call pinfo,Fcleaning $(NAME))
 	@$(RM) $(OBJD)
 	@$(RM) $(NAME)
 

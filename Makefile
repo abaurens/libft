@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/04 12:55:54 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/04 15:02:03 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,16 +19,22 @@ CP			:=	cp -rf
 LIBS	:=	\
 			ftlib.a		\
 			ftcipher.a	\
-			ftmath.a
-LIBS	:=	$(shell echo $(LIBS)|tr ' ' '\n'|awk '{print length,$$0}'|sort -n|cut -d' ' -f2)
+			ftmath.a	\
+			ftregex.a
+
+LIBS	:=	$(shell echo $(LIBS)|tr ' ' '\n'|awk '{print length,$$0}'|sort -n|\
+			cut -d' ' -f2)
 
 CFLAGS	:=	-I./includes -W -Wall -Wextra -Werror
 
 MAX_LEN	:=	$(shell echo $(lastword $(LIBS)) | awk '{print length}')
 
 all:	$(LIBS)
+	@$(call pinfo,DONE!)
 
-%.a:
+%.a:	$(basename %)/Makefile
+	@$(call vinfo,Compiling...,TEXT)
+	@if [[ $(CMPT) -eq 0 ]]; then printf "$(TEXT)\n"; fi
 	$(eval FCNT	= $(words $(LIBS)))
 	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
 	@$(CC) $(basename $@) SUBID=$(CMPT) TOTAL_SIZE=$(FCNT) MAX_LEN=$(MAX_LEN)

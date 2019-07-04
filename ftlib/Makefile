@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/04 13:00:02 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/04 14:08:24 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,12 +22,6 @@ IOD		:=	ftio
 IOC		:=	0
 
 CFLAGS	:=	-I../includes -W -Wall -Wextra -ansi -Werror
-
-GCC_STR	:=
-CLN_STR	:=	<---------------------- Cleaning $(NAME)... ---------------------->
-FCL_STR	:=	<--------------------- Fcleaning  $(NAME)... --------------------->
-LNK_STR	:=	<---------------------- Linking $(NAME)... ---------------------->
-DNE_STR	:=	<---------------------------- DONE ! ---------------------------->
 
 # SOURCES
 
@@ -166,11 +160,11 @@ $(OBJD)/$(IOD)/%.o:	$(IOD)/%.c
 all:	$(NAME)
 
 clean:
-	@printf "$(GRN)$(CLN_STR)$(NRM)\n"
+	$(call pinfo,Cleaning $(NAME))
 	@$(RM) $(OBJD)
 
 fclean:
-	@printf "$(GRN)$(FCL_STR)$(NRM)\n"
+	$(call pinfo,Fcleaning $(NAME))
 	@$(RM) $(OBJD)
 	@$(RM) $(NAME)
 

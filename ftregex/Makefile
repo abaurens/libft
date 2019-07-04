@@ -5,47 +5,42 @@
 #                                                     +:+ +:+         +:+      #
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/04 14:41:10 by abaurens         ###   ########.fr        #
+#    Created: 2019/07/04 13:34:16 by abaurens          #+#    #+#              #
+#    Updated: 2019/07/04 14:12:42 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 include ../variables.mk
 
-CC		:=	gcc
-RM		:=	rm -rf
-CP		:=	cp -rf
-LINKER	:=	ar rc
-NAME	:=	ftmath.a
+CC			:=	gcc
+RM			:=	rm -rf
+CP			:=	cp -rf
+LINKER		:=	ar rc
+NAME		:=	ftregex.a
 
-CFLAGS	:=	-I../includes -W -Wall -Wextra -ansi -pedantic -Werror
+SRC			:=
 
-# SOURCES
+OBJ			:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
+SRC			:=	$(addprefix $(SRCD)/,$(SRC))
 
-SRC	:=	\
-		ft_min.c	ft_max.c	\
-		ft_abs.c	ft_nan.c	\
-		ft_rad.c
-
-OBJ	:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
-SRC	:=	$(addprefix $(SRCD)/,$(SRC))
-
-FCNT	:=	$(words $(SRC))
-
-# RULES
+CFLAGS		:=	-I./includes -W -Wall -Wextra -Werror
 
 $(NAME):	$(OBJ)
-	@$(LINKER) $(NAME) $(OBJ) $(LDFLAGS)
+	@touch $(NAME)
+	@printf $(LINE) $(SUBID) $(TOTAL_SIZE) $(basename $(NAME)) 100 "" ""
+	@#$(LINKER) $(NAME) $(OBJ) $(LDFLAGS)
 
 all:	$(NAME)
 
+$(OBJD)/%.o:	$(SRCD)/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -o $@ -c $<
+
 clean:
-	@#printf "$(GRN)$(CLN_STR)$(NRM)\n"
 	$(call pinfo,Cleaning $(NAME))
 	@$(RM) $(OBJD)
 
 fclean:
-	@#printf "$(GRN)$(FCL_STR)$(NRM)\n"
 	$(call pinfo,Fcleaning $(NAME))
 	@$(RM) $(OBJD)
 	@$(RM) $(NAME)

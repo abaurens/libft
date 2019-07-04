@@ -24,14 +24,30 @@ OBJD	:=	objs
 
 CMPT	:=	0
 
+define vinfo
+	@$(eval LEN = $(shell printf '$(1)'|awk '{print length}'))
+	@$(eval MOD = $(shell echo "$(LEN)%2"|bc))
+	@$(eval DASH = $(shell seq 1 $(shell echo "37-$(LEN)/2"|bc)))
+	@$(eval FTRES = $(shell printf "$(GRN)<-";\
+		for i in $(DASH); do printf "-"; done;\
+		printf " $(1) "; if [[ $(MOD) -eq 0 ]]; then printf '-'; fi;\
+		for i in $(DASH); do printf "-"; done;\
+		printf ">$(NRM)"))
+	$(eval $(2) := $$(FTRES))
+endef
+
+define pinfo
+	@$(call vinfo,$(1),VAR)
+	@printf '$(VAR)\n'
+endef
+
 LINE	:=	" [$(CYA)%d/%d$(NRM)] $(RED)%-$(MAX_LEN)s$(NRM) $(CYA)[%3d%%]  \
 $(BLE)%-24s $(MAG)=>$(BLE)\t%-24s$(NRM)\n"
 
 EMPTY	:=	$(shell printf '%80s' "")#80 spaces
 
 $(OBJD)/%.o:	$(SRCD)/%.c
-	@if [[ $(CMPT) -eq 0 ]]; then printf "";\
-	else printf "$(CURUP)"; fi
+	@if [[ $(CMPT) -ne 0 ]]; then printf "$(CURUP)"; fi
 	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
 	$(eval PRC = $(shell echo "$(CMPT)/$(FCNT)*100"|bc -l|sed 's/^\./0./'))
 	@printf $(LINE) $(SUBID) $(TOTAL_SIZE) $(basename $(NAME)) $(shell echo $(PRC)\
