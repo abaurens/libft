@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/04 02:41:01 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/04 02:49:44 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,16 +29,17 @@ MAX_LEN	:=	$(shell echo -e $(lastword $(LIBS)) | awk '{print length}')
 
 all:	$(LIBS)
 
-
 %.a:
 	$(eval FCNT	= $(words $(LIBS)))
 	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
 	@$(CC) $(basename $@) SUBID=$(CMPT) TOTAL_SIZE=$(FCNT) MAX_LEN=$(MAX_LEN)
+	@$(CP) $(basename $@)/$@ ./
 
 clean:
 	@$(foreach CMD,$(basename $(LIBS)),$(CC) $(CMD) clean;)
 
 fclean:
+	@$(RM) $(LIBS)
 	@$(foreach CMD,$(basename $(LIBS)),$(CC) $(CMD) fclean;)
 
 re:		fclean all
