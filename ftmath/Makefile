@@ -6,11 +6,9 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/04 14:41:10 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/04 15:12:07 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-include ../variables.mk
 
 CC		:=	gcc
 RM		:=	rm -rf
@@ -27,10 +25,11 @@ SRC	:=	\
 		ft_abs.c	ft_nan.c	\
 		ft_rad.c
 
+include ../variables.mk
+
 OBJ	:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
 SRC	:=	$(addprefix $(SRCD)/,$(SRC))
 
-FCNT	:=	$(words $(SRC))
 
 # RULES
 

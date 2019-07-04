@@ -6,11 +6,9 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/04 14:08:24 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/04 15:13:22 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-include ../variables.mk
 
 CC		:=	gcc
 RM		:=	rm -rf
@@ -136,9 +134,9 @@ SRC		:=	\
 			ft_unsignedlen.c		\
 			ft_unsignedlen_base.c
 
-FCNT	:=	$(words $(SRC))
-SRC		:=	$(IO) $(SRC)
+include ../variables.mk
 
+SRC		:=	$(IO) $(SRC)
 OBJ		:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
 SRC		:=	$(addprefix $(SRCD)/,$(SRC))
 

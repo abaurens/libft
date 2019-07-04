@@ -23,6 +23,7 @@ SRCD	:=	srcs
 OBJD	:=	objs
 
 CMPT	:=	0
+FCNT	:=	$(words $(SRC))
 
 define vinfo
 	@$(eval LEN = $(shell printf '$(1)'|awk '{print length}'))
@@ -37,8 +38,8 @@ define vinfo
 endef
 
 define pinfo
-	@$(call vinfo,$(1),VAR)
-	@printf '$(VAR)\n'
+	@$(call vinfo,$(1),PINFO)
+	@printf '$(PINFO)\n'
 endef
 
 LINE	:=	" [$(CYA)%d/%d$(NRM)] $(RED)%-$(MAX_LEN)s$(NRM) $(CYA)[%3d%%]  \
