@@ -28,6 +28,7 @@ CURUP	:=		\e[1A
 CMPT	:=		0
 LINE	:=		" $(CYA)[%3d%%]\t$(BLE)%-24s $(MAG)=>$(BLE)\t%-24s$(NRM)\n"
 
+GCC_NO_NOTE	:=	':a;N;s/\n/&/1;Ta;/: note: .*ABI.*/!{P;D};:b;N;s/\n/&/3;Tb;d'
 
 GCC_STR	:=	<---------------------- Compiling sources... ---------------------->
 CLN_STR	:=	<---------------------- Cleaning  sources... ---------------------->

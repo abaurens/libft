@@ -6,12 +6,12 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 15:00:35 by abaurens          #+#    #+#             */
-/*   Updated: 2019/05/21 17:27:18 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/04 02:29:34 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_CIPHER_H
-# define FT_CIPHER_H
+#ifndef FTCIPHER_H
+# define FTCIPHER_H
 
 # include <inttypes.h>
 # include <string.h>

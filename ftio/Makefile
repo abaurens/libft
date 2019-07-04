@@ -6,9 +6,11 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/03 22:47:14 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/04 02:10:59 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+include ../variables.mk
 
 CC		:=	gcc
 RM		:=	rm -rf
@@ -18,21 +20,7 @@ NAME	:=	ftio.a
 
 CFLAGS	:=	-I../includes -W -Wall -Wextra -Werror
 
-# INTERNAL VARIABLES
-
-GRN		:=	\e[1;92m
-BLE		:=	\e[1;34m
-CYA		:=	\e[1;96m
-MAG		:=	\e[1;35m
-RED		:=	\e[1;91m
-NRM		:=	\e[0m
-CURUP	:=	\e[1A
-
 OBJD	:=	objs
-
-CMPT	:=	0
-EMPTY	:=	"                                                                  \n$(CURUP)"
-LINE	:=	" [$(CYA)%d/%d $(RED)$(NAME)$(NRM)] $(CYA)[%3d%%]  $(BLE)%-24s $(MAG)=>$(BLE)\t%-24s$(NRM)\n"
 
 GCC_NO_NOTE	:=	':a;N;s/\n/&/1;Ta;/: note: .*ABI.*/!{P;D};:b;N;s/\n/&/3;Tb;d'
 
@@ -43,7 +31,6 @@ LNK_STR	:=	<----------------------- Linking $(NAME)... ----------------------->
 DNE_STR	:=	<----------------------------- DONE ! ----------------------------->
 
 # SOURCES
-
 STRCNV	:=	padded_lltoa.c		padded_ulltoa_hexa.c	\
 			padded_ulltoa.c		padded_ulltoa_octal.c	\
 			padded_ulltoa_bin.c	ft_ldtoa_scientific.c
@@ -86,26 +73,32 @@ IOCONV	:=	$(addprefix convert/,$(IOCONV))
 SRC		:=	$(IOCORE)				\
 			$(IOCONV)	$(STRCNV)	\
 			$(BFLOAT)	$(DRAGON)	\
-			ft_printf.c		ft_dprintf.c	ft_sprintf.c	\
-			ft_fprintf.c	ft_snprintf.c	ft_asprintf.c
+			gnl.c			cgnl.c				sgnl.c				\
+			ft_atoi.c		ft_atol.c			ft_itoa.c			\
+			ft_printf.c		ft_putnbr.c			ft_putstr.c			\
+			ft_sprintf.c	ft_dprintf.c		ft_fprintf.c		\
+			ft_putchar.c	ft_putendl.c		ft_snprintf.c		\
+			ft_putnbr_fd.c	ft_putstr_fd.c		ft_asprintf.c		\
+			ft_atol_base.c	ft_putchar_fd.c		ft_putendl_fd.c		\
+			get_next_line.c	ft_putnbr_base.c	ft_putnbr_base_fd.c
 
 OBJ		:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
+SRC		:=	$(addprefix $(SRCD)/,$(SRC))
 
 # RULES
-
 $(NAME):	$(OBJ)
-	@printf $(EMPTY)
 	@$(LINKER) $(NAME) $(OBJ) $(LDFLAGS)
 
 all:	$(NAME)
 
-$(OBJD)/%.o:	%.c
+$(OBJD)/%.o:	$(SRCD)/%.c
 	@if [[ $(CMPT) -eq 0 ]]; then printf "";\
 	else printf "$(CURUP)"; fi
 	$(eval FCNT	= $(words $(SRC)))
 	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
-	$(eval PRC = $(shell echo "$(CMPT) / $(FCNT) * 100" | bc -l | sed 's/^\./0./'))
-	@printf $(LINE) $(SUBID) $(TOTAL_SIZE) $(shell echo $(PRC) | sed -E "s:\.[0-9]{20}::") $(notdir $<) $(notdir $@)
+	$(eval PRC = $(shell echo "$(CMPT)/$(FCNT)*100"|bc -l|sed 's/^\./0./'))
+	@printf $(LINE) $(SUBID) $(TOTAL_SIZE) $(NAME) $(shell echo $(PRC)|sed -E \
+	"s:\.[0-9]{20}::") $(notdir $<) $(notdir $@)
 	@printf "\e[0m"
 	@mkdir -p $(dir $@)
 	@2>&1 $(CC) $(CFLAGS) -o $@ -c $< | sed $(GCC_NO_NOTE)
