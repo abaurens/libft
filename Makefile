@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/04 02:49:44 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/04 12:55:54 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,14 +18,13 @@ CP			:=	cp -rf
 
 LIBS	:=	\
 			ftlib.a		\
-			ftio.a		\
 			ftcipher.a	\
 			ftmath.a
-LIBS	:=	$(shell echo $(LIBS)|tr ' ' '\n'|sort -R|awk '{print length,$$0}'|sort -n|cut -d' ' -f2)
+LIBS	:=	$(shell echo $(LIBS)|tr ' ' '\n'|awk '{print length,$$0}'|sort -n|cut -d' ' -f2)
 
 CFLAGS	:=	-I./includes -W -Wall -Wextra -Werror
 
-MAX_LEN	:=	$(shell echo -e $(lastword $(LIBS)) | awk '{print length}')
+MAX_LEN	:=	$(shell echo $(lastword $(LIBS)) | awk '{print length}')
 
 all:	$(LIBS)
 

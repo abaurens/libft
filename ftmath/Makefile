@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/04 02:28:19 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/04 12:54:32 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,9 @@ SRC	:=	\
 
 OBJ	:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
 SRC	:=	$(addprefix $(SRCD)/,$(SRC))
+
+FCNT	:=	$(words $(SRC))
+
 # RULES
 
 $(NAME):	$(OBJ)

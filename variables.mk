@@ -32,11 +32,10 @@ EMPTY	:=	$(shell printf '%80s' "")#80 spaces
 $(OBJD)/%.o:	$(SRCD)/%.c
 	@if [[ $(CMPT) -eq 0 ]]; then printf "";\
 	else printf "$(CURUP)"; fi
-	$(eval FCNT	= $(words $(SRC)))
 	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
 	$(eval PRC = $(shell echo "$(CMPT)/$(FCNT)*100"|bc -l|sed 's/^\./0./'))
-	@printf $(LINE) $(SUBID) $(TOTAL_SIZE) $(NAME) $(shell echo $(PRC)|sed -E \
-	"s:\.[0-9]{20}::") $(notdir $<) $(notdir $@)
+	@printf $(LINE) $(SUBID) $(TOTAL_SIZE) $(basename $(NAME)) $(shell echo $(PRC)\
+	|sed -E "s:\.[0-9]{20}::") $(notdir $<) $(notdir $@)
 	@printf "\e[0m"
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -o $@ -c $<
