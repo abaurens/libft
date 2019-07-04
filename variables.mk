@@ -56,3 +56,13 @@ $(OBJD)/%.o:	$(SRCD)/%.c
 	@printf "\e[0m"
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -o $@ -c $<
+
+ifndef $(SUBID)
+SUBID	:=	1
+endif
+ifndef $(TOTAL_SIZE)
+TOTAL_SIZE	:=	1
+endif
+ifndef $(MAX_LEN)
+MAX_LEN	:=	1
+endif
