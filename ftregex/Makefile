@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 13:34:16 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/04 20:02:16 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/09 17:54:02 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,13 @@ LINKER	:=	ar rc
 NAME	:=	ftregex.a
 
 NFA		:=	\
-			nfa.c		\
-			states.c	\
-			elementary_op.c
-NFA		:=	$(addprefix nfa/,$(NFA))
 
-SRC		:=	$(NFA)
+NFA		:=	$(addprefix ft_nfa/,$(NFA))
+
+SRC		:=	$(NFA)	\
+			regex.c	\
+			token.c	\
+			toklst.c
 
 include ../variables.mk
 
@@ -36,6 +37,14 @@ $(NAME):	$(OBJ)
 
 all:	$(NAME)
 
+test:	$(NAME)
+	@$(CC) -o test $(CFLAGS) $(NAME) main.c
+
+cleantest:
+	@$(RM) test
+
+retest:	clean cleantest test
+
 clean:
 	$(call pinfo,Cleaning $(NAME))
 	@$(RM) $(OBJD)
@@ -47,4 +56,4 @@ fclean:
 
 re:		fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re cleantest retest
