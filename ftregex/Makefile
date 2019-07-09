@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 13:34:16 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/09 17:54:02 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/09 20:47:51 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ $(NAME):	$(OBJ)
 all:	$(NAME)
 
 test:	$(NAME)
-	@$(CC) -o test $(CFLAGS) $(NAME) main.c
+	@$(CC) -o test $(CFLAGS) main.c $(NAME)
 
 cleantest:
 	@$(RM) test

@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/04 15:13:22 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/04 20:59:53 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ NAME	:=	ftlib.a
 
 IOD		:=	ftio
 IOC		:=	0
+NO_NOTE	:=	':a;N;s/\n/&/1;Ta;/: note: .*ABI.*/!{P;D};:b;N;s/\n/&/3;Tb;d'
 
 CFLAGS	:=	-I../includes -W -Wall -Wextra -ansi -Werror
 
@@ -153,7 +154,7 @@ $(OBJD)/$(IOD)/%.o:	$(IOD)/%.c
 	"s:\.[0-9]{20}::") $(notdir $<) $(notdir $@)
 	@printf "\e[0m"
 	@mkdir -p $(dir $@)
-	@$(CC) $(shell echo $(CFLAGS) | sed -E 's/ *-(ansi|pedantic) */ /g') -o $@ -c $<
+	@2>&1 $(CC) $(shell echo $(CFLAGS) | sed -E 's/ *-(ansi|pedantic) */ /g') -o $@ -c $< | sed $(NO_NOTE)
 
 all:	$(NAME)
 

@@ -6,12 +6,13 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 14:56:49 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/09 20:02:20 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/09 21:46:53 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <strings.h>
 #include "ftregex.h"
 
 void		print_tokenlist(t_toklst *lst)
@@ -50,13 +51,14 @@ void		to_postfix(t_toklst *lst)
 	while (lst->size)
 	{
 		cur = pop_tok(lst, lst->edges[HEAD]);
-		if (cur->type == CHAR || cur->type == SPECIAL)
+		if (cur->type == CHAR || cur->type == SPECIAL || cur->type == QUANTIFIER)
 			insert(&new, cur, TAIL);
 		else if (cur->type == SCOPE_OPEN)
 			insert(&stack, cur, HEAD);
 		else if (cur->type == OP)
 		{
-			if (!stack.size || stack.edges[HEAD]->type == SCOPE_OPEN)
+			if (!stack.size || stack.edges[HEAD]->type == SCOPE_OPEN
+				|| stack.edges[HEAD]->priority < cur->priority)
 				insert(&stack, cur, HEAD);
 			else
 			{
@@ -78,6 +80,39 @@ void		to_postfix(t_toklst *lst)
 	*lst = new;
 }
 
+void		explicit_ops(t_toklst *lst)
+{
+	t_toklst	new;
+	t_token		*cur;
+	t_token		*concat;
+	char		mode;
+
+	mode = 0;
+	bzero(&new, sizeof(t_toklst));
+	while (lst->size)
+	{
+		cur = pop_tok(lst, lst->edges[HEAD]);
+		if (new.size
+			&& (new.edges[TAIL]->type == CHAR
+				|| new.edges[TAIL]->type == SPECIAL
+				|| new.edges[TAIL]->type == QUANTIFIER
+				|| new.edges[TAIL]->type == SCOPE_CLOSE)
+			&& (cur->type != OP && cur->type != QUANTIFIER
+				&& cur->type != SCOPE_CLOSE))
+		{
+			if (!(concat = new_token(mode ? '|' : '+', OP)))
+				return ;
+			insert(&new, concat, TAIL);
+		}
+		if (cur->type == SCOPE_OPEN && cur->c == '[')
+			mode = 1;
+		if (cur->type == SCOPE_CLOSE && cur->c == ']')
+			mode = 0;
+		insert(&new, cur, TAIL);
+	}
+	*lst = new;
+}
+
 t_regex		*ft_regex(const char *str)
 {
 	t_toklst	tokens;
@@ -86,8 +121,23 @@ t_regex		*ft_regex(const char *str)
 		return (NULL);
 	printf("came as : ");
 	print_tokenlist(&tokens);
-	printf("postfix : ");
+	printf("explicit concat: ");
+	explicit_ops(&tokens);
+	print_tokenlist(&tokens);
 	to_postfix(&tokens);
+	printf("postfix : ");
 	print_tokenlist(&tokens);
 	return (NULL);
 }
+
+/*
+^abc[def]g(hi|jk)@kl.*$
+^+a+b+c+[d|e|f]+g+(h+i|j+k)@+k+l+.*+$
+
+^a+b+c+de|f|+g+hi+jk+|@+k+l+.*+$+
+
+
+^a+b+c+de|f|+g+hi+jk+|@+k+l+.*+$+
+(^abc)(d|e|f)g(hi|jk)@kl.*$
+
+*/

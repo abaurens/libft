@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 14:57:17 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/09 19:52:28 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/09 21:43:57 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@
 # include <string.h>
 # include "ftregex/ft_nfa.h"
 
-# define RE_SCP_OPN	"([{"
-# define RE_SCP_CLS	")]}"
-# define RE_OPS		"*+\\|,"
+# define RE_SCP_OPN	"(["
+# define RE_SCP_CLS	")]"
+# define RE_QUANT	"*+?{}"
+# define RE_OPS		"|"
 # define RE_SPC		".^$"
+
+# define RE_C_ESC	'\\'
+# define RE_C_SEP	','
 
 typedef struct s_regex	t_regex;
 typedef struct s_token	t_token;
@@ -31,6 +35,7 @@ typedef enum	e_toktpe
 	SPECIAL,
 	SCOPE_OPEN,
 	SCOPE_CLOSE,
+	QUANTIFIER,
 	UNKNOWN
 }				t_toktpe;
 
@@ -50,6 +55,7 @@ struct			s_token
 {
 	t_token		*lnks[2];
 	t_toktpe	type;
+	int			priority;
 	char		c;
 	size_t		len;
 };
@@ -71,6 +77,7 @@ t_regex			*ft_regex(const char *str);
 **	token.c
 */
 char			get_token(t_toklst *lst, const char *str);
+int				get_priority(char c);
 
 /*
 **	toklst.c

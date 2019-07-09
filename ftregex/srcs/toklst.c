@@ -6,12 +6,13 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 15:51:17 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/09 19:35:38 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/09 21:39:10 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <strings.h>
 #include "ftregex.h"
 
 t_token		*pop_tok(t_toklst *lst, t_token *tok)
@@ -53,6 +54,7 @@ t_token		*new_token(char c, t_toktpe type)
 	new->lnks[PREV] = NULL;
 	new->type = type;
 	new->c = c;
+	new->priority = (type == OP ? get_priority(c) : 0);
 	return (new);
 }
 
