@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 14:57:17 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/09 21:43:57 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/09 22:00:40 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ struct			s_token
 	t_toktpe	type;
 	int			priority;
 	char		c;
+	char		*s;
 	size_t		len;
 };
 

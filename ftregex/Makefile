@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 13:34:16 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/09 20:47:51 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/09 22:25:46 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ include ../variables.mk
 OBJ		:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
 SRC		:=	$(addprefix $(SRCD)/,$(SRC))
 
-CFLAGS	:=	-I../includes -W -Wall -Wextra -ansi -pedantic -Werror
+CFLAGS	:=	-I../includes -W -Wall -Wextra -Werror -ansi -pedantic
 
 $(NAME):	$(OBJ)
 	@$(LINKER) $(NAME) $(OBJ) $(LDFLAGS)

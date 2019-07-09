@@ -6,23 +6,28 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 14:56:49 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/09 21:46:53 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/09 22:25:54 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <strings.h>
 #include "ftregex.h"
 
-void		print_tokenlist(t_toklst *lst)
+void		print_tokenlist(t_toklst *lst, char sep)
 {
 	t_token	*cur;
 
 	cur = lst->edges[HEAD];
 	while (cur)
 	{
-		printf("%c[%dm%c%c[0m%s", 27, cur->type + 31, cur->c, 27,
+		if (sep)
+			printf("%c[%dm'%s'%c[0m%s", 27, cur->type + 31, cur->s, 27,
+				cur->lnks[NEXT] ? ", " : "\n");
+		else
+			printf("%c[%dm%c%c[0m%s", 27, cur->type + 31, cur->c, 27,
 				cur->lnks[NEXT] ? "" : "\n");
 		cur = cur->lnks[NEXT];
 	}
@@ -113,31 +118,25 @@ void		explicit_ops(t_toklst *lst)
 	*lst = new;
 }
 
+void		generate_automata(t_toklst *lst)
+{
+	(void)lst;
+}
+
 t_regex		*ft_regex(const char *str)
 {
 	t_toklst	tokens;
 
 	if (tokenize(&tokens, str, 0))
 		return (NULL);
-	printf("came as : ");
-	print_tokenlist(&tokens);
-	printf("explicit concat: ");
+	printf("came as ---------> ");
+	print_tokenlist(&tokens, 0);
+	printf("explicit concat -> ");
 	explicit_ops(&tokens);
-	print_tokenlist(&tokens);
+	print_tokenlist(&tokens, 0);
 	to_postfix(&tokens);
-	printf("postfix : ");
-	print_tokenlist(&tokens);
+	printf("postfix ---------> ");
+	print_tokenlist(&tokens, 0);
+	generate_automata(&tokens);
 	return (NULL);
 }
-
-/*
-^abc[def]g(hi|jk)@kl.*$
-^+a+b+c+[d|e|f]+g+(h+i|j+k)@+k+l+.*+$
-
-^a+b+c+de|f|+g+hi+jk+|@+k+l+.*+$+
-
-
-^a+b+c+de|f|+g+hi+jk+|@+k+l+.*+$+
-(^abc)(d|e|f)g(hi|jk)@kl.*$
-
-*/
