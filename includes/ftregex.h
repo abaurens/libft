@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 14:57:17 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/10 21:40:23 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/10 21:49:50 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,9 @@ typedef struct	s_toklst
 */
 char			tokenize(t_toklst *lst, const char *str, char end);
 
+/*
+**	regex.c
+*/
 t_regex			*ft_regex(const char *str);
 
 /*
