@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 13:34:16 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/10 18:13:07 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/10 20:49:36 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,10 +37,13 @@ CFLAGS	:=	-g -I../includes -W -Wall -Wextra -Werror -ansi -pedantic
 $(NAME):	$(OBJ)
 	@$(LINKER) $(NAME) $(OBJ) $(LDFLAGS)
 
+$(LIBFT):
+	@make -C $(dir $(LIBFT))
+
 all:	$(NAME)
 
 test:	$(NAME) $(LIBFT)
-	@$(CC) -o test $(CFLAGS) main.c $(LIBFT) $(NAME)
+	@$(CC) -o test $(CFLAGS) main.c $(NAME) $(LIBFT)
 
 cleantest:
 	@$(RM) test
@@ -50,11 +53,13 @@ retest:	clean cleantest test
 clean:
 	$(call pinfo,Cleaning $(NAME))
 	@$(RM) $(OBJD)
+	@make -C $(dir $(LIBFT)) clean
 
 fclean:
 	$(call pinfo,Fcleaning $(NAME))
 	@$(RM) $(OBJD)
 	@$(RM) $(NAME)
+	@make -C $(dir $(LIBFT)) fclean
 
 re:		fclean all
 
