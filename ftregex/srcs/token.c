@@ -6,14 +6,14 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 15:51:17 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/10 18:14:29 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/10 21:21:02 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include "ftregex.h"
 #include "ftlib.h"
+#include "ftio.h"
 
 int			get_priority(char c)
 {
@@ -27,6 +27,11 @@ int			get_priority(char c)
 char		is_quantifiable(t_token *tok)
 {
 	return (tok->type != QUANT && tok->type != SCOPE_OPN);
+}
+
+char		is_operand(t_token *tok)
+{
+	return (tok->type == CHAR || tok->type == SPEC || tok->type == SHORT);
 }
 
 t_token		*get_token(char const *str)

@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 13:34:16 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/10 20:49:36 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/10 21:23:08 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ CP		:=	cp -rf
 LINKER	:=	ar rc
 NAME	:=	ftregex.a
 LIBFT	:=	../ftlib/ftlib.a
+FTMATH	:=	../ftmath/ftmath.a
 
 NFA		:=	\
 
@@ -32,7 +33,7 @@ include ../variables.mk
 OBJ		:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
 SRC		:=	$(addprefix $(SRCD)/,$(SRC))
 
-CFLAGS	:=	-g -I../includes -W -Wall -Wextra -Werror -ansi -pedantic
+CFLAGS	:=	-g -I../includes -W -Wall -Wextra -ansi -pedantic #-Werror
 
 $(NAME):	$(OBJ)
 	@$(LINKER) $(NAME) $(OBJ) $(LDFLAGS)
@@ -40,10 +41,13 @@ $(NAME):	$(OBJ)
 $(LIBFT):
 	@make -C $(dir $(LIBFT))
 
+$(FTMATH):
+	@make -C $(dir $(FTMATH))
+
 all:	$(NAME)
 
-test:	$(NAME) $(LIBFT)
-	@$(CC) -o test $(CFLAGS) main.c $(NAME) $(LIBFT)
+test:	$(NAME) $(LIBFT) $(FTMATH)
+	@$(CC) -o test $(CFLAGS) main.c $(NAME) $(LIBFT) $(FTMATH)
 
 cleantest:
 	@$(RM) test
@@ -53,13 +57,11 @@ retest:	clean cleantest test
 clean:
 	$(call pinfo,Cleaning $(NAME))
 	@$(RM) $(OBJD)
-	@make -C $(dir $(LIBFT)) clean
 
 fclean:
 	$(call pinfo,Fcleaning $(NAME))
 	@$(RM) $(OBJD)
 	@$(RM) $(NAME)
-	@make -C $(dir $(LIBFT)) fclean
 
 re:		fclean all
 

@@ -6,26 +6,27 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 15:51:17 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/10 18:18:09 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/10 21:16:10 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <strings.h>
 #include "ftregex.h"
 #include "ftlib.h"
+#include "ftio.h"
 
 void		clear_toklst(t_toklst *lst)
 {
 	int		i;
 
-	while (lst->size)
+	while (lst->size > 1)
 	{
+
 		i = 0;
 		while (i < 2)
 		{
-			if (lst->size && (lst->edges[i] = lst->edges[i]->lnks[i]))
+			if (lst->size > 1 && (lst->edges[i] = lst->edges[i]->lnks[i]))
 			{
 				free(lst->edges[i]->lnks[!i]->s);
 				free(lst->edges[i]->lnks[!i]);
@@ -34,6 +35,8 @@ void		clear_toklst(t_toklst *lst)
 			++i;
 		}
 	}
+	free(lst->edges[HEAD]->s);
+	free(lst->edges[HEAD]);
 	ft_bzero(lst, sizeof(t_toklst));
 }
 

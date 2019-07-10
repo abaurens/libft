@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 14:32:55 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/04 02:17:09 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/10 21:29:35 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,17 @@
 # define BUFF_SIZE	1024
 # define FT_LMAX	9223372036854775807ul
 
+# ifdef FT_DISABLE_WARNINGS
+
+int			ft_printf(const char *frm, ...);
+int			ft_dprintf(int fd, const char *frm, ...);
+int			ft_sprintf(char *str, const char *frm, ...);
+int			ft_asprintf(char **ret, const char *frm, ...);
+int			ft_snprintf(char *str, size_t size, const char *frm, ...);
+int			ft_fprintf(FILE *stream, const char *frm, ...);
+
+# else
+
 int			ft_printf(const char *frm,
 							...) __attribute__((format(printf,1,2)));
 int			ft_dprintf(int fd, const char *frm,
@@ -32,6 +43,8 @@ int			ft_snprintf(char *str, size_t size, const char *frm,
 							...) __attribute__((format(printf,3,4)));
 int			ft_fprintf(FILE *stream, const char *frm,
 							...) __attribute__((format(printf,2,3)));
+
+# endif
 
 int			ft_vprintf(const char *frm, va_list ap);
 int			ft_vdprintf(int fd, const char *frm, va_list ap);

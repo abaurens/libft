@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 14:57:17 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/10 18:18:14 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/10 21:21:14 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ t_regex			*ft_regex(const char *str);
 **	token.c
 */
 int				get_priority(char c);
+char			is_operand(t_token *tok);
 t_token			*get_token(const char *str);
 char			is_quantifiable(t_token *tok);
 
