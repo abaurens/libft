@@ -6,9 +6,18 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/04 15:13:03 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/10 22:01:49 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+#	TODO
+#	- changer les makefiles de chaque module pour ne compiler que les .o
+#		ou alors re-extraire les .o depuis les libs pour en faire un seul .a
+#		ou alors ré-intégrer les fonctions necessaires au fonctionnement
+#			d'un module
+#	- vérifier la norme (le PDF) et voir si de courtes macro-fonctions
+#		pourraient passer, ce qui permettrait de ne pas rendre accessible des
+#		des fonctions internes
 
 include variables.mk
 
