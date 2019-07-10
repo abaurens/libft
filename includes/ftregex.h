@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 14:57:17 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/10 21:21:14 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/10 21:40:23 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,10 @@ void			clear_toklst(t_toklst *lst);
 t_token			*new_token(char c, t_toktpe type);
 t_token			*pop_tok(t_toklst *lst, t_token *tok);
 void			insert(t_toklst *lst, t_token *tok, t_lstpos pos);
+
+/*
+**	to_postfix.c
+*/
+void			to_postfix(t_toklst *lst);
 
 #endif

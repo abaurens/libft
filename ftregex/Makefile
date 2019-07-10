@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 13:34:16 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/10 21:33:45 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/10 21:40:31 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRC		:=	$(NFA)		\
 			regex.c		\
 			token.c		\
 			toklst.c	\
-			tokenize.c
+			tokenize.c	\
+			to_postfix.c
 
 include ../variables.mk
 
