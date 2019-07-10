@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 15:51:17 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/09 21:39:10 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/10 18:18:09 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,28 @@
 #include <stdlib.h>
 #include <strings.h>
 #include "ftregex.h"
+#include "ftlib.h"
+
+void		clear_toklst(t_toklst *lst)
+{
+	int		i;
+
+	while (lst->size)
+	{
+		i = 0;
+		while (i < 2)
+		{
+			if (lst->size && (lst->edges[i] = lst->edges[i]->lnks[i]))
+			{
+				free(lst->edges[i]->lnks[!i]->s);
+				free(lst->edges[i]->lnks[!i]);
+				lst->size--;
+			}
+			++i;
+		}
+	}
+	ft_bzero(lst, sizeof(t_toklst));
+}
 
 t_token		*pop_tok(t_toklst *lst, t_token *tok)
 {
@@ -48,24 +70,10 @@ t_token		*new_token(char c, t_toktpe type)
 {
 	t_token	*new;
 
-	if (!(new = malloc(sizeof(t_token))))
+	if (!(new = ft_memalloc(sizeof(t_token))))
 		return (NULL);
-	new->lnks[NEXT] = NULL;
-	new->lnks[PREV] = NULL;
-	new->type = type;
 	new->c = c;
+	new->type = type;
 	new->priority = (type == OP ? get_priority(c) : 0);
 	return (new);
-}
-
-char		tokenize(t_toklst *lst, const char *str, char end)
-{
-	bzero(lst, sizeof(t_toklst));
-	while (str && *str && *str != end)
-	{
-		if (get_token(lst, str))
-			return (-1);
-		str += lst->edges[TAIL]->len;
-	}
-	return (0);
 }

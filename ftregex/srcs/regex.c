@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 14:56:49 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/09 22:25:54 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/10 18:31:49 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ void		to_postfix(t_toklst *lst)
 	while (lst->size)
 	{
 		cur = pop_tok(lst, lst->edges[HEAD]);
-		if (cur->type == CHAR || cur->type == SPECIAL || cur->type == QUANTIFIER)
+		if (cur->type == CHAR || cur->type == SPEC || cur->type == QUANT)
 			insert(&new, cur, TAIL);
-		else if (cur->type == SCOPE_OPEN)
+		else if (cur->type == SCOPE_OPN)
 			insert(&stack, cur, HEAD);
 		else if (cur->type == OP)
 		{
-			if (!stack.size || stack.edges[HEAD]->type == SCOPE_OPEN
+			if (!stack.size || stack.edges[HEAD]->type == SCOPE_OPN
 				|| stack.edges[HEAD]->priority < cur->priority)
 				insert(&stack, cur, HEAD);
 			else
@@ -71,9 +71,9 @@ void		to_postfix(t_toklst *lst)
 				insert(&stack, cur, HEAD);
 			}
 		}
-		else if (cur->type == SCOPE_CLOSE)
+		else if (cur->type == SCOPE_CLS)
 		{
-			while (stack.size && stack.edges[HEAD]->type != SCOPE_OPEN
+			while (stack.size && stack.edges[HEAD]->type != SCOPE_OPN
 				&& get_pair(cur->c) != stack.edges[HEAD]->c)
 				insert(&new, pop_tok(&stack, stack.edges[HEAD]), TAIL);
 			free(pop_tok(&stack, stack.edges[HEAD]));
@@ -82,39 +82,6 @@ void		to_postfix(t_toklst *lst)
 	}
 	while (stack.size)
 		insert(&new, pop_tok(&stack, stack.edges[HEAD]), TAIL);
-	*lst = new;
-}
-
-void		explicit_ops(t_toklst *lst)
-{
-	t_toklst	new;
-	t_token		*cur;
-	t_token		*concat;
-	char		mode;
-
-	mode = 0;
-	bzero(&new, sizeof(t_toklst));
-	while (lst->size)
-	{
-		cur = pop_tok(lst, lst->edges[HEAD]);
-		if (new.size
-			&& (new.edges[TAIL]->type == CHAR
-				|| new.edges[TAIL]->type == SPECIAL
-				|| new.edges[TAIL]->type == QUANTIFIER
-				|| new.edges[TAIL]->type == SCOPE_CLOSE)
-			&& (cur->type != OP && cur->type != QUANTIFIER
-				&& cur->type != SCOPE_CLOSE))
-		{
-			if (!(concat = new_token(mode ? '|' : '+', OP)))
-				return ;
-			insert(&new, concat, TAIL);
-		}
-		if (cur->type == SCOPE_OPEN && cur->c == '[')
-			mode = 1;
-		if (cur->type == SCOPE_CLOSE && cur->c == ']')
-			mode = 0;
-		insert(&new, cur, TAIL);
-	}
 	*lst = new;
 }
 
@@ -127,16 +94,17 @@ t_regex		*ft_regex(const char *str)
 {
 	t_toklst	tokens;
 
+	printf("string is ------> '%c[32m%s%c[0m'\n", 27, str, 27);
 	if (tokenize(&tokens, str, 0))
+	{
+		clear_toklst(&tokens);
 		return (NULL);
+	}
 	printf("came as ---------> ");
-	print_tokenlist(&tokens, 0);
-	printf("explicit concat -> ");
-	explicit_ops(&tokens);
 	print_tokenlist(&tokens, 0);
 	to_postfix(&tokens);
 	printf("postfix ---------> ");
 	print_tokenlist(&tokens, 0);
-	generate_automata(&tokens);
+	/*generate_automata(&tokens);*/
 	return (NULL);
 }

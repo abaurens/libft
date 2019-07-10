@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 13:34:16 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/09 22:25:46 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/10 18:13:07 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,30 +15,32 @@ RM		:=	rm -rf
 CP		:=	cp -rf
 LINKER	:=	ar rc
 NAME	:=	ftregex.a
+LIBFT	:=	../ftlib/ftlib.a
 
 NFA		:=	\
 
 NFA		:=	$(addprefix ft_nfa/,$(NFA))
 
-SRC		:=	$(NFA)	\
-			regex.c	\
-			token.c	\
-			toklst.c
+SRC		:=	$(NFA)		\
+			regex.c		\
+			token.c		\
+			toklst.c	\
+			tokenize.c
 
 include ../variables.mk
 
 OBJ		:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
 SRC		:=	$(addprefix $(SRCD)/,$(SRC))
 
-CFLAGS	:=	-I../includes -W -Wall -Wextra -Werror -ansi -pedantic
+CFLAGS	:=	-g -I../includes -W -Wall -Wextra -Werror -ansi -pedantic
 
 $(NAME):	$(OBJ)
 	@$(LINKER) $(NAME) $(OBJ) $(LDFLAGS)
 
 all:	$(NAME)
 
-test:	$(NAME)
-	@$(CC) -o test $(CFLAGS) main.c $(NAME)
+test:	$(NAME) $(LIBFT)
+	@$(CC) -o test $(CFLAGS) main.c $(LIBFT) $(NAME)
 
 cleantest:
 	@$(RM) test

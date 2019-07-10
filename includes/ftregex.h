@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 14:57:17 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/09 22:00:40 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/10 18:18:14 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,29 @@
 # define RE_SCP_OPN	"(["
 # define RE_SCP_CLS	")]"
 # define RE_QUANT	"*+?{}"
-# define RE_OPS		"|"
 # define RE_SPC		".^$"
+# define RE_SHORT	"sSdDwW"
+# define RE_ESC_RL	"\n\t\r"
+# define RE_ESC		"ntr0"
 
+# define RE_C_AND	'+'
+# define RE_C_OR	'|'
 # define RE_C_ESC	'\\'
 # define RE_C_SEP	','
+
+/*
+**	\s = whitespaces
+**	\S = non-whitespaces
+**	\d = digit char [0-9]
+**	\D = non-digit char [^0-9]
+**	\w = word char [a-zA-Z_]
+**	\W = non-word char [^a-zA-Z_]
+**
+**	\n = new line '\n'
+**	\t = tab '\t'
+**	\r = cariage return '\r'
+**	\0 = null char '\0'
+*/
 
 typedef struct s_regex	t_regex;
 typedef struct s_token	t_token;
@@ -32,10 +50,11 @@ typedef enum	e_toktpe
 {
 	OP,
 	CHAR,
-	SPECIAL,
-	SCOPE_OPEN,
-	SCOPE_CLOSE,
-	QUANTIFIER,
+	SPEC,
+	QUANT,
+	SHORT,
+	SCOPE_OPN,
+	SCOPE_CLS,
 	UNKNOWN
 }				t_toktpe;
 
@@ -70,6 +89,10 @@ typedef struct	s_toklst
 /*
 **	abcd[[[abcd]def]ghi]
 */
+
+/*
+**	tokenize.c
+*/
 char			tokenize(t_toklst *lst, const char *str, char end);
 
 t_regex			*ft_regex(const char *str);
@@ -77,16 +100,16 @@ t_regex			*ft_regex(const char *str);
 /*
 **	token.c
 */
-char			get_token(t_toklst *lst, const char *str);
 int				get_priority(char c);
+t_token			*get_token(const char *str);
+char			is_quantifiable(t_token *tok);
 
 /*
 **	toklst.c
 */
+void			clear_toklst(t_toklst *lst);
 t_token			*new_token(char c, t_toktpe type);
 t_token			*pop_tok(t_toklst *lst, t_token *tok);
 void			insert(t_toklst *lst, t_token *tok, t_lstpos pos);
-/*char			insert_front(t_toklst *lst, t_token *tok);
-char			insert_back(t_toklst *lst, t_token *tok);*/
 
 #endif
