@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 14:56:49 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/10 21:30:10 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/10 21:34:01 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void		print_tokenlist(t_toklst *lst, char sep)
 	{
 		*t = cur->c;
 		if (sep)
-			ft_printf("%c[%dm'%k'%c[0m%s", 27, cur->type + 31, cur->s, 27,
+			ft_printf("%c[%dm'%r'%c[0m%s", 27, cur->type + 31, cur->s, 27,
 				cur->lnks[NEXT] ? ", " : "\n");
 		else
 			ft_printf("%c[%dm%r%c[0m%s", 27, cur->type + 31, t, 27,
