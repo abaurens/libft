@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 14:57:17 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/10 21:49:50 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/10 22:36:34 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define RE_ESC_RL	"\n\t\r"
 # define RE_ESC		"ntr0"
 
+# define RE_C_RNG	'-'
+# define RE_C_NOT	'^'
 # define RE_C_AND	'+'
 # define RE_C_OR	'|'
 # define RE_C_ESC	'\\'
@@ -34,8 +36,8 @@
 **	\S = non-whitespaces
 **	\d = digit char [0-9]
 **	\D = non-digit char [^0-9]
-**	\w = word char [a-zA-Z_]
-**	\W = non-word char [^a-zA-Z_]
+**	\w = word char [a-zA-Z0-9_]
+**	\W = non-word char [^a-zA-Z0-9_]
 **
 **	\n = new line '\n'
 **	\t = tab '\t'

@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 15:43:59 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/10 18:31:25 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/11 10:49:59 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,40 @@
 #include <strings.h>
 #include "ftregex.h"
 #include "ftlib.h"
+#include "ftio.h"
+
+/*
+**	TODO:
+**	- change the "generalistic" approach to a "state-programming" approach so
+**		ech kind of scope will be treated by it's own function
+**		(and the special cases handeled directly in them)
+**		Note: this will be requiered to help with the future updates
+*/
 
 static char		need_explicit_op(t_token *t1, t_token *t2)
 {
-	if (!t1 || t1->type == OP || t1->type == SCOPE_OPN)
+	if (!t1 || t1->type == OP || t1->type == SCOPE_OPN || t1->type == UNKNOWN)
 		return (0);
-	if (t2->type == OP || t2->type == SCOPE_CLS || t2->type == QUANT)
+	if (t2->type == OP || t2->type == SCOPE_CLS || t2->type == QUANT
+		|| t2->type == UNKNOWN)
 		return (0);
 	while (t1)
 	{
-		if (t1->type == SCOPE_OPN && t1->c == '[')
-			return ('|');
+		if (t1->type == SCOPE_OPN && t1->c == RE_SCP_OPN[1])
+			return (RE_C_OR);
 		t1 = t1->lnks[PREV];
 	}
-	return ('+');
+	return (RE_C_AND);
 }
 
-static t_toktpe	except(char c, char in_or, t_toktpe type)
+static t_toktpe	except(t_token *t, t_token *prev, char in_or, t_toktpe type)
 {
-	if (in_or && (type != SCOPE_CLS || c != ']'))
+	if (in_or && type == SPEC && t->c == RE_C_NOT && prev->type == SCOPE_OPN
+		&& prev->c == RE_SCP_OPN[1])
+		return (OP);
+	if (in_or && (type != SCOPE_CLS || t->c != RE_SCP_CLS[1]))
 		return (CHAR);
-	if (type == SCOPE_CLS && c == ']' && !in_or)
+	if (type == SCOPE_CLS && t->c == RE_SCP_CLS[1] && !in_or)
 		return (CHAR);
 	return (type);
 }
@@ -48,24 +61,25 @@ static t_toktpe	get_type(t_token *tok, t_toklst *lst, char in_or)
 	const char		*check[] = {RE_SCP_OPN, RE_SCP_CLS, RE_SPC, RE_QUANT, NULL};
 	const t_toktpe	res[] = {SCOPE_OPN, SCOPE_CLS, SPEC, QUANT, CHAR};
 
-	i = 0;
-	cmpt = 0;
 	cur = lst->edges[TAIL];
-	if (tok->type != UNKNOWN)
+	if ((i = 0) || tok->type != UNKNOWN)
 		return (tok->type);
 	while (check[i] && !ft_strchr(check[i], tok->c))
 		++i;
-	if (res[i] == CHAR && tok->c == RE_C_OR)
-	{
+	if (in_or && tok->c == RE_C_RNG && cur->type == CHAR
+		&& (cur->lnks[PREV]->type != OP || cur->lnks[PREV]->c != RE_C_RNG))
+		return (UNKNOWN);
+	if (in_or && cur->c == RE_C_RNG && cur->type == UNKNOWN && res[i] == CHAR)
+		cur->type = OP;
+	if ((cmpt = 0) || (res[i] == CHAR && tok->c == RE_C_OR))
 		while (cur)
 		{
 			cmpt += (cur->type == SCOPE_CLS && cur->c == *RE_SCP_CLS);
 			if ((cmpt -= (cur->type == SCOPE_OPN && cur->c == *RE_SCP_OPN)) < 0)
-				return (except(tok->c, in_or, OP));
+				return (except(tok, lst->edges[TAIL], in_or, OP));
 			cur = cur->lnks[PREV];
 		}
-	}
-	return (except(tok->c, in_or, res[i]));
+	return (except(tok, lst->edges[TAIL], in_or, res[i]));
 }
 
 static char		escape(t_token *t, const char *str)
@@ -99,14 +113,14 @@ char			tokenize(t_toklst *lst, const char *str, char end)
 		if (((*toks)->type = get_type(*toks, lst, in_or)) == QUANT
 			&& !is_quantifiable(lst->edges[TAIL]))
 			return (ft_freturn(*toks, -1));
-		in_or &= ((*toks)->type != SCOPE_CLS || (*toks)->c != ']');
+		in_or &= ((*toks)->type != SCOPE_CLS || (*toks)->c != RE_SCP_CLS[1]);
 		if (need_explicit_op(lst->edges[TAIL], *toks))
 		{
 			if (!(toks[1] = new_token(in_or ? RE_C_OR : RE_C_AND, OP)))
 				return (-2);
 			insert(lst, toks[1], TAIL);
 		}
-		in_or |= ((*toks)->type == SCOPE_OPN && (*toks)->c == '[');
+		in_or |= ((*toks)->type == SCOPE_OPN && (*toks)->c == RE_SCP_OPN[1]);
 		insert(lst, *toks, TAIL);
 		str += (*toks)->len;
 	}

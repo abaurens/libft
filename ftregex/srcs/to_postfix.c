@@ -6,13 +6,30 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 21:39:00 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/10 21:44:11 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/11 11:05:56 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "ftregex.h"
 #include "ftlib.h"
+
+void		expand_special(t_toklst *lst)
+{
+	t_toklst	new;
+	t_token		*cur;
+
+	cur = lst->edges[HEAD];
+	ft_bzero(&new, sizeof(t_toklst));
+	while (cur)
+	{
+		if (cur->type == SHORT)
+		{
+			
+		}
+		cur = cur->lnks[NEXT];
+	}
+}
 
 static char	get_pair(char c)
 {

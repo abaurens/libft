@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 15:51:17 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/10 21:21:02 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/10 22:41:32 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int			get_priority(char c)
 		return (1);
 	if (c == '+')
 		return (2);
+	if (c == '-')
+		return (3);
 	return (0);
 }
 
