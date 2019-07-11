@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 14:57:17 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/10 22:36:34 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/11 15:22:55 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ typedef enum	e_lstlnk
 
 struct			s_token
 {
-	t_token		*lnks[2];
+	t_token		*next;
+	t_token		*prev;
 	t_toktpe	type;
 	int			priority;
 	char		c;
@@ -84,7 +85,8 @@ struct			s_token
 
 typedef struct	s_toklst
 {
-	t_token		*edges[2];
+	t_token		*head;
+	t_token		*tail;
 	size_t		size;
 }				t_toklst;
 
@@ -116,11 +118,17 @@ char			is_quantifiable(t_token *tok);
 void			clear_toklst(t_toklst *lst);
 t_token			*new_token(char c, t_toktpe type);
 t_token			*pop_tok(t_toklst *lst, t_token *tok);
-void			insert(t_toklst *lst, t_token *tok, t_lstpos pos);
+void			insert_after(t_toklst *lst, t_token *tok, t_token *pos);
+void			insert_before(t_toklst *lst, t_token *tok, t_token *pos);
 
 /*
 **	to_postfix.c
 */
 void			to_postfix(t_toklst *lst);
+
+/*
+**	expantion.c
+*/
+void			expend_shortcut(t_toklst *lst);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 15:43:59 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/11 10:49:59 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/11 15:20:27 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char		need_explicit_op(t_token *t1, t_token *t2)
 	{
 		if (t1->type == SCOPE_OPN && t1->c == RE_SCP_OPN[1])
 			return (RE_C_OR);
-		t1 = t1->lnks[PREV];
+		t1 = t1->prev;
 	}
 	return (RE_C_AND);
 }
@@ -61,13 +61,13 @@ static t_toktpe	get_type(t_token *tok, t_toklst *lst, char in_or)
 	const char		*check[] = {RE_SCP_OPN, RE_SCP_CLS, RE_SPC, RE_QUANT, NULL};
 	const t_toktpe	res[] = {SCOPE_OPN, SCOPE_CLS, SPEC, QUANT, CHAR};
 
-	cur = lst->edges[TAIL];
+	cur = lst->tail;
 	if ((i = 0) || tok->type != UNKNOWN)
 		return (tok->type);
 	while (check[i] && !ft_strchr(check[i], tok->c))
 		++i;
 	if (in_or && tok->c == RE_C_RNG && cur->type == CHAR
-		&& (cur->lnks[PREV]->type != OP || cur->lnks[PREV]->c != RE_C_RNG))
+		&& (cur->prev->type != OP || cur->prev->c != RE_C_RNG))
 		return (UNKNOWN);
 	if (in_or && cur->c == RE_C_RNG && cur->type == UNKNOWN && res[i] == CHAR)
 		cur->type = OP;
@@ -76,10 +76,10 @@ static t_toktpe	get_type(t_token *tok, t_toklst *lst, char in_or)
 		{
 			cmpt += (cur->type == SCOPE_CLS && cur->c == *RE_SCP_CLS);
 			if ((cmpt -= (cur->type == SCOPE_OPN && cur->c == *RE_SCP_OPN)) < 0)
-				return (except(tok, lst->edges[TAIL], in_or, OP));
-			cur = cur->lnks[PREV];
+				return (except(tok, lst->tail, in_or, OP));
+			cur = cur->prev;
 		}
-	return (except(tok, lst->edges[TAIL], in_or, res[i]));
+	return (except(tok, lst->tail, in_or, res[i]));
 }
 
 static char		escape(t_token *t, const char *str)
@@ -111,17 +111,17 @@ char			tokenize(t_toklst *lst, const char *str, char end)
 			return (-2);
 		str += escape(*toks, str);
 		if (((*toks)->type = get_type(*toks, lst, in_or)) == QUANT
-			&& !is_quantifiable(lst->edges[TAIL]))
+			&& !is_quantifiable(lst->tail))
 			return (ft_freturn(*toks, -1));
 		in_or &= ((*toks)->type != SCOPE_CLS || (*toks)->c != RE_SCP_CLS[1]);
-		if (need_explicit_op(lst->edges[TAIL], *toks))
+		if (need_explicit_op(lst->tail, *toks))
 		{
 			if (!(toks[1] = new_token(in_or ? RE_C_OR : RE_C_AND, OP)))
 				return (-2);
-			insert(lst, toks[1], TAIL);
+			insert_after(lst, toks[1], NULL);
 		}
 		in_or |= ((*toks)->type == SCOPE_OPN && (*toks)->c == RE_SCP_OPN[1]);
-		insert(lst, *toks, TAIL);
+		insert_after(lst, *toks, NULL);
 		str += (*toks)->len;
 	}
 	return (0);

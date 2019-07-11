@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 14:56:49 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/11 10:27:03 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/11 15:22:15 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,18 @@ void		print_tokenlist(t_toklst *lst, char sep)
 	char	t[2];
 
 	t[1] = 0;
-	cur = lst->edges[HEAD];
+	cur = lst->head;
 	while (cur)
 	{
 		*t = cur->c;
 		if (sep)
 			ft_printf("%c[%dm'%r'%c[0m%s", 27, cur->type + 31, cur->s, 27,
-				cur->lnks[NEXT] ? ", " : "\n");
+				cur->next ? ", " : "\n");
 		else
 			ft_printf("%c[%dm%r%c[0m%s", 27, cur->type + 31, t, 27,
-				cur->lnks[NEXT] ? "" : "\n");
-		cur = cur->lnks[NEXT];
+				cur->next ? "" : "\n");
+		cur = cur->next;
 	}
-}
-
-void		generate_automata(t_toklst *lst)
-{
-	(void)lst;
 }
 
 t_regex		*ft_regex(const char *str)
@@ -54,12 +49,12 @@ t_regex		*ft_regex(const char *str)
 	}
 	ft_printf("came as ---------> ");
 	print_tokenlist(&tokens, 0);
+	/*expend_shortcut(&tokens);*/
 	ft_printf("expanded as -----> ");
 	print_tokenlist(&tokens, 0);
 	to_postfix(&tokens);
 	ft_printf("postfix ---------> ");
 	print_tokenlist(&tokens, 0);
 	clear_toklst(&tokens);
-	/*generate_automata(&tokens);*/
 	return (NULL);
 }

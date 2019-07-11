@@ -6,30 +6,13 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 21:39:00 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/11 11:05:56 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/11 15:17:43 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "ftregex.h"
 #include "ftlib.h"
-
-void		expand_special(t_toklst *lst)
-{
-	t_toklst	new;
-	t_token		*cur;
-
-	cur = lst->edges[HEAD];
-	ft_bzero(&new, sizeof(t_toklst));
-	while (cur)
-	{
-		if (cur->type == SHORT)
-		{
-			
-		}
-		cur = cur->lnks[NEXT];
-	}
-}
 
 static char	get_pair(char c)
 {
@@ -44,18 +27,18 @@ static char	get_pair(char c)
 
 static void	handle_operators(t_toklst *new, t_toklst *stack, t_token *cur)
 {
-	if (stack->size && stack->edges[HEAD]->type != SCOPE_OPN
-		&& stack->edges[HEAD]->priority >= cur->priority)
-		insert(new, pop_tok(stack, stack->edges[HEAD]), TAIL);
-	insert(stack, cur, HEAD);
+	if (stack->size && stack->head->type != SCOPE_OPN
+		&& stack->head->priority >= cur->priority)
+		insert_after(new, pop_tok(stack, stack->head), NULL);
+	insert_before(stack, cur, NULL);
 }
 
 static void	handle_scopes(t_toklst *new, t_toklst *stack, t_token *cur)
 {
-	while (stack->size && stack->edges[HEAD]->type != SCOPE_OPN
-		&& get_pair(cur->c) != stack->edges[HEAD]->c)
-		insert(new, pop_tok(stack, stack->edges[HEAD]), TAIL);
-	free(pop_tok(stack, stack->edges[HEAD]));
+	while (stack->size && stack->head->type != SCOPE_OPN
+		&& get_pair(cur->c) != stack->head->c)
+		insert_after(new, pop_tok(stack, stack->head), NULL);
+	free(pop_tok(stack, stack->head));
 	free(cur);
 }
 
@@ -65,22 +48,22 @@ void		to_postfix(t_toklst *lst)
 	t_toklst	stack;
 	t_token		*cur;
 
-	cur = lst->edges[HEAD];
+	cur = lst->head;
 	ft_bzero(&new, sizeof(t_toklst));
 	ft_bzero(&stack, sizeof(t_toklst));
 	while (lst->size)
 	{
-		cur = pop_tok(lst, lst->edges[HEAD]);
+		cur = pop_tok(lst, lst->head);
 		if (is_operand(cur) || cur->type == QUANT)
-			insert(&new, cur, TAIL);
+			insert_after(&new, cur, NULL);
 		else if (cur->type == SCOPE_OPN)
-			insert(&stack, cur, HEAD);
+			insert_before(&stack, cur, NULL);
 		else if (cur->type == OP)
 			handle_operators(&new, &stack, cur);
 		else if (cur->type == SCOPE_CLS)
 			handle_scopes(&new, &stack, cur);
 	}
 	while (stack.size)
-		insert(&new, pop_tok(&stack, stack.edges[HEAD]), TAIL);
+		insert_after(&new, pop_tok(&stack, stack.head), NULL);
 	*lst = new;
 }
