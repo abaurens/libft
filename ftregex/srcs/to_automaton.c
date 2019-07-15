@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 09:46:51 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/15 22:02:07 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/15 22:18:56 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,17 @@ static void	print_clear_nfa(t_nfstk *stack)
 	}
 }
 
-void		handle_op(t_nfstk *stack, char op)
+static void	handle_ops(t_nfstk *stack, char op)
 {
 	t_nfa		*a;
 	t_nfa		*b;
 	t_nfa		*res;
 	const char	*ops = "|+";
-	t_nfa		*(*funcs[2])(t_nfa *first, t_nfa *second);
+	t_nfa		*(*const funcs[2])(t_nfa *first, t_nfa *second) = {
+		nfa_union, nfa_concat
+	};
 
 	res = NULL;
-	funcs[0] = nfa_union;
-	funcs[1] = nfa_concat;
 	b = pop_nfa(stack);
 	a = pop_nfa(stack);
 	ft_printf("opperator  : {%s} %c {%s}\n", a->name, op, b->name);
@@ -52,15 +52,15 @@ void		handle_op(t_nfstk *stack, char op)
 	push_nfa(stack, res);
 }
 
-void		handle_quantifier(t_nfstk *stack, char quantifier)
+static void	handle_quantifiers(t_nfstk *stack, char quantifier)
 {
 	t_nfa		*a;
 	t_nfa		*res;
 	const char	*ops = "+*";
-	t_nfa		*(*funcs[2])(t_nfa *nfa);
+	t_nfa		*(*const funcs[2])(t_nfa *nfa) ={
+		nfa_once, nfa_closure
+	};
 
-	funcs[0] = nfa_once;
-	funcs[1] = nfa_closure;
 	a = pop_nfa(stack);
 	ft_printf("quantifier : {%s}%c\n", a->name, quantifier);
 	res = funcs[ft_idxof(quantifier, ops)](a);
@@ -78,9 +78,9 @@ void		*to_nfa(t_toklst *lst)
 	{
 		cur = pop_tok(lst, lst->head);
 		if (cur->type == OP)
-			handle_op(&stack, cur->c);
+			handle_ops(&stack, cur->c);
 		else if (cur->type == QUANT)
-			handle_quantifier(&stack, cur->c);
+			handle_quantifiers(&stack, cur->c);
 		else
 			push_nfa(&stack, from_symbol(cur->c));
 		ft_memdel(&cur);
