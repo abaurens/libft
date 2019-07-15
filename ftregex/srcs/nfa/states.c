@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 18:46:28 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/04 19:05:22 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/15 20:57:48 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_nfa_st	*create_state(char is_end)
 	if (!(res = malloc(sizeof(t_nfa_st))))
 		return (NULL);
 	res->symbol = -1;
-	res->type = UNKNOWN;
+	res->type = NONE;
 	res->is_end = is_end;
 	res->transition_count = 0;
 	res->transitions[0] = NULL;

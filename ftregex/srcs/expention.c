@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 13:59:10 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/11 22:13:11 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/15 08:52:10 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,59 +14,44 @@
 #include "ftlib.h"
 #include "ftio.h"
 
-chr		expand_word(t_toklst *lst, t_token *cur, char in_or, char neg)
+static t_token	*expand(t_toklst *lst, t_token *cur, char from, char to)
 {
-	int	i;
+	t_token		*new;
 
-	i = 0;
-	const char	*tks = (in_or ? "a-zA-Z0-9_" : "[a-zA-Z0-9_]");
-
+	while (++from < to)
+	{
+		if (!(new = new_token(from, CHAR)))
+			return (NULL);
+		cur = insert_after(lst, new, cur);
+		if (!(new = new_token(RE_C_OR, OP)))
+			return (NULL);
+		cur = insert_after(lst, new, cur);
+	}
+	return (cur);
 }
 
-chr		expand_digit(t_toklst *lst, t_token *cur, char in_or, char neg)
+char			expend_dashs(t_toklst *lst)
 {
-
-}
-
-chr		expand_whitespace(t_toklst *lst, t_token *cur, char in_or, char neg)
-{
-
-}
-
-void		expend_shortcut(t_toklst *lst)
-{
-	t_toklst	new;
 	t_token		*cur;
+	char		from;
+	char		to;
 
 	cur = lst->head;
-	ft_bzero(&new, sizeof(t_toklst));
 	while (cur)
 	{
-		if (cur->type == SHORT)
+		if (cur->type == OP && cur->c == '-')
 		{
-			ft_printf("found shortcut: '%c'\n", cur->c);
-			switch (cur->c)
-			{
-				case 's':
-					ft_printf("  whitespaces\n");
-					break ;
-				case 'S':
-					ft_printf("  non-whitespaces\n");
-					break ;
-				case 'd':
-					ft_printf("  digit\n");
-					break ;
-				case 'D':
-					ft_printf("  non-digit\n");
-					break ;
-				case 'w':
-					ft_printf("  word\n");
-					break ;
-				case 'W':
-					ft_printf("  non-word\n");
-					break ;
-			}
+			if (!cur->prev || !cur->next)
+				return (-2);
+			from = cur->prev->c;
+			to = cur->next->c;
+			if (from > to)
+				return (-3);
+			cur->c = RE_C_OR;
+			if (!(cur = expand(lst, cur, from, to)))
+				return (-1);
 		}
 		cur = cur->next;
 	}
+	return (0);
 }

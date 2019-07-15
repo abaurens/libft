@@ -6,18 +6,19 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 15:04:02 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/04 19:29:31 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/15 21:48:40 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftregex/nfa.h"
 #include <stdlib.h>
+#include "ftregex/nfa.h"
+#include "ftlib.h"
 
 t_nfa	*new_nfa(void)
 {
 	t_nfa	*res;
 
-	if (!(res = malloc(sizeof(t_nfa))))
+	if (!(res = ft_memalloc(sizeof(t_nfa))))
 		return (NULL);
 	if ((res->end = create_state(1)))
 	{
@@ -46,5 +47,6 @@ t_nfa	*from_symbol(char symbol)
 	if (!(res = new_nfa()))
 		return (NULL);
 	add_symbol(res->start, res->end, symbol);
-	return (NULL);
+	res->name[0] = symbol;
+	return (res);
 }

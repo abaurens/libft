@@ -6,11 +6,12 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 21:39:00 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/11 15:17:43 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/15 20:41:45 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "ftregex/token.h"
 #include "ftregex.h"
 #include "ftlib.h"
 
@@ -28,7 +29,7 @@ static char	get_pair(char c)
 static void	handle_operators(t_toklst *new, t_toklst *stack, t_token *cur)
 {
 	if (stack->size && stack->head->type != SCOPE_OPN
-		&& stack->head->priority >= cur->priority)
+		&& get_priority(stack->head->c) >= get_priority(cur->c))
 		insert_after(new, pop_tok(stack, stack->head), NULL);
 	insert_before(stack, cur, NULL);
 }

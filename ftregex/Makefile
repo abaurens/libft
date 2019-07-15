@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 13:34:16 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/11 14:02:24 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/15 21:00:38 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,16 +19,19 @@ LIBFT	:=	../ftlib/ftlib.a
 FTMATH	:=	../ftmath/ftmath.a
 
 NFA		:=	\
+			nfa.c		\
+			states.c	\
+			nfa_stack.c	\
+			elementary_op.c
+NFA		:=	$(addprefix nfa/,$(NFA))
 
-NFA		:=	$(addprefix ft_nfa/,$(NFA))
-
-SRC		:=	$(NFA)		\
-			regex.c		\
-			token.c		\
-			toklst.c	\
-			tokenize.c	\
-			expention.c	\
-			to_postfix.c
+SRC		:=	$(NFA)			\
+			regex.c			\
+			token.c			\
+			toklst.c		\
+			tokenize.c		\
+			to_postfix.c	\
+			to_automaton.c
 
 include ../variables.mk
 

@@ -6,12 +6,12 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 15:51:17 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/10 22:41:32 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/15 20:40:02 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "ftregex.h"
+#include "ftregex/t_token.h"
 #include "ftlib.h"
 #include "ftio.h"
 
