@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 09:46:51 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/15 22:18:56 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/15 22:19:59 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	handle_quantifiers(t_nfstk *stack, char quantifier)
 	t_nfa		*a;
 	t_nfa		*res;
 	const char	*ops = "+*";
-	t_nfa		*(*const funcs[2])(t_nfa *nfa) ={
+	t_nfa		*(*const funcs[2])(t_nfa *nfa) = {
 		nfa_once, nfa_closure
 	};
 
