@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 15:51:17 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/11 15:20:23 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/11 22:00:00 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,8 @@
 
 void		clear_toklst(t_toklst *lst)
 {
-	int		i;
-
 	while (lst->size > 1)
 	{
-		i = 0;
 		if (lst->size > 1 && (lst->head = lst->head->next))
 		{
 			free(lst->head->prev->s);

@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 14:56:49 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/11 15:22:15 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/11 22:03:32 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_regex		*ft_regex(const char *str)
 	}
 	ft_printf("came as ---------> ");
 	print_tokenlist(&tokens, 0);
-	/*expend_shortcut(&tokens);*/
+	expend_shortcut(&tokens);
 	ft_printf("expanded as -----> ");
 	print_tokenlist(&tokens, 0);
 	to_postfix(&tokens);

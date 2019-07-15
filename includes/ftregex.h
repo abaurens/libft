@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 14:57:17 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/11 15:22:55 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/07/11 22:07:08 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@
 # define RE_C_SEP	','
 
 /*
-**	\s = whitespaces
-**	\S = non-whitespaces
-**	\d = digit char [0-9]
-**	\D = non-digit char [^0-9]
-**	\w = word char [a-zA-Z0-9_]
-**	\W = non-word char [^a-zA-Z0-9_]
+**	\s = whitespaces		[\r\n\t\f\v ]
+**	\S = non-whitespaces	[^\r\n\t\f\v ]
+**	\d = digit char			[0-9]
+**	\D = non-digit char		[^0-9]
+**	\w = word char			[a-zA-Z0-9_]
+**	\W = non-word char		[^a-zA-Z0-9_]
 **
 **	\n = new line '\n'
 **	\t = tab '\t'
