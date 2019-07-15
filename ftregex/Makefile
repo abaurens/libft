@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 13:34:16 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/15 21:00:38 by abaurens         ###   ########.fr        #
+#    Updated: 2019/07/15 22:15:50 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,22 @@ NAME	:=	ftregex.a
 LIBFT	:=	../ftlib/ftlib.a
 FTMATH	:=	../ftmath/ftmath.a
 
+OPER	:=	\
+			nfa_union.c	\
+			nfa_concat.c
+OPER	:=	$(addprefix operations/,$(OPER))
+
+QUANT	:=	\
+			nfa_once.c	\
+			nfa_closure.c
+QUANT	:=	$(addprefix quantifiers/,$(QUANT))
+
 NFA		:=	\
+			$(OPER)		\
+			$(QUANT)	\
 			nfa.c		\
 			states.c	\
-			nfa_stack.c	\
-			elementary_op.c
+			nfa_stack.c
 NFA		:=	$(addprefix nfa/,$(NFA))
 
 SRC		:=	$(NFA)			\
