@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/05 11:12:10 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/05 11:57:06 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,9 @@ CFLAGS	:=	-I../../includes -W -Wall -Wextra -ansi -pedantic -Werror
 # SOURCES
 
 CORE	:=	cipher_core.c
-CORE	:=	$(addprefix core/, $(CICORE))
+CORE	:=	$(addprefix core/, $(CORE))
 
-SRC		:=	$(CICORE)	\
+SRC		:=	$(CORE)	\
 			ft_cipher.c
 
 include ../../variables.mk

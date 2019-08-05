@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/05 11:46:29 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/05 11:53:47 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CC			:=	make --no-print-dir -C
 LINKER		:=	libtool -static -o
 RM			:=	rm -rf
 CP			:=	cp -rf
-NAME		:=	ftlib.a
+NAME		:=	libft.a
 
 LIBS_D	:=	libs
 LIBS	:=	\
