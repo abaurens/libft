@@ -6,15 +6,11 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/10 22:01:49 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/05 11:46:29 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #	TODO
-#	- changer les makefiles de chaque module pour ne compiler que les .o
-#		ou alors re-extraire les .o depuis les libs pour en faire un seul .a
-#		ou alors ré-intégrer les fonctions necessaires au fonctionnement
-#			d'un module
 #	- vérifier la norme (le PDF) et voir si de courtes macro-fonctions
 #		pourraient passer, ce qui permettrait de ne pas rendre accessible des
 #		des fonctions internes
@@ -22,10 +18,14 @@
 include variables.mk
 
 CC			:=	make --no-print-dir -C
+LINKER		:=	libtool -static -o
 RM			:=	rm -rf
 CP			:=	cp -rf
+NAME		:=	ftlib.a
 
+LIBS_D	:=	libs
 LIBS	:=	\
+			ftio.a		\
 			ftlib.a		\
 			ftcipher.a	\
 			ftmath.a	\
@@ -33,26 +33,32 @@ LIBS	:=	\
 
 LIBS	:=	$(shell echo $(LIBS)|tr ' ' '\n'|awk '{print length,$$0}'|sort -n|\
 			cut -d' ' -f2)
+LIBS	:=	$(addprefix $(LIBS_D)/, $(LIBS))
 
 CFLAGS	:=	-I./includes -W -Wall -Wextra -Werror
 
-MAX_LEN	:=	$(shell echo $(lastword $(LIBS)) | awk '{print length}')
+MAX_LEN	:=	$(shell echo $(basename $(notdir $(lastword $(LIBS))))|\
+			awk '{print length}')
 
-all:	$(LIBS)
+$(NAME):	$(LIBS)
+	$(LINKER) $(NAME) $(LIBS)
 	@$(call pinfo,DONE!)
 
-%.a:	$(basename %)/Makefile
+all:	$(NAME)
+
+$(LIBS_D)/%.a:	$(LIBS_D)/$(basename %)/Makefile
 	@$(call vinfo,Compiling...,TEXT)
 	@if [[ $(CMPT) -eq 0 ]]; then printf "$(TEXT)\n"; fi
 	$(eval FCNT	= $(words $(LIBS)))
 	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
 	@$(CC) $(basename $@) SUBID=$(CMPT) TOTAL_SIZE=$(FCNT) MAX_LEN=$(MAX_LEN)
-	@$(CP) $(basename $@)/$@ ./
+	@$(CP) $(basename $@)/$(notdir $@) $(LIBS_D)/
 
 clean:
 	@$(foreach CMD,$(basename $(LIBS)),$(CC) $(CMD) clean;)
 
 fclean:
+	@$(RM) $(NAME)
 	@$(RM) $(LIBS)
 	@$(foreach CMD,$(basename $(LIBS)),$(CC) $(CMD) fclean;)
 

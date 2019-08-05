@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/04 20:59:53 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/05 11:35:41 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,11 @@ CC		:=	gcc
 RM		:=	rm -rf
 CP		:=	cp -rf
 LINKER	:=	ar rc
-NAME	:=	ftlib.a
+NAME	:=	ftio.a
 
-IOD		:=	ftio
-IOC		:=	0
 NO_NOTE	:=	':a;N;s/\n/&/1;Ta;/: note: .*ABI.*/!{P;D};:b;N;s/\n/&/3;Tb;d'
 
-CFLAGS	:=	-I../includes -W -Wall -Wextra -ansi -Werror
+CFLAGS	:=	-I../../includes -W -Wall -Wextra -Werror
 
 # SOURCES
 
@@ -40,7 +38,7 @@ IOCORE	:=	core.c		parse_args.c		\
 IOCORE	:=	$(addprefix core/, $(IOCORE))
 
 BFLOAT	:=	add.c	utils.c		\
-			mul.c	string.c	\
+			mul.c	to_string.c	\
 			set.c	instance.c
 BFLOAT	:=	$(addprefix bfloat/, $(BFLOAT))
 
@@ -63,7 +61,7 @@ IOCONV	:=	$(addprefix uhexa/,uhexa.c h_len.c h_exotic.c)			\
 			dbl_compact.c	dbl_floating.c
 IOCONV	:=	$(addprefix convert/,$(IOCONV))
 
-IO		:=	$(IOCORE)				\
+SRC		:=	$(IOCORE)				\
 			$(IOCONV)	$(STRCNV)	\
 			$(BFLOAT)	$(DRAGON)	\
 			gnl.c			cgnl.c				sgnl.c				\
@@ -74,70 +72,9 @@ IO		:=	$(IOCORE)				\
 			ft_putnbr_fd.c	ft_putstr_fd.c		ft_asprintf.c		\
 			ft_atol_base.c	ft_putchar_fd.c		ft_putendl_fd.c		\
 			get_next_line.c	ft_putnbr_base.c	ft_putnbr_base_fd.c
-IO		:=	$(addprefix $(IOD)/,$(IO))
 
-IOCT	:=	$(words $(IO))
-SRC		:=	\
-			ft_match.c				\
-			ft_idxof.c				\
-			ft_bzero.c				\
-			ft_split.c				\
-			ft_strequ.c				\
-			ft_strlen.c				\
-			ft_strmap.c				\
-			ft_strnew.c				\
-			ft_isbase.c				\
-			ft_memchr.c				\
-			ft_memcmp.c				\
-			ft_memcpy.c				\
-			ft_memdel.c				\
-			ft_memset.c				\
-			ft_numlen.c				\
-			ft_strcat.c				\
-			ft_strchr.c				\
-			ft_strclr.c				\
-			ft_strcmp.c				\
-			ft_strcpy.c				\
-			ft_strdel.c				\
-			ft_strdup.c				\
-			ft_strstr.c				\
-			ft_strsub.c				\
-			ft_strncat.c			\
-			ft_isupper.c			\
-			ft_strncmp.c			\
-			ft_freturn.c			\
-			ft_strnstr.c			\
-			ft_strrchr.c			\
-			ft_strmapi.c			\
-			ft_strmcat.c			\
-			ft_memmove.c			\
-			ft_strncpy.c			\
-			ft_strnequ.c			\
-			ft_striter.c			\
-			ft_strjoin.c			\
-			ft_strlcat.c			\
-			ft_strtrim.c			\
-			ft_tolower.c			\
-			ft_toupper.c			\
-			ft_isdigit.c			\
-			ft_islower.c			\
-			ft_isprint.c			\
-			ft_isalnum.c			\
-			ft_isalpha.c			\
-			ft_isascii.c			\
-			ft_memccpy.c			\
-			ft_striteri.c			\
-			ft_strsplit.c			\
-			ft_contains.c			\
-			ft_memalloc.c			\
-			ft_strupcase.c			\
-			ft_count_words.c		\
-			ft_unsignedlen.c		\
-			ft_unsignedlen_base.c
+include ../../variables.mk
 
-include ../variables.mk
-
-SRC		:=	$(IO) $(SRC)
 OBJ		:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
 SRC		:=	$(addprefix $(SRCD)/,$(SRC))
 
@@ -145,16 +82,6 @@ SRC		:=	$(addprefix $(SRCD)/,$(SRC))
 
 $(NAME):	$(OBJ)
 	@$(LINKER) $(NAME) $(OBJ) $(LDFLAGS)
-
-$(OBJD)/$(IOD)/%.o:	$(IOD)/%.c
-	@if [[ $(IOC) -ne 0 ]]; then printf "$(CURUP)"; fi
-	$(eval IOC = $(shell echo $(IOC) + 1 | bc))
-	$(eval PRC = $(shell echo "$(IOC)/$(IOCT)*100"|bc -l|sed 's/^\./0./'))
-	@printf $(LINE) 0 $(TOTAL_SIZE) 'ftio' $(shell echo $(PRC)|sed -E \
-	"s:\.[0-9]{20}::") $(notdir $<) $(notdir $@)
-	@printf "\e[0m"
-	@mkdir -p $(dir $@)
-	@2>&1 $(CC) $(shell echo $(CFLAGS) | sed -E 's/ *-(ansi|pedantic) */ /g') -o $@ -c $< | sed $(NO_NOTE)
 
 all:	$(NAME)
 

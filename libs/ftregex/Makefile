@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/04 15:13:25 by abaurens         ###   ########.fr        #
+#    Created: 2019/07/04 13:34:16 by abaurens          #+#    #+#              #
+#    Updated: 2019/08/05 11:11:48 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,42 +14,71 @@ CC		:=	gcc
 RM		:=	rm -rf
 CP		:=	cp -rf
 LINKER	:=	ar rc
-NAME	:=	ftcipher.a
+NAME	:=	ftregex.a
+LIBFT	:=	../ftlib/ftlib.a
+FTMATH	:=	../ftmath/ftmath.a
 
-CFLAGS	:=	-I../includes -W -Wall -Wextra -ansi -pedantic -Werror
+OPER	:=	\
+			nfa_union.c	\
+			nfa_concat.c
+OPER	:=	$(addprefix operations/,$(OPER))
 
-# SOURCES
+QUANT	:=	\
+			nfa_once.c	\
+			nfa_closure.c
+QUANT	:=	$(addprefix quantifiers/,$(QUANT))
 
-CORE	:=	cipher_core.c
-CORE	:=	$(addprefix core/, $(CICORE))
+NFA		:=	\
+			$(OPER)		\
+			$(QUANT)	\
+			nfa.c		\
+			states.c	\
+			nfa_stack.c
+NFA		:=	$(addprefix nfa/,$(NFA))
 
-SRC		:=	$(CICORE)	\
-			ft_cipher.c
+SRC		:=	$(NFA)			\
+			regex.c			\
+			token.c			\
+			toklst.c		\
+			tokenize.c		\
+			to_postfix.c	\
+			to_automaton.c
 
-include ../variables.mk
+include ../../variables.mk
 
 OBJ		:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
 SRC		:=	$(addprefix $(SRCD)/,$(SRC))
 
-
-# RULES
+CFLAGS	:=	-g -I../../includes -W -Wall -Wextra -ansi -pedantic #-Werror
 
 $(NAME):	$(OBJ)
 	@$(LINKER) $(NAME) $(OBJ) $(LDFLAGS)
 
+$(LIBFT):
+	@make -C $(dir $(LIBFT))
+
+$(FTMATH):
+	@make -C $(dir $(FTMATH))
+
 all:	$(NAME)
 
+test:	$(NAME) $(LIBFT) $(FTMATH)
+	@$(CC) -o test $(CFLAGS) main.c $(NAME) $(LIBFT) $(FTMATH)
+
+cleantest:
+	@$(RM) test
+
+retest:	clean cleantest test
+
 clean:
-	@#printf "$(GRN)$(CLN_STR)$(NRM)\n"
 	$(call pinfo,Cleaning $(NAME))
 	@$(RM) $(OBJD)
 
 fclean:
-	@#printf "$(GRN)$(FCL_STR)$(NRM)\n"
 	$(call pinfo,Fcleaning $(NAME))
 	@$(RM) $(OBJD)
 	@$(RM) $(NAME)
 
 re:		fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re cleantest retest

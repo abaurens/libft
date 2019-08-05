@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unsignedlen_base.c                              :+:      :+:    :+:   */
+/*   ft_unsignedlen.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/12 23:30:48 by abaurens          #+#    #+#             */
-/*   Updated: 2019/03/30 14:33:35 by abaurens         ###   ########.fr       */
+/*   Created: 2018/12/12 23:29:54 by abaurens          #+#    #+#             */
+/*   Updated: 2019/08/05 11:38:18 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
-#include "ftlib.h"
+#include <inttypes.h>
 
-size_t		ft_unsignedlen_base(unsigned long int nb, const char *base)
+size_t		ft_unsignedlen(uintmax_t nb)
 {
 	size_t	len;
-	size_t	blen;
 
 	len = 1;
-	if (!base || !ft_isbase(base))
-		return (0);
-	blen = ft_strlen(base);
-	while ((nb /= blen) != 0)
+	while ((nb /= 10) != 0)
 		len++;
 	return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 16:09:37 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/04 02:36:04 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/05 11:39:26 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FTLIB_H
 
 # include <string.h>
+# include <inttypes.h>
 
 void	ft_strclr(char *s);
 void	ft_memdel(void *ap);
@@ -42,11 +43,11 @@ int		ft_toupper(int c);
 
 size_t	ft_strlen(const char *str);
 size_t	ft_numlen(long int nb);
-size_t	ft_unsignedlen(unsigned long int nb);
+size_t	ft_unsignedlen(uintmax_t nb);
 size_t	ft_idxof(const char c, register const char *str);
 size_t	ft_count_words(const char *str, const char *sep);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
-size_t	ft_unsignedlen_base(unsigned long int n, const char *base);
+size_t	ft_unsignedlen_base(uintmax_t n, const char *base);
 
 void	*ft_memalloc(size_t size);
 void	*ft_memset(void *b, int c, size_t len);
