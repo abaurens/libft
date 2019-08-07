@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/07 18:11:06 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/07 18:13:02 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,15 +15,12 @@
 #		pourraient passer, ce qui permettrait de ne pas rendre accessible des
 #		des fonctions internes
 
-#include variables.mk
-
 CC			:=	make --no-print-dir -C
 LINKER		:=	libtool -static -o
 RM			:=	rm -rf
 CP			:=	cp -rf
 NAME		:=	libft.a
 
-#CMPT	:=	0
 LIBS_D	:=	libs
 LIBS	:=	\
 			ftio.a		\
@@ -42,18 +39,6 @@ CFLAGS	:=	-I./includes -W -Wall -Wextra -Werror
 
 MAX_LEN	:=	$(shell echo $(basename $(notdir $(lastword $(LIBS))))|\
 			awk '{print length}')
-
-#define vinfo
-#	@$(eval LEN = $(shell printf '$(1)'|awk '{print length}'))
-#	@$(eval MOD = $(shell echo "$(LEN)%2"|bc))
-#	@$(eval DASH = $(shell seq 1 $(shell echo "37-$(LEN)/2"|bc)))
-#	@$(eval FTRES = $(shell printf "$(GRN)<-";\
-#		for i in $(DASH); do printf "-"; done;\
-#		printf " $(1) "; if [[ $(MOD) -eq 0 ]]; then printf '-'; fi;\
-#		for i in $(DASH); do printf "-"; done;\
-#		printf ">$(NRM)"))
-#	$(eval $(2) := $$(FTRES))
-#endef
 
 $(NAME):	$(LIBS)
 	@$(LINKER) $(NAME) $(LIBS)
