@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/07 18:13:02 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/07 18:14:48 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,13 +35,12 @@ LIBS	:=	$(shell echo $(LIBS)|tr ' ' '\n'|awk '{print length,$$0}'|sort -n|\
 			cut -d' ' -f2)
 LIBS	:=	$(addprefix $(LIBS_D)/, $(LIBS))
 
-CFLAGS	:=	-I./includes -W -Wall -Wextra -Werror
-
 MAX_LEN	:=	$(shell echo $(basename $(notdir $(lastword $(LIBS))))|\
 			awk '{print length}')
 
 $(NAME):	$(LIBS)
 	@$(LINKER) $(NAME) $(LIBS)
+	@ranlib $(NAME)
 	@$(call pinfo,DONE!)
 
 all:	$(NAME)
