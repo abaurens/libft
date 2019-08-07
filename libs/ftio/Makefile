@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/05 11:35:41 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/07 18:10:21 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,6 @@ LINKER	:=	ar rc
 NAME	:=	ftio.a
 
 NO_NOTE	:=	':a;N;s/\n/&/1;Ta;/: note: .*ABI.*/!{P;D};:b;N;s/\n/&/3;Tb;d'
-
-CFLAGS	:=	-I../../includes -W -Wall -Wextra -Werror
 
 # SOURCES
 
@@ -74,26 +72,4 @@ SRC		:=	$(IOCORE)				\
 			get_next_line.c	ft_putnbr_base.c	ft_putnbr_base_fd.c
 
 include ../../variables.mk
-
-OBJ		:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
-SRC		:=	$(addprefix $(SRCD)/,$(SRC))
-
-# RULES
-
-$(NAME):	$(OBJ)
-	@$(LINKER) $(NAME) $(OBJ) $(LDFLAGS)
-
-all:	$(NAME)
-
-clean:
-	$(call pinfo,Cleaning $(NAME))
-	@$(RM) $(OBJD)
-
-fclean:
-	$(call pinfo,Fcleaning $(NAME))
-	@$(RM) $(OBJD)
-	@$(RM) $(NAME)
-
-re:		fclean all
-
-.PHONY: all clean fclean re
+include ../../rules.mk

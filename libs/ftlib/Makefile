@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/05 11:34:24 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/07 18:10:19 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,6 @@ RM		:=	rm -rf
 CP		:=	cp -rf
 LINKER	:=	ar rc
 NAME	:=	ftlib.a
-
-CFLAGS	:=	-I../../includes -W -Wall -Wextra -ansi -pedantic -Werror
 
 # SOURCES
 
@@ -79,26 +77,5 @@ SRC		:=	\
 			ft_unsignedlen_base.c
 
 include ../../variables.mk
-
-OBJ		:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
-SRC		:=	$(addprefix $(SRCD)/,$(SRC))
-
-# RULES
-
-$(NAME):	$(OBJ)
-	@$(LINKER) $(NAME) $(OBJ) $(LDFLAGS)
-
-all:	$(NAME)
-
-clean:
-	$(call pinfo,Cleaning $(NAME))
-	@$(RM) $(OBJD)
-
-fclean:
-	$(call pinfo,Fcleaning $(NAME))
-	@$(RM) $(OBJD)
-	@$(RM) $(NAME)
-
-re:		fclean all
-
-.PHONY: all clean fclean re
+include ../../rules.mk
+CFLAGS	:=	$(CFLAGS) -ansi -pedantic
