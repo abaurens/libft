@@ -6,16 +6,17 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 13:34:16 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/14 16:30:16 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/15 01:03:56 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		:=	gcc
 LINKER	:=	ar rc
-NAME	:=	ftregex.a
-FTIO	:=	../ftio/ftio.a
-LIBFT	:=	../ftlib/ftlib.a
-FTMATH	:=	../ftmath/ftmath.a
+LINKER	:=	gcc -r -nostdlib -o
+NAME	:=	ftregex.ao
+FTIO	:=	../ftio/ftio.ao
+LIBFT	:=	../ftlib/ftlib.ao
+FTMATH	:=	../ftmath/ftmath.ao
 
 OPER	:=	\
 			nfa_union.c	\

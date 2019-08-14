@@ -12,6 +12,9 @@
 
 $(NAME):	$(OBJ)
 	@$(LINKER) $(NAME) $(OBJ) $(LDFLAGS)
+ifeq ($(LINKER), ar rc)
+	@ranlib $(NAME)
+endif
 
 -include $(DEP)
 
@@ -23,7 +26,11 @@ $(OBJD)/%.o:	$(SRCD)/%.c Makefile
 	|sed -E "s:\.[0-9]{20}::") $(notdir $<) $(notdir $@)
 	@printf "\e[0m"
 	@mkdir -p $(dir $@)
+ifndef NO_NOTE
 	@$(CC) $(CFLAGS) -o $@ -c $<
+else
+	@2>&1 $(CC) $(CFLAGS) -o $@ -c $< | sed $(NO_NOTE)
+endif
 
 all:	$(NAME)
 

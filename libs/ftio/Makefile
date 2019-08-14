@@ -6,13 +6,14 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/14 18:34:44 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/15 01:03:43 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		:=	gcc
 LINKER	:=	ar rc
-NAME	:=	ftio.a
+LINKER	:=	gcc -r -nostdlib -o
+NAME	:=	ftio.ao
 
 NO_NOTE	:=	':a;N;s/\n/&/1;Ta;/: note: .*ABI.*/!{P;D};:b;N;s/\n/&/3;Tb;d'
 

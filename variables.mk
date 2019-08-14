@@ -57,19 +57,27 @@ $(BLE)%-24s $(MAG)=>$(BLE)\t%-24s$(NRM)\n"
 
 EMPTY	:=	$(shell printf '%80s' "")#80 spaces
 
-ifndef $(SUBID)
+ifndef SUBID
 SUBID	:=	1
 endif
-ifndef $(TOTAL_SIZE)
+ifndef TOTAL_SIZE
 TOTAL_SIZE	:=	1
 endif
-ifndef $(MAX_LEN)
+ifndef MAX_LEN
 MAX_LEN	:=	1
 endif
 
 # RULES
 
 %.a:	$(dir %)/Makefile
+	@$(call vinfo,Compiling...,TEXT)
+	@if [[ $(CMPT) -eq 0 ]]; then printf "$(TEXT)\n"; fi
+	$(eval FCNT	= $(words $(LIBS)))
+	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
+	@$(CC) $(basename $@) SUBID=$(CMPT) TOTAL_SIZE=$(FCNT) MAX_LEN=$(MAX_LEN)
+	@$(CP) $(basename $@)/$(notdir $@) $(LIBS_D)/
+
+%.ao:	$(dir %)/Makefile
 	@$(call vinfo,Compiling...,TEXT)
 	@if [[ $(CMPT) -eq 0 ]]; then printf "$(TEXT)\n"; fi
 	$(eval FCNT	= $(words $(LIBS)))

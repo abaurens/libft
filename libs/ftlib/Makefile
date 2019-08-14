@@ -6,13 +6,14 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/14 18:40:08 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/15 01:03:46 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		:=	gcc
 LINKER	:=	ar rc
-NAME	:=	ftlib.a
+LINKER	:=	gcc -r -nostdlib -o
+NAME	:=	ftlib.ao
 
 # SOURCES
 

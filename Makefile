@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/07 18:14:48 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/15 01:06:25 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,18 +16,18 @@
 #		des fonctions internes
 
 CC			:=	make --no-print-dir -C
-LINKER		:=	libtool -static -o
+LINKER		:=	ar rc
 RM			:=	rm -rf
 CP			:=	cp -rf
 NAME		:=	libft.a
 
 LIBS_D	:=	libs
 LIBS	:=	\
-			ftio.a		\
-			ftlib.a		\
-			ftcipher.a	\
-			ftmath.a	\
-			ftregex.a
+			ftio.ao		\
+			ftlib.ao		\
+			ftcipher.ao	\
+			ftmath.ao	\
+			ftregex.ao
 
 include	variables.mk
 
@@ -46,6 +46,7 @@ $(NAME):	$(LIBS)
 all:	$(NAME)
 
 clean:
+	@$(RM) $(OBJD)
 	@$(foreach CMD,$(basename $(LIBS)),$(CC) $(CMD) clean;)
 
 fclean:

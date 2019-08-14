@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 15:11:35 by abaurens          #+#    #+#             */
-/*   Updated: 2019/05/21 17:29:38 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/15 01:10:24 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "ftcipher.h"
 #include "ftlib.h"
 
-void	*cipher(const void *src, const size_t size)
+void	*ft_cipher(const void *src, const size_t size)
 {
 	size_t			i;
 	uint8_t			*key;
@@ -37,7 +37,7 @@ void	*cipher(const void *src, const size_t size)
 	return (res);
 }
 
-uint8_t	decipher(const void *data, void *dest, size_t size)
+uint8_t	ft_decipher(const void *data, void *dest, size_t size)
 {
 	size_t	i;
 	uint8_t	*res;
