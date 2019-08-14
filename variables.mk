@@ -29,7 +29,7 @@ CMPT	:=	0
 FCNT	:=	$(words $(SRC))
 
 INCLDS	:=	-I../../includes
-override CFLAGS	:=	$(INCLDS) -W -Wall -Wextra -Werror
+override CFLAGS	:=	$(INCLDS) -MMD -MP -W -Wall -Wextra -Werror
 
 OBJ		:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
 SRC		:=	$(addprefix $(SRCD)/,$(SRC))

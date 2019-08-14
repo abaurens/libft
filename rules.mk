@@ -23,7 +23,7 @@ $(OBJD)/%.o:	$(SRCD)/%.c Makefile
 	|sed -E "s:\.[0-9]{20}::") $(notdir $<) $(notdir $@)
 	@printf "\e[0m"
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -MMD -MP -o $@ -c $<
+	@$(CC) $(CFLAGS) -o $@ -c $<
 
 all:	$(NAME)
 
