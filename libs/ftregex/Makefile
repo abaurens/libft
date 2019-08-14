@@ -6,13 +6,11 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 13:34:16 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/07 18:10:53 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/14 16:30:16 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		:=	gcc
-RM		:=	rm -rf
-CP		:=	cp -rf
 LINKER	:=	ar rc
 NAME	:=	ftregex.a
 FTIO	:=	../ftio/ftio.a
@@ -51,15 +49,6 @@ CFLAGS	:=	-g $(CFLAGS) -ansi -pedantic
 
 test:	$(NAME) $(FTIO) $(LIBFT) $(FTMATH)
 	@$(CC) -o test $(CFLAGS) main.c $(NAME) $(LIBFT) $(FTMATH) $(FTIO)
-
-#$(FTIO):
-#	@make -C $(dir $(FTIO))
-#
-#$(LIBFT):
-#	@make -C $(dir $(LIBFT))
-#
-#$(FTMATH):
-#	@make -C $(dir $(FTMATH))
 
 cleantest:
 	@$(RM) test

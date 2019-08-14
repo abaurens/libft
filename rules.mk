@@ -13,7 +13,9 @@
 $(NAME):	$(OBJ)
 	@$(LINKER) $(NAME) $(OBJ) $(LDFLAGS)
 
-$(OBJD)/%.o:	$(SRCD)/%.c
+-include $(DEP)
+
+$(OBJD)/%.o:	$(SRCD)/%.c Makefile
 	@if [[ $(CMPT) -ne 0 ]]; then printf "$(CURUP)"; fi
 	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
 	$(eval PRC = $(shell echo "$(CMPT)/$(FCNT)*100"|bc -l|sed 's/^\./0./'))
@@ -21,16 +23,18 @@ $(OBJD)/%.o:	$(SRCD)/%.c
 	|sed -E "s:\.[0-9]{20}::") $(notdir $<) $(notdir $@)
 	@printf "\e[0m"
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -o $@ -c $<
+	@$(CC) $(CFLAGS) -MMD -MP -o $@ -c $<
 
 all:	$(NAME)
 
 clean:
 	$(call pinfo,Cleaning $(NAME))
+	@$(RM) $(DEP)
 	@$(RM) $(OBJD)
 
 fclean:
 	$(call pinfo,Fcleaning $(NAME))
+	@$(RM) $(DEP)
 	@$(RM) $(OBJD)
 	@$(RM) $(NAME)
 

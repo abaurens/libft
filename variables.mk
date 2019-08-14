@@ -10,6 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
+RM		:=	rm -rf
+CP		:=	cp -rf
+
 GRN		:=	\e[1;92m
 BLE		:=	\e[1;34m
 CYA		:=	\e[1;96m
@@ -30,6 +33,7 @@ override CFLAGS	:=	$(INCLDS) -W -Wall -Wextra -Werror
 
 OBJ		:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
 SRC		:=	$(addprefix $(SRCD)/,$(SRC))
+DEP		:=	$(OBJ:.o=.d)
 
 define vinfo
 	@$(eval LEN = $(shell printf '$(1)'|awk '{print length}'))

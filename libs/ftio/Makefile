@@ -6,13 +6,11 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/07 18:10:21 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/14 16:20:49 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		:=	gcc
-RM		:=	rm -rf
-CP		:=	cp -rf
 LINKER	:=	ar rc
 NAME	:=	ftio.a
 
