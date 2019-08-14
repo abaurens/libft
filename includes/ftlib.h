@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 16:09:37 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/05 11:39:26 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/14 18:40:41 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ char	ft_isupper(int c);
 char	ft_isalnum(int c);
 char	ft_isascii(int c);
 char	ft_isprint(int c);
+char	ft_isnumber(const char *str);
+char	ft_isnumber_base(const char *str, const char *base);
 char	ft_isbase(const char *base);
 char	ft_contains(char c, const char *str);
 char	ft_strequ(char const *s1, char const *s2);

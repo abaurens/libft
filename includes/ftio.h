@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 14:32:55 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/10 21:29:35 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/14 18:36:44 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,49 @@
 # include <stdio.h>
 # include <stdarg.h>
 # include <string.h>
+# include <inttypes.h>
 
 # define BUFF_SIZE	1024
 # define FT_LMAX	9223372036854775807ul
 
+typedef uint16_t		t_flag;
+
 # ifdef FT_DISABLE_WARNINGS
 
-int			ft_printf(const char *frm, ...);
-int			ft_dprintf(int fd, const char *frm, ...);
-int			ft_sprintf(char *str, const char *frm, ...);
-int			ft_asprintf(char **ret, const char *frm, ...);
-int			ft_snprintf(char *str, size_t size, const char *frm, ...);
-int			ft_fprintf(FILE *stream, const char *frm, ...);
+int	ft_printf(const char *frm, ...);
+int	ft_dprintf(int fd, const char *frm, ...);
+int	ft_sprintf(char *str, const char *frm, ...);
+int	ft_asprintf(char **ret, const char *frm, ...);
+int	ft_snprintf(char *str, size_t size, const char *frm, ...);
+int	ft_fprintf(FILE *stream, const char *frm, ...);
+
+int	ft_print_error(const char *str, ...);
+int	ft_debugf(int fd, char bool, const char *str, ...);
 
 # else
 
-int			ft_printf(const char *frm,
-							...) __attribute__((format(printf,1,2)));
-int			ft_dprintf(int fd, const char *frm,
-							...) __attribute__((format(printf,2,3)));
-int			ft_sprintf(char *str, const char *frm,
-							...) __attribute__((format(printf,2,3)));
-int			ft_asprintf(char **ret, const char *frm,
-							...) __attribute__((format(printf,2,3)));
-int			ft_snprintf(char *str, size_t size, const char *frm,
-							...) __attribute__((format(printf,3,4)));
-int			ft_fprintf(FILE *stream, const char *frm,
+int	ft_printf(const char *frm,
+		...) __attribute__((format(printf,1,2)));
+int	ft_dprintf(int fd, const char *frm,
+			...) __attribute__((format(printf,2,3)));
+int	ft_sprintf(char *str, const char *frm,
+				...) __attribute__((format(printf,2,3)));
+int	ft_asprintf(char **ret, const char *frm,
+					...) __attribute__((format(printf,2,3)));
+int	ft_snprintf(char *str, size_t size, const char *frm,
+						...) __attribute__((format(printf,3,4)));
+int	ft_fprintf(FILE *stream, const char *frm,
 							...) __attribute__((format(printf,2,3)));
 
+int	ft_print_error(const char *str,
+			...) __attribute__((format(printf,1,2)));
+int	ft_debugf(int fd, char bool, const char *str,
+				...) __attribute__((format(printf,3,4)));
+
 # endif
+
+char		ft_flag(t_flag flags, const char *flagset, const char flag);
+char		set_flags(t_flag *flags, const char *flagset, const char *arg);
 
 int			ft_vprintf(const char *frm, va_list ap);
 int			ft_vdprintf(int fd, const char *frm, va_list ap);
@@ -75,6 +89,5 @@ int			ft_atoi(const char *str);
 
 long		ft_atol(const char *str);
 long		ft_atol_base(const char *str, const char *base);
-
 
 #endif

@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/14 16:20:36 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/14 18:40:08 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ SRC		:=	\
 			ft_isalpha.c			\
 			ft_isascii.c			\
 			ft_memccpy.c			\
+			ft_isnumber.c			\
 			ft_striteri.c			\
 			ft_strsplit.c			\
 			ft_contains.c			\
@@ -72,6 +73,7 @@ SRC		:=	\
 			ft_strupcase.c			\
 			ft_count_words.c		\
 			ft_unsignedlen.c		\
+			ft_isnumber_base.c		\
 			ft_unsignedlen_base.c
 
 include ../../variables.mk
