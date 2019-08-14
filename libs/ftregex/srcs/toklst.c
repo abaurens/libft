@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 15:51:17 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/15 20:39:14 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/14 20:26:37 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "ftlib.h"
 #include "ftio.h"
 
-void		clear_toklst(t_toklst *lst)
+void	clear_toklst(t_toklst *lst)
 {
 	while (lst->size > 1)
 	{
@@ -112,7 +112,7 @@ t_token	*insert_before(t_toklst *lst, t_token *tok, t_token *pos)
 	return (tok);
 }
 
-t_token		*new_token(char c, t_toktpe type)
+t_token	*new_token(char c, t_toktpe type)
 {
 	t_token	*new;
 
