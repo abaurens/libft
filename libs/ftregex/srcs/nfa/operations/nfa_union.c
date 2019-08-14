@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 22:11:36 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/15 22:11:37 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/14 22:43:21 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,13 @@
 t_nfa	*nfa_union(t_nfa *first, t_nfa *second)
 {
 	t_nfa	*res;
+	char	*n1;
+	char	*n2;
 
 	if (!(res = new_nfa()))
 		return (NULL);
+	n1 = first->name + (*first->name == '(');
+	n2 = second->name + (*second->name == '(');
 	add_epsilon(res->start, first->start);
 	add_epsilon(res->start, second->start);
 	add_epsilon(first->end, res->end);
@@ -36,9 +40,9 @@ t_nfa	*nfa_union(t_nfa *first, t_nfa *second)
 	second->end->is_end = 0;
 	first->end->is_end = 0;
 	res->name[0] = '(';
-	ft_strcat(res->name, first->name);
+	ft_strncat(res->name, n1, ft_idxof(')', n1));
 	ft_strcat(res->name, "|");
-	ft_strcat(res->name, second->name);
+	ft_strncat(res->name, n2, ft_idxof(')', n2));
 	ft_strcat(res->name, ")");
 	return (res);
 }
