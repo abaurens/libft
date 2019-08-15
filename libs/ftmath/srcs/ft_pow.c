@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_min.c                                           :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 16:51:54 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/15 11:51:06 by abaurens         ###   ########.fr       */
+/*   Created: 2019/08/15 11:35:28 by abaurens          #+#    #+#             */
+/*   Updated: 2019/08/15 11:41:09 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-float		ft_fminf(float a, float b)
+float		ft_powf(float x, float y)
 {
-	return (a < b ? a : b);
+	if (y == 0)
+		return (1);
+	return (x * ft_powf(x, y - 1));
 }
 
-double		ft_fmin(double a, double b)
+double		ft_pow(double x, double y)
 {
-	return (a < b ? a : b);
+	if (y == 0)
+		return (1);
+	return (x * ft_pow(x, y - 1));
 }
 
-long double	ft_fminl(long double a, long double b)
+long double	ft_powl(long double x, long double y)
 {
-	return (a < b ? a : b);
+	if (y == 0)
+		return (1);
+	return (x * ft_powl(x, y - 1));
 }

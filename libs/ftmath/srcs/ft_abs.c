@@ -6,11 +6,23 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:49:13 by abaurens          #+#    #+#             */
-/*   Updated: 2019/03/30 15:47:41 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/15 11:51:17 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-long int		ft_abs(long int nb)
+#include <inttypes.h>
+
+float		ft_fabsf(float x)
 {
-	return (nb < 0 ? -nb : nb);
+	return (x < 0 ? -x : x);
+}
+
+double		ft_fabs(double x)
+{
+	return (x < 0 ? -x : x);
+}
+
+long double	ft_fabsl(long double x)
+{
+	return (x < 0 ? -x : x);
 }
