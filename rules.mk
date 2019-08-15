@@ -27,9 +27,9 @@ $(OBJD)/%.o:	$(SRCD)/%.c Makefile
 	@printf "\e[0m"
 	@mkdir -p $(dir $@)
 ifndef NO_NOTE
-	@$(CC) $(CFLAGS) -o $@ -c $<
+	@$(CC) $(strip $(CFLAGS)) -o $@ -c $<
 else
-	@2>&1 $(CC) $(CFLAGS) -o $@ -c $< | sed $(NO_NOTE)
+	@2>&1 $(CC) $(strip $(CFLAGS)) -o $@ -c $< | sed $(NO_NOTE)
 endif
 
 all:	$(NAME)

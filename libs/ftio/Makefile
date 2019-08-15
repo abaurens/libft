@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/15 01:03:43 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/15 10:10:51 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,5 +71,5 @@ SRC		:=	$(IOCORE)				\
 			ft_atol_base.c	ft_putchar_fd.c		ft_putendl_fd.c		\
 			get_next_line.c	ft_putnbr_base.c	ft_putnbr_base_fd.c
 
-include ../../variables.mk
-include ../../rules.mk
+include variables.mk
+include rules.mk

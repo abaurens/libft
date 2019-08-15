@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/15 01:06:25 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/15 10:43:01 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,9 @@
 #		pourraient passer, ce qui permettrait de ne pas rendre accessible des
 #		des fonctions internes
 
-CC			:=	make --no-print-dir -C
+include	variables.mk
+
+CC			:=	make --no-print-dir -I$(PWD) -C
 LINKER		:=	ar rc
 RM			:=	rm -rf
 CP			:=	cp -rf
@@ -28,8 +30,6 @@ LIBS	:=	\
 			ftcipher.ao	\
 			ftmath.ao	\
 			ftregex.ao
-
-include	variables.mk
 
 LIBS	:=	$(shell echo $(LIBS)|tr ' ' '\n'|awk '{print length,$$0}'|sort -n|\
 			cut -d' ' -f2)
@@ -47,6 +47,7 @@ all:	$(NAME)
 
 clean:
 	@$(RM) $(OBJD)
+	@$(RM) $(LIBS)
 	@$(foreach CMD,$(basename $(LIBS)),$(CC) $(CMD) clean;)
 
 fclean:

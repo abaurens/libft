@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/15 01:03:38 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/15 10:10:44 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,6 @@ CORE	:=	$(addprefix core/, $(CORE))
 SRC		:=	$(CORE)	\
 			ft_cipher.c
 
-include ../../variables.mk
-include ../../rules.mk
+include variables.mk
+include rules.mk
 CFLAGS	:=	$(CFLAGS) -ansi -pedantic

@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 13:34:16 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/15 01:03:56 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/15 10:11:14 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,8 +44,8 @@ SRC		:=	$(NFA)			\
 			to_postfix.c	\
 			to_automaton.c
 
-include ../../variables.mk
-include ../../rules.mk
+include variables.mk
+include rules.mk
 CFLAGS	:=	-g $(CFLAGS) -ansi -pedantic
 
 test:	$(NAME) $(FTIO) $(LIBFT) $(FTMATH)

@@ -12,6 +12,7 @@
 
 RM		:=	rm -rf
 CP		:=	cp -rf
+PWD		:=	$(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 
 GRN		:=	\e[1;92m
 BLE		:=	\e[1;34m
@@ -29,7 +30,7 @@ CMPT	:=	0
 FCNT	:=	$(words $(SRC))
 
 INCLDS	:=	-I../../includes
-override CFLAGS	:=	$(INCLDS) -MMD -MP -W -Wall -Wextra -Werror
+override CFLAGS	:=	$(CFLAGS) $(INCLDS) -MMD -MP -W -Wall -Wextra -Werror
 
 OBJ		:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
 SRC		:=	$(addprefix $(SRCD)/,$(SRC))
@@ -68,14 +69,6 @@ MAX_LEN	:=	1
 endif
 
 # RULES
-
-%.a:	$(dir %)/Makefile
-	@$(call vinfo,Compiling...,TEXT)
-	@if [[ $(CMPT) -eq 0 ]]; then printf "$(TEXT)\n"; fi
-	$(eval FCNT	= $(words $(LIBS)))
-	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
-	@$(CC) $(basename $@) SUBID=$(CMPT) TOTAL_SIZE=$(FCNT) MAX_LEN=$(MAX_LEN)
-	@$(CP) $(basename $@)/$(notdir $@) $(LIBS_D)/
 
 %.ao:	$(dir %)/Makefile
 	@$(call vinfo,Compiling...,TEXT)

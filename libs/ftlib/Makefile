@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/15 01:03:46 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/15 10:10:59 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,6 @@ SRC		:=	\
 			ft_isnumber_base.c		\
 			ft_unsignedlen_base.c
 
-include ../../variables.mk
-include ../../rules.mk
+include variables.mk
+include rules.mk
 CFLAGS	:=	$(CFLAGS) -ansi -pedantic
