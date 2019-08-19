@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/15 10:43:01 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/19 09:23:37 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,5 +56,8 @@ fclean:
 	@$(foreach CMD,$(basename $(LIBS)),$(CC) $(CMD) fclean;)
 
 re:		fclean all
+
+test:	$(NAME) main.c
+	gcc -o test main.c $(CFLAGS) -ansi -pedantic -I./includes -L. -lft
 
 .PHONY: all clean fclean re

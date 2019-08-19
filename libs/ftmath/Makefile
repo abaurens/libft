@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/15 10:11:47 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/15 13:07:09 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ NAME	:=	ftmath.ao
 SRC	:=	\
 		ft_min.c	ft_max.c	\
 		ft_abs.c	ft_nan.c	\
-		ft_rad.c
+		ft_rad.c	ft_pow.c	\
+		ft_sqrt.c	cordic.c
 
 include variables.mk
 include rules.mk

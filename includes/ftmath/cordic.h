@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   cordic.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 16:49:13 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/15 12:59:37 by abaurens         ###   ########.fr       */
+/*   Created: 2019/08/15 12:14:38 by abaurens          #+#    #+#             */
+/*   Updated: 2019/08/19 10:57:38 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <inttypes.h>
+#ifndef CORDIC_H
+# define CORDIC_H
 
-float		ft_absf(float x)
-{
-	return (x < 0 ? -x : x);
-}
+# include <inttypes.h>
 
-double		ft_abs(double x)
-{
-	return (x < 0 ? -x : x);
-}
+# define TAB_SIZE	16
+# define EPSILON	1E-15
 
-long double	ft_absl(long double x)
-{
-	return (x < 0 ? -x : x);
-}
+#endif
