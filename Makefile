@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/19 13:26:12 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/19 16:02:40 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,6 @@ fclean:
 re:		fclean all
 
 test:	$(NAME) main.c
-	gcc -o test main.c $(CFLAGS) -ansi -pedantic -I./includes -L. -lft
+	gcc -o test main.c -I./includes -L. -lft #-ansi -pedantic
 
 .PHONY: all clean fclean re
