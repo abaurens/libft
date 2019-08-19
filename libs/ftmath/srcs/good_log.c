@@ -6,79 +6,86 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 19:58:24 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/19 19:58:27 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/19 20:02:00 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
- * Correctly rounded logarithm
- *
- * Author : David Defour
- *
- * This file is part of the crlibm library developed by the Arenaire
- * project at Ecole Normale Superieure de Lyon
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+**	SOURCES:
+**		https://github.com/taschini/crlibm
+**		https://hal-ens-lyon.archives-ouvertes.fr/ensl-00119498/document
+**		http://www.ens-lyon.fr/LIP/Pub/Rapports/RR/RR2005/RR2005-37.pdf
+*/
+
+/*
+** Correctly rounded logarithm
+**
+** Author : David Defour
+**
+** This file is part of the crlibm library developed by the Arenaire
+** project at Ecole Normale Superieure de Lyon
+**
+** This program is free software; you can redistribute it and/or modify
+** it under the terms of the GNU Lesser General Public License as published by
+** the Free Software Foundation; either version 2 of the License, or
+** (at your option) any later version.
+**
+** This program is distributed in the hope that it will be useful,
+** but WITHOUT ANY WARRANTY; without even the implied warranty of
+** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+** GNU General Public License for more details.
+**
+** You should have received a copy of the GNU Lesser General Public License
+** along with this program; if not, write to the Free Software
+** Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 #include <stdio.h>
 #include "log_accurate.h"
 
 /*
- *  1) First reduction: exponent extraction
- *         E
- *  x = 2^   .(1+f)    with  0 <= f < 1
- *
- *  log(x) = E.log(2) + log(1+f) where:
- *     - log(2)   is tabulated
- *     - log(1+f) need to be evaluated
- *
- *
- *  2) Avoiding accuracy problem when E=-1 by testing
- *
- *    if (1+f >= sqrt(2)) then
- *        1+f = (1+f)/2;  E = E+1;
- *    and,
- *        log(x) = (E+1).log(2) + log((1+f)/2)
- *
- *    so now:      sqrt(2)/2 <= (1+f) < sqrt(2)
- *
- *
- *  3) Second reduction: tabular reduction
- *                   -4
- *   wi = 1 + i. 2^
- *                                   1
- *   log(1+f) = log(wi) + log ( 1 + --- . (1 + f - wi) )
- *                                   wi
- *
- *   then |(1+f-wi)/wi| <= 2^-5 if we use rounded to nearest.
- *
- *  4) Computation:
- *   a) Table lookup of:
- *        - ti    = log(wi)
- *        - inv_wi = 1/(wi)
- *   b) Polynomial evaluation of:
- *        - P(R) ~ log(1 + R), where R = (1+f-wi) * inv_wi
- *
- *                 -5
- *   with  |R| < 2^
- *
- *
- *  5) Reconstruction:
- *   log(x) = E.log(2) + t_i + P(R)
- *
- */
+**  1) First reduction: exponent extraction
+**         E
+**  x = 2^   .(1+f)    with  0 <= f < 1
+**
+**  log(x) = E.log(2) + log(1+f) where:
+**     - log(2)   is tabulated
+**     - log(1+f) need to be evaluated
+**
+**
+**  2) Avoiding accuracy problem when E=-1 by testing
+**
+**    if (1+f >= sqrt(2)) then
+**        1+f = (1+f)/2;  E = E+1;
+**    and,
+**        log(x) = (E+1).log(2) + log((1+f)/2)
+**
+**    so now:      sqrt(2)/2 <= (1+f) < sqrt(2)
+**
+**
+**  3) Second reduction: tabular reduction
+**                   -4
+**   wi = 1 + i. 2^
+**                                   1
+**   log(1+f) = log(wi) + log ( 1 + --- . (1 + f - wi) )
+**                                   wi
+**
+**   then |(1+f-wi)/wi| <= 2^-5 if we use rounded to nearest.
+**
+**  4) Computation:
+**   a) Table lookup of:
+**        - ti    = log(wi)
+**        - inv_wi = 1/(wi)
+**   b) Polynomial evaluation of:
+**        - P(R) ~ log(1 + R), where R = (1+f-wi) * inv_wi
+**
+**                 -5
+**   with  |R| < 2^
+**
+**
+**  5) Reconstruction:
+**   log(x) = E.log(2) + t_i + P(R)
+**
+**/
 
 
 
