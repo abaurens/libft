@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 02:29:20 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/19 10:57:45 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/19 13:42:27 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define FT_HPI	1.5707963267948966192313
 # define FT_PI	3.1415926535897932384626
 # define FT_TPI	6.2831853071795864769252
+# define FT_E	2.7182818284590452353603
 
 char		fnan(long double d);
 
@@ -47,5 +48,9 @@ double		ft_rad(double a);
 double		ft_tan(double an);
 double		ft_cos(double an);
 double		ft_sin(double an);
+
+float		ft_logf(float nb, const float base);
+double		ft_log(double nb, const double base);
+long double	ft_logl(long double nb, const long double base);
 
 #endif
