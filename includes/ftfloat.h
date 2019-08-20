@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   good_log.c                                         :+:      :+:    :+:   */
+/*   ftfloat.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/20 11:25:32 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/20 12:05:19 by abaurens         ###   ########.fr       */
+/*   Created: 2019/08/20 11:47:06 by abaurens          #+#    #+#             */
+/*   Updated: 2019/08/20 11:49:00 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <float.h>
-#include "ftfloat.h"
-#include "ftmath.h"
-#include "ftio.h"
+#ifndef FTFLOAT_H
+# define FTFLOAT_H
 
-long double	ft_ln(long double x)
-{
-	t_float	flt;
+# include "ftio/ft_types.h"
 
-	if (x < 0.0 || fnan(x))
-		return (0.0 / 0.0);
-	if (x == 0)
-		return (-(1.0 / 0.0));
-	flt = get_float_components(x);
-	ft_printf("2^%d * %Lf\n", flt.exponent, ft_powl(2, -flt.mantissa));
-	return (0);
-}
+# define FT_NAN		(0.0 / 0.0)
+# define FT_INF		(1.0 / 0.0)
+# define FT_NINF	(-1.0 / 0.0)
+
+t_float		get_float_components(long double ldbl);
+
+#endif
