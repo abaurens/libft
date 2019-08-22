@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 17:11:13 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/20 17:11:42 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/20 21:35:34 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,16 @@ union IEEEl2bits {
 	} xbits;
 };
 
-# define	LDBL_NBIT	0x80000000
-# define	mask_nbit_l(u)	((u).bits.manh &= ~LDBL_NBIT)
+//# define	LDBL_NBIT	0x80000000
+//# define	mask_nbit_l(u)	((u).bits.manh &= ~LDBL_NBIT)
 
-# define	LDBL_MANH_SIZE	32
-# define	LDBL_MANL_SIZE	32
+//# define	LDBL_MANH_SIZE	32
+//# define	LDBL_MANL_SIZE	32
 
+/*
 # define	LDBL_TO_ARRAY32(u, a) do {			\
 	(a)[0] = (uint32_t)(u).bits.manl;		\
 	(a)[1] = (uint32_t)(u).bits.manh;		\
 } while (0)
-
+*/
 #endif

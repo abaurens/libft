@@ -6,11 +6,11 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 19:56:03 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/20 19:56:05 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/20 21:01:25 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <machine/endian.h>
+/*#include <machine/endian.h>*/
 #include <sys/cdefs.h>
 
 #ifdef __i386__

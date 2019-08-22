@@ -1,22 +1,33 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   math_private.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/20 21:33:16 by abaurens          #+#    #+#             */
+/*   Updated: 2019/08/20 21:34:29 by abaurens         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef MATH_PRIVATE_H
 #define	MATH_PRIVATE_H
 
 #include <inttypes.h>
 #include <sys/types.h>
-#include <machine/endian.h>
+//#include <machine/endian.h>
 
 #ifdef __arm__
-#if defined(__VFP_FP__) || defined(__ARM_EABI__)
-#define	IEEE_WORD_ORDER	BYTE_ORDER
+# if defined(__VFP_FP__) || defined(__ARM_EABI__)
+#  define	IEEE_WORD_ORDER	BYTE_ORDER
+# else
+#  define	IEEE_WORD_ORDER	BIG_ENDIAN
+# endif
 #else
-#define	IEEE_WORD_ORDER	BIG_ENDIAN
-#endif
-#else
-#define	IEEE_WORD_ORDER	BYTE_ORDER
+# define	IEEE_WORD_ORDER	BYTE_ORDER
 #endif
 
+/*
 #if IEEE_WORD_ORDER == BIG_ENDIAN
 
 typedef union
@@ -54,7 +65,8 @@ typedef union
 } ieee_quad_shape_type;
 
 #endif
-
+*/
+/*
 #if IEEE_WORD_ORDER == BIG_ENDIAN
 
 typedef union
@@ -88,9 +100,9 @@ typedef union
     u_int64_t w;
   } xparts;
 } ieee_double_shape_type;
-
 #endif
-
+*/
+/*
 #define EXTRACT_WORDS(ix0,ix1,d)				\
 do {								\
   ieee_double_shape_type ew_u;					\
@@ -105,7 +117,8 @@ do {								\
   ew_u.value = (d);						\
   (ix) = ew_u.xparts.w;						\
 } while (0)
-
+*/
+/*
 #define GET_HIGH_WORD(i,d)					\
 do {								\
   ieee_double_shape_type gh_u;					\
@@ -119,7 +132,8 @@ do {								\
   gl_u.value = (d);						\
   (i) = gl_u.parts.lsw;						\
 } while (0)
-
+*/
+/*
 #define INSERT_WORDS(d,ix0,ix1)					\
 do {								\
   ieee_double_shape_type iw_u;					\
@@ -134,7 +148,8 @@ do {								\
   iw_u.xparts.w = (ix);						\
   (d) = iw_u.value;						\
 } while (0)
-
+*/
+/*
 #define SET_HIGH_WORD(d,v)					\
 do {								\
   ieee_double_shape_type sh_u;					\
@@ -150,13 +165,15 @@ do {								\
   sl_u.parts.lsw = (v);						\
   (d) = sl_u.value;						\
 } while (0)
-
+*/
+/*
 typedef union
 {
   float value;
   unsigned int word;
 } ieee_float_shape_type;
-
+*/
+/*
 #define GET_FLOAT_WORD(i,d)					\
 do {								\
   ieee_float_shape_type gf_u;					\
@@ -170,6 +187,7 @@ do {								\
   sf_u.word = (i);						\
   (d) = sf_u.value;						\
 } while (0)
+*/
 
 #define	EXTRACT_LDBL80_WORDS(ix0,ix1,d)				\
 do {								\
@@ -179,6 +197,7 @@ do {								\
   (ix1) = ew_u.xbits.man;					\
 } while (0)
 
+/*
 #define	EXTRACT_LDBL128_WORDS(ix0,ix1,ix2,d)			\
 do {								\
   union IEEEl2bits ew_u;					\
@@ -194,6 +213,7 @@ do {								\
   ge_u.e = (d);							\
   (i) = ge_u.xbits.expsign;					\
 } while (0)
+*/
 
 #define	INSERT_LDBL80_WORDS(d,ix0,ix1)				\
 do {								\
@@ -203,6 +223,7 @@ do {								\
   (d) = iw_u.e;							\
 } while (0)
 
+/*
 #define	INSERT_LDBL128_WORDS(d,ix0,ix1,ix2)			\
 do {								\
   union IEEEl2bits iw_u;					\
@@ -211,6 +232,7 @@ do {								\
   iw_u.xbits.manl = (ix2);					\
   (d) = iw_u.e;							\
 } while (0)
+*/
 
 #define	SET_LDBL_EXPSIGN(d,v)					\
 do {								\
@@ -220,6 +242,7 @@ do {								\
   (d) = se_u.e;							\
 } while (0)
 
+/*
 #ifdef __i386__
 #define	LD80C(m, ex, v) {						\
 	.xbits.man = __CONCAT(m, ULL),					\
@@ -228,11 +251,10 @@ do {								\
 #else
 #define	LD80C(m, ex, v)	{ .e = (v), }
 #endif
+*/
 
-#ifdef FLT_EVAL_METHOD
 /*
- * Attempt to get strict C99 semantics for assignment with non-C99 compilers.
- */
+#ifdef FLT_EVAL_METHOD
 #if FLT_EVAL_METHOD == 0 || __GNUC__ == 0
 #define	STRICT_ASSIGN(type, lval, rval)	((lval) = (rval))
 #else
@@ -248,41 +270,51 @@ do {								\
 } while (0)
 #endif
 #endif
+*/
 
 #if defined(__i386__) && !defined(NO_FPSETPREC)
+
 #define	ENTERI() ENTERIT(long double)
+
 #define	ENTERIT(returntype)			\
 	returntype __retval;			\
 	fp_prec_t __oprec;			\
 						\
 	if ((__oprec = fpgetprec()) != FP_PE)	\
 		fpsetprec(FP_PE)
+
 #define	RETURNI(x) do {				\
 	__retval = (x);				\
 	if (__oprec != FP_PE)			\
 		fpsetprec(__oprec);		\
 	RETURNF(__retval);			\
 } while (0)
+/*
 #define	ENTERV()				\
 	fp_prec_t __oprec;			\
 						\
 	if ((__oprec = fpgetprec()) != FP_PE)	\
 		fpsetprec(FP_PE)
+
 #define	RETURNV() do {				\
 	if (__oprec != FP_PE)			\
 		fpsetprec(__oprec);		\
 	return;			\
 } while (0)
+*/
 #else
+
 #define	ENTERI()
 #define	ENTERIT(x)
 #define	RETURNI(x)	RETURNF(x)
-#define	ENTERV()
-#define	RETURNV()	return
+//#define	ENTERV()
+//#define	RETURNV()	return
+
 #endif
 
 #define      RETURNF(v)      return (v)
 
+/*
 #define	_2sum(a, b) do {	\
 	__typeof(a) __s, __w;	\
 				\
@@ -291,27 +323,8 @@ do {								\
 	(b) = ((a) - (__w - __s)) + ((b) - __s); \
 	(a) = __w;		\
 } while (0)
+*/
 
-#ifdef DEBUG
-#define	_2sumF(a, b) do {				\
-	__typeof(a) __w;				\
-	volatile __typeof(a) __ia, __ib, __r, __vw;	\
-							\
-	__ia = (a);					\
-	__ib = (b);					\
-	assert(__ia == 0 || fabsl(__ia) >= fabsl(__ib));	\
-							\
-	__w = (a) + (b);				\
-	(b) = ((a) - __w) + (b);			\
-	(a) = __w;					\
-							\ \
-	assert((long double)__ia + __ib == (long double)(a) + (b));	\
-	__vw = __ia + __ib;				\
-	__r = __ia - __vw;				\
-	__r += __ib;					\
-	assert(__vw == (a) && __r == (b));		\
-} while (0)
-#else
 #define	_2sumF(a, b) do {	\
 	__typeof(a) __w;	\
 				\
@@ -319,7 +332,6 @@ do {								\
 	(b) = ((a) - __w) + (b); \
 	(a) = __w;		\
 } while (0)
-#endif
 
 #define	_3sumF(a, b, c) do {	\
 	__typeof(a) __tmp;	\
@@ -330,11 +342,14 @@ do {								\
 	(a) = __tmp;		\
 } while (0)
 
+/*
 void _scan_nan(uint32_t *__words, int __num_words, const char *__s);
 
 #define	nan_mix(x, y)		(nan_mix_op((x), (y), +))
 #define	nan_mix_op(x, y, op)	(((x) + 0.0L) op ((y) + 0))
+*/
 
+/*
 #ifdef _COMPLEX_H
 
 typedef union {
@@ -388,8 +403,11 @@ CMPLXL(long double x, long double y)
 }
 #endif
 
-#endif
 
+#endif
+*/
+
+/*
 static inline double	rnint(double_t x)
 {
 	return ((double)(x + 0x1.8p52) - 0x1.8p52);
@@ -401,14 +419,15 @@ static inline float		rnintf(float_t x)
 }
 
 #ifdef LDBL_MANT_DIG
-
 static inline long double	rnintl(long double x)
 {
 	return (x + __CONCAT(0x1.8p, LDBL_MANT_DIG) / 2 -
 		__CONCAT(0x1.8p, LDBL_MANT_DIG) / 2);
 }
 #endif
+*/
 
+/*
 #if (defined(amd64) || defined(__i386__)) && defined(__GNUCLIKE_ASM)
 #define	irint(x)						\
     (sizeof(x) == sizeof(float) &&				\
@@ -421,8 +440,10 @@ static inline long double	rnintl(long double x)
 #endif
 
 #define	i64rint(x)	((int64_t)(x))
+*/
 
-/*#if defined(__i386__) && defined(__GNUCLIKE_ASM)
+/*
+#if defined(__i386__) && defined(__GNUCLIKE_ASM)
 static __inline int	irintf(float x)
 {
 	int n;
@@ -438,9 +459,11 @@ static __inline int	irintd(double x)
 	__asm("fistl %0" : "=m" (n) : "t" (x));
 	return (n);
 }
-#endif*/
+#endif
+*/
 
-/*#if (defined(__amd64__) || defined(__i386__)) && defined(__GNUCLIKE_ASM)
+/*
+#if (defined(__amd64__) || defined(__i386__)) && defined(__GNUCLIKE_ASM)
 static __inline int	irintl(long double x)
 {
 	int n;
@@ -448,18 +471,10 @@ static __inline int	irintl(long double x)
 	__asm("fistl %0" : "=m" (n) : "t" (x));
 	return (n);
 }
-#endif*/
-
-#ifdef DEBUG
-#if defined(__amd64__) || defined(__i386__)
-#define	breakpoint()	asm("int $3")
-#else
-#include <signal.h>
-
-#define	breakpoint()	raise(SIGTRAP)
 #endif
-#endif
+*/
 
+/*
 #ifdef DOPRINT
 #include <stdio.h>
 
@@ -545,23 +560,37 @@ static __inline int	irintl(long double x)
 #define	DOPRINT_END1(v)
 #define	DOPRINT_END2(hi, lo)
 #endif
+*/
+
+#define	DOPRINT_START(xp)
+#define	DOPRINT_END1(v)
+#define	DOPRINT_END2(hi, lo)
 
 #define	RETURNP(x) do {			\
 	DOPRINT_END1(x);		\
 	RETURNF(x);			\
 } while (0)
+
+/*
 #define	RETURNPI(x) do {		\
 	DOPRINT_END1(x);		\
 	RETURNI(x);			\
 } while (0)
+*/
+
+/*
 #define	RETURN2P(x, y) do {		\
 	DOPRINT_END2((x), (y));		\
 	RETURNF((x) + (y));		\
 } while (0)
+*/
+
 #define	RETURN2PI(x, y) do {		\
 	DOPRINT_END2((x), (y));		\
 	RETURNI((x) + (y));		\
 } while (0)
+
+/*
 #ifdef STRUCT_RETURN
 #define	RETURNSP(rp) do {		\
 	if (!(rp)->lo_set)		\
@@ -574,6 +603,9 @@ static __inline int	irintl(long double x)
 	RETURN2PI((rp)->hi, (rp)->lo);	\
 } while (0)
 #endif
+*/
+
+/*
 #define	SUM2P(x, y) ({			\
 	const __typeof (x) __x = (x);	\
 	const __typeof (y) __y = (y);	\
@@ -581,7 +613,9 @@ static __inline int	irintl(long double x)
 	DOPRINT_END2(__x, __y);		\
 	__x + __y;			\
 })
+*/
 
+/*
 #define	__ieee754_sqrt	sqrt
 #define	__ieee754_acos	acos
 #define	__ieee754_acosh	acosh
@@ -636,16 +670,20 @@ static __inline int	irintl(long double x)
 #define	__ieee754_ynf	ynf
 #define	__ieee754_remainderf remainderf
 #define	__ieee754_scalbf scalbf
+*/
 
+/*
 int	__kernel_rem_pio2(double*,double*,int,int,int);
 
 #ifndef INLINE_REM_PIO2
 int	__ieee754_rem_pio2(double,double*);
 #endif
+
 double	__kernel_sin(double,double,int);
 double	__kernel_cos(double,double);
 double	__kernel_tan(double,double,int);
 double	__ldexp_exp(double,int);
+
 #ifdef _COMPLEX_H
 double complex __ldexp_cexp(double complex,int);
 #endif
@@ -653,16 +691,21 @@ double complex __ldexp_cexp(double complex,int);
 #ifndef INLINE_REM_PIO2F
 int	__ieee754_rem_pio2f(float,double*);
 #endif
+
 #ifndef INLINE_KERNEL_SINDF
 float	__kernel_sindf(double);
 #endif
+
 #ifndef INLINE_KERNEL_COSDF
 float	__kernel_cosdf(double);
 #endif
+
 #ifndef INLINE_KERNEL_TANDF
 float	__kernel_tandf(double,int);
 #endif
+
 float	__ldexp_expf(float,int);
+
 #ifdef _COMPLEX_H
 float complex __ldexp_cexpf(float complex,int);
 #endif
@@ -670,5 +713,6 @@ float complex __ldexp_cexpf(float complex,int);
 long double __kernel_sinl(long double, long double, int);
 long double __kernel_cosl(long double, long double);
 long double __kernel_tanl(long double, long double, int);
+*/
 
 #endif
