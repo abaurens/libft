@@ -5,26 +5,44 @@
 #                                                     +:+ +:+         +:+      #
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/22 16:38:26 by abaurens         ###   ########.fr        #
+#    Created: 2019/08/20 15:21:34 by abaurens          #+#    #+#              #
+#    Updated: 2019/08/22 17:08:27 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC		:=	gcc
-LINKER	:=	ar rc
-LINKER	:=	gcc -r -nostdlib -o
-NAME	:=	ftmath.ao
+CC			:=	gcc
+RM			:=	rm -rf
+CP			:=	cp -rf
+LINKER		:=	gcc -o
+NAME		:=	ft_ln
 
-# SOURCES
+SRCD		:=	srcs
+OBJD		:=	objs
 
-SRC	:=	\
-		ft_min.c	ft_max.c	\
-		ft_abs.c	ft_nan.c	\
-		ft_rad.c	ft_pow.c	\
-		ft_sqrt.c	cordic.c	\
-		ft_log.c	ft_logl.c	\
-		ft_expl.c
+SRC			:=	main.c s_logl.c s_expl.c
 
-include variables.mk
-include rules.mk
-CFLAGS	:=	$(CFLAGS) -ansi -pedantic
+OBJ			:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
+SRC			:=	$(addprefix $(SRCD)/,$(SRC))
+
+CFLAGS		:=	-I./includes -W -Wall -Wextra
+LDFLAGS		:=	-lm
+
+$(NAME):	$(OBJ)
+	$(LINKER) $(NAME) $(OBJ) $(LDFLAGS)
+
+all:	$(NAME)
+
+$(OBJD)/%.o:	$(SRCD)/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -o $@ -c $<
+
+clean:
+	$(RM) $(OBJD)
+
+fclean:
+	$(RM) $(OBJD)
+	$(RM) $(NAME)
+
+re:		fclean all
+
+.PHONY: all clean fclean re
