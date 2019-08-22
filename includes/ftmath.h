@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 02:29:20 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/22 14:27:20 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/22 15:31:39 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ double		ft_tan(double an);
 double		ft_cos(double an);
 double		ft_sin(double an);
 
-float		ft_logf(float nb, const float base);
-double		ft_log(double nb, const double base);
+float		ft_logf(float nb);
+double		ft_log(double nb);
 long double	ft_logl(long double nb);
 
 #endif

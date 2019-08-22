@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:08:00 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/22 15:28:25 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/22 15:31:44 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,18 @@
 #include "ftmath.h"
 #include "ftio.h"
 
-static long double	ft_get_integ(long double n, const long double base,
-						uint64_t *integ)
+static double	ft_get_integ(double n, uint64_t *integ)
 {
-	long double	base_n;
-	long double	base_n_2;
+	double		base_n;
+	double		base_n_2;
 	uint64_t	n2;
 
 	*integ = 0;
-	while (n >= base)
+	while (n >= FT_E)
 	{
 		n2 = 1;
-		base_n = base;
-		base_n_2 = base * base;
+		base_n = FT_E;
+		base_n_2 = FT_E * FT_E;
 		while (n >= base_n_2)
 		{
 			base_n = base_n_2;
@@ -40,49 +39,49 @@ static long double	ft_get_integ(long double n, const long double base,
 	return (n);
 }
 
-double				ft_log(double nb, const double base)
+double				ft_log(double nb)
 {
 	uint16_t	i;
 	uint64_t	integ;
 	uint64_t	frac;
 
 	if (nb < 1)
-		return (ft_log(1.0 / nb, base));
+		return (ft_log(1.0 / nb));
 	frac = 0;
-	nb = ft_get_integ(nb, base, &integ);
+	nb = ft_get_integ(nb, &integ);
 	i = 0;
 	while (i++ < 52)
 	{
 		nb *= nb;
 		frac <<= 1;
-		if (nb >= base)
+		if (nb >= FT_E)
 		{
 			frac |= 1;
-			nb /= base;
+			nb /= FT_E;
 		}
 	}
 	return (integ + ((double)frac / (1LLU << 52)));
 }
 
-float				ft_logf(float nb, const float base)
+float				ft_logf(float nb)
 {
 	uint16_t	i;
 	uint64_t	integ;
 	uint64_t	frac;
 
 	if (nb < 1)
-		return (ft_logf(1.0 / nb, base));
+		return (ft_logf(1.0 / nb));
 	frac = 0;
-	nb = ft_get_integ(nb, base, &integ);
+	nb = ft_get_integ(nb, &integ);
 	i = 0;
 	while (i++ < 23)
 	{
 		nb *= nb;
 		frac <<= 1;
-		if (nb >= base)
+		if (nb >= FT_E)
 		{
 			frac |= 1;
-			nb /= base;
+			nb /= FT_E;
 		}
 	}
 	return (integ + ((float)frac / (1LLU << 23)));
