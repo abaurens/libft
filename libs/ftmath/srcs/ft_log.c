@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:08:00 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/19 16:56:38 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/22 15:28:25 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 #include "ftmath.h"
 #include "ftio.h"
-
 
 static long double	ft_get_integ(long double n, const long double base,
 						uint64_t *integ)
@@ -87,33 +86,4 @@ float				ft_logf(float nb, const float base)
 		}
 	}
 	return (integ + ((float)frac / (1LLU << 23)));
-}
-
-/*
-**	Doesn't work perfectly for long double, losing precision when computing...
-*/
-
-long double			ft_logl(long double nb, const long double base)
-{
-	uint16_t	i;
-	uint64_t	integ;
-	uint64_t	frac;
-
-	if (nb < 1)
-		return (ft_logl(1.0 / nb, base));
-	frac = 1;
-	nb = ft_get_integ(nb, base, &integ);
-	i = 0;
-	while (i++ < 63)
-	{
-		nb *= nb;
-		frac <<= 1;
-		if (nb >= base)
-		{
-			frac |= 1;
-			nb /= base;
-		}
-	}
-	/*ft_printf("      M : %.64b\n", frac);*/
-	return (integ + ((long double)frac / (1LLU << 63)));
 }

@@ -1,55 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_logl.c                                           :+:      :+:    :+:   */
+/*   ft_logl.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/20 19:56:03 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/20 21:01:25 by abaurens         ###   ########.fr       */
+/*   Created: 2019/08/22 13:42:15 by abaurens          #+#    #+#             */
+/*   Updated: 2019/08/22 15:28:04 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*#include <machine/endian.h>*/
-#include <sys/cdefs.h>
+#include "ftmath/fpmath.h"
+#include <inttypes.h>
 
-#ifdef __i386__
-#include <ieeefp.h>
-#endif
+#define INTERVALS	128
+#define P8			(-1.2518388626763144e-1L)
+#define P7			(+1.4286227413310518e-1L)
+#define P6			(-1.6666666072191585e-1L)
+#define P5			(+1.9999999992970016e-1L)
+#define P4			(-2.5000000000004424e-1L)
+#define P3			(+3.3333333333333359e-1L)
+#define P2			(-0.5L)
 
-#include "fpmath.h"
-#include <math.h>
-#define	i386_SSE_GOOD
-#include "math_private.h"
-
-#define	USE_UTAB
-
-static const double		P2 = -0.5;
-static const double		P3 =  3.3333333333333359e-1;
-static const double		P4 = -2.5000000000004424e-1;
-static const double		P5 =  1.9999999992970016e-1;
-static const double		P6 = -1.6666666072191585e-1;
-static const double		P7 =  1.4286227413310518e-1;
-static const double		P8 = -1.2518388626763144e-1;
-
-static volatile const double zero = 0;
-
-#define	INTERVALS	128
-#define	LOG2_INTERVALS	7
-#define	TSIZE		(INTERVALS + 1)
-#define	G(i)		(T[(i)].G)
-#define	F_hi(i)		(T[(i)].F_hi)
-#define	F_lo(i)		(T[(i)].F_lo)
-#define	ln2_hi		F_hi(TSIZE - 1)
-#define	ln2_lo		F_lo(TSIZE - 1)
-#define	E(i)		(U[(i)].E)
-#define	H(i)		(U[(i)].H)
-
-static const struct {
-	float	G;
-	float	F_hi;
-	double	F_lo;
-} T[TSIZE] = {
+static const t_tab1	g_t[INTERVALS + 1] = {
 	{0x800000.0p-23, 0, 0},
 	{0xfe0000.0p-24, 0x8080ac.0p-30, -0x14ee431dae6675.0p-84},
 	{0xfc0000.0p-24, 0x8102b3.0p-29, -0x1db29ee2d83718.0p-84},
@@ -178,13 +151,9 @@ static const struct {
 	{0x818000.0p-24, 0xae768f.0p-24, +0x17c35c55a04a83.0p-81},
 	{0x810000.0p-24, 0xaf7415.0p-24, +0x1448324047019b.0p-78},
 	{0x808000.0p-24, 0xb07298.0p-24, -0x1750ee3915a198.0p-78},
-	{0x800000.0p-24, 0xb17218.0p-24, -0x105c610ca86c39.0p-81},
+	{0x800000.0p-24, 0xb17218.0p-24, -0x105c610ca86c39.0p-81}
 };
-
-static const struct {
-	float	H;
-	float	E;
-} U[TSIZE] = {
+static const t_tab2	g_u[INTERVALS + 1] = {
 	{0x800000.0p-23, 0},
 	{0x810000.0p-23, -0x800000.0p-37},
 	{0x820000.0p-23, -0x800000.0p-35},
@@ -313,119 +282,67 @@ static const struct {
 	{0xfd0000.0p-23, -0x900000.0p-36},
 	{0xfe0000.0p-23, -0x800000.0p-37},
 	{0xff0000.0p-23, -0x800000.0p-39},
-	{0x800000.0p-22, 0},
+	{0x800000.0p-22, 0}
 };
 
-#define	RETURN1(rp, v)	RETURNF(v)
-#define	RETURN2(rp, h, l)	RETURNI((h) + (l))
+void		extract_ldbl80_word(long double x, uint16_t *exp, uint64_t *mant)
+{
+	t_ieeel2bits	converter;
+
+	converter.e = x;
+	*exp = converter.xbits.expsign;
+	*mant = converter.xbits.man;
+}
+
+void		set_ldbl_expsign(long double *x, uint16_t exp)
+{
+	t_ieeel2bits	converter;
+
+	converter.e = *x;
+	converter.xbits.expsign = exp;
+	*x = converter.e;
+}
+
+long double	solve_polynome(long double x, long double ex_of, uint64_t man)
+{
+	int			i;
+	long double	dec;
+	long double	ent;
+	long double	tmp;
+
+	i = ((man & 0x7fffffffffffffffull) + (1ll << (64 - 9))) >> (64 - 8);
+	ent = (x - g_u[i].h) * g_t[i].g + g_u[i].e;
+	tmp = ent * ent;
+	dec = tmp * ent * tmp * (tmp * (ent * P8 + P7) + (ent * P6 + P5));
+	dec += (g_t[i].f_lo + ex_of * g_t[INTERVALS].f_lo);
+	dec += tmp * ent * (ent * P4 + P3);
+	dec += tmp * P2;
+	tmp = g_t[i].f_hi + ex_of * g_t[INTERVALS].f_hi;
+	dec += (tmp - (tmp + ent)) + ent;
+	ent = (tmp + ent);
+	return (ent + dec);
+}
 
 long double	ft_logl(long double x)
 {
-	long double d, dk, val_hi, val_lo, z;
-	uint64_t ix, lx;
-	int i, k;
-	uint16_t hx;
+	int			exp_off;
+	uint64_t	mant;
+	uint16_t	expo;
 
-	EXTRACT_LDBL80_WORDS(hx, lx, x);
-	k = -16383;
-	if (hx == 0 || hx >= 0x8000) {
-		if (((hx & 0x7fff) | lx) == 0)
-			RETURN1(rp, -1 / zero);
-		if (hx != 0)
-			RETURN1(rp, (x - x) / zero);
+	exp_off = -16383;
+	extract_ldbl80_word(x, &expo, &mant);
+	if (expo == 0 || expo >= 0x8000)
+	{
+		if (((expo & 0x7fff) | mant) == 0)
+			return (-1 / 0.0);
+		if (expo != 0)
+			return ((x - x) / 0.0);
 		x *= 0x1.0p65;
-		EXTRACT_LDBL80_WORDS(hx, lx, x);
-		k = -16383 - 65;
-	} else if (hx >= 0x7fff || (lx & 0x8000000000000000ULL) == 0)
-		RETURN1(rp, x + x);
-	k += hx;
-	ix = lx & 0x7fffffffffffffffULL;
-	dk = k;
-
-	SET_LDBL_EXPSIGN(x, 0x3fff);
-
-#define	L2I	(64 - LOG2_INTERVALS)
-	i = (ix + (1LL << (L2I - 2))) >> (L2I - 1);
-	if (0)
-		d = x * G(i) - 1;
-	else {
-		d = (x - H(i)) * G(i) + E(i);
+		extract_ldbl80_word(x, &expo, &mant);
+		exp_off = -16383 - 65;
 	}
-	z = d * d;
-	val_lo = z * d * z * (z * (d * P8 + P7) + (d * P6 + P5)) +
-	    (F_lo(i) + dk * ln2_lo + z * d * (d * P4 + P3)) + z * P2;
-	val_hi = d;
-
-	_3sumF(val_hi, val_lo, F_hi(i) + dk * ln2_hi);
-	RETURN2(rp, val_hi, val_lo);
-}
-
-long double	log1pl(long double x)
-{
-	long double d, d_hi, d_lo, dk, f_lo, val_hi, val_lo, z;
-	long double f_hi, twopminusk;
-	uint64_t ix, lx;
-	int i, k;
-	int16_t ax, hx;
-
-	DOPRINT_START(&x);
-	EXTRACT_LDBL80_WORDS(hx, lx, x);
-	if (hx < 0x3fff) {
-		ax = hx & 0x7fff;
-		if (ax >= 0x3fff) {
-			if (ax == 0x3fff && lx == 0x8000000000000000ULL)
-				RETURNP(-1 / zero);
-			RETURNP((x - x) / (x - x));
-		}
-		if (ax <= 0x3fbe) {
-			if ((int)x == 0)
-				RETURNP(x);
-		}
-		f_hi = 1;
-		f_lo = x;
-	} else if (hx >= 0x7fff) {
-		RETURNP(x + x);
-	} else if (hx < 0x407f) {
-		f_hi = x;
-		f_lo = 1;
-	} else {
-		f_hi = x;
-		f_lo = 0;
-	}
-	ENTERI();
-	x = f_hi + f_lo;
-	f_lo = (f_hi - x) + f_lo;
-
-	EXTRACT_LDBL80_WORDS(hx, lx, x);
-	k = -16383;
-
-	k += hx;
-	ix = lx & 0x7fffffffffffffffULL;
-	dk = k;
-
-	SET_LDBL_EXPSIGN(x, 0x3fff);
-	twopminusk = 1;
-	SET_LDBL_EXPSIGN(twopminusk, 0x7ffe - (hx & 0x7fff));
-	f_lo *= twopminusk;
-
-	i = (ix + (1LL << (L2I - 2))) >> (L2I - 1);
-
-	if (0)
-		d_hi = x * G(i) - 1;
-	else {
-		d_hi = (x - H(i)) * G(i) + E(i);
-	}
-	d_lo = f_lo * G(i);
-
-	d = d_hi + d_lo;
-	d_lo = d_hi - d + d_lo;
-	d_hi = d;
-
-	z = d * d;
-	val_lo = z * d * z * (z * (d * P8 + P7) + (d * P6 + P5)) +
-	    (F_lo(i) + dk * ln2_lo + d_lo + z * d * (d * P4 + P3)) + z * P2;
-	val_hi = d_hi;
-
-	_3sumF(val_hi, val_lo, F_hi(i) + dk * ln2_hi);
-	RETURN2PI(val_hi, val_lo);
+	else if (expo >= 0x7fff || (mant & 0x8000000000000000ull) == 0)
+		return (x + x);
+	set_ldbl_expsign(&x, 0x3fff);
+	return (solve_polynome(x, exp_off + expo, mant));
 }

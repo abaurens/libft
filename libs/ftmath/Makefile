@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/20 12:05:26 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/22 14:24:59 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC	:=	\
 		ft_abs.c	ft_nan.c	\
 		ft_rad.c	ft_pow.c	\
 		ft_sqrt.c	cordic.c	\
-		ft_log.c
+		ft_log.c	ft_logl.c
 
 include variables.mk
 include rules.mk
