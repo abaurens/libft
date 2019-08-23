@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   k_expl.h                                           :+:      :+:    :+:   */
+/*   ft_expl.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 00:30:17 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/23 02:11:48 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/23 07:21:20 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef K_EXPL_H
-# define K_EXPL_H
+#ifndef FT_EXPL_H
+# define FT_EXPL_H
 
 # define LOG2_INTERVALS	7
 # define INTERVALS		128
