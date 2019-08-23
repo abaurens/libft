@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 07:33:40 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/23 09:50:42 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/23 10:33:14 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ double	ft_cos(double x)
 	}
 	else if (n >= 0x7ff00000)
 		return (x - x);
-	n = __ieee754_rem_pio2(x, y);
+	n = ft_rem_pio2(x, y);
 	if (!(n & 3))
 		return (ft_kernel_cos(y[0], y[1]));
 	if ((n & 3) == 1)

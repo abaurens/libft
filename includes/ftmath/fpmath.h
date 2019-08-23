@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 13:46:55 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/23 07:15:49 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/23 10:52:30 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,10 @@ t_ieeel2bits		ld80c(uint64_t m, uint16_t ex, long double v);
 void				set_ldbl_expsign(long double *x, uint16_t exp);
 void				extract_ldbl80_word(long double x, uint16_t *exp,
 										uint64_t *man);
+
+/*
+**	ft_rem_pio2.c
+*/
+int					ft_rem_pio2(double x, double *y);
 
 #endif
