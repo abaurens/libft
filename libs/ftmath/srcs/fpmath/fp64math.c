@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fpmath.c                                           :+:      :+:    :+:   */
+/*   fp64math.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 06:00:15 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/23 06:02:53 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/23 07:20:05 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,29 +28,11 @@ uint32_t		get_low_word(double x)
 	return (gh_u.parts.lsw);
 }
 
-t_ieeel2bits	ld80c(uint64_t m, uint16_t ex, long double v)
+void			insert_word(double *d, uint32_t high, uint32_t low)
 {
-	t_ieeel2bits	res;
+	t_ieee_double_shape_type	iw_u;
 
-	res.xbits.man = m;
-	res.xbits.expsign = (0x3fff + (ex)) | (v < 0 ? 0x8000 : 0);
-	return (res);
-}
-
-void			set_ldbl_expsign(long double *x, uint16_t exp)
-{
-	t_ieeel2bits	converter;
-
-	converter.e = *x;
-	converter.xbits.expsign = exp;
-	*x = converter.e;
-}
-
-void			extract_ldbl80_word(long double x, uint16_t *exp, uint64_t *man)
-{
-	t_ieeel2bits	converter;
-
-	converter.e = x;
-	*exp = converter.xbits.expsign;
-	*man = converter.xbits.man;
+	iw_u.parts.msw = high;
+	iw_u.parts.lsw = low;
+	*d = iw_u.value;
 }

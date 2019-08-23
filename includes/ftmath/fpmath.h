@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 13:46:55 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/23 06:09:13 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/23 07:15:49 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@
 # else
 #  define IEEE_WORD_ORDER	BYTE_ORDER
 # endif
+
+typedef union		u_ieee_float_shape_type
+{
+	float			value;
+	unsigned int	word;
+}					t_ieee_float_shape_type;
 
 typedef union		u_ieee_double_shape_type
 {
@@ -81,8 +87,22 @@ typedef struct		s_tab2
 	float			e;
 }					t_tab2;
 
-uint32_t			get_high_word(double x);
+/*
+**	fp32math.c
+*/
+float				set_float_word(uint32_t val);
+uint32_t			get_float_word(float x);
+
+/*
+**	fp64maath.c
+*/
 uint32_t			get_low_word(double x);
+uint32_t			get_high_word(double x);
+void				insert_word(double *d, uint32_t high, uint32_t low);
+
+/*
+**	fp80math.c
+*/
 t_ieeel2bits		ld80c(uint64_t m, uint16_t ex, long double v);
 void				set_ldbl_expsign(long double *x, uint16_t exp);
 void				extract_ldbl80_word(long double x, uint16_t *exp,

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exp.c                                           :+:      :+:    :+:   */
+/*   ft_expf.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/23 03:42:25 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/23 07:15:54 by abaurens         ###   ########.fr       */
+/*   Created: 2019/08/23 06:17:12 by abaurens          #+#    #+#             */
+/*   Updated: 2019/08/23 07:20:13 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,11 @@
 #include <inttypes.h>
 #include <sys/cdefs.h>
 #include "ftmath/fpmath.h"
-#include "ftmath/ft_exp.h"
+#include "ftmath/ft_expf.h"
 
-static const double	g_half[2] = {0.5, -0.5};
-static const double	g_ln2hi[2] = {
-	6.93147180369123816490e-01,
-	-6.93147180369123816490e-01
-};
-static const double	g_ln2lo[2] = {
-	1.90821492927058770002e-10,
-	-1.90821492927058770002e-10
-};
+static const float	g_half[2] = {0.5, -0.5};
+static const float	g_ln2hi[2] = { 6.9314575195e-01, -6.9314575195e-01};
+static const float	g_ln2lo[2] = {1.4286067653e-06, -1.4286067653e-06};
 
 static double	compute(double x, double hi, double lo, int32_t k)
 {
@@ -35,21 +29,21 @@ static double	compute(double x, double hi, double lo, int32_t k)
 	double		c;
 
 	t = x * x;
-	if (k >= -1021)
-		insert_word(&twopk, 0x3ff00000 + (k << 20), 0);
+	if (k >= -125)
+		twopk = set_float_word(0x3f800000 + (k << 23));
 	else
-		insert_word(&twopk, 0x3ff00000 + ((k + 1000) << 20), 0);
-	c = x - t * (P1 + t * (P2 + t * (P3 + t * (P4 + t * P5))));
+		twopk = set_float_word(0x3f800000 + ((k + 100) << 23));
+	c = x - t * (P1 + t * P2);
 	if (k == 0)
-		return (1.0 - ((x * c) / (c - 2.0) - x));
-	y = 1.0 - ((lo - (x * c) / (2.0 - c)) - hi);
-	if (k >= -1021)
+		return (1.0 - ((x * c) / (c - (float)2.0) - x));
+	y = 1.0 - ((lo - (x * c) / ((float)2.0 - c)) - hi);
+	if (k >= -125)
 	{
-		if (k == 1024)
-			return (y * 2.0 * 0x1p1023);
+		if (k == 128)
+			return (y * 2.0F * 0x1p127F);
 		return (y * twopk);
 	}
-	return (y * twopk * TWOM1000);
+	return (y * twopk * TWOM100);
 }
 
 static double	get_components(double x, uint32_t hx, int32_t xsb)
@@ -61,12 +55,12 @@ static double	get_components(double x, uint32_t hx, int32_t xsb)
 	k = 0;
 	hi = 0.0;
 	lo = 0.0;
-	if (hx > 0x3fd62e42)
+	if (hx > 0x3eb17218)
 	{
-		k = (int)(INVLN2 * x + g_half[xsb]);
-		hi = x - ((double)k) * g_ln2hi[0];
-		lo = ((double)k) * g_ln2lo[0];
-		if (hx < 0x3FF0A2B2)
+		k = INVLN2 * x + g_half[xsb];
+		hi = x - ((float)k) * g_ln2hi[0];
+		lo = ((float)k) * g_ln2lo[0];
+		if (hx < 0x3F851592)
 		{
 			hi = x - g_ln2hi[xsb];
 			lo = g_ln2lo[xsb];
@@ -74,33 +68,31 @@ static double	get_components(double x, uint32_t hx, int32_t xsb)
 		}
 		x = (hi - lo);
 	}
-	else if (hx < 0x3e300000 && HUDGE2 + x > 1.0)
+	else if (hx < 0x39000000 && HUGE2 + x > 1.0)
 		return (1.0 + x);
-	else if (hx >= 0x3e300000)
+	else if (hx >= 0x39000000)
 		k = 0;
 	return (compute(x, hi, lo, k));
 }
 
-double			ft_exp(double x)
+float			ft_expf(float x)
 {
-	uint32_t	hx;
 	int32_t		xsb;
+	uint32_t	hx;
 
-	hx = get_high_word(x);
+	hx = get_float_word(x);
 	xsb = (hx >> 31) & 1;
 	hx &= 0x7fffffff;
-	if (hx >= 0x40862E42)
+	if (hx >= 0x42b17218)
 	{
-		if (hx >= 0x7ff00000)
-		{
-			if (((hx & 0xfffff) | get_low_word(x)) != 0)
-				return (x + x);
+		if (hx > 0x7f800000)
+			return (x + x);
+		if (hx == 0x7f800000)
 			return (xsb == 0) ? x : 0.0;
-		}
 		if (x > O_THRESHOLD)
-			return (HUDGE2 * HUDGE2);
+			return (HUGE2 * HUGE2);
 		if (x < U_THRESHOLD)
-			return (TWOM1000 * TWOM1000);
+			return (TWOM100 * TWOM100);
 	}
 	return (get_components(x, hx, xsb));
 }

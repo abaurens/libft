@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/23 06:05:29 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/23 07:08:24 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME	:=	ftmath.ao
 
 # SOURCES
 
-FLPM	:=	fpmath.c
+FLPM	:=	fp32math.c fp64math.c fp80math.c
 FLPM	:=	$(addprefix fpmath/, $(FLPM))
 
 
@@ -29,7 +29,8 @@ SRC		:=	\
 		ft_rad.c	ft_pow.c	\
 		ft_sqrt.c	cordic.c	\
 		ft_log.c	ft_logl.c	\
-		ft_expl.c	ft_exp.c
+		ft_expl.c	ft_exp.c	\
+		ft_expf.c
 
 include variables.mk
 include rules.mk

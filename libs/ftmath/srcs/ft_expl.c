@@ -6,14 +6,14 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 16:26:10 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/23 06:03:45 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/23 07:08:45 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include <float.h>
 #include <sys/cdefs.h>
-#include "ftmath/k_expl.h"
+#include "ftmath/ft_expl.h"
 #include "ftmath/fpmath.h"
 
 static const t_tab	g_tbl[INTERVALS] = {
