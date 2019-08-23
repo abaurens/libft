@@ -6,12 +6,12 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 13:42:15 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/22 15:30:14 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/23 06:07:07 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftmath/fpmath.h"
 #include <inttypes.h>
+#include "ftmath/fpmath.h"
 
 #define INTERVALS	128
 #define P8			(-1.2518388626763144e-1L)
@@ -285,25 +285,8 @@ static const t_tab2	g_u[INTERVALS + 1] = {
 	{0x800000.0p-22, 0}
 };
 
-void		extract_ldbl80_word(long double x, uint16_t *exp, uint64_t *mant)
-{
-	t_ieeel2bits	converter;
-
-	converter.e = x;
-	*exp = converter.xbits.expsign;
-	*mant = converter.xbits.man;
-}
-
-void		set_ldbl_expsign(long double *x, uint16_t exp)
-{
-	t_ieeel2bits	converter;
-
-	converter.e = *x;
-	converter.xbits.expsign = exp;
-	*x = converter.e;
-}
-
-long double	solve_polynome(long double x, long double ex_of, uint64_t man)
+static long double	solve_polynome(long double x, long double ex_of,
+										uint64_t man)
 {
 	int			i;
 	long double	dec;
@@ -323,7 +306,7 @@ long double	solve_polynome(long double x, long double ex_of, uint64_t man)
 	return (ent + dec);
 }
 
-long double	ft_logl(long double x)
+long double			ft_logl(long double x)
 {
 	int			exp_off;
 	uint64_t	mant;

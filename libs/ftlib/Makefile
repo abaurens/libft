@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/15 10:10:59 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/22 18:02:38 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRC		:=	\
 			ft_strdup.c				\
 			ft_strstr.c				\
 			ft_strsub.c				\
+			ft_isspace.c			\
 			ft_strncat.c			\
 			ft_isupper.c			\
 			ft_strncmp.c			\

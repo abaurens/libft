@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 12:08:00 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/22 15:31:44 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/23 06:12:39 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static double	ft_get_integ(double n, uint64_t *integ)
 	return (n);
 }
 
-double				ft_log(double nb)
+double			ft_log(double nb)
 {
 	uint16_t	i;
 	uint64_t	integ;
@@ -63,7 +63,7 @@ double				ft_log(double nb)
 	return (integ + ((double)frac / (1LLU << 52)));
 }
 
-float				ft_logf(float nb)
+float			ft_logf(float nb)
 {
 	uint16_t	i;
 	uint64_t	integ;

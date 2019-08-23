@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 16:09:37 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/14 18:40:41 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/22 18:02:13 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ char	ft_strnequ(char const *s1, char const *s2, size_t n);
 
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+int		ft_isspace(int c);
 
 size_t	ft_strlen(const char *str);
 size_t	ft_numlen(long int nb);
