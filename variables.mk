@@ -76,4 +76,4 @@ endif
 	$(eval FCNT	= $(words $(LIBS)))
 	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
 	@$(CC) $(basename $@) SUBID=$(CMPT) TOTAL_SIZE=$(FCNT) MAX_LEN=$(MAX_LEN)
-	@$(CP) $(basename $@)/$(notdir $@) $(LIBS_D)/
+	@#$(CP) $(basename $@)/$(notdir $@) $(LIBS_D)/

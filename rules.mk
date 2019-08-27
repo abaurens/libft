@@ -14,6 +14,8 @@ $(NAME):	$(OBJ)
 	@$(LINKER) $(NAME) $(OBJ) $(LDFLAGS)
 ifeq ($(LINKER), ar rc)
 	@ranlib $(NAME)
+else
+	@$(CP) $(NAME) ../
 endif
 
 -include $(DEP)
