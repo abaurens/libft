@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 08:43:21 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/28 19:52:00 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/28 19:54:35 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ static uint32_t	del(char disp[MAX_CMD + 1], uint32_t i)
 
 static char		insert(const char c, char buf[MAX_CMD + 1], uint32_t i)
 {
-	/*ft_dprintf(2, "\e[31m\\%d(%c)\e[0m\n", c, c);
-	sleep(2);*/
 	if (c == 127)
 		return (-del(buf, i));
 	if (!ft_isprint(c))
@@ -86,7 +84,7 @@ char			line_editor_reader(const int fd, char **ret)
 	return (1);
 }
 
-char	*ft_readline(const int fd, const char *prompt)
+char			*ft_readline(const int fd, const char *prompt)
 {
 	char		c;
 	char		*res;
