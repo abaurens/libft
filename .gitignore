@@ -61,3 +61,6 @@ dkms.conf
 test
 main.c
 *.ao
+
+# Temp ignored
+ft_rem_pio2.c
