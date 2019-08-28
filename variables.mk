@@ -12,7 +12,11 @@
 
 RM		:=	rm -rf
 CP		:=	cp -rf
+
 PWD		:=	$(dir $(abspath $(firstword $(MAKEFILE_LIST))))
+ifneq ($(lastword $(subst /, ,$(PWD))), libft)
+	PWD := $(shell echo $(PWD) | sed 's:libft/.*:libft/:g')
+endif
 
 GRN		:=	\e[1;92m
 BLE		:=	\e[1;34m
@@ -29,7 +33,7 @@ OBJD	:=	objs
 CMPT	:=	0
 FCNT	:=	$(words $(SRC))
 
-INCLDS	:=	-I../../includes
+INCLDS	:=	-I$(PWD)includes
 override CFLAGS	:=	$(CFLAGS) $(INCLDS) -MMD -MP -W -Wall -Wextra -Werror
 
 OBJ		:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
@@ -66,6 +70,10 @@ TOTAL_SIZE	:=	1
 endif
 ifndef MAX_LEN
 MAX_LEN	:=	1
+endif
+
+ifndef ENABLE_TERMCAPS
+ENABLE_TERMCAPS	:=	0
 endif
 
 # RULES

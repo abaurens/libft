@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 $(NAME):	$(OBJ)
-	@$(LINKER) $(NAME) $(OBJ) $(LDFLAGS)
+	@$(LINKER) $(NAME) $(OBJ) $(strip $(LDFLAGS))
 ifeq ($(LINKER), ar rc)
 	@ranlib $(NAME)
 else

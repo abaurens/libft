@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 14:32:55 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/27 21:42:28 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/28 07:08:49 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,11 @@ int		ft_atoi(const char *str);
 long	ft_atol(const char *str);
 long	ft_atol_base(const char *str, const char *base);
 
+/*
+**	FT_DISABLE_TERMCAPS
+*/
 char	ft_cmd(void);
-char	ft_fcmd(const int fd);
+char	ft_dcmd(const int fd);
 char	ft_scmd(const char *cmdline);
 
 #endif

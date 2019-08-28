@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 21:39:12 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/27 21:42:22 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/28 06:55:40 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 char	ft_cmd(void)
 {
-	return (ft_fcmd(0));
+	return (ft_dcmd(0));
 }

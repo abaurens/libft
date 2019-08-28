@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/19 16:02:40 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/28 08:29:33 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,16 @@
 
 include	variables.mk
 
+override LDFLAGS :=	$(LDFLAGS) -L. -lft
+
+ifdef ENABLE_TERMCAPS
+ifeq ($(ENABLE_TERMCAPS), 1)
+override LDFLAGS :=	$(LDFLAGS) -lncurses
+endif
+endif
+
 CC			:=	make --no-print-dir -I$(PWD) -C
 LINKER		:=	ar rc
-RM			:=	rm -rf
-CP			:=	cp -rf
 NAME		:=	libft.a
 
 LIBS_D	:=	libs
@@ -58,6 +64,6 @@ fclean:
 re:		fclean all
 
 test:	$(NAME) main.c
-	gcc -o test main.c -I./includes -L. -lft #-ansi -pedantic
+	gcc -o test main.c $(strip $(CFLAGS)) $(strip $(LDFLAGS))
 
 .PHONY: all clean fclean re

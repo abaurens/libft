@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 13:46:55 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/23 10:52:30 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/28 06:54:48 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FPMATH_H
 
 # include <inttypes.h>
-# include <machine/endian.h>
+# include <endian.h>
 
 # ifdef __arm__
 #  if defined(__VFP_FP__) || defined(__ARM_EABI__)

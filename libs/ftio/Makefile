@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/27 21:48:35 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/28 09:03:37 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,11 +58,15 @@ IOCONV	:=	$(addprefix uhexa/,uhexa.c h_len.c h_exotic.c)			\
 			dbl_compact.c	dbl_floating.c
 IOCONV	:=	$(addprefix convert/,$(IOCONV))
 
+CMD_RD	:=	cmd_reader.c
+CMD_RD	:=	$(addprefix ft_cmd/,$(CMD_RD))
+
 SRC		:=	$(IOCORE)				\
 			$(IOCONV)	$(STRCNV)	\
 			$(BFLOAT)	$(DRAGON)	\
+			$(CMD_RD)				\
 			gnl.c			cgnl.c				sgnl.c				\
-			ft_cmd.c		ft_fcmd.c			ft_scmd.c			\
+			ft_cmd.c		ft_dcmd.c			ft_scmd.c			\
 			ft_atoi.c		ft_atol.c			ft_itoa.c			\
 			ft_flags.c		ft_debugf.c			ft_putstr.c			\
 			ft_printf.c		ft_putnbr.c			ft_fprintf.c		\
@@ -73,4 +77,5 @@ SRC		:=	$(IOCORE)				\
 			get_next_line.c	ft_putnbr_base.c	ft_putnbr_base_fd.c
 
 include variables.mk
+
 include rules.mk
