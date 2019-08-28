@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/28 09:03:37 by abaurens         ###   ########.fr        #
+#    Updated: 2019/08/28 17:55:42 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,12 @@ IOCONV	:=	$(addprefix uhexa/,uhexa.c h_len.c h_exotic.c)			\
 			dbl_compact.c	dbl_floating.c
 IOCONV	:=	$(addprefix convert/,$(IOCONV))
 
-CMD_RD	:=	cmd_reader.c
+ESC_SEQ	:=	escape_arrows.c	escape_end_begin.c
+ESC_SEQ	:=	$(addprefix escape_sequences/,$(ESC_SEQ))
+
+CMD_RD	:=	\
+			$(ESC_SEQ)	\
+			cmd_reader.c	escape_sequences.c
 CMD_RD	:=	$(addprefix ft_cmd/,$(CMD_RD))
 
 SRC		:=	$(IOCORE)				\
@@ -66,7 +71,7 @@ SRC		:=	$(IOCORE)				\
 			$(BFLOAT)	$(DRAGON)	\
 			$(CMD_RD)				\
 			gnl.c			cgnl.c				sgnl.c				\
-			ft_cmd.c		ft_dcmd.c			ft_scmd.c			\
+			ft_cmd.c		ft_dcmd.c			\
 			ft_atoi.c		ft_atol.c			ft_itoa.c			\
 			ft_flags.c		ft_debugf.c			ft_putstr.c			\
 			ft_printf.c		ft_putnbr.c			ft_fprintf.c		\

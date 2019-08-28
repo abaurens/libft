@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 16:09:37 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/22 18:02:13 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/28 19:11:30 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strcat(char *s1, const char *s2);
 char	*ft_strcpy(char *dst, const char *src);
+char	*ft_strndup(const char *str, size_t len);
 char	*ft_strstr(const char *s1, const char *s2);
 char	*ft_strmap(char const *s, char (*f)(char));
 char	*ft_strjoin(char const *s1, char const *s2);

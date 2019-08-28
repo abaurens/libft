@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 13:46:55 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/28 06:54:48 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/08/28 11:33:05 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 # define FPMATH_H
 
 # include <inttypes.h>
-# include <endian.h>
+
+# if (defined(__APPLE__) || defined(__MACH__))
+#  include <machine/endian.h>
+# else
+#  include <endian.h>
+# endif
 
 # ifdef __arm__
-#  if defined(__VFP_FP__) || defined(__ARM_EABI__)
+#  if (defined(__VFP_FP__) || defined(__ARM_EABI__))
 #   define IEEE_WORD_ORDER	BYTE_ORDER
 #  else
 #   define IEEE_WORD_ORDER	BIG_ENDIAN
@@ -37,7 +42,7 @@ typedef union		u_ieee_double_shape_type
 	double			value;
 	struct
 	{
-# if IEEE_WORD_ORDER == BIG_ENDIAN
+# if (IEEE_WORD_ORDER == BIG_ENDIAN)
 
 		uint32_t	msw;
 		uint32_t	lsw;
