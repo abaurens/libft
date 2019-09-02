@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/02 05:43:15 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/02 19:40:39 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,14 +27,14 @@ endif
 
 override LDFLAGS :=	$(LDFLAGS) -lreadline
 
-CC			:=	make --no-print-dir -I$(PWD) -C
-LINKER		:=	ar rc
-NAME		:=	libft.a
+CC		:=	make --no-print-dir -I$(PWD) -C
+NAME	:=	libft.a
+LINKER	:=	ar rc
 
 LIBS_D	:=	libs
 LIBS	:=	\
 			ftio.ao		\
-			ftlib.ao		\
+			ftlib.ao	\
 			ftcipher.ao	\
 			ftmath.ao	\
 			ftregex.ao
@@ -46,10 +46,19 @@ LIBS	:=	$(addprefix $(LIBS_D)/, $(LIBS))
 MAX_LEN	:=	$(shell echo $(basename $(notdir $(lastword $(LIBS))))|\
 			awk '{print length}')
 
+
+VAR_	:=	$(strip $(foreach mk,	\
+	$(LIBS),	\
+	$(shell make -I$(PWD) -qC $(basename $(mk))/ || echo "$(RM) $(mk)")))
+
 $(NAME):	$(LIBS)
+	@printf "var: '$(VAR_)'\n"
 	@$(LINKER) $(NAME) $(LIBS)
 	@ranlib $(NAME)
 	@$(call pinfo,DONE!)
+	@printf "$(SHOW)"
+
+.PHONY: $(NAME)
 
 all:	$(NAME)
 
@@ -68,4 +77,5 @@ re:		fclean all
 test:	$(NAME) main.c
 	gcc -o test main.c $(strip $(CFLAGS)) $(strip $(LDFLAGS))
 
-.PHONY: all clean fclean re
+.PHONY:		all clean fclean re
+.DEFAULT:	$(NAME)

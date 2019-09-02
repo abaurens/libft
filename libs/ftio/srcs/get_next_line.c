@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 19:59:53 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/04 02:22:49 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/02 13:56:10 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,30 +62,14 @@ static int			ft_fd_line(const int fd, char **line, char **save)
 	return (n != 0 || *save != NULL);
 }
 
-static void			ft_gnl_del(t_gnl **lst, t_gnl *to_rm)
-{
-	t_gnl			*cur;
-
-	if (*lst == to_rm)
-		*lst = to_rm->next;
-	else
-	{
-		cur = *lst;
-		while (cur && cur->next && cur->next != to_rm)
-			cur = cur->next;
-		if (cur && cur->next == to_rm)
-			cur->next = to_rm->next;
-	}
-	free(to_rm);
-}
-
 int					get_next_line(const int fd, char **line)
 {
-	static t_gnl	*lst = NULL;
-	t_gnl			*cur;
+	t_gnl			*lst;
+	t_gnl_elem		*cur;
 	int				ret;
 
-	cur = lst;
+	lst = get_gnl_bufer_list();
+	cur = lst->head;
 	while (cur && cur->fd != fd)
 		cur = cur->next;
 	if (!cur)
@@ -94,10 +78,10 @@ int					get_next_line(const int fd, char **line)
 			return (-1);
 		cur->fd = fd;
 		cur->sv = NULL;
-		cur->next = lst;
-		lst = cur;
+		cur->next = lst->head;
+		lst->head = cur;
 	}
 	if ((ret = ft_fd_line(cur->fd, line, &cur->sv)) == 0)
-		ft_gnl_del(&lst, cur);
+		gnl_flush_elem(cur);
 	return (ret);
 }

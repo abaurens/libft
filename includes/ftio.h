@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 14:32:55 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/28 07:08:49 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/02 14:12:28 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,19 @@ int		ft_vasprintf(char **ret, const char *frm, va_list ap);
 int		ft_vfprintf(FILE *stream, const char *frm, va_list ap);
 int		ft_vsnprintf(char *dst, size_t ln, const char *frm, va_list ap);
 
-int		gnl(const int fd, char **line);
-int		sgnl(const int fd, char **line);
-int		cgnl(const int fd, char **line, const char *authorized);
+/*
+**	avoid re-defining those prototypes if they already exist
+*/
+# ifndef GNL_H
+
+void			gnl_flush(const int fd);
+void			gnl_clear(void);
+
+# endif
+
+char	gnl(const int fd, char **line);
+char	sgnl(const int fd, char **line);
+char	cgnl(const int fd, char **line, const char *authorized);
 int		get_next_line(const int fd, char **line);
 
 void	ft_putnbr(int n);
@@ -93,8 +103,7 @@ long	ft_atol_base(const char *str, const char *base);
 /*
 **	FT_DISABLE_TERMCAPS
 */
-char	ft_cmd(void);
-char	ft_dcmd(const int fd);
-char	ft_scmd(const char *cmdline);
+char	*ft_readline(const char *prompt);
+char	*ft_dreadline(const int fd, const char *prompt);
 
 #endif

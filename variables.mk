@@ -12,6 +12,7 @@
 
 RM		:=	rm -rf
 CP		:=	cp -rf
+LN		:=	ln -s
 
 PWD		:=	$(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 ifneq ($(lastword $(subst /, ,$(PWD))), libft)
@@ -26,6 +27,11 @@ RED		:=	\e[1;91m
 NRM		:=	\e[0m
 
 CURUP	:=	\e[1A
+CLEAR	:=	\e[0K
+HIDE	:=	\e[?25l
+SHOW	:=	\e[?25h
+HIDE	:=
+SHOW	:=
 
 SRCD	:=	srcs
 OBJD	:=	objs
@@ -57,8 +63,8 @@ define pinfo
 	@printf '$(PINFO)\n'
 endef
 
-LINE	:=	" [$(CYA)%d/%d$(NRM)] $(RED)%-$(MAX_LEN)s$(NRM) $(CYA)[%3d%%]  \
-$(BLE)%-24s $(MAG)=>$(BLE)\t%-24s$(NRM)\n"
+LINE	:=	"[$(CYA)%d/%d$(NRM)] $(RED)%-$(MAX_LEN)s$(NRM) $(CYA)[%3d%%]  \
+$(BLE)%-24s $(MAG)=>$(BLE)    %s$(NRM)$(CLEAR)\n"
 
 EMPTY	:=	$(shell printf '%80s' "")#80 spaces
 
@@ -78,10 +84,12 @@ endif
 
 # RULES
 
-%.ao:	$(dir %)/Makefile
+%.ao:
+	@printf "$(HIDE)"
 	@$(call vinfo,Compiling...,TEXT)
 	@if [[ $(CMPT) -eq 0 ]]; then printf "$(TEXT)\n"; fi
 	$(eval FCNT	= $(words $(LIBS)))
 	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
-	@$(CC) $(basename $@) SUBID=$(CMPT) TOTAL_SIZE=$(FCNT) MAX_LEN=$(MAX_LEN)
+	@$(CC) $(basename $@) SUBID=$(CMPT) TOTAL_SIZE=$(FCNT) MAX_LEN=$(MAX_LEN)\
+	|| printf "$(SHOW)"
 	@#$(CP) $(basename $@)/$(notdir $@) $(LIBS_D)/

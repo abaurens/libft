@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 08:43:21 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/02 05:52:06 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/02 19:40:46 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 #include "ftlib.h"
 #include "ftio.h"
 
-static void		print_buf(char disp[MAX_CMD + 1], uint32_t i, char last)
+static void		print_buf(t_cmdline buf, uint32_t i, char last)
 {
 	write(1, "\033[u", 3);
 	write(1, "\033[0J", 4);
-	write(1, disp, ft_strlen(disp));
+	write(1, buf, ft_strlen(buf));
 	write(1, "\033[u", 3);
 	if (i > 0)
 	{
@@ -33,20 +33,19 @@ static void		print_buf(char disp[MAX_CMD + 1], uint32_t i, char last)
 		write(1, "\n", 1);
 }
 
-
-static uint32_t	del(char disp[MAX_CMD + 1], uint32_t i)
+static uint32_t	del(t_cmdline buf, uint32_t i)
 {
 	uint32_t	j;
 
 	if (i <= 0)
 		return (0);
 	j = i - 1;
-	while (disp[j++])
-		disp[j - 1] = disp[j];
+	while (buf[j++])
+		buf[j - 1] = buf[j];
 	return (1);
 }
 
-static char		insert(const char c, char buf[MAX_CMD + 1], uint32_t i)
+static char		insert(const char c, t_cmdline buf, uint32_t i)
 {
 	if (c == 127)
 		return (-del(buf, i));
@@ -60,32 +59,32 @@ char			line_editor_reader(const int fd, char **ret)
 {
 	char		t;
 	uint32_t	i;
-	char		bf[MAX_CMD + 1];
+	t_cmdline	buf;
 
 	i = 0;
-	*bf = 0;
+	*buf = 0;
 	write(1, "\033[s", 3);
 	while (1)
 	{
 		if (read(fd, &t, 1) < 0)
 			return (-1);
-		if ((t == 4 && *bf == 0) || t == 12)
+		if ((t == 4 && *buf == 0) || t == 12)
 			return (t);
 		if (t == 27)
-			esc_sequence(fd, bf, &i);
+			esc_sequence(fd, buf, &i);
 		else if (t != '\n' && t != 4)
-			i += insert(t, bf, i);
+			i += insert(t, buf, i);
 		else if (t == '\n')
 			break ;
 		else
 			continue ;
-		print_buf(bf, i, 0);
+		print_buf(buf, i, 0);
 	}
-	print_buf((*ret = ft_strdup(bf)), 0, 1);
+	print_buf((*ret = ft_strdup(buf)), 0, 1);
 	return (1);
 }
 
-char			*ft_readline(const int fd, const char *prompt)
+char			*ft_readline_(const int fd, const char *prompt)
 {
 	char		c;
 	char		*res;

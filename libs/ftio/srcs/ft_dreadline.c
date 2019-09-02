@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dcmd.c                                          :+:      :+:    :+:   */
+/*   ft_dreadline.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 21:41:43 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/02 05:52:43 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/02 15:39:08 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ int		init_term(t_term *term)
 	term->c_lflag &= ~ECHO;
 	term->c_cc[VMIN] = 1;
 	term->c_cc[VTIME] = 0;
-	/*term->c_lflag &= IEXTEN;*/
-	if (tcsetattr(0, TCSADRAIN, term) == -1)
+	if (tcsetattr(0, TCSAFLUSH, term) == -1)
 		return (1);
 	write(1, "\033[?1l", 5);
 	return (0);
@@ -41,40 +40,47 @@ int		reset_term(t_term *term)
 	if (tcgetattr(0, term) == -1)
 		return (-1);
 	term->c_lflag = ICANON | ECHO;
-	if (tcsetattr(0, 0, term) == -1)
+	if (tcsetattr(0, TCSADRAIN, term) == -1)
 		return (-1);
 	return (0);
 }
 
-char	ft_dcmd(const int fd)
+char	*ft_dreadline(const int fd, const char *prompt)
 {
 	t_term	term;
-	char	*buff;
+	char	*res;
 
-	(void)fd;
 	if (isatty(fd) && !init_term(&term))
-		buff = ft_readline(fd, "21sh $> ");
-	else
-		buff = readline("22sh $> ");
-		/*gnl(fd, &buff);*/
-	ft_printf("line:  '%s'\n", buff);
-	if (!buff || ft_strcmp(buff, "exit") == 0)
-		return (ft_freturn(buff, 1));
-	free(buff);
+		res = ft_readline_(fd, prompt);
+	else if ((res = NULL) || gnl(fd, &res) < 0)
+	{
+		gnl_clear();
+		ft_print_error("ft_readline: unable to read fd %d\n", fd);
+	}
 	reset_term(&term);
-	return (0);
+	return (res);
 }
 
 #else
 
-char	ft_dcmd(const int fd)
+char	*ft_dreadline(const int fd, const char *prompt)
 {
-	char	*buff;
+	char		c;
+	char		*res;
 
-	gnl(fd, &buff);
-	ft_printf("line: '%s'\n", buff);
-	free(buff);
-	return (0);
+	c = 1;
+	while (c)
+	{
+		res = NULL;
+		write(1, prompt, ft_strlen(prompt));
+		if ((c = gnl(fd, &res)) < 0)
+		{
+			gnl_clear();
+			ft_print_error("ft_readline: unable to read fd %d\n", fd);
+			ft_memdel(&res);
+		}
+	}
+	return (res);
 }
 
 #endif

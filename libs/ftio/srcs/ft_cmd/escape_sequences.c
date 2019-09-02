@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 16:15:57 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/28 18:00:26 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/02 11:33:02 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static const t_escape_dispatch	g_subseq_crochet[] = {
 	{0, 0},
 };
 
-static char	esc_crochet(const int fd, char buf[MAX_CMD + 1], uint32_t *i)
+static char	esc_crochet(const int fd, t_cmdline buf, uint32_t *i)
 {
 	uint32_t	j;
 	char		key;
@@ -43,12 +43,16 @@ static char	esc_crochet(const int fd, char buf[MAX_CMD + 1], uint32_t *i)
 }
 
 static const t_escape_dispatch	g_subseq_capital_o[] = {
+	{'A', esc_up_arrow},
+	{'B', esc_down_arrow},
+	{'D', esc_left_arrow},
+	{'C', esc_right_arrow},
 	{'F', esc_end_key},
 	{'H', esc_begin_key},
 	{0, 0},
 };
 
-static char	esc_capital_o(const int fd, char buf[MAX_CMD + 1], uint32_t *i)
+static char	esc_capital_o(const int fd, t_cmdline buf, uint32_t *i)
 {
 	uint32_t	j;
 	char		key;
@@ -71,7 +75,7 @@ static const t_escape_dispatch	g_subseq[] = {
 	{0, 0}
 };
 
-char		esc_sequence(const int fd, char buf[MAX_CMD + 1], uint32_t *i)
+char		esc_sequence(const int fd, t_cmdline buf, uint32_t *i)
 {
 	uint32_t	j;
 	char		key;
