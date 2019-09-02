@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/02 21:59:24 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/02 23:32:25 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,6 @@ $(NAME):	$(LIBS)
 	@$(LINKER) $(NAME) $(LIBS)
 	@ranlib $(NAME)
 	@$(call pinfo,DONE!)
-	@printf "$(SHOW)"
 
 all:	$(NAME)
 

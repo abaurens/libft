@@ -67,7 +67,7 @@ define libpath
 	"$(LIBS_D)/$(1)/$(1)$(SUB_EXT)"
 endef
 
-LINE	:=	"[$(CYA)%d/%d$(NRM)] $(RED)%-$(MAX_LEN)s$(NRM) $(CYA)[%3d%%]  \
+LINE	:=	" [$(CYA)%d/%d$(NRM)] $(RED)%-$(MAX_LEN)s$(NRM) $(CYA)[%3d%%]  \
 $(BLE)%-24s $(MAG)=>$(BLE)    %s$(NRM)$(CLEAR)\n"
 
 EMPTY	:=	$(shell printf '%80s' "")#80 spaces
@@ -95,10 +95,8 @@ endif
 # RULES
 
 %$(SUB_EXT):
-	@printf "$(HIDE)"
 	@$(call vinfo,Compiling...,TEXT)
 	@if [[ $(CMPT) -eq 0 ]]; then printf "$(TEXT)\n"; fi
 	$(eval FCNT	= $(words $(LIBS)))
 	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
-	@$(CC) $(basename $@) SUBID=$(CMPT) TOTAL_SIZE=$(FCNT) MAX_LEN=$(MAX_LEN)\
-	|| printf "$(SHOW)"
+	@$(CC) $(basename $@) SUBID=$(CMPT) TOTAL_SIZE=$(FCNT) MAX_LEN=$(MAX_LEN)
