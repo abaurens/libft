@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/28 08:29:33 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/02 05:43:15 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,15 @@
 
 include	variables.mk
 
-override LDFLAGS :=	$(LDFLAGS) -L. -lft
+override LDFLAGS :=	$(LDFLAGS) -L. -lft -g
 
 ifdef ENABLE_TERMCAPS
 ifeq ($(ENABLE_TERMCAPS), 1)
 override LDFLAGS :=	$(LDFLAGS) -lncurses
 endif
 endif
+
+override LDFLAGS :=	$(LDFLAGS) -lreadline
 
 CC			:=	make --no-print-dir -I$(PWD) -C
 LINKER		:=	ar rc

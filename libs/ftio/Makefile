@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/28 17:55:42 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/02 05:43:47 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,5 +82,5 @@ SRC		:=	$(IOCORE)				\
 			get_next_line.c	ft_putnbr_base.c	ft_putnbr_base_fd.c
 
 include variables.mk
-
+override CFLAGS += -g
 include rules.mk

@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 08:43:21 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/28 19:54:35 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/02 05:52:06 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void		print_buf(char disp[MAX_CMD + 1], uint32_t i, char last)
 		write(1, "\n", 1);
 }
 
+
 static uint32_t	del(char disp[MAX_CMD + 1], uint32_t i)
 {
 	uint32_t	j;
@@ -51,7 +52,7 @@ static char		insert(const char c, char buf[MAX_CMD + 1], uint32_t i)
 		return (-del(buf, i));
 	if (!ft_isprint(c))
 		return (0);
-	*((char *)ft_memmove(buf + i + 1, buf + i, ft_strlen(buf + i)) - 1) = c;
+	*((char *)ft_memmove(buf + i + 1, buf + i, ft_strlen(buf + i) + 1) - 1) = c;
 	return (1);
 }
 

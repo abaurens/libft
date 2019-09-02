@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 07:12:23 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/28 19:32:49 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/02 05:50:31 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <inttypes.h>
 # include <sys/ioctl.h>
 
-# define MAX_CMD	2097152
+# define MAX_CMD	4096
 
 /*# define FT_DISABLE_TERMCAPS*/
 
