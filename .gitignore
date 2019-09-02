@@ -57,4 +57,10 @@ dkms.conf
 
 # 42 special files
 .clang_complete
+*old*
+test
 main.c
+*.ao
+
+# Temp ignored
+ft_rem_pio2.c
