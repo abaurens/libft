@@ -15,9 +15,11 @@ CP		:=	cp -rf
 LN		:=	ln -s
 
 PWD		:=	$(dir $(abspath $(firstword $(MAKEFILE_LIST))))
-ifneq ($(lastword $(subst /, ,$(PWD))), libft)
-	PWD := $(shell echo $(PWD) | sed 's:libft/.*:libft/:g')
+ROOT	:=	$(PWD)
+ifneq ($(lastword $(subst /, ,$(ROOT))), libft)
+	ROOT := $(shell echo $(ROOT) | sed 's:libft/.*:libft/:g')
 endif
+LIBS_D	:=	$(ROOT)libs
 
 GRN		:=	\e[1;92m
 BLE		:=	\e[1;34m
@@ -30,8 +32,6 @@ CURUP	:=	\e[1A
 CLEAR	:=	\e[0K
 HIDE	:=	\e[?25l
 SHOW	:=	\e[?25h
-HIDE	:=
-SHOW	:=
 
 SRCD	:=	srcs
 OBJD	:=	objs
@@ -39,7 +39,7 @@ OBJD	:=	objs
 CMPT	:=	0
 FCNT	:=	$(words $(SRC))
 
-INCLDS	:=	-I$(PWD)includes
+INCLDS	:=	-I$(ROOT)includes
 override CFLAGS	:=	$(CFLAGS) $(INCLDS) -MMD -MP -W -Wall -Wextra -Werror
 
 OBJ		:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
@@ -63,6 +63,10 @@ define pinfo
 	@printf '$(PINFO)\n'
 endef
 
+define libpath
+	"$(LIBS_D)/$(1)/$(1)$(SUB_EXT)"
+endef
+
 LINE	:=	"[$(CYA)%d/%d$(NRM)] $(RED)%-$(MAX_LEN)s$(NRM) $(CYA)[%3d%%]  \
 $(BLE)%-24s $(MAG)=>$(BLE)    %s$(NRM)$(CLEAR)\n"
 
@@ -82,9 +86,15 @@ ifndef ENABLE_TERMCAPS
 ENABLE_TERMCAPS	:=	0
 endif
 
+SUB_EXT	:=	.ao
+
+ifneq ($(PWD), $(ROOT))
+NAME	:=	$(addsuffix $(SUB_EXT),$(addprefix $(LIBS_D)/,$(NAME)))
+endif
+
 # RULES
 
-%.ao:
+%$(SUB_EXT):
 	@printf "$(HIDE)"
 	@$(call vinfo,Compiling...,TEXT)
 	@if [[ $(CMPT) -eq 0 ]]; then printf "$(TEXT)\n"; fi
@@ -92,4 +102,3 @@ endif
 	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
 	@$(CC) $(basename $@) SUBID=$(CMPT) TOTAL_SIZE=$(FCNT) MAX_LEN=$(MAX_LEN)\
 	|| printf "$(SHOW)"
-	@#$(CP) $(basename $@)/$(notdir $@) $(LIBS_D)/

@@ -6,14 +6,14 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/15 10:10:44 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/02 21:44:42 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		:=	gcc
 LINKER	:=	ar rc
 LINKER	:=	gcc -r -nostdlib -o
-NAME	:=	ftcipher.ao
+NAME	:=	ftcipher
 
 # SOURCES
 

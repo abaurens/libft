@@ -6,17 +6,14 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 13:34:16 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/02 19:33:47 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/02 21:56:26 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		:=	gcc
 LINKER	:=	ar rc
 LINKER	:=	gcc -r -nostdlib -o
-NAME	:=	ftregex.ao
-FTIO	:=	../ftio/ftio.ao
-LIBFT	:=	../ftlib/ftlib.ao
-FTMATH	:=	../ftmath/ftmath.ao
+NAME	:=	ftregex
 
 OPER	:=	\
 			nfa_union.c	\
@@ -47,6 +44,11 @@ SRC		:=	$(NFA)			\
 include variables.mk
 include rules.mk
 CFLAGS	:=	-g $(CFLAGS) -ansi -pedantic
+
+#	test part
+FTIO	:=	$(call libpath,ftio)
+LIBFT	:=	$(call libpath,ftlib)
+FTMATH	:=	$(call libpath,ftmath)
 
 test:	$(NAME) $(FTIO) $(LIBFT) $(FTMATH)
 	@$(CC) -o test $(CFLAGS) main.c $(NAME) $(LIBFT) $(FTMATH) $(FTIO)

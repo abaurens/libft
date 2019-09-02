@@ -6,14 +6,14 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/08/23 07:08:24 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/02 21:44:46 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		:=	gcc
 LINKER	:=	ar rc
 LINKER	:=	gcc -r -nostdlib -o
-NAME	:=	ftmath.ao
+NAME	:=	ftmath
 
 # SOURCES
 

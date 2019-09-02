@@ -6,14 +6,11 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/02 19:40:39 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/02 21:59:24 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#	TODO
-#	- vérifier la norme (le PDF) et voir si de courtes macro-fonctions
-#		pourraient passer, ce qui permettrait de ne pas rendre accessible des
-#		des fonctions internes
+#	TODO:
 
 include	variables.mk
 
@@ -27,17 +24,17 @@ endif
 
 override LDFLAGS :=	$(LDFLAGS) -lreadline
 
-CC		:=	make --no-print-dir -I$(PWD) -C
+CC		:=	make --no-print-dir -I$(ROOT) -C
 NAME	:=	libft.a
 LINKER	:=	ar rc
 
-LIBS_D	:=	libs
 LIBS	:=	\
-			ftio.ao		\
-			ftlib.ao	\
-			ftcipher.ao	\
-			ftmath.ao	\
-			ftregex.ao
+			ftio		\
+			ftlib		\
+			ftmath		\
+			ftregex		\
+			ftcipher
+LIBS	:=	$(addsuffix $(SUB_EXT),$(LIBS))
 
 LIBS	:=	$(shell echo $(LIBS)|tr ' ' '\n'|awk '{print length,$$0}'|sort -n|\
 			cut -d' ' -f2)
@@ -47,18 +44,15 @@ MAX_LEN	:=	$(shell echo $(basename $(notdir $(lastword $(LIBS))))|\
 			awk '{print length}')
 
 
-VAR_	:=	$(strip $(foreach mk,	\
-	$(LIBS),	\
-	$(shell make -I$(PWD) -qC $(basename $(mk))/ || echo "$(RM) $(mk)")))
+VAR_	:=	$(strip $(foreach mk, $(LIBS),	\
+	$(shell $(CC) $(basename $(mk))/ -q || $(RM) $(mk))))
 
+.DEFAULT:	$(NAME)
 $(NAME):	$(LIBS)
-	@printf "var: '$(VAR_)'\n"
 	@$(LINKER) $(NAME) $(LIBS)
 	@ranlib $(NAME)
 	@$(call pinfo,DONE!)
 	@printf "$(SHOW)"
-
-.PHONY: $(NAME)
 
 all:	$(NAME)
 
@@ -67,15 +61,21 @@ clean:
 	@$(RM) $(LIBS)
 	@$(foreach CMD,$(basename $(LIBS)),$(CC) $(CMD) clean;)
 
-fclean:
+fclean:	testclean
 	@$(RM) $(NAME)
 	@$(RM) $(LIBS)
 	@$(foreach CMD,$(basename $(LIBS)),$(CC) $(CMD) fclean;)
 
 re:		fclean all
 
+.PHONY:		all clean fclean re
+
+#	test part
+
+testclean:
+	@$(RM) test
+
 test:	$(NAME) main.c
 	gcc -o test main.c $(strip $(CFLAGS)) $(strip $(LDFLAGS))
 
-.PHONY:		all clean fclean re
-.DEFAULT:	$(NAME)
+.PHONY:	testclean

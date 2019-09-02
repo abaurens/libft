@@ -10,14 +10,10 @@
 #                                                                              #
 # **************************************************************************** #
 
-# TODO:	need to replace that CP command with an LN command so the .ao file in
-#			the parent dir is just a link to the real one.
 $(NAME):	$(OBJ)
 	@$(LINKER) $(NAME) $(OBJ) $(strip $(LDFLAGS))
 ifeq ($(LINKER), ar rc)
 	@ranlib $(NAME)
-else
-	$(CP) $(NAME) ../$(NAME)
 endif
 
 -include $(DEP)
@@ -26,7 +22,7 @@ $(OBJD)/%.o:	$(SRCD)/%.c Makefile
 	@if [[ $(CMPT) -ne 0 ]]; then printf "$(CURUP)"; fi;
 	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
 	$(eval PRC = $(shell echo "$(CMPT)/$(FCNT)*100"|bc -l|sed 's/^\./0./'))
-	@printf $(LINE) $(SUBID) $(TOTAL_SIZE) $(basename $(NAME)) \
+	@printf $(LINE) $(SUBID) $(TOTAL_SIZE) $(notdir $(basename $(NAME))) \
 		$(shell echo $(PRC)|sed -E "s:\.[0-9]{20}::") $(notdir $<) $(notdir $@)
 	@printf "\e[0m"
 	@mkdir -p $(dir $@)
@@ -35,17 +31,16 @@ ifndef NO_NOTE
 else
 	@2>&1 $(CC) $(strip $(CFLAGS)) -o $@ -c $< | sed $(NO_NOTE)
 endif
-	@#if [[ $(CMPT) -eq $(FCNT) ]]; then printf "$(SHOW)"; fi;
 
 all:	$(NAME)
 
 clean:
-	$(call pinfo,Cleaning $(NAME))
+	$(call pinfo,Cleaning $(notdir $(NAME)))
 	@$(RM) $(DEP)
 	@$(RM) $(OBJD)
 
 fclean:
-	$(call pinfo,Fcleaning $(NAME))
+	$(call pinfo,Fcleaning $(notdir $(NAME)))
 	@$(RM) $(DEP)
 	@$(RM) $(OBJD)
 	@$(RM) $(NAME)
