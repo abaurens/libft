@@ -19,12 +19,14 @@ endif
 -include $(DEP)
 
 $(OBJD)/%.o:	$(SRCD)/%.c Makefile
-	@if [[ $(CMPT) -ne 0 ]]; then printf "$(CURUP)"; fi;
-	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
-	$(eval PRC = $(shell echo "$(CMPT)/$(FCNT)*100"|bc -l|sed 's/^\./0./'))
-	@printf $(LINE) $(SUBID) $(TOTAL_SIZE) $(notdir $(basename $(NAME))) \
-		$(shell echo $(PRC)|sed -E "s:\.[0-9]{20}::") $(notdir $<) $(notdir $@)
-	@printf "\e[0m"
+	@if [[ $(CMPT) -ne 0 ]];then\
+		printf "$(CURUP)";\
+	fi
+	$(call increment,$(CMPT),CMPT)
+	$(eval PRC = $(call purcent,$(CMPT),$(FCNT)))
+	@$(call progressbar,$(PRC),BAR)
+	@printf $(LINE) $(SUBID) $(TOTAL_SIZE) $(call filename,$(NAME)) \
+		$(shell echo $(PRC)) $(CMPT) $(FCNT) "$(BAR)"
 	@mkdir -p $(dir $@)
 ifndef NO_NOTE
 	@$(CC) $(strip $(CFLAGS)) -o $@ -c $<
@@ -35,12 +37,12 @@ endif
 all:	$(NAME)
 
 clean:
-	$(call pinfo,Cleaning $(notdir $(NAME)))
+	$(call pinfo,Cleaning $(call filename,$(NAME)))
 	@$(RM) $(DEP)
 	@$(RM) $(OBJD)
 
 fclean:
-	$(call pinfo,Fcleaning $(notdir $(NAME)))
+	$(call pinfo,Fcleaning $(call filename,$(NAME)))
 	@$(RM) $(DEP)
 	@$(RM) $(OBJD)
 	@$(RM) $(NAME)

@@ -63,12 +63,45 @@ define pinfo
 	@printf '$(PINFO)\n'
 endef
 
-define libpath
-	"$(LIBS_D)/$(1)/$(1)$(SUB_EXT)"
+define increment
+@$(eval TMP = $(shell echo '$(1) + 1' | bc))
+$(eval $(2) := $$(TMP))
 endef
 
-LINE	:=	" [$(CYA)%d/%d$(NRM)] $(RED)%-$(MAX_LEN)s$(NRM) $(CYA)[%3d%%]  \
-$(BLE)%-24s $(MAG)=>$(BLE)    %s$(NRM)$(CLEAR)\n"
+define purcent
+$(shell echo '$(1)/$(2)*100'|bc -l|sed 's/^\./0./'|sed -E 's:\.[0-9]{20}::')
+endef
+
+define progressbar
+@$(eval MAX = 42)
+@$(eval NORM = $(shell echo '$(1)/100'|bc -l))
+@$(eval LEN = $(shell echo '$(NORM) * $(MAX)'|bc -l|sed 's/^\./0./'|sed -E 's:\.[0-9]{20}::'))
+@$(eval RES = $(shell printf '\e[38;2;%.f;0;%.fm['\
+	$(shell echo '$(NORM) * -255 + 255'|bc -l|sed 's/^\./0./')\
+	$(shell echo '$(NORM) * 255'|bc -l|sed 's/^\./0./');\
+	for I in $(shell seq 1 $(MAX)); do\
+		if [[ $$I -le $(LEN) ]]; then\
+			printf '=';\
+		else\
+			printf ' ';\
+		fi;\
+	done;\
+	printf ']$(NRM)'))
+$(eval $(2) := $$(RES))
+endef
+
+define filename
+$(notdir $(basename $(1)))
+endef
+
+define libpath
+$(LIBS_D)/$(1)/$(1)$(SUB_EXT)
+endef
+
+DONE	:=	"done <~>"
+
+LINE	:=	" [$(CYA)%d/%d$(NRM)] $(RED)%-$(MAX_LEN)s$(NRM) $(CYA)[%3d%%] \
+[%3d / %3d] %s$(NRM)\n"# $(BLE)%-24s$(NRM)$(CLEAR)\n"
 
 EMPTY	:=	$(shell printf '%80s' "")#80 spaces
 
