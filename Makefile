@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/03 20:07:44 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/06 12:58:19 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,14 @@ MAX_LEN	:=	$(shell echo $(basename $(notdir $(lastword $(LIBS))))|\
 VAR_	:=	$(strip $(foreach mk, $(LIBS),	\
 	$(shell $(CC) $(basename $(mk))/ -q || $(RM) $(mk))))
 
-.DEFAULT:	$(NAME)
+.PHONY: test2
+test2:
+	printf "$(BLE)test$(NRM)\n"
+	@#printf "$(CYA)test$(NRM)\n"
+	@#printf "$(MAG)test$(NRM)\n"
+	@#printf "$(RED)test$(NRM)\n"
+
+#.DEFAULT:	$(NAME)
 $(NAME):	$(LIBS)
 	@$(LINKER) $(NAME) $(LIBS)
 	@ranlib $(NAME)

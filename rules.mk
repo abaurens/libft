@@ -19,9 +19,7 @@ endif
 -include $(DEP)
 
 $(OBJD)/%.o:	$(SRCD)/%.c Makefile
-	@if [[ $(CMPT) -ne 0 ]];then\
-		printf "$(CURUP)";\
-	fi
+	@if [[ $(CMPT) -ne 0 ]];then printf "$(CURUP)";fi
 	$(call increment,$(CMPT),CMPT)
 	$(eval PRC = $(call purcent,$(CMPT),$(FCNT)))
 	@$(call progressbar,$(PRC),BAR)
