@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/06 12:58:19 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/06 16:14:50 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,15 +14,13 @@
 
 include	variables.mk
 
-override LDFLAGS :=	$(LDFLAGS) -L. -lft -g
+override LDFLAGS =	-L. -lft -g
 
-ifdef ENABLE_TERMCAPS
-ifeq ($(ENABLE_TERMCAPS), 1)
-override LDFLAGS :=	$(LDFLAGS) -lncurses
-endif
+ifndef DISABLE_TERMCAPS
+override LDFLAGS +=	-lncurses
 endif
 
-override LDFLAGS :=	$(LDFLAGS) -lreadline
+override LDFLAGS +=	-lreadline
 
 CC		:=	make --no-print-dir -I$(ROOT) -C
 NAME	:=	libft.a
@@ -47,14 +45,7 @@ MAX_LEN	:=	$(shell echo $(basename $(notdir $(lastword $(LIBS))))|\
 VAR_	:=	$(strip $(foreach mk, $(LIBS),	\
 	$(shell $(CC) $(basename $(mk))/ -q || $(RM) $(mk))))
 
-.PHONY: test2
-test2:
-	printf "$(BLE)test$(NRM)\n"
-	@#printf "$(CYA)test$(NRM)\n"
-	@#printf "$(MAG)test$(NRM)\n"
-	@#printf "$(RED)test$(NRM)\n"
-
-#.DEFAULT:	$(NAME)
+.DEFAULT:	$(NAME)
 $(NAME):	$(LIBS)
 	@$(LINKER) $(NAME) $(LIBS)
 	@ranlib $(NAME)

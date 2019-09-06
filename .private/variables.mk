@@ -10,26 +10,32 @@
 #                                                                              #
 # **************************************************************************** #
 
-###################################
-#        YOU CAN EDIT THIS        #
-###################################
+CMPT	:=	0
+FCNT	:=	$(words $(SRC))
 
-RM		:=	rm -rf
-CP		:=	cp -rf
-LN		:=	ln -s
+INCLDS	=	-I$(ROOT)includes
+override CFLAGS	+=	$(INCLDS) -MMD -MP -W -Wall -Wextra -Werror
 
-SRCD	:=	srcs
-OBJD	:=	objs
+OBJ		:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
+SRC		:=	$(addprefix $(SRCD)/,$(SRC))
+DEP		:=	$(OBJ:.o=.d)
 
-SUB_EXT	:=	.ao
+LINE	:=	" [$(CYA)%d/%d$(NRM)] $(RED)%-$(MAX_LEN)s$(NRM) $(CYA)[%3d%%] \
+[%3d / %3d] %s$(NRM)\n"
 
-###################################
-#        BUT NOT EDIT THIS        #
-###################################
-PWD		:=	$(dir $(abspath $(firstword $(MAKEFILE_LIST))))
-ROOT	:=	$(shell echo $(PWD) | sed 's:libft/.*:libft/:g')
-PVMK	:=	$(ROOT).private/
-LIBS_D	:=	$(ROOT)libs
-include $(PVMK)termcaps.mk
-include $(PVMK)functions.mk
-include $(PVMK)variables.mk
+SUBID		?=	1
+TOTAL_SIZE	?=	1
+MAX_LEN		?=	1
+
+ifneq ($(PWD), $(ROOT))
+NAME	:=	$(addsuffix $(SUB_EXT),$(addprefix $(LIBS_D)/,$(NAME)))
+endif
+
+# RULES
+
+%$(SUB_EXT):
+	@$(call vinfo,Compiling...,TEXT)
+	@if [[ $(CMPT) -eq 0 ]]; then printf "$(TEXT)\n"; fi
+	$(eval FCNT	= $(words $(LIBS)))
+	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
+	@$(CC) $(basename $@) SUBID=$(CMPT) TOTAL_SIZE=$(FCNT) MAX_LEN=$(MAX_LEN)

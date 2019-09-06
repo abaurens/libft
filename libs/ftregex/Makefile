@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 13:34:16 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/02 21:56:26 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/06 16:16:24 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ SRC		:=	$(NFA)			\
 
 include variables.mk
 include rules.mk
-CFLAGS	:=	-g $(CFLAGS) -ansi -pedantic
+override CFLAGS	+=	-g -ansi -pedantic
 
 #	test part
 FTIO	:=	$(call libpath,ftio)

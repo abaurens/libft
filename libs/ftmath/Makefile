@@ -6,12 +6,11 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/02 21:44:46 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/06 14:37:48 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC		:=	gcc
-LINKER	:=	ar rc
+#LINKER	:=	ar rc
 LINKER	:=	gcc -r -nostdlib -o
 NAME	:=	ftmath
 
@@ -34,4 +33,4 @@ SRC		:=	\
 
 include variables.mk
 include rules.mk
-CFLAGS	:=	$(CFLAGS) -ansi -pedantic
+#override CFLAGS	+=	-ansi -pedantic

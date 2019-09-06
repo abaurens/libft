@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/02 21:44:42 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/06 14:10:40 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,4 +25,4 @@ SRC		:=	$(CORE)	\
 
 include variables.mk
 include rules.mk
-CFLAGS	:=	$(CFLAGS) -ansi -pedantic
+override CFLAGS	+=	-ansi -pedantic
