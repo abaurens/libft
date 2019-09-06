@@ -38,13 +38,13 @@ define rgbcol
 $(shell LC_NUMERIC=C;printf '\e[38;2;%.f;%.f;%.fm' $(1) $(2) $(3))
 endef
 
-#ifeq ($(COLOR),RGB)
-#GRN		:=	$(call rgbcol,0,255,0)
-#BLE		:=	$(call rgbcol,0,0,255)
-#CYA		:=	$(call rgbcol,0,255,255)
-#MAG		:=	$(call rgbcol,255,0,255)
-#RED		:=	$(call rgbcol,255,0,0)
-#endif
+ifeq ($(COLOR),RGB)
+GRN		:=	$(call rgbcol,0,255,0)
+BLE		:=	$(call rgbcol,0,0,255)
+CYA		:=	$(call rgbcol,0,255,255)
+MAG		:=	$(call rgbcol,255,0,255)
+RED		:=	$(call rgbcol,255,0,0)
+endif
 
 CURUP	!=	$(TPUT) cuu1
 CLEAR	!=	$(TPUT) el
