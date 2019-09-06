@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/06 16:14:50 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/07 01:47:13 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,16 +14,20 @@
 
 include	variables.mk
 
-override LDFLAGS =	-L. -lft -g
-
-ifndef DISABLE_TERMCAPS
-override LDFLAGS +=	-lncurses
-endif
-
-override LDFLAGS +=	-lreadline
-
-CC		:=	make --no-print-dir -I$(ROOT) -C
 NAME	:=	libft.a
+SONM	:=	libft.so
+
+ifdef CAN_RUN
+
+override LDFLAGS =	-L. -lft
+
+#ifndef DISABLE_TERMCAPS
+#override LDFLAGS +=	-lncurses
+#endif
+
+#override LDFLAGS +=	-lreadline
+
+CC		:=	$(MAKE) --no-print-dir -I$(ROOT) -C
 LINKER	:=	ar rc
 
 LIBS	:=	\
@@ -42,8 +46,8 @@ MAX_LEN	:=	$(shell echo $(basename $(notdir $(lastword $(LIBS))))|\
 			awk '{print length}')
 
 
-VAR_	:=	$(strip $(foreach mk, $(LIBS),	\
-	$(shell $(CC) $(basename $(mk))/ -q || $(RM) $(mk))))
+VAR_	:=	$(strip $(foreach mk, $(LIBS),\
+	$(shell $(CC) $(basename $(mk)) -q || $(RM) $(mk))))
 
 .DEFAULT:	$(NAME)
 $(NAME):	$(LIBS)
@@ -51,7 +55,12 @@ $(NAME):	$(LIBS)
 	@ranlib $(NAME)
 	@$(call pinfo,DONE!)
 
-all:	$(NAME)
+$(SONM):	override CFLAGSTO ?= -fPIC
+$(SONM):	$(LIBS)
+	@gcc -shared -o libft.so $(LIBS)
+	@$(call pinfo,DONE!)
+
+so:	$(SONM)
 
 clean:
 	@$(RM) $(OBJD)
@@ -60,12 +69,39 @@ clean:
 
 fclean:	testclean
 	@$(RM) $(NAME)
+	@$(RM) $(SONM)
 	@$(RM) $(LIBS)
 	@$(foreach CMD,$(basename $(LIBS)),$(CC) $(CMD) fclean;)
 
+else
+
+.DEFAULT:	$(NAME)
+$(NAME):
+	@$(error missing dependencie(s): $(foreach dep,$(MISSING),'$(dep)'))
+	@which -v $(firstword $(MISSING)) >$(NULL) 2>&1
+
+clean:
+	$(RM) $(OBJD)
+	$(RM) $(LIBS)
+	@$(foreach CMD,$(basename $(LIBS)),$(CC) $(CMD) clean;)
+
+fclean:
+	$(RM) $(NAME)
+	$(RM) $(SONM)
+	$(RM) $(LIBS)
+	@$(foreach CMD,$(basename $(LIBS)),$(CC) $(CMD) fclean;)
+
+endif
+
+ifeq ($(LIB_MODE),$(or $(findstring DYNAMIC,$(LIB_MODE)),$(findstring SHARED,$(LIB_MODE))))
+all:	$(SONM)
+else
+all:	$(NAME)
+endif
+
 re:		fclean all
 
-.PHONY:		all clean fclean re
+.PHONY:	all clean fclean re so
 
 #	test part
 

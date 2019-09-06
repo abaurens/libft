@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 16:09:37 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/28 19:11:30 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/06 22:26:31 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <string.h>
 # include <inttypes.h>
+
+# include "ftio.h"
 
 void	ft_strclr(char *s);
 void	ft_memdel(void *ap);

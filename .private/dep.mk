@@ -10,33 +10,22 @@
 #                                                                              #
 # **************************************************************************** #
 
-###################################
-#        YOU CAN EDIT THIS        #
-###################################
+NULL			:=	/dev/null
+DEPENDANCIES	:=	$(firstword $(RM))	\
+					$(firstword $(CP))	\
+					$(firstword $(LN))	\
+					$(firstword $(CC))	\
+					sed		\
+					echo	\
+					bash	\
+					printf	\
+					ranlib
 
-RM		:=	rm -rf
-CP		:=	cp -rf
-LN		:=	ln -s
-CC		:=	gcc
+MISSING	:=	$(strip \
+	$(foreach dep,\
+		$(DEPENDANCIES),\
+		$(shell which $(dep) >$(NULL) 2>&1 || echo '$(dep)')\
+	)\
+)
 
-SRCD	:=	srcs
-OBJD	:=	objs
-
-## either STATIC(.a) or DYNAMIC/SHARED(.so)
-LIB_MODE	:=	STATIC
-
-SUB_EXT	:=	.ao
-
-###################################
-#        BUT NOT EDIT THIS        #
-###################################
-include .private/dep.mk
-ifdef CAN_RUN
-PWD		:=	$(dir $(abspath $(firstword $(MAKEFILE_LIST))))
-ROOT	:=	$(shell echo $(PWD) | sed 's:libft/.*:libft/:g')
-PVMK	:=	$(ROOT).private/
-LIBS_D	:=	$(ROOT)libs
-include $(PVMK)termcaps.mk
-include $(PVMK)functions.mk
-include $(PVMK)variables.mk
-endif
+CAN_RUN	:=	$(if $(MISSING),,X)

@@ -13,8 +13,23 @@
 CMPT	:=	0
 FCNT	:=	$(words $(SRC))
 
-INCLDS	=	-I$(ROOT)includes
-override CFLAGS	+=	$(INCLDS) -MMD -MP -W -Wall -Wextra -Werror
+INCLDS	:=	-I$(ROOT)includes
+
+LIB_MODE	?=	STATIC
+ifneq ($(LIB_MODE),STATIC)
+ifneq ($(LIB_MODE),SHARED)
+ifneq ($(LIB_MODE),DYNAMIC)
+LIB_MODE	:=	STATIC
+endif
+endif
+endif
+
+ifndef CFLAGS
+CFLAGS	=	$(INCLDS)
+else
+override CFLAGS += $(INCLDS)
+endif
+override CFLAGS	+= -MMD -MP -W -Wall -Wextra -Werror
 
 OBJ		:=	$(addprefix $(OBJD)/,$(SRC:.c=.o))
 SRC		:=	$(addprefix $(SRCD)/,$(SRC))
@@ -38,4 +53,4 @@ endif
 	@if [[ $(CMPT) -eq 0 ]]; then printf "$(TEXT)\n"; fi
 	$(eval FCNT	= $(words $(LIBS)))
 	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
-	@$(CC) $(basename $@) SUBID=$(CMPT) TOTAL_SIZE=$(FCNT) MAX_LEN=$(MAX_LEN)
+	@$(CC) $(basename $@) CFLAGS=$(CFLAGSTO) SUBID=$(CMPT) TOTAL_SIZE=$(FCNT) MAX_LEN=$(MAX_LEN)
