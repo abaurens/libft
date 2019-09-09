@@ -25,7 +25,7 @@ endif
 endif
 
 ifndef CFLAGS
-CFLAGS	=	$(INCLDS)
+override CFLAGS	=	$(INCLDS)
 else
 override CFLAGS += $(INCLDS)
 endif
