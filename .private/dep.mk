@@ -12,33 +12,47 @@
 
 NULL			:=	/dev/null
 
-SECONDARY		:=	sed		\
-					echo	\
-					bash	\
-					printf	\
-					ranlib
+override SECONDARY		:=	tr		\
+							sed		\
+							awk		\
+							cut		\
+							sort	\
+							echo	\
+							printf	\
+							ranlib	\
+							$(SHELL)
 
-DEPENDANCIES	:=	$(firstword $(RM))	\
-					$(firstword $(CP))	\
-					$(firstword $(LN))	\
-					$(firstword $(CC))	\
-					$(firstword $(AR))	\
-					$(SECONDARY)
+override WHICH			:=	$(shell which which >$(NULL) 2>&1 || echo 'X')
 
-MISSING_SECONDARY	:=	$(strip \
+override DEPENDANCIES	:=	$(firstword $(RM))	\
+							$(firstword $(CP))	\
+							$(firstword $(LN))	\
+							$(firstword $(CC))	\
+							$(firstword $(AR))	\
+							$(firstword $(MKDIR))
+
+ifneq ($(WHICH),X)
+
+override MISSING_SECONDARY	:=	$(strip \
 	$(foreach dep,\
 		$(SECONDARY),\
 		$(shell which $(dep) >$(NULL) 2>&1 || echo '$(dep)')\
 	)\
 )
 
-MISSING	:=	$(strip \
+override MISSING	:=	$(strip \
 	$(foreach dep,\
 		$(DEPENDANCIES),\
 		$(shell which $(dep) >$(NULL) 2>&1 || echo '$(dep)')\
 	)\
 )
 
-CAN_RUN	:=	$(if $(MISSING),,X)
+override CAN_RUN	:=	$(if $(MISSING),FALSE,TRUE)
 
-FANCY_MODE	:=	$(if $(MISSING_SECONDARY),,X)
+ifneq ($(FANCY_MODE),FALSE)
+override FANCY_MODE	:=	$(if $(MISSING_SECONDARY),FALSE,TRUE)
+endif
+endif
+
+override CAN_RUN ?= TRUE
+override FANCY_MODE ?= FALSE
