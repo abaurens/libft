@@ -11,15 +11,26 @@
 # **************************************************************************** #
 
 NULL			:=	/dev/null
-DEPENDANCIES	:=	$(firstword $(RM))	\
-					$(firstword $(CP))	\
-					$(firstword $(LN))	\
-					$(firstword $(CC))	\
-					sed		\
+
+SECONDARY		:=	sed		\
 					echo	\
 					bash	\
 					printf	\
 					ranlib
+
+DEPENDANCIES	:=	$(firstword $(RM))	\
+					$(firstword $(CP))	\
+					$(firstword $(LN))	\
+					$(firstword $(CC))	\
+					$(firstword $(AR))	\
+					$(SECONDARY)
+
+MISSING_SECONDARY	:=	$(strip \
+	$(foreach dep,\
+		$(SECONDARY),\
+		$(shell which $(dep) >$(NULL) 2>&1 || echo '$(dep)')\
+	)\
+)
 
 MISSING	:=	$(strip \
 	$(foreach dep,\
@@ -29,3 +40,5 @@ MISSING	:=	$(strip \
 )
 
 CAN_RUN	:=	$(if $(MISSING),,X)
+
+FANCY_MODE	:=	$(if $(MISSING_SECONDARY),,X)

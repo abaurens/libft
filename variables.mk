@@ -17,6 +17,7 @@
 RM		:=	rm -rf
 CP		:=	cp -rf
 LN		:=	ln -s
+AR		:=	ar -rc
 CC		:=	gcc
 
 SRCD	:=	srcs
