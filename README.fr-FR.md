@@ -26,7 +26,7 @@ Le seul Makefile que vous devriez avoir à lancer est celui appelé `Makefile` �
 Lancé sans argument, il devrait compilera une version statique `libft.a` de la librairie.  
 Une version dynamique `libft.so` peut être crée avec les commande `make so` ou `make libft.so`
 
-*GIF de la compilation ici*
+![](.compilation.gif)
 
 ## Dépendances :
 
