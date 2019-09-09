@@ -26,18 +26,28 @@ A shared version `libft.so` can be compiled trough the `make libft.so` or `make 
 *GIF de la compilation ici*
 
 ## Dependancies :
-To compile the lib, the makefile currently need some commands to be available. For now, the compilation will fail if any of those commands is missing : `rm` `cp` `ln` `ar` `gcc` `sed` `echo` `printf` `ranlib` and `bash`.  
+To compile the lib, the makefile need those commands to be available.  
+`rm` `cp` `ln` `ar` `gcc` `tr` `sed` `awk` `cut` `sort` `echo` `mkdir` `which` `printf` `ranlib` et `sh`.  
 
-However, you can change the default for `rm` `cp` `ln` `ar` and `gcc` trough the `variables.mk` file at the repository root, or by defining the associated variables (`RM` `CP` `LN` `CC` and `AR`) trough the command line :  
+if one of the `rm` `cp` `ln` `ar` `mkdir` or `gcc` commands is unavailable, the makefile won't be able to compile at all and throw an error.
+
+However, you can change their default values trough the `variables.mk` file at the repository root, or by defining the associated variables (`RM` `CP` `LN` `CC` `AR` and `MKDIR`) trough the command line :  
 `make CC=clang AR='libtool -static -o'`
 ```
 The default values for those variables are:
-  RM = srm -rf
-  CP = cp -rf
-  LN = ln -s
-  AR = ar -rc
-  CC = gcc
+  RM    = rm -rf
+  CP    = cp -rf
+  LN    = ln -s
+  AR    = ar -rc
+  CC    = gcc
+  MKDIR = mkdir -p
 ```
+
+All the other commands aren't used to compile the library, but are mendatory to enable the makefile's `fancy mode`, which is the custom output for compilation process (showed in the upper gif).
+So if one of those commands is missing, the fancy mode is automatically disabeled.
+
+Note that you can force disable the fancy mode by passing `FANCY_MODE=FALSE` to the command line:  
+`make FANCY_MODE=FALSE`
 
 I'm trying my best not to rely on other libs, but for now, the libft still depends on any other C standard library like the glibc.  
 However, i try as much as i can to stick to C89 (ansi) and not to use any extension (pedantic).  

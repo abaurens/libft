@@ -6,12 +6,10 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 13:34:16 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/06 16:16:24 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/09 16:44:30 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC		:=	gcc
-LINKER	:=	ar rc
 LINKER	:=	gcc -r -nostdlib -o
 NAME	:=	ftregex
 
