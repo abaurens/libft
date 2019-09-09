@@ -23,7 +23,7 @@ The only Makefile you'll have to run is the default one `Makefile` at repository
 Without any argument, it should compile a statical version `libft.a` of the library.
 A shared version `libft.so` can be compiled trough the `make libft.so` or `make so` command
 
-*GIF de la compilation ici*
+![](.compilation.gif)
 
 ## Dependancies :
 To compile the lib, the makefile need those commands to be available.  
