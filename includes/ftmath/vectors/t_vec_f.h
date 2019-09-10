@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:47:42 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/10 15:39:07 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/10 19:53:54 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,24 @@ struct				s_vec3_f__
 	t_vecf_op3__	add3;
 	t_vecf_op3__	sub3;
 	t_vecf_op3__	mul3;
+	t_vecf_op1__	add;
+	t_vecf_op1__	sub;
+	t_vecf_op1__	mul;
+	t_vecf_op1__	div;
+	t_vecf_op__		normalize;
+};
+
+struct				s_vec2_f__
+{
+	t_vecf_len__	norm;
+	t_vecf_lenf__	normf;
+	t_vecf_lenl__	norml;
+	t_vecf_opv__	addv;
+	t_vecf_opv__	subv;
+	t_vecf_opv__	mulv;
+	t_vecf_op2__	add2;
+	t_vecf_op2__	sub2;
+	t_vecf_op2__	mul2;
 	t_vecf_op1__	add;
 	t_vecf_op1__	sub;
 	t_vecf_op1__	mul;
