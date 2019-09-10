@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/07 01:47:13 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/10 10:32:46 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,6 +104,8 @@ re:		fclean all
 .PHONY:	all clean fclean re so
 
 #	test part
+
+-include test.d
 
 testclean:
 	@$(RM) test

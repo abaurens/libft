@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/06 14:37:48 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/10 11:39:48 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,18 @@ NAME	:=	ftmath
 FLPM	:=	fp32math.c fp64math.c fp80math.c
 FLPM	:=	$(addprefix fpmath/, $(FLPM))
 
+VEC		:=	add.c new.c sub.c norm.c
 
+VEC3	:=	$(addprefix vec3/,$(VEC))
+VEC3F	:=	$(addprefix vec3f/,$(VEC))
+VEC3L	:=	$(addprefix vec3l/,$(VEC))
+VEC3I	:=	$(addprefix vec3i/,$(VEC))
+
+VECTORS	:=	$(VEC3I)
+VECTORS	:=	$(addprefix vectors/,$(VECTORS))
 
 SRC		:=	\
-		$(FLPM)		\
+		$(FLPM)		$(VECTORS)	\
 		ft_min.c	ft_max.c	\
 		ft_abs.c	ft_nan.c	\
 		ft_rad.c	ft_pow.c	\
