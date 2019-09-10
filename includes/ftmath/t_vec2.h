@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 20:51:25 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/10 11:20:20 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/10 13:16:47 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef struct s_vec2	t_vec2;
 
 struct				s_vec2i
 {
-	t_vec_t	type;
 	union
 	{
 		struct
@@ -36,7 +35,6 @@ struct				s_vec2i
 
 struct				s_vec2f
 {
-	t_vec_t	type;
 	union
 	{
 		struct
@@ -50,7 +48,6 @@ struct				s_vec2f
 
 struct				s_vec2
 {
-	t_vec_t			type;
 	union
 	{
 		struct
@@ -64,7 +61,6 @@ struct				s_vec2
 
 struct				s_vec2l
 {
-	t_vec_t			type;
 	union
 	{
 		struct

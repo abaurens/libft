@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 21:21:35 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/10 10:43:38 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/10 15:22:06 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,7 @@
 typedef int			t_int;
 typedef float		t_flt;
 typedef double		t_dbl;
+typedef	long double	t_big;
 typedef long double	t_ldbl;
-
-typedef enum	e_vec_t
-{
-	UNSET,
-	INT,
-	FLT,
-	DBL,
-	LDBL
-}				t_vec_t;
 
 #endif

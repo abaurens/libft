@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftvector.h                                         :+:      :+:    :+:   */
+/*   op_v.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/09 20:52:22 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/10 15:40:19 by abaurens         ###   ########.fr       */
+/*   Created: 2019/09/10 11:07:30 by abaurens          #+#    #+#             */
+/*   Updated: 2019/09/10 14:26:11 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FTVECTOR_H
-# define FTVECTOR_H
+#include "ftmath/vectors/t_vec3_t.h"
 
-# include "ftmath/t_vec2.h"
-# include "ftmath/t_vec3.h"
+t_vec3i	*vec3i_addv__(t_vec3i *v1, t_vec3i *v2)
+{
+	v1->x += v2->x;
+	v1->y += v2->y;
+	v1->z += v2->z;
+	return (v1);
+}
 
-t_vec3f	*init_vec3(t_vec3f *v, t_dbl x, t_dbl y, t_dbl z);
-t_vec3i	*init_vec3i(t_vec3i *v, t_int x, t_int y, t_int z);
-t_vec3f	*init_vec3f(t_vec3f *v, t_flt x, t_flt y, t_flt z);
-t_vec3f	*init_vec3l(t_vec3f *v, t_ldbl x, t_ldbl y, t_ldbl z);
+t_vec3i	*vec3i_subv__(t_vec3i *v1, t_vec3i *v2)
+{
+	v1->x -= v2->x;
+	v1->y -= v2->y;
+	v1->z -= v2->z;
+	return (v1);
+}
 
-#endif
+t_vec3i	*vec3i_mulv__(t_vec3i *v1, t_vec3i *v2)
+{
+	v1->x *= v2->x;
+	v1->y *= v2->y;
+	v1->z *= v2->z;
+	return (v1);
+}

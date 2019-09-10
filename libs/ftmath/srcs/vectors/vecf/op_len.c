@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftvector.h                                         :+:      :+:    :+:   */
+/*   op_len.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/09 20:52:22 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/10 15:40:19 by abaurens         ###   ########.fr       */
+/*   Created: 2019/09/10 11:36:17 by abaurens          #+#    #+#             */
+/*   Updated: 2019/09/10 15:04:35 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FTVECTOR_H
-# define FTVECTOR_H
+#include "ftmath/vectors/t_vec3_t.h"
 
-# include "ftmath/t_vec2.h"
-# include "ftmath/t_vec3.h"
+t_dbl	vec3f_norm__(t_vec3f *v)
+{
+	(void)v;
+	return (0);
+}
 
-t_vec3f	*init_vec3(t_vec3f *v, t_dbl x, t_dbl y, t_dbl z);
-t_vec3i	*init_vec3i(t_vec3i *v, t_int x, t_int y, t_int z);
-t_vec3f	*init_vec3f(t_vec3f *v, t_flt x, t_flt y, t_flt z);
-t_vec3f	*init_vec3l(t_vec3f *v, t_ldbl x, t_ldbl y, t_ldbl z);
+t_flt	vec3f_normf__(t_vec3f *v)
+{
+	(void)v;
+	return (0);
+}
 
-#endif
+t_ldbl	vec3f_norml__(t_vec3f *v)
+{
+	(void)v;
+	return (0);
+}
+
+t_vec3f	*vec3f_normalize__(t_vec3f *v)
+{
+	(void)v;
+	return (0);
+}
