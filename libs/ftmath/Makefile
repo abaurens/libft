@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/10 15:34:35 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/10 19:48:54 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,15 +19,19 @@ NAME	:=	ftmath
 FLPM	:=	fp32math.c fp64math.c fp80math.c
 FLPM	:=	$(addprefix fpmath/, $(FLPM))
 
-VEC		:=	set.c op_v.c op_1.c op_3.c op_len.c
+VEC	:=	op_v.c op_x.c op_1.c op_len.c
 
 VECI	:=	$(addprefix veci/,$(VEC))
 VECF	:=	$(addprefix vecf/,$(VEC))
 VECD	:=	$(addprefix vecd/,$(VEC))
 VECL	:=	$(addprefix vecl/,$(VEC))
-VEC	:=	$(VECI) $(VECF) $(VECD) $(VECL)
 
-VECTORS	:=	$(VEC)
+VEC	:=	set.c $(VECI) $(VECF) $(VECD) $(VECL)
+
+VEC2	:=	$(addprefix vec2/,$(VEC))
+VEC3	:=	$(addprefix vec3/,$(VEC))
+
+VECTORS	:=	$(VEC3) $(VEC2)
 VECTORS	:=	$(addprefix vectors/,$(VECTORS))
 
 SRC		:=	\

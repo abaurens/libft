@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_vec2.h                                           :+:      :+:    :+:   */
+/*   op_v.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/09 20:51:25 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/10 18:02:06 by abaurens         ###   ########.fr       */
+/*   Created: 2019/09/10 11:07:30 by abaurens          #+#    #+#             */
+/*   Updated: 2019/09/10 19:36:05 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_VEC2_H
-# define T_VEC2_H
+#include "ftmath/vectors/t_vec2_t.h"
 
-# include "ftmath/vectors/t_vec2_t.h"
-/*
-**# include "ftmath/vectors/t_vec2_f.h"
-*/
+t_vec2	*vec2_addv__(t_vec2 *v1, t_vec2 *v2)
+{
+	v1->x += v2->x;
+	v1->y += v2->y;
+	return (v1);
+}
 
-#endif
+t_vec2	*vec2_subv__(t_vec2 *v1, t_vec2 *v2)
+{
+	v1->x -= v2->x;
+	v1->y -= v2->y;
+	return (v1);
+}
+
+t_vec2	*vec2_mulv__(t_vec2 *v1, t_vec2 *v2)
+{
+	v1->x *= v2->x;
+	v1->y *= v2->y;
+	return (v1);
+}

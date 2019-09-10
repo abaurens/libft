@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_vec2.h                                           :+:      :+:    :+:   */
+/*   op_3.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/09 20:51:25 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/10 18:02:06 by abaurens         ###   ########.fr       */
+/*   Created: 2019/09/10 11:07:30 by abaurens          #+#    #+#             */
+/*   Updated: 2019/09/10 19:43:06 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_VEC2_H
-# define T_VEC2_H
+#include "ftmath/vectors/t_vec2_t.h"
 
-# include "ftmath/vectors/t_vec2_t.h"
-/*
-**# include "ftmath/vectors/t_vec2_f.h"
-*/
+t_vec2i	*vec2i_add2__(t_vec2i *v1, t_big x, t_big y)
+{
+	v1->x += (t_int)x;
+	v1->y += (t_int)y;
+	return (v1);
+}
 
-#endif
+t_vec2i	*vec2i_sub2__(t_vec2i *v1, t_big x, t_big y)
+{
+	v1->x -= (t_int)x;
+	v1->y -= (t_int)y;
+	return (v1);
+}
+
+t_vec2i	*vec2i_mul2__(t_vec2i *v1, t_big x, t_big y)
+{
+	v1->x *= (t_int)x;
+	v1->y *= (t_int)y;
+	return (v1);
+}
