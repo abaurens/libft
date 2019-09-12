@@ -6,41 +6,36 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 11:07:30 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/12 16:15:25 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/12 17:17:39 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftmath/vectors/t_vec3_t.h"
+#include "ftmath/t_vec3.h"
 
-t_vec3i	*vec3i_add1__(t_vec3i *v1, t_big__ i)
+t_vec_gen__	*v3_add1__(t_vec_gen__ *v1, t_big__ i)
 {
-	v1->x += (t_int__)i;
-	v1->y += (t_int__)i;
-	v1->z += (t_int__)i;
-	return (v1);
+	if ((v1->t & ~VEC3) > LDBL)
+		return (NULL);
+	return (g_v3f__[v1->t & ~VEC3]->add(v1, i));
 }
 
-t_vec3i	*vec3i_sub1__(t_vec3i *v1, t_big__ i)
+t_vec_gen__	*v3_sub1__(t_vec_gen__ *v1, t_big__ i)
 {
-	v1->x -= (t_int__)i;
-	v1->y -= (t_int__)i;
-	v1->z -= (t_int__)i;
-	return (v1);
+	if ((v1->t & ~VEC3) > LDBL)
+		return (NULL);
+	return (g_v3f__[v1->t & ~VEC3]->sub(v1, i));
 }
 
-t_vec3i	*vec3i_mul1__(t_vec3i *v1, t_big__ i)
+t_vec_gen__	*v3_mul1__(t_vec_gen__ *v1, t_big__ i)
 {
-	v1->x *= (t_int__)i;
-	v1->y *= (t_int__)i;
-	v1->z *= (t_int__)i;
-	return (v1);
+	if ((v1->t & ~VEC3) > LDBL)
+		return (NULL);
+	return (g_v3f__[v1->t & ~VEC3]->mul(v1, i));
 }
 
-t_vec3i	*vec3i_div1__(t_vec3i *v1, t_big__ i)
+t_vec_gen__	*v3_div1__(t_vec_gen__ *v1, t_big__ i)
 {
-	if ((t_int__)i == 0)
-		return (v1);
-	v1->x /= (t_int__)i;
-	v1->y /= (t_int__)i;
-	return (v1);
+	if ((v1->t & ~VEC3) > LDBL)
+		return (NULL);
+	return (g_v3f__[v1->t & ~VEC3]->div(v1, i));
 }

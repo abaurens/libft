@@ -12,23 +12,23 @@
 
 #include "ftmath/vectors/t_vec2_t.h"
 
-t_vec2l	*vec2l_add2__(t_vec2l *v1, t_big x, t_big y)
+t_vec2l	*vec2l_add2__(t_vec2l *v1, t_big__ x, t_big__ y)
 {
-	v1->x += (t_ldbl)x;
-	v1->y += (t_ldbl)y;
+	v1->x += (t_ldbl__)x;
+	v1->y += (t_ldbl__)y;
 	return (v1);
 }
 
-t_vec2l	*vec2l_sub2__(t_vec2l *v1, t_big x, t_big y)
+t_vec2l	*vec2l_sub2__(t_vec2l *v1, t_big__ x, t_big__ y)
 {
-	v1->x -= (t_ldbl)x;
-	v1->y -= (t_ldbl)y;
+	v1->x -= (t_ldbl__)x;
+	v1->y -= (t_ldbl__)y;
 	return (v1);
 }
 
-t_vec2l	*vec2l_mul2__(t_vec2l *v1, t_big x, t_big y)
+t_vec2l	*vec2l_mul2__(t_vec2l *v1, t_big__ x, t_big__ y)
 {
-	v1->x *= (t_ldbl)x;
-	v1->y *= (t_ldbl)y;
+	v1->x *= (t_ldbl__)x;
+	v1->y *= (t_ldbl__)y;
 	return (v1);
 }

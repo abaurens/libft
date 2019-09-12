@@ -12,19 +12,19 @@
 
 #include "ftmath/vectors/t_vec2_t.h"
 
-t_dbl	vec2_norm__(t_vec2 *v)
+t_dbl__	vec2_norm__(t_vec2 *v)
 {
 	(void)v;
 	return (0);
 }
 
-t_flt	vec2_normf__(t_vec2 *v)
+t_flt__	vec2_normf__(t_vec2 *v)
 {
 	(void)v;
 	return (0);
 }
 
-t_ldbl	vec2_norml__(t_vec2 *v)
+t_ldbl__	vec2_norml__(t_vec2 *v)
 {
 	(void)v;
 	return (0);

@@ -6,11 +6,10 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/10 19:48:54 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/12 17:29:52 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#LINKER	:=	ar rc
 LINKER	:=	gcc -r -nostdlib -o
 NAME	:=	ftmath
 
@@ -26,7 +25,7 @@ VECF	:=	$(addprefix vecf/,$(VEC))
 VECD	:=	$(addprefix vecd/,$(VEC))
 VECL	:=	$(addprefix vecl/,$(VEC))
 
-VEC	:=	set.c $(VECI) $(VECF) $(VECD) $(VECL)
+VEC		:=	set.c $(VEC) $(VECI) $(VECF) $(VECD) $(VECL)
 
 VEC2	:=	$(addprefix vec2/,$(VEC))
 VEC3	:=	$(addprefix vec3/,$(VEC))

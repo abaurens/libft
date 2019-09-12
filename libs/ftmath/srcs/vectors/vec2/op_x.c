@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_v.c                                             :+:      :+:    :+:   */
+/*   op_x.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 11:07:30 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/12 15:54:57 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/12 17:30:12 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftmath/vectors/t_vec3_t.h"
+#include "ftmath/t_vec2.h"
 
-t_vec3l	*vec3l_addv__(t_vec3l *v1, t_vec3l *v2)
+t_vec_gen__	*v2_add2__(t_vec_gen__ *v, t_big__ x, t_big__ y)
 {
-	v1->x += v2->x;
-	v1->y += v2->y;
-	v1->z += v2->z;
-	return (v1);
+	if (v->t > LDBL)
+		return (NULL);
+	return (g_v2f__[v->t]->add2(v, x, y));
 }
 
-t_vec3l	*vec3l_subv__(t_vec3l *v1, t_vec3l *v2)
+t_vec_gen__	*v2_sub2__(t_vec_gen__ *v, t_big__ x, t_big__ y)
 {
-	v1->x -= v2->x;
-	v1->y += v2->y;
-	v1->z += v2->z;
-	return (v1);
+	if (v->t > LDBL)
+		return (NULL);
+	return (g_v2f__[v->t]->sub2(v, x, y));
 }
 
-t_vec3l	*vec3l_mulv__(t_vec3l *v1, t_vec3l *v2)
+t_vec_gen__	*v2_mul2__(t_vec_gen__ *v, t_big__ x, t_big__ y)
 {
-	v1->x *= v2->x;
-	v1->y += v2->y;
-	v1->z += v2->z;
-	return (v1);
+	if (v->t > LDBL)
+		return (NULL);
+	return (g_v2f__[v->t]->mul2(v, x, y));
 }

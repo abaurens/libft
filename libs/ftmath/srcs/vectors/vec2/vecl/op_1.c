@@ -12,32 +12,32 @@
 
 #include "ftmath/vectors/t_vec2_t.h"
 
-t_vec2l	*vec2l_add1__(t_vec2l *v1, t_big i)
+t_vec2l	*vec2l_add1__(t_vec2l *v1, t_big__ i)
 {
-	v1->x += (t_ldbl)i;
-	v1->y += (t_ldbl)i;
+	v1->x += (t_ldbl__)i;
+	v1->y += (t_ldbl__)i;
 	return (v1);
 }
 
-t_vec2l	*vec2l_sub1__(t_vec2l *v1, t_big i)
+t_vec2l	*vec2l_sub1__(t_vec2l *v1, t_big__ i)
 {
-	v1->x -= (t_ldbl)i;
-	v1->y -= (t_ldbl)i;
+	v1->x -= (t_ldbl__)i;
+	v1->y -= (t_ldbl__)i;
 	return (v1);
 }
 
-t_vec2l	*vec2l_mul1__(t_vec2l *v1, t_big i)
+t_vec2l	*vec2l_mul1__(t_vec2l *v1, t_big__ i)
 {
-	v1->x *= (t_ldbl)i;
-	v1->y *= (t_ldbl)i;
+	v1->x *= (t_ldbl__)i;
+	v1->y *= (t_ldbl__)i;
 	return (v1);
 }
 
-t_vec2l	*vec2l_div1__(t_vec2l *v1, t_big i)
+t_vec2l	*vec2l_div1__(t_vec2l *v1, t_big__ i)
 {
-	if ((t_ldbl)i == 0)
+	if ((t_ldbl__)i == 0)
 		return (v1);
-	v1->x /= (t_ldbl)i;
-	v1->y /= (t_ldbl)i;
+	v1->x /= (t_ldbl__)i;
+	v1->y /= (t_ldbl__)i;
 	return (v1);
 }

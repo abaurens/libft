@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:47:42 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/10 19:53:54 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/12 16:09:41 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@
 typedef struct s_vec3_f__	t_vec3_f__;
 typedef struct s_vec2_f__	t_vec2_f__;
 
-typedef void	*(*t_vecf_opv__)(void *, void *);
-typedef void	*(*t_vecf_op1__)(void *, t_big);
-typedef void	*(*t_vecf_op2__)(void *, t_big, t_big);
-typedef void	*(*t_vecf_op3__)(void *, t_big, t_big, t_big);
-typedef void	*(*t_vecf_op__)(void *);
-typedef t_dbl	(*t_vecf_len__)(void *);
-typedef t_flt	(*t_vecf_lenf__)(void *);
-typedef t_ldbl	(*t_vecf_lenl__)(void *);
+typedef void		*(*t_vecf_opv__)(void *, void *);
+typedef void		*(*t_vecf_op1__)(void *, t_big__);
+typedef void		*(*t_vecf_op2__)(void *, t_big__, t_big__);
+typedef void		*(*t_vecf_op3__)(void *, t_big__, t_big__, t_big__);
+typedef void		*(*t_vecf_op__)(void *);
+typedef t_dbl__		(*t_vecf_len__)(void *);
+typedef t_flt__		(*t_vecf_lenf__)(void *);
+typedef t_ldbl__	(*t_vecf_lenl__)(void *);
 
 struct				s_vec3_f__
 {
