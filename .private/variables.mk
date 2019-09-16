@@ -51,6 +51,6 @@ endif
 %$(SUB_EXT):
 	@$(call vinfo,Compiling...,TEXT)
 	@if [[ $(CMPT) -eq 0 ]]; then printf "$(TEXT)\n"; fi
-	$(eval FCNT	= $(words $(LIBS)))
-	$(eval CMPT = $(shell echo $(CMPT) + 1 | bc))
+	$(eval FCNT	:= $(words $(LIBS)))
+	$(eval CMPT := $(shell echo $(CMPT) + 1 | bc))
 	@$(CC) $(basename $@) CFLAGS=$(CFLAGSTO) SUBID=$(CMPT) TOTAL_SIZE=$(FCNT) MAX_LEN=$(MAX_LEN)
