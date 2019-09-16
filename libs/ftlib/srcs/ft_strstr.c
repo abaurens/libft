@@ -6,13 +6,11 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 17:18:32 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/06 22:22:08 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/16 12:01:52 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftlib.h"
-
-#include "ftio.h" /*  TOREMOVE  */
 #include <unistd.h>
 #include <stdlib.h>
 
@@ -31,7 +29,7 @@ static void	set_tab(size_t tb[256], const char *needle, register const size_t l)
 	}
 }
 
-char	*ft_strstr(const char *haystack, const char *needle)
+char		*ft_strstr(const char *haystack, const char *needle)
 {
 	register size_t			i;
 	register size_t			hl;
@@ -55,21 +53,21 @@ char	*ft_strstr(const char *haystack, const char *needle)
 }
 
 /*
-static char		*ft_strstr2(const char *haystack, const char *needle)
-{
-	int	i;
-
-	while (*haystack)
-	{
-		i = 0;
-		while (needle[i] && haystack[i] && needle[i] == haystack[i])
-			i++;
-		if (needle[i] == 0)
-			return ((char *)haystack);
-		haystack++;
-	}
-	if (!*needle)
-		return ((char *)haystack);
-	return (NULL);
-}
+**	static char		*ft_strstr2(const char *haystack, const char *needle)
+**	{
+**		int	i;
+**
+**		while (*haystack)
+**		{
+**			i = 0;
+**			while (needle[i] && haystack[i] && needle[i] == haystack[i])
+**				i++;
+**			if (needle[i] == 0)
+**				return ((char *)haystack);
+**			haystack++;
+**		}
+**		if (!*needle)
+**			return ((char *)haystack);
+**		return (NULL);
+**	}
 */

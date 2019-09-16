@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 02:16:52 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/02 15:23:31 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/16 11:58:52 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@
 typedef struct s_gnl_e	t_gnl_e;
 typedef struct s_gnl	t_gnl;
 
-struct			s_gnl_e
+struct		s_gnl_e
 {
 	int		fd;
 	char	*sv;
 	t_gnl_e	*next;
 };
 
-struct	s_gnl
+struct		s_gnl
 {
 	size_t	size;
 	t_gnl_e	*head;
@@ -38,8 +38,8 @@ struct	s_gnl
 /*
 **	utils functions
 */
-char	*gnl_cat_(const char *s1, const char *s2, int n);
-char	gnl_rd_check_(const char *buf, size_t size, const char *crset);
+char		*gnl_cat_(const char *s1, const char *s2, int n);
+char		gnl_rd_check_(const char *buf, size_t size, const char *crset);
 
 /*
 **	get next line core functions
@@ -65,8 +65,8 @@ void		gnl_flush_elem(const t_gnl_e *to_rm);
 */
 # ifndef FTIO_H
 
-void			gnl_flush(const int fd);
-void			gnl_clear(void);
+void		gnl_flush(const int fd);
+void		gnl_clear(void);
 
 # endif
 

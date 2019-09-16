@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 14:32:55 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/02 14:12:28 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/16 11:58:22 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ int		ft_vsnprintf(char *dst, size_t ln, const char *frm, va_list ap);
 */
 # ifndef GNL_H
 
-void			gnl_flush(const int fd);
-void			gnl_clear(void);
+void	gnl_flush(const int fd);
+void	gnl_clear(void);
 
 # endif
 

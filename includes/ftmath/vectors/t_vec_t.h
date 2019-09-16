@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 21:21:35 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/12 17:27:05 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/16 11:53:52 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct	s_vec_gen__
 {
 	t_vect__	t;
 }				t_vec_gen__;
-
 
 typedef int			t_int__;
 typedef float		t_flt__;

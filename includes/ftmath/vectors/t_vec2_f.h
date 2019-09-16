@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:08:11 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/12 17:28:13 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/16 11:57:57 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 */
 t_dbl__		vec2i_norm__(t_vec2i *v);
 t_flt__		vec2i_normf__(t_vec2i *v);
-t_ldbl__		vec2i_norml__(t_vec2i *v);
+t_ldbl__	vec2i_norml__(t_vec2i *v);
 
 t_vec2i		*vec2i_addv__(t_vec2i *v1, t_vec2i *v3);
 t_vec2i		*vec2i_subv__(t_vec2i *v1, t_vec2i *v2);
@@ -61,7 +61,7 @@ static const t_vec2_f__	g_vec2i = {
 */
 t_dbl__		vec2f_norm__(t_vec2f *v);
 t_flt__		vec2f_normf__(t_vec2f *v);
-t_ldbl__		vec2f_norml__(t_vec2f *v);
+t_ldbl__	vec2f_norml__(t_vec2f *v);
 
 t_vec2f		*vec2f_addv__(t_vec2f *v1, t_vec2f *v2);
 t_vec2f		*vec2f_subv__(t_vec2f *v1, t_vec2f *v2);
@@ -139,7 +139,7 @@ static const t_vec2_f__	g_vec2d = {
 */
 t_dbl__		vec2l_norm__(t_vec2l *v);
 t_flt__		vec2l_normf__(t_vec2l *v);
-t_ldbl__		vec2l_norml__(t_vec2l *v);
+t_ldbl__	vec2l_norml__(t_vec2l *v);
 
 t_vec2l		*vec2l_addv__(t_vec2l *v1, t_vec2l *v2);
 t_vec2l		*vec2l_subv__(t_vec2l *v1, t_vec2l *v2);

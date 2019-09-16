@@ -6,11 +6,9 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/10 10:32:46 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/16 11:55:23 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-#	TODO:
 
 include	variables.mk
 
@@ -20,12 +18,6 @@ SONM	:=	libft.so
 ifdef CAN_RUN
 
 override LDFLAGS =	-L. -lft
-
-#ifndef DISABLE_TERMCAPS
-#override LDFLAGS +=	-lncurses
-#endif
-
-#override LDFLAGS +=	-lreadline
 
 CC		:=	$(MAKE) --no-print-dir -I$(ROOT) -C
 LINKER	:=	ar rc
@@ -105,12 +97,12 @@ re:		fclean all
 
 #	test part
 
--include test.d
-
 testclean:
-	@$(RM) test
+	@$(MAKE) -C unit_tests/ fclean
 
-test:	$(NAME) main.c
-	gcc -o test main.c $(strip $(CFLAGS)) $(strip $(LDFLAGS))
+cleantest: testclean
 
-.PHONY:	testclean
+test:	$(NAME)
+	@$(MAKE) -C unit_tests/
+
+.PHONY:	testclean cleantest
