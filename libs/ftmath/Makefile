@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/12 17:29:52 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/16 13:50:41 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,18 +18,37 @@ NAME	:=	ftmath
 FLPM	:=	fp32math.c fp64math.c fp80math.c
 FLPM	:=	$(addprefix fpmath/, $(FLPM))
 
-VEC	:=	op_v.c op_x.c op_1.c op_len.c
-
+##	Generic vectors sources
+VEC		:=	op_v.c op_x.c op_1.c op_len.c op_dot.c
 VECI	:=	$(addprefix veci/,$(VEC))
 VECF	:=	$(addprefix vecf/,$(VEC))
 VECD	:=	$(addprefix vecd/,$(VEC))
 VECL	:=	$(addprefix vecl/,$(VEC))
-
 VEC		:=	set.c $(VEC) $(VECI) $(VECF) $(VECD) $(VECL)
 
-VEC2	:=	$(addprefix vec2/,$(VEC))
-VEC3	:=	$(addprefix vec3/,$(VEC))
+##	vec2 sources
+#VEC2	:=
+#VECI	:=	$(addprefix veci/,$(VEC2))
+#VECF	:=	$(addprefix vecf/,$(VEC2))
+#VECD	:=	$(addprefix vecd/,$(VEC2))
+#VECL	:=	$(addprefix vecl/,$(VEC2))
+#VEC2	:=	$(VEC2) $(VECI) $(VECF) $(VECD) $(VECL)
 
+VEC2	:=	$(VEC) $(VEC2)
+VEC2	:=	$(addprefix vec2/,$(VEC2))
+
+##	vec3 sources
+VEC3	:=	op_cross.c
+VECI	:=	$(addprefix veci/,$(VEC3))
+VECF	:=	$(addprefix vecf/,$(VEC3))
+VECD	:=	$(addprefix vecd/,$(VEC3))
+VECL	:=	$(addprefix vecl/,$(VEC3))
+VEC3	:=	$(VEC3) $(VECI) $(VECF) $(VECD) $(VECL)
+
+VEC3	:=	$(VEC) $(VEC3)
+VEC3	:=	$(addprefix vec3/,$(VEC3))
+
+##	Generic vector part
 VECTORS	:=	$(VEC3) $(VEC2)
 VECTORS	:=	$(addprefix vectors/,$(VECTORS))
 

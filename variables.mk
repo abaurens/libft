@@ -19,6 +19,7 @@ CP		:=	cp -rf
 LN		:=	ln -s
 AR		:=	ar -rc
 CC		:=	gcc
+MKDIR	:=	mkdir -p
 
 SRCD	:=	srcs
 OBJD	:=	objs
@@ -32,7 +33,7 @@ SUB_EXT	:=	.ao
 #        BUT NOT EDIT THIS        #
 ###################################
 include .private/dep.mk
-ifdef CAN_RUN
+ifeq ($(CAN_RUN),TRUE)
 PWD		:=	$(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 ROOT	:=	$(shell echo $(PWD) | sed 's:libft/.*:libft/:g')
 PVMK	:=	$(ROOT).private/

@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:47:42 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/12 16:09:41 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/16 13:26:15 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,49 +18,57 @@
 typedef struct s_vec3_f__	t_vec3_f__;
 typedef struct s_vec2_f__	t_vec2_f__;
 
-typedef void		*(*t_vecf_opv__)(void *, void *);
-typedef void		*(*t_vecf_op1__)(void *, t_big__);
-typedef void		*(*t_vecf_op2__)(void *, t_big__, t_big__);
-typedef void		*(*t_vecf_op3__)(void *, t_big__, t_big__, t_big__);
-typedef void		*(*t_vecf_op__)(void *);
-typedef t_dbl__		(*t_vecf_len__)(void *);
-typedef t_flt__		(*t_vecf_lenf__)(void *);
-typedef t_ldbl__	(*t_vecf_lenl__)(void *);
+typedef void		*(*t_vecf_v_v__)(void *);
+typedef void		*(*t_vecf_v_vv__)(void *, void *);
+typedef void		*(*t_vecf_v_vvv__)(void *, void *, void *);
+
+typedef void		*(*t_vecf_v_vn__)(void *, t_big__);
+typedef void		*(*t_vecf_v_vnn__)(void *, t_big__, t_big__);
+typedef void		*(*t_vecf_v_vnnn__)(void *, t_big__, t_big__, t_big__);
+
+typedef t_dbl__		(*t_vecf_d_v__)(void *);
+typedef t_flt__		(*t_vecf_f_v__)(void *);
+typedef t_ldbl__	(*t_vecf_l_v__)(void *);
+
+typedef t_dbl__		(*t_vecf_d_vv__)(void *, void *);
 
 struct				s_vec3_f__
 {
-	t_vecf_len__	norm;
-	t_vecf_lenf__	normf;
-	t_vecf_lenl__	norml;
-	t_vecf_opv__	addv;
-	t_vecf_opv__	subv;
-	t_vecf_opv__	mulv;
-	t_vecf_op3__	add3;
-	t_vecf_op3__	sub3;
-	t_vecf_op3__	mul3;
-	t_vecf_op1__	add;
-	t_vecf_op1__	sub;
-	t_vecf_op1__	mul;
-	t_vecf_op1__	div;
-	t_vecf_op__		normalize;
+	t_vecf_d_v__	norm;
+	t_vecf_f_v__	normf;
+	t_vecf_l_v__	norml;
+	t_vecf_v_vv__	addv;
+	t_vecf_v_vv__	subv;
+	t_vecf_v_vv__	mulv;
+	t_vecf_v_vnnn__	add3;
+	t_vecf_v_vnnn__	sub3;
+	t_vecf_v_vnnn__	mul3;
+	t_vecf_v_vn__	add;
+	t_vecf_v_vn__	sub;
+	t_vecf_v_vn__	mul;
+	t_vecf_v_vn__	div;
+	t_vecf_v_v__	normalize;
+	t_vecf_d_vv__	dot;
+	t_vecf_v_vvv__	cross;
 };
 
 struct				s_vec2_f__
 {
-	t_vecf_len__	norm;
-	t_vecf_lenf__	normf;
-	t_vecf_lenl__	norml;
-	t_vecf_opv__	addv;
-	t_vecf_opv__	subv;
-	t_vecf_opv__	mulv;
-	t_vecf_op2__	add2;
-	t_vecf_op2__	sub2;
-	t_vecf_op2__	mul2;
-	t_vecf_op1__	add;
-	t_vecf_op1__	sub;
-	t_vecf_op1__	mul;
-	t_vecf_op1__	div;
-	t_vecf_op__		normalize;
+	t_vecf_d_v__	norm;
+	t_vecf_f_v__	normf;
+	t_vecf_l_v__	norml;
+	t_vecf_v_vv__	addv;
+	t_vecf_v_vv__	subv;
+	t_vecf_v_vv__	mulv;
+	t_vecf_v_vnn__	add2;
+	t_vecf_v_vnn__	sub2;
+	t_vecf_v_vnn__	mul2;
+	t_vecf_v_vn__	add;
+	t_vecf_v_vn__	sub;
+	t_vecf_v_vn__	mul;
+	t_vecf_v_vn__	div;
+	t_vecf_v_v__	normalize;
+	t_vecf_d_vv__	dot;
 };
 
 #endif

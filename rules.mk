@@ -18,6 +18,8 @@ endif
 
 -include $(DEP)
 
+ifeq ($(FANCY_MODE),TRUE)
+
 $(OBJD)/%.o:	$(SRCD)/%.c Makefile
 	@if [[ $(CMPT) -ne 0 ]];then printf "$(CURUP)"; else printf "$(CURSV)"; fi
 	$(call increment,$(CMPT),CMPT)
@@ -28,11 +30,9 @@ $(OBJD)/%.o:	$(SRCD)/%.c Makefile
 	@mkdir -p $(dir $@)
 ifndef NO_NOTE
 	@$(CC) $(strip $(CFLAGS)) -o $@ -c $<
-else
+else #NO_NOTE
 	@2>&1 $(CC) $(strip $(CFLAGS)) -o $@ -c $< | sed $(NO_NOTE)
-endif
-
-all:	$(NAME)
+endif #NO_NOTE
 
 clean:
 	$(call pinfo,Cleaning $(call filename,$(NAME)))
@@ -44,6 +44,25 @@ fclean:
 	@$(RM) $(DEP)
 	@$(RM) $(OBJD)
 	@$(RM) $(NAME)
+
+else#FANCY_MODE
+
+$(OBJD)/%.o:	$(SRCD)/%.c Makefile
+	@$(MKDIR) $(dir $@)
+	$(CC) $(strip $(CFLAGS)) -o $@ -c $<
+
+clean:
+	$(RM) $(DEP)
+	$(RM) $(OBJD)
+
+fclean:
+	$(RM) $(DEP)
+	$(RM) $(OBJD)
+	$(RM) $(NAME)
+
+endif#FANCY_MODE
+
+all:	$(NAME)
 
 re:		fclean all
 

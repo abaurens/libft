@@ -11,6 +11,11 @@
 # **************************************************************************** #
 
 CMPT	:=	0
+
+ifneq ($(SHELL),/bin/sh)
+override SHELL := /bin/sh
+endif
+
 FCNT	:=	$(words $(SRC))
 
 INCLDS	:=	-I$(ROOT)includes
@@ -48,9 +53,14 @@ endif
 
 # RULES
 
+ifeq ($(FANCY_MODE),TRUE)
 %$(SUB_EXT):
 	@$(call vinfo,Compiling...,TEXT)
 	@if [[ $(CMPT) -eq 0 ]]; then printf "$(TEXT)\n"; fi
 	$(eval FCNT	:= $(words $(LIBS)))
 	$(eval CMPT := $(shell echo $(CMPT) + 1 | bc))
 	@$(CC) $(basename $@) CFLAGS=$(CFLAGSTO) SUBID=$(CMPT) TOTAL_SIZE=$(FCNT) MAX_LEN=$(MAX_LEN)
+else
+%$(SUB_EXT):
+	$(CC) $(basename $@) CFLAGS=$(CFLAGSTO) SUBID=$(CMPT) TOTAL_SIZE=$(FCNT) MAX_LEN=$(MAX_LEN)
+endif
