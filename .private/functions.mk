@@ -119,5 +119,5 @@ $(notdir $(basename $(1)))
 endef
 
 define libpath
-$(LIBS_D)/$(1)/$(1)$(SUB_EXT)
+$(LIBS_D)/$(1)$(SUB_EXT)
 endef
