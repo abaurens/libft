@@ -6,38 +6,38 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 11:07:30 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/10 19:33:27 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/16 14:52:32 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftmath/vectors/t_vec2_t.h"
 
-t_vec2l	*vec2l_add1__(t_vec2l *v1, t_big__ i)
+t_vec2l	*v2l_add1(t_vec2l *v1, t_ldbl__ i)
 {
-	v1->x += (t_ldbl__)i;
-	v1->y += (t_ldbl__)i;
+	v1->x += i;
+	v1->y += i;
 	return (v1);
 }
 
-t_vec2l	*vec2l_sub1__(t_vec2l *v1, t_big__ i)
+t_vec2l	*v2l_sub1(t_vec2l *v1, t_ldbl__ i)
 {
-	v1->x -= (t_ldbl__)i;
-	v1->y -= (t_ldbl__)i;
+	v1->x -= i;
+	v1->y -= i;
 	return (v1);
 }
 
-t_vec2l	*vec2l_mul1__(t_vec2l *v1, t_big__ i)
+t_vec2l	*v2l_mul1(t_vec2l *v1, t_ldbl__ i)
 {
-	v1->x *= (t_ldbl__)i;
-	v1->y *= (t_ldbl__)i;
+	v1->x *= i;
+	v1->y *= i;
 	return (v1);
 }
 
-t_vec2l	*vec2l_div1__(t_vec2l *v1, t_big__ i)
+t_vec2l	*v2l_div1(t_vec2l *v1, t_ldbl__ i)
 {
-	if ((t_ldbl__)i == 0)
+	if (i == 0)
 		return (v1);
-	v1->x /= (t_ldbl__)i;
-	v1->y /= (t_ldbl__)i;
+	v1->x /= i;
+	v1->y /= i;
 	return (v1);
 }

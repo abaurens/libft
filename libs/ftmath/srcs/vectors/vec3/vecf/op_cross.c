@@ -6,16 +6,18 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 13:12:58 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/16 13:57:41 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/16 14:39:32 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftmath/vectors/t_vec3_t.h"
 
-t_vec3f		*vec3f_cross__(t_vec3f *v, t_vec3f *v1, t_vec3f *v2)
+t_vec3f		v3f_cross(t_vec3f *v1, t_vec3f *v2)
 {
-	v->x = v1->y * v2->z - v1->z * v2->y;
-	v->y = v1->z * v2->x - v1->x * v2->z;
-	v->z = v1->x * v2->y - v1->y * v2->x;
+	t_vec3f	v;
+
+	v.x = v1->y * v2->z - v1->z * v2->y;
+	v.y = v1->z * v2->x - v1->x * v2->z;
+	v.z = v1->x * v2->y - v1->y * v2->x;
 	return (v);
 }

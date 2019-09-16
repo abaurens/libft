@@ -6,13 +6,13 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 11:36:17 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/16 12:51:01 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/16 14:56:14 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftmath/vectors/t_vec2_t.h"
 
-t_dbl__		vec2i_dot__(t_vec2i *v1, t_vec2i *v2)
+t_dbl__		v2i_dot(t_vec2i *v1, t_vec2i *v2)
 {
 	return (v1->x * v2->x + v1->y * v2->y);
 }
