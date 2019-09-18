@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 18:19:18 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/04 02:33:35 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/18 18:02:26 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static char		*build_res(t_arg *ar)
 	if ((add = 0) || ft_isupper(ar->conv.c))
 		ft_strupcase(val);
 	enl = ft_idxof('.', val);
-	i = (ar->val.lf >= 0.0 && flag(ar, F_SPAC | F_PLUS));
+	i = (!get_float_components(ar->val.lf).sign && flag(ar, F_SPAC | F_PLUS));
 	if ((enl + i + ar->prec + (ar->prec || flag(ar, F_HASH))) < ar->min)
 		add = ar->min - (enl + i + ar->prec + (ar->prec || flag(ar, F_HASH)));
 	if (!(rs = alloc_res(enl + i, ar, add)) || (ar->prec && !++enl))
