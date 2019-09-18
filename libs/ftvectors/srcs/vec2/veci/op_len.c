@@ -6,11 +6,10 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 11:36:17 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/18 11:17:56 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/18 16:39:44 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "vectors/vec2/t_vec2_t.h"
 #include "ftmath.h"
 
