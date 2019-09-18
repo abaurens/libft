@@ -59,7 +59,7 @@ dkms.conf
 .clang_complete
 *old*
 test
-unit_tests
+# unit_tests
 main.c
 *.ao
 
