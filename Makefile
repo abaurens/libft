@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/16 14:02:37 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/18 13:03:22 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ LIBS	:=	\
 			ftlib		\
 			ftmath		\
 			ftregex		\
-			ftcipher
+			ftcipher	\
+			ftvectors
 LIBS	:=	$(addsuffix $(SUB_EXT),$(LIBS))
 
 ifeq ($(FANCY_MODE),TRUE)
@@ -72,26 +73,18 @@ endif
 so:	$(SONM)
 
 ifeq ($(FANCY_MODE),TRUE)
+
+CLEAN_DEFINED	:=	TRUE
+
 clean:
 	@$(RM) $(OBJD)
 	@$(RM) $(LIBS)
 	@$(foreach CMD,$(basename $(LIBS)),$(CC) $(CMD) clean;)
 
-fclean:	testclean
+fclean:
 	@$(RM) $(NAME)
 	@$(RM) $(SONM)
 	@$(RM) $(LIBS)
-	@$(foreach CMD,$(basename $(LIBS)),$(CC) $(CMD) fclean;)
-else
-clean:
-	$(RM) $(OBJD)
-	$(RM) $(LIBS)
-	@$(foreach CMD,$(basename $(LIBS)),$(CC) $(CMD) clean;)
-
-fclean:
-	$(RM) $(NAME)
-	$(RM) $(SONM)
-	$(RM) $(LIBS)
 	@$(foreach CMD,$(basename $(LIBS)),$(CC) $(CMD) fclean;)
 endif
 else
@@ -101,6 +94,9 @@ $(NAME):
 	@$(error missing dependencie(s): $(foreach dep,$(MISSING),'$(dep)'))
 	@which -v $(firstword $(MISSING)) >$(NULL) 2>&1
 
+endif
+
+ifneq ($(CLEAN_DEFINED),TRUE)
 clean:
 	$(RM) $(OBJD)
 	$(RM) $(LIBS)
@@ -111,7 +107,6 @@ fclean:
 	$(RM) $(SONM)
 	$(RM) $(LIBS)
 	@$(foreach CMD,$(basename $(LIBS)),$(CC) $(CMD) fclean;)
-
 endif
 
 ifeq ($(LIB_MODE),$(or $(findstring DYNAMIC,$(LIB_MODE)),$(findstring SHARED,$(LIB_MODE))))
