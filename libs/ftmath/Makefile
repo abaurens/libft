@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/16 14:59:53 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/18 10:47:36 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,49 +18,14 @@ NAME	:=	ftmath
 FLPM	:=	fp32math.c fp64math.c fp80math.c
 FLPM	:=	$(addprefix fpmath/, $(FLPM))
 
-##	Generic vectors sources
-VEC		:=	op_v.c op_x.c op_1.c op_len.c op_dot.c
-VECI	:=	$(addprefix veci/,$(VEC))
-VECF	:=	$(addprefix vecf/,$(VEC))
-VECD	:=	$(addprefix vecd/,$(VEC))
-VECL	:=	$(addprefix vecl/,$(VEC))
-VEC		:=	set.c $(VECI) $(VECF) $(VECD) $(VECL)
-
-##	Vec2 sources
-#VEC2	:=
-#VECI	:=	$(addprefix veci/,$(VEC2))
-#VECF	:=	$(addprefix vecf/,$(VEC2))
-#VECD	:=	$(addprefix vecd/,$(VEC2))
-#VECL	:=	$(addprefix vecl/,$(VEC2))
-#VEC2	:=	$(VECI) $(VECF) $(VECD) $(VECL)
-
-VEC2	:=	$(VEC) $(VEC2)
-VEC2	:=	$(addprefix vec2/,$(VEC2))
-
-##	Vec3 sources
-VEC3	:=	op_cross.c
-VECI	:=	$(addprefix veci/,$(VEC3))
-VECF	:=	$(addprefix vecf/,$(VEC3))
-VECD	:=	$(addprefix vecd/,$(VEC3))
-VECL	:=	$(addprefix vecl/,$(VEC3))
-VEC3	:=	$(VECI) $(VECF) $(VECD) $(VECL)
-
-VEC3	:=	$(VEC) $(VEC3)
-VEC3	:=	$(addprefix vec3/,$(VEC3))
-
-##	Generic vector part
-VECTORS	:=	$(VEC3) $(VEC2)
-VECTORS	:=	$(addprefix vectors/,$(VECTORS))
-
 SRC		:=	\
-		$(FLPM)		$(VECTORS)	\
-		ft_min.c	ft_max.c	\
-		ft_abs.c	ft_nan.c	\
-		ft_rad.c	ft_pow.c	\
-		ft_sqrt.c	cordic.c	\
-		ft_log.c	ft_logl.c	\
-		ft_expl.c	ft_exp.c	\
-		ft_expf.c
+		$(FLPM)		ft_min.c	\
+		ft_max.c	ft_abs.c	\
+		ft_nan.c	ft_rad.c	\
+		ft_pow.c	ft_sqrt.c	\
+		cordic.c	ft_log.c	\
+		ft_logl.c	ft_expl.c	\
+		ft_exp.c	ft_expf.c
 
 include variables.mk
 include rules.mk
