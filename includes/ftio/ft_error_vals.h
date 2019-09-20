@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 04:24:22 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/23 21:46:53 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 08:23:07 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,22 @@
 
 # include <errno.h>
 # include <stdlib.h>
+# include "ftio/ft_error.h"
 
 typedef struct				s_error_info
 {
 	int						value;
 	const char				*name;
-	const char				*msg;
+	const char				msg[ERROR_MSG_MAX_LEN + 11 + 1];
 }							t_error_info;
 
-# define FT_EUNDEFINED 0
-
-static const t_error_info	g_error_table[] =
+static t_error_info		g_error_table[] =
 {
-# ifdef FT_SUCCESS
-
-	{FT_SUCCESS, "FT_SUCCESS", "Success"},
-# else
-
-	{FT_EUNDEFINED, "FT_EUNDEFINED", "Undefined error: 0"},
+# ifdef FT_ESUCCESS
+	{FT_ESUCCESS, "SUCCESS", FT_ESUCCESS_MSG},
+# endif
+# ifdef FT_EUNDEFINED
+	{FT_EUNDEFINED, "EUNDEFINED", FT_EUNDEF_MSG}
 # endif
 # ifdef EPERM
 
@@ -460,7 +458,7 @@ static const t_error_info	g_error_table[] =
 	{EQFULL, "EQFULL", "Interface output queue is full"},
 # endif
 
-	{-1, NULL, "Unknown error: "}
+	{-1, NULL, FT_EUNKOWN_MSG}
 };
 
 int							get_errno_real(void);

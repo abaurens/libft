@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 18:17:28 by abaurens          #+#    #+#             */
-/*   Updated: 2019/01/18 19:23:22 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 01:08:47 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ static char		*length(t_printf *const data, t_arg *const arg)
 
 static const t_converter	g_funcs[] =
 {
-	{'H', TRUE, short_short_length},
-	{'h', TRUE, short_length},
-	{' ', TRUE, length},
-	{'j', TRUE, intmax_length},
-	{'l', TRUE, long_length},
-	{'L', TRUE, long_long_length},
-	{'q', TRUE, quad_length},
-	{'z', TRUE, size_length},
-	{'Z', TRUE, ssize_length},
-	{'t', TRUE, ptrdiff_length},
-	{'\0', FALSE, NULL}
+	{'H', TRUE, ARG_INT, short_short_length},
+	{'h', TRUE, ARG_INT, short_length},
+	{' ', TRUE, ARG_INT, length},
+	{'j', TRUE, ARG_INT, intmax_length},
+	{'l', TRUE, ARG_INT, long_length},
+	{'L', TRUE, ARG_INT, long_long_length},
+	{'q', TRUE, ARG_INT, quad_length},
+	{'z', TRUE, ARG_INT, size_length},
+	{'Z', TRUE, ARG_INT, ssize_length},
+	{'t', TRUE, ARG_INT, ptrdiff_length},
+	{'\0', FALSE, ARG_NON, NULL}
 };
 
 char			*convert_length(t_printf *data, t_arg *arg)

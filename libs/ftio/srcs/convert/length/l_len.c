@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:30:32 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/01 15:12:29 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 02:11:59 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ char			*long_length(t_printf *const data, t_arg *const arg)
 
 char			*long_long_length(t_printf *const data, t_arg *const arg)
 {
-	long long	*v;
+	t_ll	*v;
 
-	v = (long long int *)arg->val.p;
+	v = (t_ll *)arg->val.p;
 	*v = data->len;
 	return (data->buf);
 }

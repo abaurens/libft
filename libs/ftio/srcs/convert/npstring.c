@@ -6,32 +6,34 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 17:44:41 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/04 02:33:54 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 08:04:58 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "ftio/ft_types.h"
 #include "ftio/ft_core.h"
+#include "ftmath.h"
 #include "ftlib.h"
 
-static size_t		ft_unprint_strlen(const char *s)
+static size_t	ft_unprint_strlen(register const char *s, const char *base)
 {
-	register size_t	i;
 	register size_t	len;
 
-	i = 0;
 	len = 0;
-	while (s && s[i])
+	(void)base;
+	while (s && *s)
 	{
-		if (!ft_isprint(s[i++]))
-			len += 2;
-		len++;
+		if (!ft_isprint(*s))
+			len += chtoa_base(NULL, *s, base);
+		else
+			len++;
+		s++;
 	}
 	return (len);
 }
 
-static char			*ft_unprint_strncpy(char *dest, char *src, size_t n, char l)
+static char		*ft_unprint_strncpy(char *dest, char *src, size_t n, char *b)
 {
 	register char	*d;
 	register char	*s;
@@ -40,35 +42,29 @@ static char			*ft_unprint_strncpy(char *dest, char *src, size_t n, char l)
 	s = src;
 	if (n <= 0 || !dest || !src)
 		return (dest);
-	while (*s || l)
+	while (*s)
 	{
-		if (*s == 0)
-			l = 0;
-		*d = *s;
-		if (!ft_isprint(*s))
-		{
-			*d++ = '\\';
-			*(d + 1) = "0123456789abcdef"[(*s % 16)];
-			*d++ = "0123456789abcdef"[((*s / 16) % 16)];
-		}
-		d++;
-		if (*s)
-			s++;
+		if (!ft_isprint(*d = *s))
+			d += chtoa_base(d, *d, b);
+		else
+			d++;
+		s++;
 	}
 	return (dest);
 }
 
-static char			*non_printable(t_printf *data, t_arg *arg)
+static char		*non_printable(t_printf *data, t_arg *arg)
 {
 	char		*v;
 	char		*res;
+	char		*base;
 	int			len;
 	int			tab_len;
 
+	base = flag(arg, F_HASH) ? DECI : HEXA;
 	v = (!arg->val.p) ? "(null)" : (char *)arg->val.p;
-	if ((len = ft_unprint_strlen(v)) > arg->prec && arg->prec >= 0)
+	if ((len = ft_unprint_strlen(v, base)) > arg->prec && arg->prec >= 0)
 		len = arg->prec;
-	len += flag(arg, F_HASH) ? 3 : 0;
 	if ((tab_len = arg->min) < len)
 		tab_len = len;
 	if (!(res = malloc(tab_len + 1)))
@@ -76,7 +72,7 @@ static char			*non_printable(t_printf *data, t_arg *arg)
 	res[tab_len] = 0;
 	ft_memset(res, flag(arg, F_ZERO) ? '0' : ' ', tab_len);
 	tab_len -= (flag(arg, F_MINS) ? tab_len : len);
-	ft_unprint_strncpy(res + tab_len, v, len, flag(arg, F_HASH));
+	ft_unprint_strncpy(res + tab_len, v, len, base);
 	insert_buffer(data, res, ft_strlen(res));
 	free(res);
 	return (data->buf);
@@ -84,15 +80,15 @@ static char			*non_printable(t_printf *data, t_arg *arg)
 
 static const t_converter	g_funcs[] =
 {
-	{' ', TRUE, non_printable},
-	{'\0', FALSE, NULL}
+	{' ', TRUE, ARG_PTR, non_printable},
+	{'\0', FALSE, ARG_NON, NULL}
 };
 
-char				*convert_non_printable_string(t_printf *data, t_arg *arg)
+char			*convert_non_printable_string(t_printf *data, t_arg *arg)
 {
-	int				i;
-	int				prec;
-	int				min;
+	int			i;
+	int			prec;
+	int			min;
 
 	min = arg->min;
 	prec = arg->prec;

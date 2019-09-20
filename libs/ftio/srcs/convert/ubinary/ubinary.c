@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 17:40:26 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/04 17:20:12 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 01:08:36 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ static char			*binary(t_printf *const data, t_arg *const arg)
 
 static const t_converter	g_funcs[] =
 {
-	{'H', TRUE, short_short_binary},
-	{'h', TRUE, short_binary},
-	{' ', TRUE, binary},
-	{'j', TRUE, intmax_binary},
-	{'l', TRUE, long_binary},
-	{'L', TRUE, long_long_binary},
-	{'q', TRUE, quad_binary},
-	{'z', TRUE, size_binary},
-	{'Z', TRUE, ssize_binary},
-	{'t', TRUE, ptrdiff_binary},
-	{'\0', FALSE, NULL}
+	{'H', TRUE, ARG_INT, short_short_binary},
+	{'h', TRUE, ARG_INT, short_binary},
+	{' ', TRUE, ARG_INT, binary},
+	{'j', TRUE, ARG_INT, intmax_binary},
+	{'l', TRUE, ARG_INT, long_binary},
+	{'L', TRUE, ARG_INT, long_long_binary},
+	{'q', TRUE, ARG_INT, quad_binary},
+	{'z', TRUE, ARG_INT, size_binary},
+	{'Z', TRUE, ARG_INT, ssize_binary},
+	{'t', TRUE, ARG_INT, ptrdiff_binary},
+	{'\0', FALSE, ARG_NON, NULL}
 };
 
 char				*convert_u_integer_binary(t_printf *data, t_arg *arg)

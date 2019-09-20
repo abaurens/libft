@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 18:19:18 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/18 18:02:26 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 01:13:47 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,10 @@ static char		*std_double(t_printf *const data, t_arg *const arg)
 
 static const t_converter	g_funcs[] =
 {
-	{' ', TRUE, std_double},
-	{'l', TRUE, std_double},
-	{'L', TRUE, printf_ldbl},
-	{'\0', FALSE, NULL}
+	{' ', TRUE, ARG_FLT, std_double},
+	{'l', TRUE, ARG_FLT, std_double},
+	{'L', TRUE, ARG_FLT, printf_ldbl},
+	{'\0', FALSE, ARG_NON, NULL}
 };
 
 char			*convert_double_floating(t_printf *data, t_arg *arg)

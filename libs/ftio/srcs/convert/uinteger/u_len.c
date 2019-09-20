@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:41:44 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/02 20:53:33 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 02:11:26 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ char				*long_uinteger(t_printf *const data, t_arg *const arg)
 
 char				*long_long_uinteger(t_printf *const data, t_arg *const arg)
 {
-	unsigned long long	v;
-	char				*tab;
+	t_ull			v;
+	char			*tab;
 
-	v = (unsigned long long)arg->val.i;
+	v = (t_ull)arg->val.i;
 	if (flag(arg, F_ZERO))
 		arg->prec = arg->min;
 	if (!(tab = padded_ulltoa(v, arg->prec, arg->min, flag(arg, F_MINS))))

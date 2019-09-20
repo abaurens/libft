@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 17:40:26 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/04 16:24:46 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 02:11:49 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,11 @@ char				*long_binary(t_printf *const data, t_arg *const arg)
 
 char				*long_long_binary(t_printf *const data, t_arg *const arg)
 {
-	unsigned long long	v;
-	char				*tab;
-	int					len;
+	t_ull	v;
+	char	*tab;
+	int		len;
 
-	v = (unsigned long long)arg->val.i;
+	v = (t_ull)arg->val.i;
 	if ((len = ft_unsignedlen_base(v, "01")) > arg->prec && (v || arg->prec))
 		arg->prec = len;
 	if (flag(arg, F_ZERO) && arg->min > arg->prec)

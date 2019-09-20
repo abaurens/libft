@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/08 21:02:59 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/04 17:20:30 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 01:09:59 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,17 @@ static char			*uoctal(t_printf *const data, t_arg *const ar)
 
 static const t_converter	g_funcs[] =
 {
-	{'H', TRUE, short_short_uoctal},
-	{'h', TRUE, short_uoctal},
-	{' ', TRUE, uoctal},
-	{'j', TRUE, intmax_uoctal},
-	{'l', TRUE, long_uoctal},
-	{'L', TRUE, long_long_uoctal},
-	{'q', TRUE, quad_uoctal},
-	{'z', TRUE, size_uoctal},
-	{'Z', TRUE, ssize_uoctal},
-	{'t', TRUE, ptrdiff_uoctal},
-	{'\0', FALSE, NULL}
+	{'H', TRUE, ARG_INT, short_short_uoctal},
+	{'h', TRUE, ARG_INT, short_uoctal},
+	{' ', TRUE, ARG_INT, uoctal},
+	{'j', TRUE, ARG_INT, intmax_uoctal},
+	{'l', TRUE, ARG_INT, long_uoctal},
+	{'L', TRUE, ARG_INT, long_long_uoctal},
+	{'q', TRUE, ARG_INT, quad_uoctal},
+	{'z', TRUE, ARG_INT, size_uoctal},
+	{'Z', TRUE, ARG_INT, ssize_uoctal},
+	{'t', TRUE, ARG_INT, ptrdiff_uoctal},
+	{'\0', FALSE, ARG_NON, NULL}
 };
 
 char				*convert_u_integer_octal(t_printf *data, t_arg *arg)

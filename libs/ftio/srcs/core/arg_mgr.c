@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 19:28:24 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/02 20:37:05 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 02:35:15 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,14 @@
 #include <stdarg.h>
 #include "ftlib.h"
 #include "ftio/ft_types.h"
+#include "ftio/converter.h"
 #include "ftio/argument_mgr.h"
 
-static t_val		(*const g_funcs[])(va_list ap, const char t, const int l) =
+static t_val		(*const g_funcs[])(va_list *ap, const int l) =
 {
 	get_integer,
 	get_pointer,
 	get_double
-};
-
-static const char	*g_convs[] =
-{
-	"dDiuoxXcCbk",
-	"psSnr",
-	"fFeEgGaA",
-	NULL
 };
 
 static int			add_arg(t_ftlist *lst, t_val v)
@@ -71,15 +64,13 @@ t_lst_elem			*get_arg_aa(t_printf *data, const size_t idx, const char t,
 	i = 0;
 	if (idx == 0 || !data)
 		return (NULL);
-	while (g_convs[i] && !ft_contains(t, g_convs[i]))
+	while (g_converters[i].c && t != g_converters[i].c)
 		i++;
-	if (!g_convs[i])
+	if ((i = g_converters[i].t) == ARG_NON)
 		return (NULL);
 	while (data->args.size < idx)
-	{
-		if (add_arg(&data->args, g_funcs[i](data->va_lst, t, l)))
+		if (add_arg(&data->args, g_funcs[i](&data->va_lst, l)))
 			return (NULL);
-	}
 	return (get_at(&data->args, idx));
 }
 

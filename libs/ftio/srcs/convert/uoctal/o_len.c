@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 21:29:23 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/04 15:22:22 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 02:11:33 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,11 @@ char			*long_uoctal(t_printf *const data, t_arg *const ar)
 
 char			*long_long_uoctal(t_printf *const data, t_arg *const ar)
 {
-	unsigned long long	v;
-	char				*tab;
-	int					ln;
+	t_ull	v;
+	char	*tab;
+	int		ln;
 
-	v = (unsigned long long)ar->val.i;
+	v = (t_ull)ar->val.i;
 	if ((ln = ft_unsignedlen_base(v, "01234567")) > ar->prec && (v || ar->prec))
 		ar->prec = ln;
 	if (flag(ar, F_ZERO) && ar->min > ar->prec)

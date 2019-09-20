@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 18:26:04 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/04 17:20:19 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 01:09:20 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@ static char			*hexa(t_printf *const data, t_arg *const arg)
 
 static const t_converter	g_funcs[] =
 {
-	{'H', TRUE, short_short_hexa},
-	{'h', TRUE, short_hexa},
-	{' ', TRUE, hexa},
-	{'j', TRUE, intmax_hexa},
-	{'l', TRUE, long_hexa},
-	{'L', TRUE, long_long_hexa},
-	{'q', TRUE, quad_hexa},
-	{'z', TRUE, size_hexa},
-	{'Z', TRUE, ssize_hexa},
-	{'t', TRUE, ptrdiff_hexa},
-	{'\0', FALSE, NULL}
+	{'H', TRUE, ARG_INT, short_short_hexa},
+	{'h', TRUE, ARG_INT, short_hexa},
+	{' ', TRUE, ARG_INT, hexa},
+	{'j', TRUE, ARG_INT, intmax_hexa},
+	{'l', TRUE, ARG_INT, long_hexa},
+	{'L', TRUE, ARG_INT, long_long_hexa},
+	{'q', TRUE, ARG_INT, quad_hexa},
+	{'z', TRUE, ARG_INT, size_hexa},
+	{'Z', TRUE, ARG_INT, ssize_hexa},
+	{'t', TRUE, ARG_INT, ptrdiff_hexa},
+	{'\0', FALSE, ARG_NON, NULL}
 };
 
 char				*convert_u_integer_hexa(t_printf *data, t_arg *arg)

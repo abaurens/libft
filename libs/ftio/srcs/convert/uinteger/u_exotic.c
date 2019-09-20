@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:41:40 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/04 18:11:31 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 02:14:15 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 char			*intmax_uinteger(t_printf *const data, t_arg *const arg)
 {
-	uintmax_t		v;
-	char			*tab;
+	uintmax_t	v;
+	char		*tab;
 
 	v = (uintmax_t)arg->val.i;
 	if (flag(arg, F_ZERO))
@@ -32,8 +32,8 @@ char			*intmax_uinteger(t_printf *const data, t_arg *const arg)
 
 char			*size_uinteger(t_printf *const data, t_arg *const arg)
 {
-	size_t			v;
-	char			*tab;
+	size_t		v;
+	char		*tab;
 
 	v = (size_t)arg->val.i;
 	if (flag(arg, F_ZERO))
@@ -47,8 +47,8 @@ char			*size_uinteger(t_printf *const data, t_arg *const arg)
 
 char			*ssize_uinteger(t_printf *const data, t_arg *const arg)
 {
-	size_t			v;
-	char			*tab;
+	size_t		v;
+	char		*tab;
 
 	v = (size_t)arg->val.i;
 	if (flag(arg, F_ZERO))
@@ -62,8 +62,8 @@ char			*ssize_uinteger(t_printf *const data, t_arg *const arg)
 
 char			*ptrdiff_uinteger(t_printf *const data, t_arg *const arg)
 {
-	ptrdiff_t		v;
-	char			*tab;
+	ptrdiff_t	v;
+	char		*tab;
 
 	v = (ptrdiff_t)arg->val.i;
 	if (flag(arg, F_ZERO))
@@ -77,10 +77,10 @@ char			*ptrdiff_uinteger(t_printf *const data, t_arg *const arg)
 
 char			*quad_uinteger(t_printf *const data, t_arg *const arg)
 {
-	u_quad_t		v;
-	char			*tab;
+	t_uquad		v;
+	char		*tab;
 
-	v = (quad_t)arg->val.i;
+	v = (t_uquad)arg->val.i;
 	if (flag(arg, F_ZERO))
 		arg->prec = arg->min;
 	if (!(tab = padded_ulltoa(v, arg->prec, arg->min, flag(arg, F_MINS))))

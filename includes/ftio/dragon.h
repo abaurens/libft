@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 20:45:57 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/14 17:01:26 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 03:09:48 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 # include <string.h>
 # include <stdint.h>
+
+/*
+**	# define MASK3			0b111
+*/
+# define MASK3			7
 
 # define MAX_BINT_BLKS 1000ul
 # define MAX_BINT_VALS 0xFFFFFFFF

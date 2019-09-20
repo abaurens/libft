@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/06 17:51:08 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/04 02:35:05 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 06:35:37 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,12 @@ char				*exp_dbl(long double d, size_t prec)
 	xpl = ft_max(2, ft_unsignedlen(ft_abs(expo)));
 	if (!tmp || !(res = ft_memalloc(sign + 2 + prec + 2 + xpl + 1)))
 		return ((char *)ft_freturn(tmp, 0x0));
-	*res = ft_freturn(NULL + !ft_memset(res + sign, 48, sign + 2 + prec), '-');
+	*((char *)ft_memset(res + sign, 48, sign + 2 + prec) - sign) = '-';
 	ft_memcpy(res + sign + 2 + prec, (expo < 0 ? "e-" : "e+"), 2);
 	ft_strncpy(res + sign, tmp, ft_min(2 + prec, ft_strlen(tmp)));
 	while (xpl-- > 0 && (res[sign + 4 + prec + xpl] = ft_abs(expo % 10) + '0'))
 		expo = ft_abs(expo / 10);
-	return ((char *)ft_freturn(tmp, (long)res));
+	return ((char *)ft_freturn(tmp, (uintptr_t)res));
 }
 
 char				*exp_dbl_hex(long double d, int prec, t_bool lng)

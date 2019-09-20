@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 17:29:42 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/04 02:33:41 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 01:13:52 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,10 @@ static char		*std_double(t_printf *const data, t_arg *const arg)
 
 static const t_converter	g_funcs[] =
 {
-	{' ', TRUE, std_double},
-	{'l', TRUE, std_double},
-	{'L', TRUE, long_double},
-	{'\0', FALSE, NULL}
+	{' ', TRUE, ARG_FLT, std_double},
+	{'l', TRUE, ARG_FLT, std_double},
+	{'L', TRUE, ARG_FLT, long_double},
+	{'\0', FALSE, ARG_NON, NULL}
 };
 
 char			*convert_double_compact(t_printf *data, t_arg *arg)

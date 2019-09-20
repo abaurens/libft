@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/16 11:40:47 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/16 15:25:51 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/19 21:43:35 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ NAME	:=	../test
 #override LDFLAGS +=	-lreadline
 
 SRC		:=	\
-			main.c			\
+			_main.c			\
 			test_vectors.c	\
 			test_readline.c
 
@@ -52,4 +52,4 @@ fclean:
 
 re:		fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re $(NAME)

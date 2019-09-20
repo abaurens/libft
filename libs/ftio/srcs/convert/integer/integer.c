@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 18:20:02 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/04 17:48:48 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 01:10:13 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,17 @@ static char	*integer(t_printf *const data, t_arg *const ar)
 
 static const t_converter	g_funcs[] =
 {
-	{'H', TRUE, short_short_integer},
-	{'h', TRUE, short_integer},
-	{' ', TRUE, integer},
-	{'j', TRUE, intmax_integer},
-	{'l', TRUE, long_integer},
-	{'L', TRUE, long_long_integer},
-	{'q', TRUE, quad_integer},
-	{'z', TRUE, size_integer},
-	{'Z', TRUE, ssize_integer},
-	{'t', TRUE, ptrdiff_integer},
-	{'\0', FALSE, NULL}
+	{'H', TRUE, ARG_INT, short_short_integer},
+	{'h', TRUE, ARG_INT, short_integer},
+	{' ', TRUE, ARG_INT, integer},
+	{'j', TRUE, ARG_INT, intmax_integer},
+	{'l', TRUE, ARG_INT, long_integer},
+	{'L', TRUE, ARG_INT, long_long_integer},
+	{'q', TRUE, ARG_INT, quad_integer},
+	{'z', TRUE, ARG_INT, size_integer},
+	{'Z', TRUE, ARG_INT, ssize_integer},
+	{'t', TRUE, ARG_INT, ptrdiff_integer},
+	{'\0', FALSE, ARG_INT, NULL}
 };
 
 char		*convert_integer(t_printf *const data, t_arg *const arg)

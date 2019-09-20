@@ -6,16 +6,17 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 19:02:00 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/04 02:34:57 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 06:20:28 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <stdlib.h>
+#include "ftio/ft_types.h"
 #include "ftmath.h"
 #include "ftlib.h"
 
-char		*padded_lltoa(long long nb, const int min_d, const int pad, char r)
+char	*padded_lltoa(t_ll nb, const int min_d, const int pad, char r)
 {
 	int		len;
 	int		pad_i;

@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:57:11 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/04 18:11:19 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 02:19:39 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,11 +117,11 @@ char				*ptrdiff_hexa(t_printf *const data, t_arg *const arg)
 
 char				*quad_hexa(t_printf *const data, t_arg *const arg)
 {
-	u_quad_t		v;
-	int				len;
-	char			*tab;
+	t_uquad		v;
+	int			len;
+	char		*tab;
 
-	v = (u_quad_t)arg->val.i;
+	v = (t_uquad)arg->val.i;
 	if ((len = ft_unsignedlen_base(v, "0123456789abcdef")) > arg->prec
 		&& (v || arg->prec))
 		arg->prec = len;

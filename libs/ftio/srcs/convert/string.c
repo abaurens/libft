@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:45:42 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/04 02:34:10 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 01:14:27 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ static char		*character_string(t_printf *data, t_arg *arg)
 
 static const t_converter	g_funcs[] =
 {
-	{' ', TRUE, character_string},
-	{'l', TRUE, wide_string},
-	{'\0', FALSE, NULL}
+	{' ', TRUE, ARG_PTR, character_string},
+	{'l', TRUE, ARG_PTR, wide_string},
+	{'\0', FALSE, ARG_NON, NULL}
 };
 
 char			*convert_string(t_printf *data, t_arg *arg)

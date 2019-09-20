@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 08:43:21 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/02 19:40:46 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 06:30:35 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ char			*ft_readline_(const int fd, const char *prompt)
 			ft_print_error("ft_readline: unable to read fd %d\n", fd);
 			ft_memdel(&res);
 		}
-		if (c == 4)
-			return (!write(1, "\n", 1) + NULL);
+		if (c == 4 && write(1, "\n", 1))
+			return (NULL);
 		if (c == 12)
 			write(1, "\033[0;0H\033[0J", 6 + 4);
 	}

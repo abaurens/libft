@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 17:45:31 by abaurens          #+#    #+#             */
-/*   Updated: 2019/07/04 02:33:51 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 01:15:46 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ static char		*date(t_printf *data, t_arg *arg)
 
 static const t_converter	g_funcs[] =
 {
-	{' ', TRUE, date},
-	{'\0', FALSE, NULL}
+	{' ', TRUE, ARG_INT, date},
+	{'\0', FALSE, ARG_NON, NULL}
 };
 
 char			*convert_iso_date(t_printf *data, t_arg *arg)

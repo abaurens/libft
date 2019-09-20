@@ -6,16 +6,16 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 19:02:00 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/15 14:51:15 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 06:21:34 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <stdlib.h>
+#include "ftio/ft_types.h"
 #include "ftlib.h"
 
-char		*padded_ulltoa_hexa(unsigned long long nb, const int min_d,
-									const int pad, char r)
+char	*padded_ulltoa_hexa(t_ull nb, const int min_d, const int pad, char r)
 {
 	int		len;
 	int		pad_i;

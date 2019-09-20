@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:22:40 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/04 18:06:10 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 06:19:30 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char			*size_integer(t_printf *const data, t_arg *const ar)
 		ar->prec = ar->min;
 	if (!(tab = padded_lltoa(v, ar->prec, ar->min, flag(ar, F_MINS))))
 		return (NULL);
-	if (flag(ar, (F_PLUS | F_SPAC)) && (long long)v >= 0)
+	if (flag(ar, (F_PLUS | F_SPAC)) && (t_ll)v >= 0)
 		tab[ft_idxof('0', tab)] = flag(ar, F_PLUS) ? '+' : ' ';
 	insert_buffer(data, tab, ft_strlen(tab));
 	free(tab);
@@ -113,11 +113,11 @@ char			*ptrdiff_integer(t_printf *const data, t_arg *const ar)
 
 char			*quad_integer(t_printf *const data, t_arg *const ar)
 {
-	quad_t		v;
+	t_quad		v;
 	size_t		l;
 	char		*tab;
 
-	v = (quad_t)ar->val.i;
+	v = (t_quad)ar->val.i;
 	if ((long)(l = (ft_numlen(v) - (v < 0))) > ar->prec && (v || ar->prec))
 		ar->prec = l;
 	if (flag(ar, (F_PLUS | F_SPAC)) && v >= 0 && ++l)
@@ -128,7 +128,7 @@ char			*quad_integer(t_printf *const data, t_arg *const ar)
 		ar->prec = ar->min - (v < 0);
 	if (!(tab = padded_lltoa(v, ar->prec, ar->min, flag(ar, F_MINS))))
 		return (NULL);
-	if (flag(ar, (F_PLUS | F_SPAC)) && (quad_t)ar->val.i >= 0)
+	if (flag(ar, (F_PLUS | F_SPAC)) && (t_quad)ar->val.i >= 0)
 		tab[ft_idxof('0', tab)] = flag(ar, F_PLUS) ? '+' : ' ';
 	insert_buffer(data, tab, ft_strlen(tab));
 	free(tab);

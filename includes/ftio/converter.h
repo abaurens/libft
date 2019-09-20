@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 13:53:50 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/23 19:32:21 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 02:14:24 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,39 +18,40 @@
 /*
 **	convert/
 */
-char			*convert_percent(t_printf *data, t_arg *arg);
-char			*convert_integer(t_printf *const data, t_arg *const arg);
-char			*convert_linteger(t_printf *const data, t_arg *const arg);
-char			*convert_u_integer(t_printf *data, t_arg *arg);
-char			*convert_u_linteger(t_printf *data, t_arg *arg);
-char			*convert_u_integer_octal(t_printf *data, t_arg *arg);
-char			*convert_u_linteger_octal(t_printf *data, t_arg *arg);
-char			*convert_u_integer_hexa(t_printf *data, t_arg *arg);
-char			*convert_double_floating(t_printf *data, t_arg *arg);
-char			*convert_double_scientific(t_printf *data, t_arg *arg);
-char			*convert_double_compact(t_printf *data, t_arg *arg);
-char			*convert_double_hexa(t_printf *data, t_arg *arg);
-char			*convert_char(t_printf *data, t_arg *arg);
-char			*convert_wchar(t_printf *data, t_arg *arg);
-char			*convert_string(t_printf *data, t_arg *arg);
-char			*convert_wstring(t_printf *data, t_arg *arg);
-char			*convert_wide_char_string(t_printf *data, t_arg *arg);
-char			*convert_pointer(t_printf *data, t_arg *arg);
-char			*convert_length(t_printf *data, t_arg *arg);
-char			*convert_strerror(t_printf *data, t_arg *arg);
-char			*convert_u_integer_binary(t_printf *data, t_arg *arg);
-char			*convert_non_printable_string(t_printf *data, t_arg *arg);
-char			*convert_iso_date(t_printf *data, t_arg *arg);
+char	*convert_percent(t_printf *data, t_arg *arg);
+char	*convert_integer(t_printf *const data, t_arg *const arg);
+char	*convert_linteger(t_printf *const data, t_arg *const arg);
+char	*convert_u_integer(t_printf *data, t_arg *arg);
+char	*convert_u_linteger(t_printf *data, t_arg *arg);
+char	*convert_u_integer_octal(t_printf *data, t_arg *arg);
+char	*convert_u_linteger_octal(t_printf *data, t_arg *arg);
+char	*convert_u_integer_hexa(t_printf *data, t_arg *arg);
+char	*convert_double_floating(t_printf *data, t_arg *arg);
+char	*convert_double_scientific(t_printf *data, t_arg *arg);
+char	*convert_double_compact(t_printf *data, t_arg *arg);
+char	*convert_double_hexa(t_printf *data, t_arg *arg);
+char	*convert_char(t_printf *data, t_arg *arg);
+char	*convert_wchar(t_printf *data, t_arg *arg);
+char	*convert_string(t_printf *data, t_arg *arg);
+char	*convert_wstring(t_printf *data, t_arg *arg);
+char	*convert_wide_char_string(t_printf *data, t_arg *arg);
+char	*convert_pointer(t_printf *data, t_arg *arg);
+char	*convert_length(t_printf *data, t_arg *arg);
+char	*convert_strerror(t_printf *data, t_arg *arg);
+char	*convert_u_integer_binary(t_printf *data, t_arg *arg);
+char	*convert_non_printable_string(t_printf *data, t_arg *arg);
+char	*convert_non_printable_char(t_printf *data, t_arg *arg);
+char	*convert_iso_date(t_printf *data, t_arg *arg);
 
 /*
 **	double_scientific.c
 */
-char			*printf_ldbl_s(t_arg *const ar);
+char	*printf_ldbl_s(t_arg *const ar);
 
 /*
 **	double_floating.c
 */
-char			*printf_ldbl(t_printf *const data, t_arg *const arg);
+char	*printf_ldbl(t_printf *const data, t_arg *const arg);
 
 /*
 **	% = only print a percent char
@@ -78,45 +79,46 @@ char			*printf_ldbl(t_printf *const data, t_arg *const arg);
 **		convertion into an int pointer
 **	b = unsigned binary
 **		(prefixed with 0b with flag #)
-**	r = string avec caracteres non imprimable
-**		(prints the null terminating zero with flag #)
-**
-**	[BONUS ONLY]
+**	r = like %s but output the hex vlaue preceeded by a backslash
+**		for non-printable charcters (# flag uses the decimal format)
+**	R = like %c but output the hex vlaue preceeded by a backslash
+**		for non-printable charcters (# flag uses the decimal format)
 **	k = ISO formated date (ls formated with flag #)
 **	m = prints the value of strerror(errno) (NO ARG)
 */
 
 static const t_converter	g_converters[] =
 {
-	{'%', FALSE, convert_percent},
-	{'d', TRUE, convert_integer},
-	{'D', TRUE, convert_linteger},
-	{'i', TRUE, convert_integer},
-	{'u', TRUE, convert_u_integer},
-	{'U', TRUE, convert_u_linteger},
-	{'o', TRUE, convert_u_integer_octal},
-	{'O', TRUE, convert_u_linteger_octal},
-	{'x', TRUE, convert_u_integer_hexa},
-	{'X', TRUE, convert_u_integer_hexa},
-	{'f', TRUE, convert_double_floating},
-	{'F', TRUE, convert_double_floating},
-	{'e', TRUE, convert_double_scientific},
-	{'E', TRUE, convert_double_scientific},
-	{'g', TRUE, convert_double_compact},
-	{'G', TRUE, convert_double_compact},
-	{'a', TRUE, convert_double_hexa},
-	{'A', TRUE, convert_double_hexa},
-	{'c', TRUE, convert_char},
-	{'C', TRUE, convert_wchar},
-	{'s', TRUE, convert_string},
-	{'S', TRUE, convert_wstring},
-	{'p', TRUE, convert_pointer},
-	{'n', TRUE, convert_length},
-	{'b', TRUE, convert_u_integer_binary},
-	{'r', TRUE, convert_non_printable_string},
-	{'m', FALSE, convert_strerror},
-	{'k', TRUE, convert_iso_date},
-	{'\0', MAYBE, (void *)0x0}
+	{'%', FALSE, ARG_NON, convert_percent},
+	{'d', TRUE, ARG_INT, convert_integer},
+	{'D', TRUE, ARG_INT, convert_linteger},
+	{'i', TRUE, ARG_INT, convert_integer},
+	{'u', TRUE, ARG_INT, convert_u_integer},
+	{'U', TRUE, ARG_INT, convert_u_linteger},
+	{'o', TRUE, ARG_INT, convert_u_integer_octal},
+	{'O', TRUE, ARG_INT, convert_u_linteger_octal},
+	{'x', TRUE, ARG_INT, convert_u_integer_hexa},
+	{'X', TRUE, ARG_INT, convert_u_integer_hexa},
+	{'f', TRUE, ARG_FLT, convert_double_floating},
+	{'F', TRUE, ARG_FLT, convert_double_floating},
+	{'e', TRUE, ARG_FLT, convert_double_scientific},
+	{'E', TRUE, ARG_FLT, convert_double_scientific},
+	{'g', TRUE, ARG_FLT, convert_double_compact},
+	{'G', TRUE, ARG_FLT, convert_double_compact},
+	{'a', TRUE, ARG_FLT, convert_double_hexa},
+	{'A', TRUE, ARG_FLT, convert_double_hexa},
+	{'c', TRUE, ARG_INT, convert_char},
+	{'C', TRUE, ARG_INT, convert_wchar},
+	{'s', TRUE, ARG_PTR, convert_string},
+	{'S', TRUE, ARG_PTR, convert_wstring},
+	{'p', TRUE, ARG_PTR, convert_pointer},
+	{'n', TRUE, ARG_PTR, convert_length},
+	{'b', TRUE, ARG_INT, convert_u_integer_binary},
+	{'r', TRUE, ARG_PTR, convert_non_printable_string},
+	{'R', TRUE, ARG_INT, convert_non_printable_char},
+	{'m', FALSE, ARG_NON, convert_strerror},
+	{'k', TRUE, ARG_INT, convert_iso_date},
+	{'\0', MAYBE, ARG_NON, (void *)0x0}
 };
 
 #endif

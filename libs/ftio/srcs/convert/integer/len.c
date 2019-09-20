@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:21:12 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/04 17:51:13 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 06:14:14 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,11 @@ char			*long_integer(t_printf *const data, t_arg *const ar)
 
 char			*long_long_integer(t_printf *const data, t_arg *const ar)
 {
-	long long	v;
-	size_t		l;
-	char		*tab;
+	t_ll	v;
+	size_t	l;
+	char	*tab;
 
-	v = (long long)ar->val.i;
+	v = (t_ll)ar->val.i;
 	if ((long)(l = (ft_numlen(v) - (v < 0))) > ar->prec && (v || ar->prec))
 		ar->prec = l;
 	if (flag(ar, (F_PLUS | F_SPAC)) && v >= 0 && ++l)
@@ -104,7 +104,7 @@ char			*long_long_integer(t_printf *const data, t_arg *const ar)
 		ar->prec = ar->min - (v < 0);
 	if (!(tab = padded_lltoa(v, ar->prec, ar->min, flag(ar, F_MINS))))
 		return (NULL);
-	if (flag(ar, (F_PLUS | F_SPAC)) && (long long)ar->val.i >= 0)
+	if (flag(ar, (F_PLUS | F_SPAC)) && (t_ll)ar->val.i >= 0)
 		tab[ft_idxof('0', tab)] = flag(ar, F_PLUS) ? '+' : ' ';
 	insert_buffer(data, tab, ft_strlen(tab));
 	free(tab);

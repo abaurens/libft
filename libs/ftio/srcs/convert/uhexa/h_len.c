@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:56:53 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/04 16:15:30 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 02:20:56 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,11 @@ char				*long_hexa(t_printf *const data, t_arg *const arg)
 
 char				*long_long_hexa(t_printf *const data, t_arg *const arg)
 {
-	unsigned long long	v;
-	int					len;
-	char				*tab;
+	t_ull	v;
+	int		len;
+	char	*tab;
 
-	v = (unsigned long long)arg->val.i;
+	v = (t_ull)arg->val.i;
 	if ((len = ft_unsignedlen_base(v, "0123456789abcdef")) > arg->prec
 		&& (v || arg->prec))
 		arg->prec = len;

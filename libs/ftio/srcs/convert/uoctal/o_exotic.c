@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 21:27:11 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/04 18:11:41 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 02:14:45 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 char			*intmax_uoctal(t_printf *const data, t_arg *const ar)
 {
-	uintmax_t		v;
-	char			*tab;
-	int				ln;
+	uintmax_t	v;
+	char		*tab;
+	int			ln;
 
 	v = (uintmax_t)ar->val.i;
 	if ((ln = ft_unsignedlen_base(v, "01234567")) > ar->prec && (v || ar->prec))
@@ -37,9 +37,9 @@ char			*intmax_uoctal(t_printf *const data, t_arg *const ar)
 
 char			*size_uoctal(t_printf *const data, t_arg *const ar)
 {
-	size_t			v;
-	char			*tab;
-	int				ln;
+	size_t		v;
+	char		*tab;
+	int			ln;
 
 	v = (size_t)ar->val.i;
 	if ((ln = ft_unsignedlen_base(v, "01234567")) > ar->prec && (v || ar->prec))
@@ -57,9 +57,9 @@ char			*size_uoctal(t_printf *const data, t_arg *const ar)
 
 char			*ssize_uoctal(t_printf *const data, t_arg *const ar)
 {
-	size_t			v;
-	char			*tab;
-	int				ln;
+	size_t		v;
+	char		*tab;
+	int			ln;
 
 	v = (size_t)ar->val.i;
 	if ((ln = ft_unsignedlen_base(v, "01234567")) > ar->prec && (v || ar->prec))
@@ -77,9 +77,9 @@ char			*ssize_uoctal(t_printf *const data, t_arg *const ar)
 
 char			*ptrdiff_uoctal(t_printf *const data, t_arg *const ar)
 {
-	ptrdiff_t		v;
-	char			*tab;
-	int				ln;
+	ptrdiff_t	v;
+	char		*tab;
+	int			ln;
 
 	v = (ptrdiff_t)ar->val.i;
 	if ((ln = ft_unsignedlen_base(v, "01234567")) > ar->prec && (v || ar->prec))
@@ -97,11 +97,11 @@ char			*ptrdiff_uoctal(t_printf *const data, t_arg *const ar)
 
 char			*quad_uoctal(t_printf *const data, t_arg *const ar)
 {
-	u_quad_t		v;
-	char			*tab;
-	int				ln;
+	t_uquad		v;
+	char		*tab;
+	int			ln;
 
-	v = (u_quad_t)ar->val.i;
+	v = (t_uquad)ar->val.i;
 	if ((ln = ft_unsignedlen_base(v, "01234567")) > ar->prec && (v || ar->prec))
 		ar->prec = ln;
 	if (flag(ar, F_ZERO) && ar->min > ar->prec)

@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 17:40:26 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/04 18:11:08 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 02:13:46 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,11 @@ char				*ptrdiff_binary(t_printf *const data, t_arg *const arg)
 
 char				*quad_binary(t_printf *const data, t_arg *const arg)
 {
-	u_quad_t		v;
-	char			*tab;
-	int				len;
+	t_uquad		v;
+	char		*tab;
+	int			len;
 
-	v = (u_quad_t)arg->val.i;
+	v = (t_uquad)arg->val.i;
 	if ((len = ft_unsignedlen_base(v, "01")) > arg->prec && (v || arg->prec))
 		arg->prec = len;
 	if (flag(arg, F_ZERO) && arg->min > arg->prec)

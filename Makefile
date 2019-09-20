@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/18 13:03:22 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/19 21:44:19 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -127,6 +127,6 @@ testclean:
 cleantest: testclean
 
 test:	$(NAME)
-	@$(MAKE) -C unit_tests/
+	@$(MAKE) --no-print-dir -C unit_tests/
 
 .PHONY:	test testclean cleantest

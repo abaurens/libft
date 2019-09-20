@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:53:12 by abaurens          #+#    #+#             */
-/*   Updated: 2019/03/30 15:54:44 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 08:02:55 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,15 @@
 # define LEN_MD			"qjzZtlLh"
 # define LEN_MD_CHRS	" qjzZtlLhH"
 
+# define BIN	"01"
+# define OCTA	"01234567"
 # define DECI	"0123456789"
 # define HEXA	"0123456789abcdef"
+
+/*
+**	va_lst_cpy.c
+*/
+void			save_va_list(va_list *save, va_list ap);
 
 /*
 **	core.c
@@ -58,6 +65,7 @@ int				get_arg_i(t_printf *data, const size_t idx, int *v);
 /*
 **	printf_lltoa.c
 */
+char			chtoa_base(register char *dest, unsigned char v, const char *b);
 char			*printf_lltoa(long int nb, const int min);
 char			*padded_lltoa(long nb, const int min_d, const int pad,
 								char r);

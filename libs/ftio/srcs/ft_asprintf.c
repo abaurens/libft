@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:16:38 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/02 18:32:16 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 02:52:05 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		ft_vasprintf(char **ret, const char *format, va_list ap)
 	ft_bzero(&data, sizeof(data));
 	data.err = get_errno();
 	data.use_chain_format = MAYBE;
-	va_copy(data.va_lst, ap);
+	save_va_list(&data.va_lst, ap);
 	if ((size = get_non_arg(format, &data)) < 0)
 		return (ft_freturn(data.buf, ERROR));
 	while (*(format += size))

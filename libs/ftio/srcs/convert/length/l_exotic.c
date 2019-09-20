@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 15:32:54 by abaurens          #+#    #+#             */
-/*   Updated: 2019/01/18 19:24:18 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 02:05:59 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ char			*ptrdiff_length(t_printf *const data, t_arg *const arg)
 
 char			*quad_length(t_printf *const data, t_arg *const arg)
 {
-	quad_t		*v;
+	t_quad		*v;
 
-	v = (quad_t *)arg->val.p;
+	v = (t_quad *)arg->val.p;
 	*v = data->len;
 	return (data->buf);
 }

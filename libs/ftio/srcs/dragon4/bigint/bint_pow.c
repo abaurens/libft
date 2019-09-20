@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 17:54:31 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/02 21:09:21 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/20 03:10:46 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ void				bipow10(t_bint *const res, unsigned int ex)
 	t_bint			t1;
 	t_bint			t2;
 
-	i = ex & 0b111;
+	i = ex & MASK3;
 	bi_set(&t1, g_pow10[i]);
 	ex >>= 3;
 	i = 0;
@@ -191,7 +191,7 @@ void				bimul_pow10(t_bint *res, t_bint *n, unsigned int ex)
 	t_bint			t2;
 
 	t1 = *n;
-	if ((i = (ex & 0b111)) != 0)
+	if ((i = (ex & MASK3)) != 0)
 		bimulint(&t1, n, g_pow10[i]);
 	i = 0;
 	ex >>= 3;

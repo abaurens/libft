@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/07 01:05:01 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/20 08:03:27 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ NO_NOTE	:=	':a;N;s/\n/&/1;Ta;/: note: .*ABI.*/!{P;D};:b;N;s/\n/&/3;Tb;d'
 
 # SOURCES
 
-STRCNV	:=	padded_lltoa.c		padded_ulltoa_hexa.c	\
+STRCNV	:=	chtoa_base.c		\
+			padded_lltoa.c		padded_ulltoa_hexa.c	\
 			padded_ulltoa.c		padded_ulltoa_octal.c	\
 			padded_ulltoa_bin.c	ft_ldtoa_scientific.c
 STRCNV	:=	$(addprefix tostr_conv/, $(STRCNV))
@@ -29,7 +30,7 @@ IOCORE	:=	core.c		parse_args.c		\
 			unicode.c	floating_point.c	\
 			arg_mgr.c	argument_getter.c	\
 			ft_error.c	parser_functions.c	\
-			preparse.c
+			preparse.c	va_lst_cpy.c
 IOCORE	:=	$(addprefix core/, $(IOCORE))
 
 BFLOAT	:=	add.c	utils.c		\
@@ -50,10 +51,10 @@ IOCONV	:=	$(addprefix uhexa/,uhexa.c h_len.c h_exotic.c)			\
 			$(addprefix uoctal/,uoctal.c o_len.c o_exotic.c)		\
 			$(addprefix ubinary/,ubinary.c b_len.c b_exotic.c)		\
 			$(addprefix uinteger/,uinteger.c u_len.c u_exotic.c)	\
-			char.c			string.c		pointer.c				\
-			percent.c		dbl_hex.c		npstring.c				\
-			iso_date.c		strerror.c		dbl_scientific.c		\
-			dbl_compact.c	dbl_floating.c
+			char.c			npchar.c		string.c				\
+			pointer.c		percent.c		dbl_hex.c				\
+			npstring.c		iso_date.c		strerror.c				\
+			dbl_compact.c	dbl_floating.c	dbl_scientific.c
 IOCONV	:=	$(addprefix convert/,$(IOCONV))
 
 GNL		:=	\
@@ -77,7 +78,7 @@ SRC		:=	\
 			gnl.c				cgnl.c				sgnl.c				\
 			ft_atoi.c			ft_atol.c			ft_itoa.c			\
 			ft_flags.c			ft_debugf.c			ft_putstr.c			\
-			ft_printf.c			ft_putnbr.c			ft_fprintf.c			\
+			ft_printf.c			ft_putnbr.c			ft_fprintf.c		\
 			ft_sprintf.c		ft_dprintf.c		ft_snprintf.c		\
 			ft_putchar.c		ft_putendl.c		ft_asprintf.c		\
 			ft_readline.c		ft_dreadline.c		ft_putnbr_fd.c		\
@@ -87,4 +88,5 @@ SRC		:=	\
 
 include variables.mk
 #override CFLAGS += -g
+override CFLAGS += -ansi -pedantic
 include rules.mk
