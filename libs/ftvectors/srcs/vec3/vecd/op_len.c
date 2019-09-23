@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "vectors/vec3/t_vec3_t.h"
+#include "ftvectors/vec3/t_vec3_t.h"
 #include "ftmath.h"
 
 t_dbl__	v3_norm(t_vec3 *v)

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vectors/vec2/t_vec2_t.h"
+#include "ftvectors/vec2/t_vec2_t.h"
 
 t_dbl__		v2_dot(t_vec2 *v1, t_vec2 *v2)
 {

@@ -6,14 +6,14 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:08:11 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/18 17:00:17 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/23 20:49:44 by baurens          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef T_VEC3_F_H
 # define T_VEC3_F_H
 
-# include "vectors/vec3/t_vec3_t.h"
+# include "ftvectors/vec3/t_vec3_t.h"
 
 /*
 **	norm computation

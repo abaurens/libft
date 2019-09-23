@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vectors/vec2/t_vec2_t.h"
+#include "ftvectors/vec2/t_vec2_t.h"
 
 t_vec2i	v2i_addv(t_vec2i *v1, t_vec2i *v2)
 {

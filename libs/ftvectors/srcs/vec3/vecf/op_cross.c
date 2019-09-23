@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vectors/vec3/t_vec3_t.h"
+#include "ftvectors/vec3/t_vec3_t.h"
 
 t_vec3f	v3f_cross(t_vec3f *v1, t_vec3f *v2)
 {

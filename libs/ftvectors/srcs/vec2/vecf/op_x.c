@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vectors/vec2/t_vec2_t.h"
+#include "ftvectors/vec2/t_vec2_t.h"
 
 t_vec2f	v2f_add2(t_vec2f *v, t_flt__ x, t_flt__ y)
 {

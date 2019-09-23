@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vectors/t_vec3.h"
+#include "ftvectors/t_vec3.h"
 
 t_vec3	vec3(t_dbl__ x, t_dbl__ y, t_dbl__ z)
 {

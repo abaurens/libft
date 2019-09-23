@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vectors/t_vec2.h"
+#include "ftvectors/t_vec2.h"
 
 t_vec2	set_vec2(t_vec2 *p, t_dbl__ x, t_dbl__ y)
 {

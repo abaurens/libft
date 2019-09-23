@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_vec2.h                                           :+:      :+:    :+:   */
+/*   t_vec3.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/09 20:51:25 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/18 11:36:31 by abaurens         ###   ########.fr       */
+/*   Created: 2019/09/10 13:14:06 by abaurens          #+#    #+#             */
+/*   Updated: 2019/09/23 20:50:14 by baurens          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_VEC2_H
-# define T_VEC2_H
+#ifndef T_VEC3_H
+# define T_VEC3_H
 
-# include "vectors/vec2/t_vec2_t.h"
-# include "vectors/vec2/t_vec2_f.h"
+# include "ftvectors/vec3/t_vec3_t.h"
+# include "ftvectors/vec3/t_vec3_f.h"
 
 #endif

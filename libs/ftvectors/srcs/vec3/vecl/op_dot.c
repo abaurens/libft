@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vectors/vec3/t_vec3_t.h"
+#include "ftvectors/vec3/t_vec3_t.h"
 
 t_ldbl__	v3l_dot(t_vec3l *v1, t_vec3l *v2)
 {

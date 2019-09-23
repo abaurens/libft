@@ -6,14 +6,14 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 11:12:32 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/18 11:02:14 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/23 20:49:46 by baurens          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef T_VEC3_T_H
 # define T_VEC3_T_H
 
-# include "vectors/core/t_vec_t.h"
+# include "ftvectors/core/t_vec_t.h"
 
 typedef struct s_vec3i		t_vec3i;
 typedef struct s_vec3f		t_vec3f;

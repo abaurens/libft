@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vectors/vec3/t_vec3_t.h"
+#include "ftvectors/vec3/t_vec3_t.h"
 
 t_vec3	v3_add3(t_vec3 *v, t_dbl__ x, t_dbl__ y, t_dbl__ z)
 {

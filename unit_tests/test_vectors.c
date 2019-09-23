@@ -15,7 +15,7 @@
 #include "ftvector.h"
 #include "ftlib.h"
 #include "ftio.h"
-#include "vectors/vectest_core.h"
+#include "ftvectors/vectest_core.h"
 
 /*
 static char	check_vec2(void *vec, char tp, t_ldbl__ x, t_ldbl__ y)

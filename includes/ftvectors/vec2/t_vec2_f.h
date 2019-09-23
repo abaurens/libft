@@ -6,14 +6,14 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:08:11 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/18 16:40:24 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/23 20:49:47 by baurens          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef T_VEC2_F_H
 # define T_VEC2_F_H
 
-# include "vectors/vec2/t_vec2_t.h"
+# include "ftvectors/vec2/t_vec2_t.h"
 
 t_dbl__		v2_norm(t_vec2 *v);
 t_flt__		v2f_norm(t_vec2f *v);
