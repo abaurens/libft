@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 22:11:36 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/16 16:42:00 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/25 10:21:18 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,5 @@ t_nfa	*nfa_union(t_nfa *first, t_nfa *second)
 	ft_strncat(res->name, n1, ft_idxof(i ? 0 : ')', n1));
 	ft_strcat(res->name, "|");
 	ft_strncat(res->name, n2, ft_idxof(j ? 0 : ')', n2));
-	ft_strcat(res->name, ")");
-	return (res);
+	return (res + !ft_strcat(res->name, ")"));
 }

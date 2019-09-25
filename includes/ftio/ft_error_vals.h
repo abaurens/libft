@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 04:24:22 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/20 08:23:07 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/25 10:13:23 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ typedef struct				s_error_info
 static t_error_info		g_error_table[] =
 {
 # ifdef FT_ESUCCESS
+
 	{FT_ESUCCESS, "SUCCESS", FT_ESUCCESS_MSG},
 # endif
 # ifdef FT_EUNDEFINED
-	{FT_EUNDEFINED, "EUNDEFINED", FT_EUNDEF_MSG}
+
+	{FT_EUNDEFINED, "EUNDEFINED", FT_EUNDEF_MSG},
 # endif
 # ifdef EPERM
 

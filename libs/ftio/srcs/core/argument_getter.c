@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 17:23:09 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/20 02:29:47 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/25 10:16:40 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 #include "ftio/ft_types.h"
 #include "ftlib.h"
 
-t_val	get_pointer(va_list *ap, const int l __attribute__((unused)))
+t_val	get_pointer(va_list *ap, const int l)
 {
 	t_val	ret;
 
+	(void)l;
 	ret.lf = 0.0;
 	ret.p = ((void *)va_arg(*ap, intptr_t));
 	return (ret);

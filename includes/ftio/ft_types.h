@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 18:29:02 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/20 03:10:44 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/25 10:14:50 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ typedef QUAD_TYPE		t_quad;
 typedef ULLI_TYPE		t_ull;
 typedef LLI_TYPE		t_ll;
 
-#undef UQUAD_TYPE
-#undef QUAD_TYPE
-#undef ULLI_TYPE
-#undef LLI_TYPE
+# undef UQUAD_TYPE
+# undef QUAD_TYPE
+# undef ULLI_TYPE
+# undef LLI_TYPE
 
 typedef enum			e_bool
 {
