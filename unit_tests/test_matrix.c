@@ -1,0 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_matrix.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/25 10:25:11 by abaurens          #+#    #+#             */
+/*   Updated: 2019/09/25 19:05:15 by abaurens         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "matrix/test_matrix.h"
+#include "ftmatrix.h"
+#include "ftlib.h"
+#include "ftio.h"
+
+void	test_matrix(void)
+{
+	t_mat4	m1;
+	t_mat4	r;
+
+	m1.m[M00] = 12; m1.m[M10] = 3; m1.m[M20] = 2; m1.m[M30] = 7;
+	m1.m[M01] = 4; m1.m[M11] = 8; m1.m[M21] = 0; m1.m[M31] = 0;
+	m1.m[M02] = 1; m1.m[M12] = 2; m1.m[M22] = 2; m1.m[M32] = 9;
+	m1.m[M03] = 0; m1.m[M13] = 5; m1.m[M23] = 1; m1.m[M33] = 13;
+	PRINT_MATRIX(&m1);
+	ft_printf("\n");
+	r = m4_invert(&m1);
+	PRINT_MATRIX(&r);
+}

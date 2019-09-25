@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/19 21:44:19 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/25 10:46:43 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ LIBS	:=	\
 			ftmath		\
 			ftregex		\
 			ftcipher	\
+			ftmatrix	\
 			ftvectors
 LIBS	:=	$(addsuffix $(SUB_EXT),$(LIBS))
 

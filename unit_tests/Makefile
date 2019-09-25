@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/16 11:40:47 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/25 10:22:24 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/25 15:14:22 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,14 +23,15 @@ NAME	:=	../test
 #override LDFLAGS +=	-lreadline
 
 SRC		:=	\
-			m_main.c			\
+			test.c			\
+			test_matrix.c	\
 			test_vectors.c	\
 			test_readline.c
 
 OBJ		:=	$(SRC:.c=.o)
 DEP		:=	$(OBJ:.o=.d)
 
-CFLAGS	:=	-g -I../includes -MMD -MP -W -Wall -Wextra -Werror
+CFLAGS	:=	-g -I../includes -MMD -MP -W -Wall -Wextra -ansi -pedantic #-Werror
 LDFLAGS	:=	-L../ -lft
 
 .DEFAULT:	$(NAME)

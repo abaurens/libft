@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 11:32:18 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/18 19:24:46 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/25 10:49:30 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "ftvector.h"
 #include "ftlib.h"
 #include "ftio.h"
-#include "ftvectors/vectest_core.h"
+#include "vectors/vectest_core.h"
 
 /*
 static char	check_vec2(void *vec, char tp, t_ldbl__ x, t_ldbl__ y)
