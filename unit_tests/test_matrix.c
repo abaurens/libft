@@ -6,18 +6,21 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 10:25:11 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/25 19:05:15 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/27 20:38:15 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix/test_matrix.h"
 #include "ftmatrix.h"
+#include "ftmath.h"
+#include "math.h"
 #include "ftlib.h"
 #include "ftio.h"
 
 void	test_matrix(void)
 {
 	t_mat4	m1;
+	t_mat4	m2;
 	t_mat4	r;
 
 	m1.m[M00] = 12; m1.m[M10] = 3; m1.m[M20] = 2; m1.m[M30] = 7;
@@ -28,4 +31,7 @@ void	test_matrix(void)
 	ft_printf("\n");
 	r = m4_invert(&m1);
 	PRINT_MATRIX(&r);
+	ft_printf("\n");
+	m2 = m4_mul(&m1, &r);
+	PRINT_MATRIX(&m2);
 }
