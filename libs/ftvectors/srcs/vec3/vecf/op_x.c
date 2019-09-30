@@ -6,38 +6,66 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 11:07:30 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/18 12:50:15 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/30 12:46:47 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdarg.h>
 #include "ftvectors/vec3/t_vec3_t.h"
 
-t_vec3f	v3f_add3(t_vec3f *v, t_flt__ x, t_flt__ y, t_flt__ z)
+t_vec3f	v3f_addc(t_vec3f *v, uint32_t c, ...)
 {
 	t_vec3f	r;
+	va_list	ap;
 
-	r.x = v->x + x;
-	r.y = v->y + y;
-	r.z = v->z + z;
+	r.x = v->x;
+	r.y = v->y;
+	r.z = v->z;
+	va_start(ap, c);
+	if (c && c--)
+		r.x += (t_flt__)va_arg(ap, t_dbl__);
+	if (c && c--)
+		r.y += (t_flt__)va_arg(ap, t_dbl__);
+	if (c && c--)
+		r.z += (t_flt__)va_arg(ap, t_dbl__);
+	va_end(ap);
 	return (r);
 }
 
-t_vec3f	v3f_sub3(t_vec3f *v, t_flt__ x, t_flt__ y, t_flt__ z)
+t_vec3f	v3f_subc(t_vec3f *v, uint32_t c, ...)
 {
 	t_vec3f	r;
+	va_list	ap;
 
-	r.x = v->x - x;
-	r.y = v->y - y;
-	r.z = v->z - z;
+	r.x = v->x;
+	r.y = v->y;
+	r.z = v->z;
+	va_start(ap, c);
+	if (c && c--)
+		r.x -= (t_flt__)va_arg(ap, t_dbl__);
+	if (c && c--)
+		r.y -= (t_flt__)va_arg(ap, t_dbl__);
+	if (c && c--)
+		r.z -= (t_flt__)va_arg(ap, t_dbl__);
+	va_end(ap);
 	return (r);
 }
 
-t_vec3f	v3f_mul3(t_vec3f *v, t_flt__ x, t_flt__ y, t_flt__ z)
+t_vec3f	v3f_mulc(t_vec3f *v, uint32_t c, ...)
 {
 	t_vec3f	r;
+	va_list	ap;
 
-	r.x = v->x * x;
-	r.y = v->y * y;
-	r.z = v->z * z;
+	r.x = v->x;
+	r.y = v->y;
+	r.z = v->z;
+	va_start(ap, c);
+	if (c && c--)
+		r.x *= (t_flt__)va_arg(ap, t_dbl__);
+	if (c && c--)
+		r.y *= (t_flt__)va_arg(ap, t_dbl__);
+	if (c && c--)
+		r.z *= (t_flt__)va_arg(ap, t_dbl__);
+	va_end(ap);
 	return (r);
 }

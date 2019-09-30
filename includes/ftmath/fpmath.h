@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 13:46:55 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/28 11:33:05 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/30 14:01:55 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,27 +95,35 @@ typedef struct		s_tab2
 /*
 **	fp32math.c
 */
-float				set_float_word(uint32_t val);
-uint32_t			get_float_word(float x);
+float				set_float_word(
+						uint32_t val) __attribute__((visibility("internal")));
+uint32_t			get_float_word(
+						float x) __attribute__((visibility("internal")));
 
 /*
 **	fp64maath.c
 */
-uint32_t			get_low_word(double x);
-uint32_t			get_high_word(double x);
-void				insert_word(double *d, uint32_t high, uint32_t low);
+uint32_t			get_low_word(
+						double x) __attribute__((visibility("internal")));
+uint32_t			get_high_word(
+						double x) __attribute__((visibility("internal")));
+void				insert_word(double *d, uint32_t high,
+						uint32_t low) __attribute__((visibility("internal")));
 
 /*
 **	fp80math.c
 */
-t_ieeel2bits		ld80c(uint64_t m, uint16_t ex, long double v);
-void				set_ldbl_expsign(long double *x, uint16_t exp);
+t_ieeel2bits		ld80c(uint64_t m, uint16_t ex,
+						long double v) __attribute__((visibility("internal")));
+void				set_ldbl_expsign(long double *x,
+						uint16_t exp) __attribute__((visibility("internal")));
 void				extract_ldbl80_word(long double x, uint16_t *exp,
-										uint64_t *man);
+						uint64_t *man) __attribute__((visibility("internal")));
 
 /*
 **	ft_rem_pio2.c
 */
-int					ft_rem_pio2(double x, double *y);
+int					ft_rem_pio2(double x,
+						double *y) __attribute__((visibility("internal")));
 
 #endif

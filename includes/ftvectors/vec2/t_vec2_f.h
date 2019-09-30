@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:08:11 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/23 20:49:47 by baurens          ###   ########.fr       */
+/*   Updated: 2019/09/30 11:54:43 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,20 @@ t_vec2i		v2i_div1(t_vec2i *v, t_int__ i);
 t_vec2f		v2f_div1(t_vec2f *v, t_flt__ i);
 t_vec2l		v2l_div1(t_vec2l *v, t_ldbl__ i);
 
-t_vec2		v2_add2(t_vec2 *v, t_dbl__ x, t_dbl__ y);
-t_vec2i		v2i_add2(t_vec2i *v, t_int__ x, t_int__ y);
-t_vec2f		v2f_add2(t_vec2f *v, t_flt__ x, t_flt__ y);
-t_vec2l		v2l_add2(t_vec2l *v, t_ldbl__ x, t_ldbl__ y);
+t_vec2		v2_addc(t_vec2 *v, uint32_t c, ...);
+t_vec2i		v2i_addc(t_vec2i *v, uint32_t c, ...);
+t_vec2f		v2f_addc(t_vec2f *v, uint32_t c, ...);
+t_vec2l		v2l_addc(t_vec2l *v, uint32_t c, ...);
 
-t_vec2		v2_sub2(t_vec2 *v, t_dbl__ x, t_dbl__ y);
-t_vec2i		v2i_sub2(t_vec2i *v, t_int__ x, t_int__ y);
-t_vec2f		v2f_sub2(t_vec2f *v, t_flt__ x, t_flt__ y);
-t_vec2l		v2l_sub2(t_vec2l *v, t_ldbl__ x, t_ldbl__ y);
+t_vec2		v2_subc(t_vec2 *v, uint32_t c, ...);
+t_vec2i		v2i_subc(t_vec2i *v, uint32_t c, ...);
+t_vec2f		v2f_subc(t_vec2f *v, uint32_t c, ...);
+t_vec2l		v2l_subc(t_vec2l *v, uint32_t c, ...);
 
-t_vec2		v2_mul2(t_vec2 *v, t_dbl__ x, t_dbl__ y);
-t_vec2i		v2i_mul2(t_vec2i *v, t_int__ x, t_int__ y);
-t_vec2f		v2f_mul2(t_vec2f *v, t_flt__ x, t_flt__ y);
-t_vec2l		v2l_mul2(t_vec2l *v, t_ldbl__ x, t_ldbl__ y);
+t_vec2		v2_mulc(t_vec2 *v, uint32_t c, ...);
+t_vec2i		v2i_mulc(t_vec2i *v, uint32_t c, ...);
+t_vec2f		v2f_mulc(t_vec2f *v, uint32_t c, ...);
+t_vec2l		v2l_mulc(t_vec2l *v, uint32_t c, ...);
 
 t_vec2		v2_normalize(t_vec2 *v);
 t_vec2i		v2i_normalize(t_vec2i *v);

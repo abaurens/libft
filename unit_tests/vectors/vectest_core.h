@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 14:31:45 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/30 09:07:23 by baurens          ###   ########.fr       */
+/*   Updated: 2019/09/30 12:55:44 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ static char	g_stop_test = 0;
 # define TEST_FUNC(fnc, vec, ...)\
 	FUNCNAME(fnc, vec)(&vec, ##__VA_ARGS__)
 
+/*
 # define v2_add3 v2_add2
 # define v2i_add3 v2i_add2
 # define v2l_add3 v2l_add2
@@ -125,14 +126,14 @@ static char	g_stop_test = 0;
 # define v3l_add4 v3l_add3
 # define v3f_add4 v3f_add3
 
-# define v4_add2 v4_add4
-# define v4i_add2 v4i_add4
-# define v4l_add2 v4l_add4
-# define v4f_add2 v4f_add4
-# define v4_add3 v4_add4
-# define v4i_add3 v4i_add4
-# define v4l_add3 v4l_add4
-# define v4f_add3 v4f_add4
+# define v4_add2 v4_addc
+# define v4i_add2 v4i_addc
+# define v4l_add2 v4l_addc
+# define v4f_add2 v4f_addc
+# define v4_add3 v4_addc
+# define v4i_add3 v4i_addc
+# define v4l_add3 v4l_addc
+# define v4f_add3 v4f_addc
 
 
 # define v2_sub3 v2_sub2
@@ -153,14 +154,14 @@ static char	g_stop_test = 0;
 # define v3l_sub4 v3l_sub3
 # define v3f_sub4 v3f_sub3
 
-# define v4_sub2 v4_sub4
-# define v4i_sub2 v4i_sub4
-# define v4l_sub2 v4l_sub4
-# define v4f_sub2 v4f_sub4
-# define v4_sub3 v4_sub4
-# define v4i_sub3 v4i_sub4
-# define v4l_sub3 v4l_sub4
-# define v4f_sub3 v4f_sub4
+# define v4_sub2 v4_subc
+# define v4i_sub2 v4i_subc
+# define v4l_sub2 v4l_subc
+# define v4f_sub2 v4f_subc
+# define v4_sub3 v4_subc
+# define v4i_sub3 v4i_subc
+# define v4l_sub3 v4l_subc
+# define v4f_sub3 v4f_subc
 
 
 # define v2_mul3 v2_mul2
@@ -176,20 +177,20 @@ static char	g_stop_test = 0;
 # define v3i_mul2 v3i_mul3
 # define v3l_mul2 v3l_mul3
 # define v3f_mul2 v3f_mul3
-# define v3_mul4 v3_mul3
-# define v3i_mul4 v3i_mul3
-# define v3l_mul4 v3l_mul3
-# define v3f_mul4 v3f_mul3
+# define v3_mulc v3_mul3
+# define v3i_mulc v3i_mul3
+# define v3l_mulc v3l_mul3
+# define v3f_mulc v3f_mul3
 
-# define v4_mul2 v4_mul4
-# define v4i_mul2 v4i_mul4
-# define v4l_mul2 v4l_mul4
-# define v4f_mul2 v4f_mul4
-# define v4_mul3 v4_mul4
-# define v4i_mul3 v4i_mul4
-# define v4l_mul3 v4l_mul4
-# define v4f_mul3 v4f_mul4
-
+# define v4_mul2 v4_mulc
+# define v4i_mul2 v4i_mulc
+# define v4l_mul2 v4l_mulc
+# define v4f_mul2 v4f_mulc
+# define v4_mul3 v4_mulc
+# define v4i_mul3 v4i_mulc
+# define v4l_mul3 v4l_mulc
+# define v4f_mul3 v4f_mulc
+*/
 
 # define v2_normf v2_norm
 # define v2_norml v2_norm

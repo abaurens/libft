@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 07:47:56 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/23 07:50:34 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/30 14:02:17 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define S5		-2.50507602534068634195e-08
 # define S6		1.58969099521155010221e-10
 
-double	ft_kernel_sin(double x, double y, int iy);
+double	ft_kernel_sin(double x, double y,
+	int iy) __attribute__((visibility("internal")));
 
 #endif

@@ -6,51 +6,80 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 11:18:31 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/18 11:34:52 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/30 12:04:39 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdarg.h>
 #include "ftvectors/t_vec2.h"
 
-t_vec2	set_vec2(t_vec2 *p, t_dbl__ x, t_dbl__ y)
+t_vec2	set_vec2(t_vec2 *p, uint32_t c, ...)
 {
 	t_vec2	v;
+	va_list	ap;
 
-	v.x = x;
-	v.y = y;
+	v.x = 0.0;
+	v.y = 0.0;
+	va_start(ap, c);
+	if (c && c--)
+		v.x = va_arg(ap, t_dbl__);
+	if (c && c--)
+		v.y = va_arg(ap, t_dbl__);
+	va_end(ap);
 	if (p)
 		*p = v;
 	return (v);
 }
 
-t_vec2i	set_vec2i(t_vec2i *p, t_int__ x, t_int__ y)
+t_vec2i	set_vec2i(t_vec2i *p, uint32_t c, ...)
 {
 	t_vec2i	v;
+	va_list	ap;
 
-	v.x = x;
-	v.y = y;
+	v.x = 0;
+	v.y = 0;
+	va_start(ap, c);
+	if (c && c--)
+		v.x = va_arg(ap, t_int__);
+	if (c && c--)
+		v.y = va_arg(ap, t_int__);
+	va_end(ap);
 	if (p)
 		*p = v;
 	return (v);
 }
 
-t_vec2f	set_vec2f(t_vec2f *p, t_flt__ x, t_flt__ y)
+t_vec2f	set_vec2f(t_vec2f *p, uint32_t c, ...)
 {
 	t_vec2f	v;
+	va_list	ap;
 
-	v.x = x;
-	v.y = y;
+	v.x = 0.0f;
+	v.y = 0.0f;
+	va_start(ap, c);
+	if (c && c--)
+		v.x = (t_flt__)va_arg(ap, t_dbl__);
+	if (c && c--)
+		v.y = (t_flt__)va_arg(ap, t_dbl__);
+	va_end(ap);
 	if (p)
 		*p = v;
 	return (v);
 }
 
-t_vec2l	set_vec2l(t_vec2l *p, t_ldbl__ x, t_ldbl__ y)
+t_vec2l	set_vec2l(t_vec2l *p, uint32_t c, ...)
 {
 	t_vec2l	v;
+	va_list	ap;
 
-	v.x = x;
-	v.y = y;
+	v.x = 0.0L;
+	v.y = 0.0L;
+	va_start(ap, c);
+	if (c && c--)
+		v.x = va_arg(ap, t_ldbl__);
+	if (c && c--)
+		v.y = va_arg(ap, t_ldbl__);
+	va_end(ap);
 	if (p)
 		*p = v;
 	return (v);

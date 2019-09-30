@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 15:58:22 by abaurens          #+#    #+#             */
-/*   Updated: 2019/02/15 18:57:32 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/30 14:18:34 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,16 @@ static int const g_flags_masks[] =
 	F_COLO
 };
 
-int			get_min_width(const char *format, t_printf *data, t_arg *arg);
-int			get_precision(const char *format, t_printf *data, t_arg *arg);
-int			get_chain_format(const char *format, t_printf *data, size_t *v);
-int			get_length_modifier(const char *frm, t_printf *data, t_arg *arg);
+int			get_min_width(const char *format, t_printf *data,
+				t_arg *arg) __attribute__((visibility("internal")));
+int			get_precision(const char *format, t_printf *data,
+				t_arg *arg) __attribute__((visibility("internal")));
+int			get_chain_format(const char *format, t_printf *data,
+				size_t *v) __attribute__((visibility("internal")));
+int			get_length_modifier(const char *frm, t_printf *data,
+				t_arg *arg) __attribute__((visibility("internal")));
 
-size_t		count_args(const char *frm);
+size_t		count_args(const char *frm) __attribute__((visibility("internal")));
 
 static int	(*const g_funcs[])(const char *, t_printf *, t_arg *) =
 {

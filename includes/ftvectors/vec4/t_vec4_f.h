@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:08:11 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/30 09:08:49 by baurens          ###   ########.fr       */
+/*   Updated: 2019/09/30 11:27:55 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,23 +70,20 @@ t_vec4l		v4l_div1(t_vec4l *v, t_ldbl__ i);
 /*
 **	decomposed vector to vector operation
 */
-t_vec4		v4_add4(t_vec4 *v, t_dbl__ x, t_dbl__ y, t_dbl__ z, t_dbl__ w);
-t_vec4i		v4i_add4(t_vec4i *v, t_int__ x, t_int__ y, t_int__ z, t_int__ w);
-t_vec4f		v4f_add4(t_vec4f *v, t_flt__ x, t_flt__ y, t_flt__ z, t_flt__ w);
-t_vec4l		v4l_add4(t_vec4l *v,
-						t_ldbl__ x, t_ldbl__ y, t_ldbl__ z, t_ldbl__ w);
+t_vec4		v4_addc(t_vec4 *v, uint32_t c, ...);
+t_vec4i		v4i_addc(t_vec4i *v, uint32_t c, ...);
+t_vec4f		v4f_addc(t_vec4f *v, uint32_t c, ...);
+t_vec4l		v4l_addc(t_vec4l *v, uint32_t c, ...);
 
-t_vec4		v4_sub4(t_vec4 *v, t_dbl__ x, t_dbl__ y, t_dbl__ z, t_dbl__ w);
-t_vec4i		v4i_sub4(t_vec4i *v, t_int__ x, t_int__ y, t_int__ z, t_int__ w);
-t_vec4f		v4f_sub4(t_vec4f *v, t_flt__ x, t_flt__ y, t_flt__ z, t_flt__ w);
-t_vec4l		v4l_sub4(t_vec4l *v,
-						t_ldbl__ x, t_ldbl__ y, t_ldbl__ z, t_ldbl__ w);
+t_vec4		v4_subc(t_vec4 *v, uint32_t c, ...);
+t_vec4i		v4i_subc(t_vec4i *v, uint32_t c, ...);
+t_vec4f		v4f_subc(t_vec4f *v, uint32_t c, ...);
+t_vec4l		v4l_subc(t_vec4l *v, uint32_t c, ...);
 
-t_vec4		v4_mul4(t_vec4 *v, t_dbl__ x, t_dbl__ y, t_dbl__ z, t_dbl__ w);
-t_vec4i		v4i_mul4(t_vec4i *v, t_int__ x, t_int__ y, t_int__ z, t_int__ w);
-t_vec4f		v4f_mul4(t_vec4f *v, t_flt__ x, t_flt__ y, t_flt__ z, t_flt__ w);
-t_vec4l		v4l_mul4(t_vec4l *v,
-						t_ldbl__ x, t_ldbl__ y, t_ldbl__ z, t_ldbl__ w);
+t_vec4		v4_mulc(t_vec4 *v, uint32_t c, ...);
+t_vec4i		v4i_mulc(t_vec4i *v, uint32_t c, ...);
+t_vec4f		v4f_mulc(t_vec4f *v, uint32_t c, ...);
+t_vec4l		v4l_mulc(t_vec4l *v, uint32_t c, ...);
 
 /*
 **	normalization operation

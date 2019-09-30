@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 13:53:50 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/20 02:14:24 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/30 14:05:59 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,40 +18,65 @@
 /*
 **	convert/
 */
-char	*convert_percent(t_printf *data, t_arg *arg);
-char	*convert_integer(t_printf *const data, t_arg *const arg);
-char	*convert_linteger(t_printf *const data, t_arg *const arg);
-char	*convert_u_integer(t_printf *data, t_arg *arg);
-char	*convert_u_linteger(t_printf *data, t_arg *arg);
-char	*convert_u_integer_octal(t_printf *data, t_arg *arg);
-char	*convert_u_linteger_octal(t_printf *data, t_arg *arg);
-char	*convert_u_integer_hexa(t_printf *data, t_arg *arg);
-char	*convert_double_floating(t_printf *data, t_arg *arg);
-char	*convert_double_scientific(t_printf *data, t_arg *arg);
-char	*convert_double_compact(t_printf *data, t_arg *arg);
-char	*convert_double_hexa(t_printf *data, t_arg *arg);
-char	*convert_char(t_printf *data, t_arg *arg);
-char	*convert_wchar(t_printf *data, t_arg *arg);
-char	*convert_string(t_printf *data, t_arg *arg);
-char	*convert_wstring(t_printf *data, t_arg *arg);
-char	*convert_wide_char_string(t_printf *data, t_arg *arg);
-char	*convert_pointer(t_printf *data, t_arg *arg);
-char	*convert_length(t_printf *data, t_arg *arg);
-char	*convert_strerror(t_printf *data, t_arg *arg);
-char	*convert_u_integer_binary(t_printf *data, t_arg *arg);
-char	*convert_non_printable_string(t_printf *data, t_arg *arg);
-char	*convert_non_printable_char(t_printf *data, t_arg *arg);
-char	*convert_iso_date(t_printf *data, t_arg *arg);
+char	*convert_percent(t_printf *data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_integer(t_printf *const data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_linteger(t_printf *const data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_u_integer(t_printf *data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_u_linteger(t_printf *data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_u_integer_octal(t_printf *data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_u_linteger_octal(t_printf *data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_u_integer_hexa(t_printf *data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_double_floating(t_printf *data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_double_scientific(t_printf *data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_double_compact(t_printf *data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_double_hexa(t_printf *data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_char(t_printf *data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_wchar(t_printf *data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_string(t_printf *data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_wstring(t_printf *data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_wide_char_string(t_printf *data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_pointer(t_printf *data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_length(t_printf *data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_strerror(t_printf *data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_u_integer_binary(t_printf *data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_non_printable_string(t_printf *data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_non_printable_char(t_printf *data,
+			t_arg *const arg) __attribute__((visibility("internal")));
+char	*convert_iso_date(t_printf *data,
+			t_arg *const arg) __attribute__((visibility("internal")));
 
 /*
 **	double_scientific.c
 */
-char	*printf_ldbl_s(t_arg *const ar);
+char	*printf_ldbl_s(t_arg *const ar) __attribute__((visibility("internal")));
 
 /*
 **	double_floating.c
 */
-char	*printf_ldbl(t_printf *const data, t_arg *const arg);
+char	*printf_ldbl(t_printf *const data,
+			t_arg *const arg) __attribute__((visibility("internal")));
 
 /*
 **	% = only print a percent char

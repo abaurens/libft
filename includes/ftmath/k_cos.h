@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 07:44:09 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/23 07:46:17 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/30 14:02:09 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define C5	2.08757232129817482790e-09
 # define C6	-1.13596475577881948265e-11
 
-double	ft_kernel_cos(double x, double y);
+double	ft_kernel_cos(double x,
+			double y) __attribute__((visibility("internal")));
 
 #endif

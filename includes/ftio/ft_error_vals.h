@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 04:24:22 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/25 10:13:23 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/30 14:15:29 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 # include <stdlib.h>
 # include "ftio/ft_error.h"
 
-typedef struct				s_error_info
+typedef struct	s_errinf
 {
-	int						value;
-	const char				*name;
-	const char				msg[ERROR_MSG_MAX_LEN + 11 + 1];
-}							t_error_info;
+	int			value;
+	const char	*name;
+	const char	msg[ERROR_MSG_MAX_LEN + 11 + 1];
+}				t_errinf;
 
-static t_error_info		g_error_table[] =
+static t_errinf	g_error_table[] =
 {
 # ifdef FT_ESUCCESS
 
@@ -463,9 +463,9 @@ static t_error_info		g_error_table[] =
 	{-1, NULL, FT_EUNKOWN_MSG}
 };
 
-int							get_errno_real(void);
+int				get_errno_real(void) __attribute__((visibility("internal")));
 
-static int					(*const g_get_errno[])(void) =
+static int		(*const g_get_errno[])(void) =
 {
 	get_errno_real,
 	NULL

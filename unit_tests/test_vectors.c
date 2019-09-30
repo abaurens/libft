@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 11:32:18 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/30 09:10:55 by baurens          ###   ########.fr       */
+/*   Updated: 2019/09/30 12:57:49 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -485,7 +485,7 @@ void	test_mul1(void)
 /*
 **	decomposed vector to vector operation
 */
-void	test_addx(void)
+void	test_addc(void)
 {
 	t_vec2	v2d;
 	t_vec2i	v2i;
@@ -507,39 +507,39 @@ void	test_addx(void)
 	v3l = vec3l(0, 0, 0);
 
 	ft_printf("v2i = {%d, %d}\n", DECOMP2(v2i));
-	v2i = TEST_FUNC(add2, v2i, 1, 2);
+	v2i = TEST_FUNC(addc, v2i, 2, 1, 2);
 	ft_printf("      {%d, %d}\n", DECOMP2(v2i));
 
 	ft_printf("v2d = {%f, %f}\n", DECOMP2(v2d));
-	v2d = TEST_FUNC(add2, v2d, 3, 4);
+	v2d = TEST_FUNC(addc, v2d, 2, 3, 4);
 	ft_printf("      {%f, %f}\n", DECOMP2(v2d));
 
 	ft_printf("v2f = {%f, %f}\n", DECOMP2(v2f));
-	v2f = TEST_FUNC(add2, v2f, 5, 6);
+	v2f = TEST_FUNC(addc, v2f, 2, 5, 6);
 	ft_printf("      {%f, %f}\n", DECOMP2(v2f));
 
 	ft_printf("v2l = {%Lf, %Lf}\n", DECOMP2(v2l));
-	v2l = TEST_FUNC(add2, v2l, 7, 8);
+	v2l = TEST_FUNC(addc, v2l, 2, 7, 8);
 	ft_printf("      {%Lf, %Lf}\n\n", DECOMP2(v2l));
 
 	ft_printf("v3i = {%d, %d, %d}\n", DECOMP3(v3i));
-	v3i = TEST_FUNC(add3, v3i, 1, 2, 3);
+	v3i = TEST_FUNC(addc, v3i, 3, 1, 2, 3);
 	ft_printf("      {%d, %d, %d}\n", DECOMP3(v3i));
 
 	ft_printf("v3d = {%f, %f, %f}\n", DECOMP3(v3d));
-	v3d = TEST_FUNC(add3, v3d, 4, 5, 6);
+	v3d = TEST_FUNC(addc, v3d, 3, 4, 5, 6);
 	ft_printf("      {%f, %f, %f}\n", DECOMP3(v3d));
 
 	ft_printf("v3f = {%f, %f, %f}\n", DECOMP3(v3f));
-	v3f = TEST_FUNC(add3, v3f, 7, 8, 9);
+	v3f = TEST_FUNC(addc, v3f, 3, 7, 8, 9);
 	ft_printf("      {%f, %f, %f}\n", DECOMP3(v3f));
 
 	ft_printf("v3l = {%Lf, %Lf, %Lf}\n", DECOMP3(v3l));
-	v3l = TEST_FUNC(add3, v3l, 10, 11, 12);
+	v3l = TEST_FUNC(addc, v3l, 3, 10, 11, 12);
 	ft_printf("      {%Lf, %Lf, %Lf}\n", DECOMP3(v3l));
 }
 
-void	test_subx(void)
+void	test_subc(void)
 {
 	t_vec2	v2d;
 	t_vec2i	v2i;
@@ -561,39 +561,39 @@ void	test_subx(void)
 	v3l = vec3l(10, 11, 12);
 
 	ft_printf("v2i = {%d, %d}\n", DECOMP2(v2i));
-	v2i = TEST_FUNC(sub2, v2i, 1, 2);
+	v2i = TEST_FUNC(subc, v2i, 2, 1, 2);
 	ft_printf("      {%d, %d}\n", DECOMP2(v2i));
 
 	ft_printf("v2d = {%f, %f}\n", DECOMP2(v2d));
-	v2d = TEST_FUNC(sub2, v2d, 3, 4);
+	v2d = TEST_FUNC(subc, v2d, 2, 3, 4);
 	ft_printf("      {%f, %f}\n", DECOMP2(v2d));
 
 	ft_printf("v2f = {%f, %f}\n", DECOMP2(v2f));
-	v2f = TEST_FUNC(sub2, v2f, 5, 6);
+	v2f = TEST_FUNC(subc, v2f, 2, 5, 6);
 	ft_printf("      {%f, %f}\n", DECOMP2(v2f));
 
 	ft_printf("v2l = {%Lf, %Lf}\n", DECOMP2(v2l));
-	v2l = TEST_FUNC(sub2, v2l, 7, 8);
+	v2l = TEST_FUNC(subc, v2l, 2, 7, 8);
 	ft_printf("      {%Lf, %Lf}\n\n", DECOMP2(v2l));
 
 	ft_printf("v3i = {%d, %d, %d}\n", DECOMP3(v3i));
-	v3i = TEST_FUNC(sub3, v3i, 1, 2, 3);
+	v3i = TEST_FUNC(subc, v3i, 3, 1, 2, 3);
 	ft_printf("      {%d, %d, %d}\n", DECOMP3(v3i));
 
 	ft_printf("v3d = {%f, %f, %f}\n", DECOMP3(v3d));
-	v3d = TEST_FUNC(sub3, v3d, 4, 5, 6);
+	v3d = TEST_FUNC(subc, v3d, 3, 4, 5, 6);
 	ft_printf("      {%f, %f, %f}\n", DECOMP3(v3d));
 
 	ft_printf("v3f = {%f, %f, %f}\n", DECOMP3(v3f));
-	v3f = TEST_FUNC(sub3, v3f, 7, 8, 9);
+	v3f = TEST_FUNC(subc, v3f, 3, 7, 8, 9);
 	ft_printf("      {%f, %f, %f}\n", DECOMP3(v3f));
 
 	ft_printf("v3l = {%Lf, %Lf, %Lf}\n", DECOMP3(v3l));
-	v3l = TEST_FUNC(sub3, v3l, 10, 11, 12);
+	v3l = TEST_FUNC(subc, v3l, 3, 10, 11, 12);
 	ft_printf("      {%Lf, %Lf, %Lf}\n", DECOMP3(v3l));
 }
 
-void	test_mulx(void)
+void	test_mulc(void)
 {
 	t_vec2	v2d;
 	t_vec2i	v2i;
@@ -615,35 +615,35 @@ void	test_mulx(void)
 	v3l = vec3l(1, 2, 3);
 
 	ft_printf("v2i = {%d, %d}\n", DECOMP2(v2i));
-	v2i = TEST_FUNC(mul2, v2i, 2, 4);
+	v2i = TEST_FUNC(mulc, v2i, 2, 2, 4);
 	ft_printf("      {%d, %d}\n", DECOMP2(v2i));
 
 	ft_printf("v2d = {%f, %f}\n", DECOMP2(v2d));
-	v2d = TEST_FUNC(mul2, v2d, 2, 4);
+	v2d = TEST_FUNC(mulc, v2d, 2, 2, 4);
 	ft_printf("      {%f, %f}\n", DECOMP2(v2d));
 
 	ft_printf("v2f = {%f, %f}\n", DECOMP2(v2f));
-	v2f = TEST_FUNC(mul2, v2f, 2, 4);
+	v2f = TEST_FUNC(mulc, v2f, 2, 2, 4);
 	ft_printf("      {%f, %f}\n", DECOMP2(v2f));
 
 	ft_printf("v2l = {%Lf, %Lf}\n", DECOMP2(v2l));
-	v2l = TEST_FUNC(mul2, v2l, 2, 4);
+	v2l = TEST_FUNC(mulc, v2l, 2, 2, 4);
 	ft_printf("      {%Lf, %Lf}\n\n", DECOMP2(v2l));
 
 	ft_printf("v3i = {%d, %d, %d}\n", DECOMP3(v3i));
-	v3i = TEST_FUNC(mul3, v3i, 2, 4, 8);
+	v3i = TEST_FUNC(mulc, v3i, 3, 2, 4, 8);
 	ft_printf("      {%d, %d, %d}\n", DECOMP3(v3i));
 
 	ft_printf("v3d = {%f, %f, %f}\n", DECOMP3(v3d));
-	v3d = TEST_FUNC(mul3, v3d, 2, 4, 8);
+	v3d = TEST_FUNC(mulc, v3d, 3, 2, 4, 8);
 	ft_printf("      {%f, %f, %f}\n", DECOMP3(v3d));
 
 	ft_printf("v3f = {%f, %f, %f}\n", DECOMP3(v3f));
-	v3f = TEST_FUNC(mul3, v3f, 2, 4, 8);
+	v3f = TEST_FUNC(mulc, v3f, 3, 2, 4, 8);
 	ft_printf("      {%f, %f, %f}\n", DECOMP3(v3f));
 
 	ft_printf("v3l = {%Lf, %Lf, %Lf}\n", DECOMP3(v3l));
-	v3l = TEST_FUNC(mul3, v3l, 2, 4, 8);
+	v3l = TEST_FUNC(mulc, v3l, 3, 2, 4, 8);
 	ft_printf("      {%Lf, %Lf, %Lf}\n", DECOMP3(v3l));
 }
 
@@ -843,7 +843,7 @@ void	test_cross(void)
 	ft_printf("{%+.Lf, %+.Lf, %+.Lf} (%+Lf)\n", DECOMP3(cross3l), TEST_FUNC(dot, *v3l, &cross3l));
 }
 
-void test_vec4(void)
+void 	test_vec4(void)
 {
 	t_vec4i	v4i[3];
 	t_vec4	v4d[3];
@@ -855,13 +855,13 @@ void test_vec4(void)
 	v4f[0] = vec4f(0, 0, 1, 0);	v4f[1] = vec4f(0, 0, 0, 1);	v4f[2] = vec4f(1, 0, 0, 0);
 	v4l[0] = vec4l(0, 0, 0, 1);	v4l[1] = vec4l(1, 0, 0, 0);	v4l[2] = vec4l(0, 1, 0, 0);
 
-	ft_printf("crossi {%+d, %+d, %+d, %+d} x {%+d, %+d, %+d, %+d} x {%+d, %+d, %+d, %+d} = ", DECOMP4(v4i[0]), DECOMP4(v4i[1]), DECOMP4(v4i[2]));
-	t_vec4i cross4i = TEST_FUNC(cross, v4i[0], &v4i[1], &v4i[2]);
-	ft_printf("{%+d, %+d, %+d, %+d} (%+f)\n", DECOMP4(cross4i), TEST_FUNC(dot, *v4i, &cross4i));
-
 	ft_printf("crossd {%+.f, %+.f, %+.f, %+.f} x {%+.f, %+.f, %+.f, %+.f} x {%+.f, %+.f, %+.f, %+.f} = ", DECOMP4(v4d[0]), DECOMP4(v4d[1]), DECOMP4(v4d[2]));
 	t_vec4 cross4d = TEST_FUNC(cross, v4d[0], &v4d[1], &v4d[2]);
 	ft_printf("{%+.f, %+.f, %+.f, %+.f} (%+f)\n", DECOMP4(cross4d), TEST_FUNC(dot, *v4d, &cross4d));
+
+	ft_printf("crossi {%+d, %+d, %+d, %+d} x {%+d, %+d, %+d, %+d} x {%+d, %+d, %+d, %+d} = ", DECOMP4(v4i[0]), DECOMP4(v4i[1]), DECOMP4(v4i[2]));
+	t_vec4i cross4i = TEST_FUNC(cross, v4i[0], &v4i[1], &v4i[2]);
+	ft_printf("{%+d, %+d, %+d, %+d} (%+f)\n", DECOMP4(cross4i), TEST_FUNC(dot, *v4i, &cross4i));
 
 	ft_printf("crossf {%+.f, %+.f, %+.f, %+.f} x {%+.f, %+.f, %+.f, %+.f} x {%+.f, %+.f, %+.f, %+.f} = ", DECOMP4(v4f[0]), DECOMP4(v4f[1]), DECOMP4(v4f[2]));
 	t_vec4f cross4f = TEST_FUNC(cross, v4f[0], &v4f[1], &v4f[2]);
@@ -879,9 +879,9 @@ void	test_vectors(void)
 	TEST(add1);
 	TEST(sub1);
 	TEST(mul1);
-	TEST(addx);
-	TEST(subx);
-	TEST(mulx);
+	TEST(addc);
+	TEST(subc);
+	TEST(mulc);
 	TEST(cross);
 	TEST(normalize);
 	test_vec4();

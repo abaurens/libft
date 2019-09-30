@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 18:28:58 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/20 08:21:42 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/30 14:15:58 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define FT_EUNKOWN_LEN		14
 # define FT_EUNKOWN_MSG		"Unknown error "
 
-int		get_errno(void);
+int		get_errno(void) __attribute__((visibility("internal")));
 void	ft_perror(const char *str);
 char	*ft_strerror(const int errnum);
 

@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:08:11 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/23 20:49:44 by baurens          ###   ########.fr       */
+/*   Updated: 2019/09/30 11:55:16 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,20 +70,20 @@ t_vec3l		v3l_div1(t_vec3l *v, t_ldbl__ i);
 /*
 **	decomposed vector to vector operation
 */
-t_vec3		v3_add3(t_vec3 *v, t_dbl__ x, t_dbl__ y, t_dbl__ z);
-t_vec3i		v3i_add3(t_vec3i *v, t_int__ x, t_int__ y, t_int__ z);
-t_vec3f		v3f_add3(t_vec3f *v, t_flt__ x, t_flt__ y, t_flt__ z);
-t_vec3l		v3l_add3(t_vec3l *v, t_ldbl__ x, t_ldbl__ y, t_ldbl__ z);
+t_vec3		v3_addc(t_vec3 *v, uint32_t c, ...);
+t_vec3i		v3i_addc(t_vec3i *v, uint32_t c, ...);
+t_vec3f		v3f_addc(t_vec3f *v, uint32_t c, ...);
+t_vec3l		v3l_addc(t_vec3l *v, uint32_t c, ...);
 
-t_vec3		v3_sub3(t_vec3 *v, t_dbl__ x, t_dbl__ y, t_dbl__ z);
-t_vec3i		v3i_sub3(t_vec3i *v, t_int__ x, t_int__ y, t_int__ z);
-t_vec3f		v3f_sub3(t_vec3f *v, t_flt__ x, t_flt__ y, t_flt__ z);
-t_vec3l		v3l_sub3(t_vec3l *v, t_ldbl__ x, t_ldbl__ y, t_ldbl__ z);
+t_vec3		v3_subc(t_vec3 *v, uint32_t c, ...);
+t_vec3i		v3i_subc(t_vec3i *v, uint32_t c, ...);
+t_vec3f		v3f_subc(t_vec3f *v, uint32_t c, ...);
+t_vec3l		v3l_subc(t_vec3l *v, uint32_t c, ...);
 
-t_vec3		v3_mul3(t_vec3 *v, t_dbl__ x, t_dbl__ y, t_dbl__ z);
-t_vec3i		v3i_mul3(t_vec3i *v, t_int__ x, t_int__ y, t_int__ z);
-t_vec3f		v3f_mul3(t_vec3f *v, t_flt__ x, t_flt__ y, t_flt__ z);
-t_vec3l		v3l_mul3(t_vec3l *v, t_ldbl__ x, t_ldbl__ y, t_ldbl__ z);
+t_vec3		v3_mulc(t_vec3 *v, uint32_t c, ...);
+t_vec3i		v3i_mulc(t_vec3i *v, uint32_t c, ...);
+t_vec3f		v3f_mulc(t_vec3f *v, uint32_t c, ...);
+t_vec3l		v3l_mulc(t_vec3l *v, uint32_t c, ...);
 
 /*
 **	normalization operation
