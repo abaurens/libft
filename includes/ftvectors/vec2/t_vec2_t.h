@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 18:01:20 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/23 20:49:48 by baurens          ###   ########.fr       */
+/*   Updated: 2019/09/30 19:22:33 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 typedef struct s_vec2i	t_vec2i;
 typedef struct s_vec2f	t_vec2f;
-typedef struct s_vec2l	t_vec2l;
 typedef struct s_vec2	t_vec2;
 
 struct			s_vec2i
@@ -36,12 +35,6 @@ struct			s_vec2
 {
 	t_dbl__		x;
 	t_dbl__		y;
-};
-
-struct			s_vec2l
-{
-	t_ldbl__	x;
-	t_ldbl__	y;
 };
 
 #endif

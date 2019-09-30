@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 11:36:17 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/30 08:39:46 by baurens          ###   ########.fr       */
+/*   Updated: 2019/09/30 19:24:46 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,6 @@ t_dbl__		v4i_norm(t_vec4i *v)
 t_flt__		v4i_normf(t_vec4i *v)
 {
 	return (ft_sqrtf(v->x * v->x + v->y * v->y + v->z * v->z + v->w * v->w));
-}
-
-t_ldbl__	v4i_norml(t_vec4i *v)
-{
-	return (ft_sqrtl(v->x * v->x + v->y * v->y + v->z * v->z + v->w * v->w));
 }
 
 t_vec4i		v4i_normalize(t_vec4i *v)

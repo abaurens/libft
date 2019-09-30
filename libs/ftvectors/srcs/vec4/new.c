@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 11:18:31 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/28 20:28:43 by baurens          ###   ########.fr       */
+/*   Updated: 2019/09/30 19:20:32 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,6 @@ t_vec4i	vec4i(t_int__ x, t_int__ y, t_int__ z, t_int__ w)
 t_vec4f	vec4f(t_flt__ x, t_flt__ y, t_flt__ z, t_flt__ w)
 {
 	t_vec4f	v;
-
-	v.x = x;
-	v.y = y;
-	v.z = z;
-	v.w = w;
-	return (v);
-}
-
-t_vec4l	vec4l(t_ldbl__ x, t_ldbl__ y, t_ldbl__ z, t_ldbl__ w)
-{
-	t_vec4l	v;
 
 	v.x = x;
 	v.y = y;

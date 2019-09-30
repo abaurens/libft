@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 11:18:31 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/30 11:50:13 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/30 19:20:44 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,30 +79,6 @@ t_vec4f	set_vec4f(t_vec4f *p, uint32_t c, ...)
 		v.z = (t_flt__)va_arg(ap, t_dbl__);
 	if (c && c--)
 		v.w = (t_flt__)va_arg(ap, t_dbl__);
-	va_end(ap);
-	if (p)
-		*p = v;
-	return (v);
-}
-
-t_vec4l	set_vec4l(t_vec4l *p, uint32_t c, ...)
-{
-	t_vec4l	v;
-	va_list	ap;
-
-	v.x = 0.0L;
-	v.y = 0.0L;
-	v.z = 0.0L;
-	v.w = 0.0L;
-	va_start(ap, c);
-	if (c && c--)
-		v.x = va_arg(ap, t_ldbl__);
-	if (c && c--)
-		v.y = va_arg(ap, t_ldbl__);
-	if (c && c--)
-		v.z = va_arg(ap, t_ldbl__);
-	if (c && c--)
-		v.w = va_arg(ap, t_ldbl__);
 	va_end(ap);
 	if (p)
 		*p = v;

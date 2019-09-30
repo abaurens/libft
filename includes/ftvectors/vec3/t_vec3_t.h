@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 11:12:32 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/23 20:49:46 by baurens          ###   ########.fr       */
+/*   Updated: 2019/09/30 19:22:13 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 typedef struct s_vec3i		t_vec3i;
 typedef struct s_vec3f		t_vec3f;
-typedef struct s_vec3l		t_vec3l;
 typedef struct s_vec3		t_vec3;
 
 struct			s_vec3i
@@ -39,13 +38,6 @@ struct			s_vec3
 	t_dbl__		x;
 	t_dbl__		y;
 	t_dbl__		z;
-};
-
-struct			s_vec3l
-{
-	t_ldbl__	x;
-	t_ldbl__	y;
-	t_ldbl__	z;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 11:07:30 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/30 11:36:26 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/30 19:31:55 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ t_vec4f	v4f_addc(t_vec4f *v, uint32_t c, ...)
 	r.w = v->w;
 	va_start(ap, c);
 	if (c && c--)
-		r.x += va_arg(ap, t_ldbl__);
+		r.x += (t_flt__)va_arg(ap, t_dbl__);
 	if (c && c--)
-		r.y += va_arg(ap, t_ldbl__);
+		r.y += (t_flt__)va_arg(ap, t_dbl__);
 	if (c && c--)
-		r.z += va_arg(ap, t_ldbl__);
+		r.z += (t_flt__)va_arg(ap, t_dbl__);
 	if (c && c--)
-		r.w += va_arg(ap, t_ldbl__);
+		r.w += (t_flt__)va_arg(ap, t_dbl__);
 	va_end(ap);
 	return (r);
 }
@@ -46,13 +46,13 @@ t_vec4f	v4f_subc(t_vec4f *v, uint32_t c, ...)
 	r.w = v->w;
 	va_start(ap, c);
 	if (c && c--)
-		r.x -= va_arg(ap, t_int__);
+		r.x -= (t_flt__)va_arg(ap, t_dbl__);
 	if (c && c--)
-		r.y -= va_arg(ap, t_int__);
+		r.y -= (t_flt__)va_arg(ap, t_dbl__);
 	if (c && c--)
-		r.z -= va_arg(ap, t_int__);
+		r.z -= (t_flt__)va_arg(ap, t_dbl__);
 	if (c && c--)
-		r.w -= va_arg(ap, t_int__);
+		r.w -= (t_flt__)va_arg(ap, t_dbl__);
 	va_end(ap);
 	return (r);
 }
@@ -68,13 +68,13 @@ t_vec4f	v4f_mulc(t_vec4f *v, uint32_t c, ...)
 	r.w = v->w;
 	va_start(ap, c);
 	if (c && c--)
-		r.x *= va_arg(ap, t_int__);
+		r.x *= (t_flt__)va_arg(ap, t_dbl__);
 	if (c && c--)
-		r.y *= va_arg(ap, t_int__);
+		r.y *= (t_flt__)va_arg(ap, t_dbl__);
 	if (c && c--)
-		r.z *= va_arg(ap, t_int__);
+		r.z *= (t_flt__)va_arg(ap, t_dbl__);
 	if (c && c--)
-		r.w *= va_arg(ap, t_int__);
+		r.w *= (t_flt__)va_arg(ap, t_dbl__);
 	va_end(ap);
 	return (r);
 }

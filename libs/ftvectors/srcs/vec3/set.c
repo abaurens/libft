@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 11:18:31 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/30 12:06:31 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/30 19:20:22 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,27 +70,6 @@ t_vec3f	set_vec3f(t_vec3f *p, uint32_t c, ...)
 		v.y = (t_flt__)va_arg(ap, t_dbl__);
 	if (c && c--)
 		v.z = (t_flt__)va_arg(ap, t_dbl__);
-	va_end(ap);
-	if (p)
-		*p = v;
-	return (v);
-}
-
-t_vec3l	set_vec3l(t_vec3l *p, uint32_t c, ...)
-{
-	t_vec3l	v;
-	va_list	ap;
-
-	v.x = 0.0L;
-	v.y = 0.0L;
-	v.z = 0.0L;
-	va_start(ap, c);
-	if (c && c--)
-		v.x = va_arg(ap, t_ldbl__);
-	if (c && c--)
-		v.y = va_arg(ap, t_ldbl__);
-	if (c && c--)
-		v.z = va_arg(ap, t_ldbl__);
 	va_end(ap);
 	if (p)
 		*p = v;

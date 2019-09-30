@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 21:21:35 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/30 11:15:09 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/30 19:22:50 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,5 @@
 typedef int			t_int__;
 typedef float		t_flt__;
 typedef double		t_dbl__;
-typedef long double	t_ldbl__;
 
 #endif
