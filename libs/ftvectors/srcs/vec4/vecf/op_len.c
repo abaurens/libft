@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sub.c                                              :+:      :+:    :+:   */
+/*   op_len.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/25 11:13:00 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/28 20:03:14 by baurens          ###   ########.fr       */
+/*   Created: 2019/09/10 11:36:17 by abaurens          #+#    #+#             */
+/*   Updated: 2019/09/30 08:35:10 by baurens          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftmatrix/t_midx.h"
-#include "ftmatrix/t_mat4.h"
+#include "ftvectors/vec4/t_vec4_t.h"
+#include "ftmath.h"
 
-t_mat4	m4_sub(t_mat4 *m1, t_mat4 *m2)
+t_flt__	v4f_norm(t_vec4f *v)
 {
-	register t_midx__	i;
-	t_mat4				res;
+	return (ft_sqrtf(v->x * v->x + v->y * v->y + v->z * v->z + v->w * v->w));
+}
 
-	i = 0;
-	while (i < MLN)
-	{
-		res.m[i] = m1->m[i] - m2->m[i];
-		++i;
-	}
-	return (res);
+t_vec4f	v4f_normalize(t_vec4f *v)
+{
+	t_flt__	l;
+	t_vec4f	r;
+
+	if ((l = v4f_norm(v)) == 0.0f)
+		return (*v);
+	r.x = v->x / l;
+	r.y = v->y / l;
+	r.z = v->z / l;
+	r.w = v->w / l;
+	return (r);
 }

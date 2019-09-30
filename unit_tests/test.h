@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 10:26:31 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/25 10:26:48 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/30 08:51:21 by baurens          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 # define TEST_H
 
 void	test_matrix(void);
-void	test_vector_all(void);
+void	test_vectors(void);
 
 #endif

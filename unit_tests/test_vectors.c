@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 11:32:18 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/25 10:49:30 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/30 09:10:55 by baurens          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -843,7 +843,36 @@ void	test_cross(void)
 	ft_printf("{%+.Lf, %+.Lf, %+.Lf} (%+Lf)\n", DECOMP3(cross3l), TEST_FUNC(dot, *v3l, &cross3l));
 }
 
-void	test_vector_all(void)
+void test_vec4(void)
+{
+	t_vec4i	v4i[3];
+	t_vec4	v4d[3];
+	t_vec4f	v4f[3];
+	t_vec4l	v4l[3];
+
+	v4d[0] =  vec4(1, 0, 0, 0);	v4d[1] = vec4(0, 1, 0, 0);	v4d[2] = vec4(0, 0, 1, 0);
+	v4i[0] = vec4i(0, 1, 0, 0);	v4i[1] = vec4i(0, 0, 1, 0);	v4i[2] = vec4i(0, 0, 0, 1);
+	v4f[0] = vec4f(0, 0, 1, 0);	v4f[1] = vec4f(0, 0, 0, 1);	v4f[2] = vec4f(1, 0, 0, 0);
+	v4l[0] = vec4l(0, 0, 0, 1);	v4l[1] = vec4l(1, 0, 0, 0);	v4l[2] = vec4l(0, 1, 0, 0);
+
+	ft_printf("crossi {%+d, %+d, %+d, %+d} x {%+d, %+d, %+d, %+d} x {%+d, %+d, %+d, %+d} = ", DECOMP4(v4i[0]), DECOMP4(v4i[1]), DECOMP4(v4i[2]));
+	t_vec4i cross4i = TEST_FUNC(cross, v4i[0], &v4i[1], &v4i[2]);
+	ft_printf("{%+d, %+d, %+d, %+d} (%+f)\n", DECOMP4(cross4i), TEST_FUNC(dot, *v4i, &cross4i));
+
+	ft_printf("crossd {%+.f, %+.f, %+.f, %+.f} x {%+.f, %+.f, %+.f, %+.f} x {%+.f, %+.f, %+.f, %+.f} = ", DECOMP4(v4d[0]), DECOMP4(v4d[1]), DECOMP4(v4d[2]));
+	t_vec4 cross4d = TEST_FUNC(cross, v4d[0], &v4d[1], &v4d[2]);
+	ft_printf("{%+.f, %+.f, %+.f, %+.f} (%+f)\n", DECOMP4(cross4d), TEST_FUNC(dot, *v4d, &cross4d));
+
+	ft_printf("crossf {%+.f, %+.f, %+.f, %+.f} x {%+.f, %+.f, %+.f, %+.f} x {%+.f, %+.f, %+.f, %+.f} = ", DECOMP4(v4f[0]), DECOMP4(v4f[1]), DECOMP4(v4f[2]));
+	t_vec4f cross4f = TEST_FUNC(cross, v4f[0], &v4f[1], &v4f[2]);
+	ft_printf("{%+.f, %+.f, %+.f, %+.f} (%+f)\n", DECOMP4(cross4f), TEST_FUNC(dot, *v4f, &cross4f));
+
+	ft_printf("crossl {%+.Lf, %+.Lf, %+.Lf, %+.Lf} x {%+.Lf, %+.Lf, %+.Lf, %+.Lf} x {%+.Lf, %+.Lf, %+.Lf, %+.Lf} = ", DECOMP4(v4l[0]), DECOMP4(v4l[1]), DECOMP4(v4l[2]));
+	t_vec4l cross4l = TEST_FUNC(cross, v4l[0], &v4l[1], &v4l[2]);
+	ft_printf("{%+.Lf, %+.Lf, %+.Lf, %+.Lf} (%+Lf)\n", DECOMP4(cross4l), TEST_FUNC(dot, *v4l, &cross4l));
+}
+
+void	test_vectors(void)
 {
 	TEST(dot);
 	TEST(norm);
@@ -855,4 +884,5 @@ void	test_vector_all(void)
 	TEST(mulx);
 	TEST(cross);
 	TEST(normalize);
+	test_vec4();
 }

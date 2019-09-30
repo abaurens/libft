@@ -6,7 +6,7 @@
 /*   By: baurens <baurens@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 20:57:09 by baurens           #+#    #+#             */
-/*   Updated: 2019/09/25 17:31:36 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/28 19:56:29 by baurens          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,15 @@
 # include "ftmatrix/t_midx.h"
 # include "ftmatrix/t_mat4.h"
 
+double	m4_det(t_mat4 *m);
+
 t_mat4	m4_null(void);
 t_mat4	m4_identity(void);
-
-t_mat4	m4_transpose(t_mat4 *m);
-void	m4p_transpose(t_mat4 *r, t_mat4 *m);
-
-t_mat4	m4_invert(t_mat4 *m);
-t_mat4	m4p_invert(t_mat4 *r, t_mat4 *m);
-
+t_mat4	m4_inv(t_mat4 *m);
 t_mat4	m4_add(t_mat4 *m1, t_mat4 *m2);
 t_mat4	m4_sub(t_mat4 *m1, t_mat4 *m2);
 t_mat4	m4_mul(t_mat4 *m1, t_mat4 *m2);
 
-void	m4p_add(t_mat4 *r, t_mat4 *m1, t_mat4 *m2);
-void	m4p_sub(t_mat4 *r, t_mat4 *m1, t_mat4 *m2);
-void	m4p_mul(t_mat4 *r, t_mat4 *m1, t_mat4 *m2);
+t_mat4	m4_muli(t_mat4 *m, double d);
 
 #endif

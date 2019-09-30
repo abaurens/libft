@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 20:52:22 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/23 20:47:54 by baurens          ###   ########.fr       */
+/*   Updated: 2019/09/30 09:09:37 by baurens          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "ftvectors/t_vec2.h"
 # include "ftvectors/t_vec3.h"
+# include "ftvectors/t_vec4.h"
 
 t_vec2	vec2(t_dbl__ x, t_dbl__ y);
 t_vec2i	vec2i(t_int__ x, t_int__ y);
@@ -35,5 +36,15 @@ t_vec3	init_vec3(t_vec3 *v, t_dbl__ x, t_dbl__ y, t_dbl__ z);
 t_vec3i	init_vec3i(t_vec3i *v, t_int__ x, t_int__ y, t_int__ z);
 t_vec3f	init_vec3f(t_vec3f *v, t_flt__ x, t_flt__ y, t_flt__ z);
 t_vec3l	init_vec3l(t_vec3l *v, t_ldbl__ x, t_ldbl__ y, t_ldbl__ z);
+
+t_vec4	vec4(t_dbl__ x, t_dbl__ y, t_dbl__ z, t_dbl__ w);
+t_vec4i	vec4i(t_int__ x, t_int__ y, t_int__ z, t_int__ w);
+t_vec4f	vec4f(t_flt__ x, t_flt__ y, t_flt__ z, t_flt__ w);
+t_vec4l	vec4l(t_ldbl__ x, t_ldbl__ y, t_ldbl__ z, t_ldbl__ w);
+
+t_vec4	init_vec4(t_vec4 *v, t_dbl__ x, t_dbl__ y, t_dbl__ z, t_dbl__ w);
+t_vec4i	init_vec4i(t_vec4i *v, t_int__ x, t_int__ y, t_int__ z, t_int__ w);
+t_vec4f	init_vec4f(t_vec4f *v, t_flt__ x, t_flt__ y, t_flt__ z, t_flt__ w);
+t_vec4l	init_vec4l(t_vec4l *v, t_ldbl__ x, t_ldbl__ y, t_ldbl__ z, t_ldbl__ w);
 
 #endif

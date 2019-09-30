@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 11:08:46 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/25 11:12:34 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/28 20:02:26 by baurens          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,4 @@ t_mat4	m4_add(t_mat4 *m1, t_mat4 *m2)
 		++i;
 	}
 	return (res);
-}
-
-void	m4p_add(t_mat4 *r, t_mat4 *m1, t_mat4 *m2)
-{
-	register t_midx__	i;
-
-	i = 0;
-	while (i < MLN)
-	{
-		r->m[i] = m1->m[i] + m2->m[i];
-		++i;
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 12:14:20 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/27 20:39:06 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/28 20:02:44 by baurens          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,25 +274,23 @@ void	pivot1(double a[32])
 }
 */
 
-t_mat4	m4_invert(t_mat4 *m)
+t_mat4	m4_inv(t_mat4 *m)
 {
 	int		i;
 	int		j;
-	double	det;
 	t_mat4	res;
 	double	tmp[32];
 
 	ft_bzero(&res, sizeof(res));
-	if ((det = m4_det(m)) == 0.0)
-		return (res);
 	append_identity(tmp, m->m);
-	det = pivot(3, pivot(2, pivot(1, pivot(0, 1.0, tmp), tmp), tmp), tmp);
+	if (pivot(3, pivot(2, pivot(1, pivot(0, 1.0, tmp), tmp), tmp), tmp) == 0.0)
+		return (res);
 	i = 4;
 	while (i-- > 0)
 	{
 		j = 4;
 		while (j-- > 0)
-			res.m[j + i * 4] = tmp[j + 4 + (i * 8)] / det;
+			res.m[j + i * 4] = tmp[j + 4 + (i * 8)] / tmp[0];
 	}
 	return (res);
 }

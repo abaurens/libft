@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/18 11:28:33 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/30 08:45:11 by baurens          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,18 @@ VEC3	:=	$(VECI) $(VECF) $(VECD) $(VECL)
 VEC3	:=	$(VEC) $(VEC3)
 VEC3	:=	$(addprefix vec3/,$(VEC3))
 
-SRC	:=	$(VEC3) $(VEC2)
+##	Vec4 sources
+VEC4	:=
+VECI	:=	$(addprefix veci/,$(VEC4))
+VECF	:=	$(addprefix vecf/,$(VEC4))
+VECD	:=	$(addprefix vecd/,$(VEC4))
+VECL	:=	$(addprefix vecl/,$(VEC4))
+VEC4	:=	$(VECI) $(VECF) $(VECD) $(VECL)
+
+VEC4	:=	$(VEC) $(VEC4)
+VEC4	:=	$(addprefix vec4/,$(VEC4))
+
+SRC	:=	$(VEC4) $(VEC3) $(VEC2)
 
 include variables.mk
 include rules.mk

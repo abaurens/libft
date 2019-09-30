@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/16 11:40:47 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/25 15:14:22 by abaurens         ###   ########.fr        #
+#    Updated: 2019/09/28 19:01:06 by baurens          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRC		:=	\
 OBJ		:=	$(SRC:.c=.o)
 DEP		:=	$(OBJ:.o=.d)
 
-CFLAGS	:=	-g -I../includes -MMD -MP -W -Wall -Wextra -ansi -pedantic #-Werror
+CFLAGS	:=	-g -I../includes -MMD -MP -W -Wall -Wextra #-Werror
 LDFLAGS	:=	-L../ -lft
 
 .DEFAULT:	$(NAME)

@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sub.c                                              :+:      :+:    :+:   */
+/*   mul_scalar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: baurens <baurens@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/25 11:13:00 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/28 20:03:14 by baurens          ###   ########.fr       */
+/*   Created: 2019/09/28 19:43:49 by baurens           #+#    #+#             */
+/*   Updated: 2019/09/28 20:02:55 by baurens          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftmatrix/t_midx.h"
 #include "ftmatrix/t_mat4.h"
 
-t_mat4	m4_sub(t_mat4 *m1, t_mat4 *m2)
+t_mat4	m4_muli(t_mat4 *m, double d)
 {
-	register t_midx__	i;
+	register t_midx__	x;
+	register t_midx__	y;
 	t_mat4				res;
 
-	i = 0;
-	while (i < MLN)
+	y = 0;
+	while (y < 16)
 	{
-		res.m[i] = m1->m[i] - m2->m[i];
-		++i;
+		x = 0;
+		while (x < 4)
+		{
+			res.m[y + x] = m1->m[x + y] * d;
+			++x;
+		}
+		y += 4;
 	}
 	return (res);
 }

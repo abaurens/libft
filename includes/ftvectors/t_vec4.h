@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sub.c                                              :+:      :+:    :+:   */
+/*   t_vec4.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/25 11:13:00 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/28 20:03:14 by baurens          ###   ########.fr       */
+/*   Created: 2019/09/10 13:14:06 by abaurens          #+#    #+#             */
+/*   Updated: 2019/09/28 20:23:18 by baurens          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftmatrix/t_midx.h"
-#include "ftmatrix/t_mat4.h"
+#ifndef T_VEC4_H
+# define T_VEC4_H
 
-t_mat4	m4_sub(t_mat4 *m1, t_mat4 *m2)
-{
-	register t_midx__	i;
-	t_mat4				res;
+# include "ftvectors/vec4/t_vec4_t.h"
+# include "ftvectors/vec4/t_vec4_f.h"
 
-	i = 0;
-	while (i < MLN)
-	{
-		res.m[i] = m1->m[i] - m2->m[i];
-		++i;
-	}
-	return (res);
-}
+#endif
