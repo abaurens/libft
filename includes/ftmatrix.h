@@ -6,7 +6,7 @@
 /*   By: baurens <baurens@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 20:57:09 by baurens           #+#    #+#             */
-/*   Updated: 2019/09/28 19:56:29 by baurens          ###   ########.fr       */
+/*   Updated: 2019/09/30 18:25:33 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ double	m4_det(t_mat4 *m);
 
 t_mat4	m4_null(void);
 t_mat4	m4_identity(void);
+
 t_mat4	m4_inv(t_mat4 *m);
 t_mat4	m4_add(t_mat4 *m1, t_mat4 *m2);
 t_mat4	m4_sub(t_mat4 *m1, t_mat4 *m2);

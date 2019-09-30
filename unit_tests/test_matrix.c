@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 10:25:11 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/30 14:29:18 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/30 18:25:23 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ void	test_matrix(void)
 	r = m4_inv(&m1);
 	PRINT_MATRIX(&r);
 	ft_printf("\n");
-	m2 = m4_mul(&m1, &r);
+	m2 = m4_mul(&r, &m1);
 	PRINT_MATRIX(&m2);
 }
