@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 12:14:20 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/30 18:27:04 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/09/30 18:38:44 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,20 +76,20 @@
 **	Tyx = ((Ann * Ayx - Ayn * Anx) / p)
 */
 
-static double	gauss_bareiss_elimination(int s, double *t, double *r)
+static double	gauss_bareiss(const int s, double *const t, double *const r)
 {
-	int		x;
-	int		y;
-	double	n;
-	double	np;
-	double	sp;
+	register char	x;
+	register char	y;
+	double			n;
+	double			np;
+	double			sp;
 
 	y = 0;
-	n = (s > 0 ? gauss_bareiss_elimination(s - 1, t, r) : 1.0);
+	n = (s > 0 ? gauss_bareiss(s - 1, t, r) : 1.0);
 	np = t[s + s * 4];
 	while (y < 16)
 	{
-		if ((y >> 2) == s && ((y += 4) || 1))
+		if ((y >> 2) == s && (y += 4))
 			continue ;
 		x = 4;
 		sp = t[s + y];
@@ -105,10 +105,10 @@ static double	gauss_bareiss_elimination(int s, double *t, double *r)
 
 t_mat4			m4_inv(t_mat4 *m)
 {
-	int		i;
-	t_mat4	t;
-	t_mat4	res;
-	double	det;
+	register int	i;
+	t_mat4			t;
+	t_mat4			res;
+	double			det;
 
 	i = -1;
 	while (++i < MLN)
@@ -116,7 +116,7 @@ t_mat4			m4_inv(t_mat4 *m)
 		t.m[i] = m->m[i];
 		res.m[i] = !(i % 5);
 	}
-	det = gauss_bareiss_elimination(3, t.m, res.m);
+	det = gauss_bareiss(3, t.m, res.m);
 	while (i-- > 0)
 		res.m[i] /= det;
 	return (res);
