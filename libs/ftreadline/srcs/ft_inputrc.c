@@ -6,17 +6,19 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 14:25:04 by abaurens          #+#    #+#             */
-/*   Updated: 2019/10/02 19:19:50 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/10/02 22:13:11 by baurens          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define FT_DISABLE_WARNINGS
 
+#include <stdio.h>
 #include <stdlib.h>
 #include "ftreadline/keys.h"
 #include "ftreadline/ft_inputrc.h"
 #include "ftio.h"
 
+/*
 static char	tree_add(t_tree *node, register const char *nodes, t_fkey func)
 {
 	register size_t	i;
@@ -60,12 +62,39 @@ static char	build_input_tree(t_tree *root)
 	}
 	return (0);
 }
+*/
+
+void print_tree(const t_tree_ *cur, int j)
+{
+	int		i;
+
+	i = 0;
+	ft_printf("%*s'%R': ", j, "", cur->c);
+	if (cur->nln)
+		ft_printf("[%d](", cur->nln);
+	else
+		ft_printf("%s()\n", cur->funcname);
+	while (cur->nxt[i])
+	{
+		ft_printf("'%c'%s", cur->nxt[i]->c, cur->nxt[i + 1] ? ", " : ")\n");
+		++i;
+	}
+	i = 0;
+	while (cur->nxt[i])
+		print_tree(cur->nxt[i++], j + 2);
+}
 
 t_tree		*get_input_tree(void)
 {
-	static t_tree	tree = {'\033', 0x0, {0x0}, 0x0};
-
-	if (tree.ncnt == 0)
-		build_input_tree(&tree);
-	return (&tree);
+	/*t = &g_test;
+	ft_printf("'%R'(%d) : ('%c', '%c')\n", t->c, t->nln,
+				t->nxt[0]->c, t->nxt[1]->c);
+	t = t->nxt[0];
+	ft_printf("'%R' : [%d]('%c', '%c', '%c', '%c', '%c', '%c')\n", t->c, t->nln,
+				t->nxt[0]->c, t->nxt[1]->c, t->nxt[2]->c, t->nxt[3]->c, t->nxt[4]->c, t->nxt[5]->c);
+	t = g_test.nxt[1];
+	ft_printf("'%R' : [%d]('%c', '%c', '%c', '%c', '%c', '%c')\n", t->c, t->nln,
+				t->nxt[0]->c, t->nxt[1]->c, t->nxt[2]->c, t->nxt[3]->c, t->nxt[4]->c, t->nxt[5]->c);*/
+	print_tree(&g_test, 0);
+	return (0x0);
 }
