@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 17:44:41 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/20 08:04:27 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/10/02 16:35:47 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,26 @@
 #include "ftmath.h"
 #include "ftlib.h"
 
+static char		*printable(t_printf *data, t_arg *arg)
+{
+	char		v[2];
+	char		*res;
+	int			tab_len;
+
+	v[1] = 0;
+	*v = (char)arg->val.i;
+	if (arg->min < 1)
+		arg->min = 1;
+	tab_len = arg->min;
+	if (!(res = ft_memalloc(tab_len + 1)))
+		return (NULL);
+	res[tab_len] = 0;
+	ft_memset(res, flag(arg, F_ZERO) ? '0' : ' ', tab_len);
+	tab_len -= (flag(arg, F_MINS) ? tab_len : 1);
+	ft_strncpy(res + tab_len, v, 1);
+	return ((char *)ft_freturn(res, (long)insert_buffer(data, res, arg->min)));
+}
+
 static char		*non_printable(t_printf *data, t_arg *arg)
 {
 	int			len;
@@ -23,6 +43,8 @@ static char		*non_printable(t_printf *data, t_arg *arg)
 	char		*res;
 	int			tab_len;
 
+	if (ft_isprint((char)arg->val.i))
+		return (printable(data, arg));
 	len = chtoa_base(v, (char)arg->val.i, flag(arg, F_HASH) ? DECI : HEXA);
 	if ((tab_len = arg->min) < len)
 		tab_len = len;

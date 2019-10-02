@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_readline.c                                      :+:      :+:    :+:   */
+/*   ftreadline.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/27 21:39:12 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/02 12:45:53 by abaurens         ###   ########.fr       */
+/*   Created: 2019/10/02 13:41:55 by abaurens          #+#    #+#             */
+/*   Updated: 2019/10/02 13:42:09 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftio.h"
+#ifndef FTREADLINE_H
+# define FTREADLINE_H
 
-char	*ft_readline(const char *prompt)
-{
-	return (ft_dreadline(0, prompt));
-}
+char	*ft_readline(const char *prompt);
+char	*ft_dreadline(const int fd, const char *prompt);
+
+#endif

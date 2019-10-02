@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/25 10:46:43 by abaurens         ###   ########.fr        #
+#    Updated: 2019/10/02 13:47:53 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ LIBS	:=	\
 			ftregex		\
 			ftcipher	\
 			ftmatrix	\
-			ftvectors
+			ftvectors	\
+			ftreadline
 LIBS	:=	$(addsuffix $(SUB_EXT),$(LIBS))
 
 ifeq ($(FANCY_MODE),TRUE)

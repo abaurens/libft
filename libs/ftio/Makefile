@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/20 08:03:27 by abaurens         ###   ########.fr        #
+#    Updated: 2019/10/02 13:43:24 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,14 +62,6 @@ GNL		:=	\
 			fdline.c		sfdline.c	cfdline.c
 GNL		:=	$(addprefix gnl/,$(GNL))
 
-ESC_SEQ	:=	escape_arrows.c	escape_end_begin.c
-ESC_SEQ	:=	$(addprefix escape_sequences/,$(ESC_SEQ))
-
-CMD_RD	:=	\
-			$(ESC_SEQ)	\
-			cmd_reader.c	escape_sequences.c
-CMD_RD	:=	$(addprefix ft_cmd/,$(CMD_RD))
-
 SRC		:=	\
 			$(DRAGON)	\
 			$(IOCORE)	$(IOCONV)	\
@@ -81,12 +73,11 @@ SRC		:=	\
 			ft_printf.c			ft_putnbr.c			ft_fprintf.c		\
 			ft_sprintf.c		ft_dprintf.c		ft_snprintf.c		\
 			ft_putchar.c		ft_putendl.c		ft_asprintf.c		\
-			ft_readline.c		ft_dreadline.c		ft_putnbr_fd.c		\
-			ft_putstr_fd.c		ft_putendl_fd.c		ft_atol_base.c		\
-			ft_putchar_fd.c		ft_printf_error.c	ft_putnbr_base.c	\
-			ft_putnbr_base_fd.c
+			ft_putnbr_fd.c		ft_putstr_fd.c		ft_putendl_fd.c		\
+			ft_atol_base.c		ft_putchar_fd.c		ft_printf_error.c	\
+			ft_putnbr_base.c	ft_putnbr_base_fd.c
+
 
 include variables.mk
-#override CFLAGS += -g
 override CFLAGS += -ansi -pedantic
 include rules.mk

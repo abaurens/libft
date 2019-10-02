@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 21:17:31 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/30 14:32:31 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/10/02 15:08:25 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@
 
 int		main(void)
 {
-	test_matrix();
+	test_readline();
 	return (0);
 }

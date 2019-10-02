@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 14:32:55 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/16 11:58:22 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/10/02 13:41:38 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,5 @@ long	ft_atol_base(const char *str, const char *base);
 /*
 **	FT_DISABLE_TERMCAPS
 */
-char	*ft_readline(const char *prompt);
-char	*ft_dreadline(const int fd, const char *prompt);
 
 #endif
