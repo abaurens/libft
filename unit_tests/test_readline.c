@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 11:39:42 by abaurens          #+#    #+#             */
-/*   Updated: 2019/10/02 18:25:46 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/10/02 20:50:17 by baurens          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@
 
 void	test_readline(void)
 {
-	ft_dreadline(0, "$>");
+	ft_readline("$>");
 }
