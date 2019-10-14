@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 16:55:44 by abaurens          #+#    #+#             */
-/*   Updated: 2019/10/02 19:19:40 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/10/14 16:43:46 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static const struct	s_func_assignment
 {
 	char			*keycode;
 	t_key_func		func;
-}					g_tb[] = {
+}					g_tb[] __attribute__((unused)) = {
 	{"[A", &key_up},
 	{"[B", &key_down},
 	{"[C", &key_right},

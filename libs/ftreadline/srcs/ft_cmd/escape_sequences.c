@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 16:15:57 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/20 06:31:39 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/10/14 16:45:54 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static char	esc_crochet(const int fd, t_cmdline buf, uint32_t *i)
 		j++;
 	if (g_subseq_crochet[j].c && g_subseq_crochet[j].func)
 		return (g_subseq_crochet[j].func(fd, buf, i));
-	/*ft_dprintf(2, "\e[31m\\e[%c(%d) -> %d\e[0m\n", key, key, j);*/
 	sleep(2);
 	return (0);
 }
@@ -64,7 +63,6 @@ static char	esc_capital_o(const int fd, t_cmdline buf, uint32_t *i)
 		j++;
 	if (g_subseq_capital_o[j].c && g_subseq_capital_o[j].func)
 		return (g_subseq_capital_o[j].func(fd, buf, i));
-	/*ft_dprintf(2, "\e[31m\\eO%c(%d)\e[0m\n", key, key);*/
 	sleep(2);
 	return (0);
 }
@@ -87,7 +85,6 @@ char		esc_sequence(const int fd, t_cmdline buf, uint32_t *i)
 		j++;
 	if (g_subseq[j].c && g_subseq[j].func)
 		return (g_subseq[j].func(fd, buf, i));
-	/*ft_dprintf(2, "\e[31m\\e%c(%d)\e[0m\n", key, key);*/
 	sleep(2);
 	return (0);
 }
