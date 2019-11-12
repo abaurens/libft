@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/10/02 13:43:24 by abaurens         ###   ########.fr        #
+#    Updated: 2019/11/12 21:10:45 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,8 @@ SRC		:=	\
 			gnl.c				cgnl.c				sgnl.c				\
 			ft_atoi.c			ft_atol.c			ft_itoa.c			\
 			ft_flags.c			ft_debugf.c			ft_putstr.c			\
-			ft_printf.c			ft_putnbr.c			ft_fprintf.c		\
+			ft_printf.c			ft_putnbr.c			ft_putlnbr.c		\
+			ft_putunbr.c		ft_putlunbr.c		ft_fprintf.c		\
 			ft_sprintf.c		ft_dprintf.c		ft_snprintf.c		\
 			ft_putchar.c		ft_putendl.c		ft_asprintf.c		\
 			ft_putnbr_fd.c		ft_putstr_fd.c		ft_putendl_fd.c		\
