@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 21:39:12 by abaurens          #+#    #+#             */
-/*   Updated: 2019/10/02 21:15:38 by baurens          ###   ########.fr       */
+/*   Updated: 2019/10/14 16:53:26 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ char	*ft_readline(const char *prompt)
 	(void)tree;
 	(void)prompt;
 	tree = get_input_tree();
-	/*print_input_tree(tree, 0);*/
 	return (0);
 }
+
+/*
+** print_input_tree(tree, 0);
+*/

@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 16:55:44 by abaurens          #+#    #+#             */
-/*   Updated: 2019/10/02 22:12:34 by baurens          ###   ########.fr       */
+/*   Updated: 2019/10/14 16:56:10 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static const struct	s_func_assignment
 {
 	char			*keycode;
 	t_key_func		func;
-}					g_tb[] = {
+}					g_tb[] __attribute__((unused)) = {
 	{"[A", &key_up},
 	{"[B", &key_down},
 	{"[C", &key_right},
@@ -64,32 +64,31 @@ struct				s_tree_
 
 /*
 **	working but non ansi...
-*/
-/*
-# define NODE(_c, _count, _childs) {_c, _count, _childs}
-# define NODETAB(...) ((t_tree_[]){__VA_ARGS__})
-
-t_tree_		g_test =
-	NODE('\033', 2, NODETAB(
-		NODE('[', 6, NODETAB(
-			NODE('A', 0, 0),
-			NODE('B', 0, 0),
-			NODE('C', 0, 0),
-			NODE('D', 0, 0),
-			NODE('E', 0, 0),
-			NODE('F', 0, 0)
-		)),
-		NODE('O', 6, NODETAB(
-			NODE('G', 0, 0),
-			NODE('H', 0, 0),
-			NODE('I', 0, 0),
-			NODE('J', 0, 0),
-			NODE('K', 0, 0),
-			NODE('L', 0, 0)
-		)),
-		NODE(0, 0, 0)
-	)
-);
+**
+**	# define NODE(_c, _count, _childs) {_c, _count, _childs}
+**	# define NODETAB(...) ((t_tree_[]){__VA_ARGS__})
+**
+**	t_tree_		g_test =
+**		NODE('\033', 2, NODETAB(
+**			NODE('[', 6, NODETAB(
+**				NODE('A', 0, 0),
+**				NODE('B', 0, 0),
+**				NODE('C', 0, 0),
+**				NODE('D', 0, 0),
+**				NODE('E', 0, 0),
+**				NODE('F', 0, 0)
+**			)),
+**			NODE('O', 6, NODETAB(
+**				NODE('G', 0, 0),
+**				NODE('H', 0, 0),
+**				NODE('I', 0, 0),
+**				NODE('J', 0, 0),
+**				NODE('K', 0, 0),
+**				NODE('L', 0, 0)
+**			)),
+**			NODE(0, 0, 0)
+**		)
+**	);
 */
 
 /*
