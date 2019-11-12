@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 14:32:55 by abaurens          #+#    #+#             */
-/*   Updated: 2019/10/02 13:41:38 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/11/12 21:09:09 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,10 @@ void	ft_putstr_fd(char const *s, int fd);
 void	ft_putendl_fd(char const *s, int fd);
 void	ft_putnbr_base(int n, const char *base);
 void	ft_putnbr_base_fd(int n, const char *base, int fd);
+
+void	ft_putlnbr(register long int n);
+void	ft_putunbr(register unsigned int n);
+void	ft_putlunbr(register unsigned long int n);
 
 char	*ft_itoa(int n);
 
