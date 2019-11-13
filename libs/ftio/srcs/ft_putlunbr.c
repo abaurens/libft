@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 00:48:36 by abaurens          #+#    #+#             */
-/*   Updated: 2019/11/12 21:09:49 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/11/12 21:54:37 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		ft_putlunbr(register unsigned long int n)
 	*buf = '0';
 	while (g_ten_pow[i] && !(n / g_ten_pow[i]))
 		++i;
-	while (n != 0)
+	while (g_ten_pow[i])
 	{
 		buf[j++] = ((n / g_ten_pow[i])) + '0';
 		n %= g_ten_pow[i++];

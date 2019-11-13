@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 00:48:36 by abaurens          #+#    #+#             */
-/*   Updated: 2019/11/12 21:09:32 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/11/12 21:54:44 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		ft_putlnbr(register long int n)
 		buf[j++] = '-';
 	while (g_ten_pow[i] && !(n / g_ten_pow[i]))
 		++i;
-	while (n != 0)
+	while (g_ten_pow[i])
 	{
 		if ((buf[j] = ((n / g_ten_pow[i]))) < 0)
 			buf[j] *= -1;
