@@ -6,23 +6,14 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 13:42:15 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/23 06:07:07 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/12/03 08:08:21 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <inttypes.h>
 #include "ftmath/fpmath.h"
 
-#define INTERVALS	128
-#define P8			(-1.2518388626763144e-1L)
-#define P7			(+1.4286227413310518e-1L)
-#define P6			(-1.6666666072191585e-1L)
-#define P5			(+1.9999999992970016e-1L)
-#define P4			(-2.5000000000004424e-1L)
-#define P3			(+3.3333333333333359e-1L)
-#define P2			(-0.5L)
-
-static const t_tab1	g_t[INTERVALS + 1] = {
+static const t_tab1	g_t[129] = {
 	{0x800000.0p-23, 0, 0},
 	{0xfe0000.0p-24, 0x8080ac.0p-30, -0x14ee431dae6675.0p-84},
 	{0xfc0000.0p-24, 0x8102b3.0p-29, -0x1db29ee2d83718.0p-84},
@@ -153,7 +144,7 @@ static const t_tab1	g_t[INTERVALS + 1] = {
 	{0x808000.0p-24, 0xb07298.0p-24, -0x1750ee3915a198.0p-78},
 	{0x800000.0p-24, 0xb17218.0p-24, -0x105c610ca86c39.0p-81}
 };
-static const t_tab2	g_u[INTERVALS + 1] = {
+static const t_tab2	g_u[129] = {
 	{0x800000.0p-23, 0},
 	{0x810000.0p-23, -0x800000.0p-37},
 	{0x820000.0p-23, -0x800000.0p-35},
@@ -296,11 +287,13 @@ static long double	solve_polynome(long double x, long double ex_of,
 	i = ((man & 0x7fffffffffffffffull) + (1ll << (64 - 9))) >> (64 - 8);
 	ent = (x - g_u[i].h) * g_t[i].g + g_u[i].e;
 	tmp = ent * ent;
-	dec = tmp * ent * tmp * (tmp * (ent * P8 + P7) + (ent * P6 + P5));
-	dec += (g_t[i].f_lo + ex_of * g_t[INTERVALS].f_lo);
-	dec += tmp * ent * (ent * P4 + P3);
-	dec += tmp * P2;
-	tmp = g_t[i].f_hi + ex_of * g_t[INTERVALS].f_hi;
+	dec = tmp * ent * tmp
+		* (tmp * (ent * -1.2518388626763144e-1L + 1.4286227413310518e-1L)
+			+ (ent * -1.6666666072191585e-1L + 1.9999999992970016e-1L));
+	dec += (g_t[i].f_lo + ex_of * g_t[128].f_lo);
+	dec += tmp * ent * (ent * -2.5000000000004424e-1L + 3.3333333333333359e-1L);
+	dec += tmp * -0.5L;
+	tmp = g_t[i].f_hi + ex_of * g_t[128].f_hi;
 	dec += (tmp - (tmp + ent)) + ent;
 	ent = (tmp + ent);
 	return (ent + dec);

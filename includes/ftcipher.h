@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 15:00:35 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/15 01:09:59 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/12/03 04:13:46 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <inttypes.h>
 # include <string.h>
 
-# define MAGIC ((uint8_t)170)
+# define MAGIC 170
 
 /*
 **	Cipher the memory chunk pointed by src of size [size]

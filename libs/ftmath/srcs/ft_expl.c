@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 16:26:10 by abaurens          #+#    #+#             */
-/*   Updated: 2019/08/23 07:08:45 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/12/03 08:15:19 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "ftmath/ft_expl.h"
 #include "ftmath/fpmath.h"
 
-static const t_tab	g_tbl[INTERVALS] = {
+static const t_tab	g_tbl[128] = {
 	{0x1p+0, 0x0p+0},
 	{0x1.0163da9fb3335p+0, 0x1.b61299ab8cdb7p-54},
 	{0x1.02c9a3e778060p+0, 0x1.dcdef95949ef4p-53},
@@ -159,7 +159,7 @@ static void			k_ft_expl(long double x, long double *hp, long double *lp,
 	fn = (x * INV_L) + 0x1.8p64 / 2 - 0x1.8p64 / 2;
 	r = x - fn * L1 - fn * L2;
 	*kp = ((int)fn) >> LOG2_INTERVALS;
-	n = ((unsigned)fn) % INTERVALS;
+	n = ((unsigned)fn) % 128;
 	*hp = g_tbl[n].hi;
 	z = r * r;
 	q = (fn * -L2) + z * A2 + z * r * (A3 + r * A4 + z * (A5 + r * A6));
@@ -181,11 +181,11 @@ static long double	compute_expl(long double x)
 	{
 		if (k == LDBL_MAX_EXP)
 			return (hi * 2 * 0x1p16383L);
-		set_ldbl_expsign(&twopk, BIAS + k);
+		set_ldbl_expsign(&twopk, (LDBL_MAX_EXP - 1) + k);
 		return (hi * twopk);
 	}
-	set_ldbl_expsign(&twopk, BIAS + k + 10000);
-	return (hi * twopk * TWOM10000);
+	set_ldbl_expsign(&twopk, (LDBL_MAX_EXP - 1) + k + 10000);
+	return (hi * twopk * 0x1p-10000L);
 }
 
 long double			ft_expl(long double x)
@@ -197,20 +197,20 @@ long double			ft_expl(long double x)
 	u.e = x;
 	hx = u.xbits.expsign;
 	ix = hx & 0x7fff;
-	if (ix >= BIAS + 13)
+	if (ix >= (LDBL_MAX_EXP - 1) + 13)
 	{
-		if (ix == BIAS + LDBL_MAX_EXP)
+		if (ix == (LDBL_MAX_EXP - 1) + LDBL_MAX_EXP)
 		{
 			if (hx & 0x8000)
 				return (-1 / x);
 			return (x + x);
 		}
 		if (x > ld80c(0xb17217f7d1cf79ab, 13, 11356.5234062941439488L).e)
-			return (HUGE2 * HUGE2);
+			return (0x1p10000L * 0x1p10000L);
 		if (x < ld80c(0xb21dfe7f09e2baa9, 13, -11399.4985314888605581L).e)
-			return (TINY * TINY);
+			return (0x1p-10000L * 0x1p-10000L);
 	}
-	else if (ix < BIAS - 75)
+	else if (ix < (LDBL_MAX_EXP - 1) - 75)
 		return (1 + x);
 	return (compute_expl(x));
 }

@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 07:12:23 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/02 13:26:51 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/12/03 04:14:55 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,8 @@ typedef struct	s_escape_dispatch
 	char		(*func)(const int fd, t_cmdline buf, uint32_t *i);
 }				t_escape_dispatch;
 
-# ifdef FT_DISABLE_TERMCAPS
-
-#  define FT_TERM_TYPE	uint32_t
-#  define FT_WINS_TYPE	uint32_t
-
-# else
-
-#  define FT_TERM_TYPE	struct termios
-#  define FT_WINS_TYPE	struct winsize
-
-# endif
-
-typedef FT_TERM_TYPE	t_term;
-typedef FT_WINS_TYPE	t_winsize;
-
-# undef FT_TERM_TYPE
-# undef FT_WINS_TYPE
+typedef struct termios	t_term;
+typedef struct winsize	t_winsize;
 
 char			*ft_readline_(const int fd, const char *prompt);
 
