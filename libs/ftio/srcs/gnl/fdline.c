@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 14:17:10 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/02 15:24:44 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/11/14 07:24:17 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char		fdline_(const int fd, char **line, char **save)
 		if (n == 0)
 			break ;
 		buff[n] = 0;
-		if (!(tmp = gnl_cat_(*save, buff, -1)))
+		if (ft_strlen(buff) < (size_t)n || !(tmp = gnl_cat_(*save, buff, -1)))
 			return (-1);
 		free(*save);
 		*save = tmp;

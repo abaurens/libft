@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 18:29:02 by abaurens          #+#    #+#             */
-/*   Updated: 2019/09/25 10:14:50 by abaurens         ###   ########.fr       */
+/*   Updated: 2019/12/03 08:16:32 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,19 @@
 **	# define F_COLO	0b00100000
 */
 # define F_MINS	1
-# define F_ZERO	(1 << 1)
-# define F_PLUS	(1 << 2)
-# define F_SPAC	(1 << 3)
-# define F_HASH	(1 << 4)
-# define F_COLO	(1 << 5)
+# define F_ZERO	2
+# define F_PLUS	4
+# define F_SPAC	8
+# define F_HASH	16
+# define F_COLO	32
 # define FLAGS_V "-0+ #'"
 # define FLAG_C 6
 
 # ifdef __STDC_VERSION__
 #  define UQUAD_TYPE	u_quad_t
 #  define QUAD_TYPE		quad_t
-#  define ULLI_TYPE 	unsigned long long int
-#  define LLI_TYPE		long long int
+#  define ULLI_TYPE 	uint128_t
+#  define LLI_TYPE		int128_t
 # else
 #  define UQUAD_TYPE	uint32_t
 #  define ULLI_TYPE 	uint64_t

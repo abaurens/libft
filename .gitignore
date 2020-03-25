@@ -65,3 +65,7 @@ main.c
 
 # Temp ignored
 ft_rem_pio2.c
+
+# folders to keep local side only
+unit_tests/**
+wip_tmp/**
