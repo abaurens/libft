@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
+#    By: baurens <baurens@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/12/03 08:20:40 by abaurens         ###   ########.fr        #
+#    Updated: 2020/03/25 07:38:22 by baurens          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,5 +29,5 @@ SRC		:=	\
 
 include variables.mk
 include rules.mk
-override CFLAGS	+=	-ansi
+#override CFLAGS	+=	-ansi
 #override CFLAGS	+=	-pedantic
