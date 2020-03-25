@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    variables.mk                                       :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
+#    By: baurens <baurens@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 19:29:12 by abaurens          #+#    #+#              #
-#    Updated: 2019/07/04 01:35:40 by abaurens         ###   ########.fr        #
+#    Updated: 2020/03/25 07:34:25 by baurens          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CMPT	:=	0
 
-ifneq ($(SHELL),/bin/sh)
-override SHELL := /bin/sh
+ifneq ($(SHELL),/bin/bash)
+override SHELL := /bin/bash
 endif
 
 FCNT	:=	$(words $(SRC))
