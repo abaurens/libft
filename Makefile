@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
+#    By: baurens <baurens@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 00:51:05 by abaurens          #+#    #+#              #
-#    Updated: 2019/10/02 13:47:53 by abaurens         ###   ########.fr        #
+#    Updated: 2020/03/25 08:33:23 by baurens          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,7 @@ LIBS	:=	\
 			ftregex		\
 			ftcipher	\
 			ftmatrix	\
-			ftvectors	\
-			ftreadline
+			ftvectors
 LIBS	:=	$(addsuffix $(SUB_EXT),$(LIBS))
 
 ifeq ($(FANCY_MODE),TRUE)
