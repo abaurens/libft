@@ -6,7 +6,7 @@
 #    By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 16:08:06 by abaurens          #+#    #+#              #
-#    Updated: 2019/09/09 16:43:46 by abaurens         ###   ########.fr        #
+#    Updated: 2021/01/05 17:25:50 by abaurens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ NAME	:=	ftlib
 # SOURCES
 
 SRC		:=	\
+			ft_swap.c				\
 			ft_match.c				\
 			ft_idxof.c				\
 			ft_bzero.c				\

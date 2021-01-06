@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 16:09:37 by abaurens          #+#    #+#             */
-/*   Updated: 2020/10/09 01:29:51 by abaurens         ###   ########.fr       */
+/*   Updated: 2021/01/05 17:25:01 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ char		*ft_strsub(char const *s, unsigned int start, size_t len);
 
 char		**ft_strsplit(char const *s, char c);
 char		**ft_split(char const *str, char const *sep);
+
+void		ft_swap(void *ptr1, void *ptr2, uint32_t size);
 
 uintptr_t	ft_freturn(void const *const ptr, uintptr_t ret);
 
