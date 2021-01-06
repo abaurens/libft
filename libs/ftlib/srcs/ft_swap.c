@@ -6,7 +6,7 @@
 /*   By: abaurens <abaurens@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 16:53:44 by abaurens          #+#    #+#             */
-/*   Updated: 2021/01/05 17:40:14 by abaurens         ###   ########.fr       */
+/*   Updated: 2021/01/06 01:30:14 by abaurens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,22 +107,4 @@ void			ft_swap(void *ptr1, void *ptr2, uint32_t size)
 		p1 += step;
 		p2 += step;
 	}
-	/*
-	step = swap_64bits((uint64_t *)p1, (uint64_t *)p2, size);
-	size -= step;
-	p1 += step;
-	p2 += step;
-	step = swap_32bits((uint32_t *)p1, (uint32_t *)p2, size);
-	size -= step;
-	p1 += step;
-	p2 += step;
-	step = swap_16bits((uint16_t *)p1, (uint16_t *)p2, size);
-	size -= step;
-	p1 += step;
-	p2 += step;
-	step = swap_8bits((uint8_t *)p1, (uint8_t *)p2, size);
-	size -= step;
-	p1 += step;
-	p2 += step;
-	*/
 }
